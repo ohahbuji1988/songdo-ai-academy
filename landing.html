@@ -53,9 +53,43 @@
       line-height: 1.75;
       word-break: keep-all;
     }
+    /* In-Place WYSIWYG Editor */
+    .editable-landing-element:hover {
+      outline: 2px dashed #00c471 !important;
+      cursor: text !important;
+      background-color: rgba(0, 196, 113, 0.08) !important;
+      border-radius: 4px;
+    }
+    .editable-landing-element:focus {
+      outline: 2px solid #00c471 !important;
+      background-color: rgba(0, 196, 113, 0.14) !important;
+      border-radius: 4px;
+    }
   </style>
 </head>
 <body class="selection:bg-miriGreen selection:text-white bg-white text-slate-800">
+
+  <!-- FLOATING EDIT BANNER FOR LANDING -->
+  <div id="landing-edit-banner" class="hidden fixed top-0 left-0 right-0 z-50 bg-emerald-950/95 border-b border-emerald-700/80 px-6 py-2.5 flex items-center justify-between text-xs text-emerald-200 backdrop-blur shadow-xl">
+    <div class="flex items-center gap-2">
+      <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+      <strong class="text-white">✏️ 랜딩페이지 직접 수정 켜짐:</strong>
+      <span>제목, 본문, 수강료, 설명 등 원하는 글자를 마우스로 클릭하고 바로 타이핑하세요!</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <button onclick="saveLandingToServer()" class="px-3.5 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center gap-1.5 shadow-md cursor-pointer">
+        <span>💾</span> <span>지금 저장하기 (Ctrl+S)</span>
+      </button>
+      <button onclick="toggleLandingEditMode()" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs cursor-pointer">
+        편집 종료 (E)
+      </button>
+    </div>
+  </div>
+
+  <!-- FLOATING EDIT TOGGLE BUTTON -->
+  <button id="floating-edit-btn" onclick="toggleLandingEditMode()" title="랜딩페이지 화면 직접 수정 (단축키 E)" class="fixed bottom-6 right-6 z-40 px-3.5 py-2 rounded-full bg-slate-900/90 hover:bg-slate-800 text-emerald-400 border border-emerald-600/60 shadow-2xl backdrop-blur flex items-center gap-2 text-xs font-bold transition-all cursor-pointer">
+    <span>✏️</span> <span>화면 직접 수정 (E)</span>
+  </button>
 
   <!-- ========================================================
        TOP GLOBAL NAVIGATION
@@ -678,5 +712,101 @@
     }
   </script>
 
+  <script>
+    let isLandingEditMode = false;
+
+    function enableLandingEditing() {
+      const targets = document.querySelectorAll('main h1, main h2, main h3, main h4, main p, main span, main strong, main li, main td, main th, header h1, header span, section h1, section h2, section h3, section p, section span, section strong, section li');
+      targets.forEach(el => {
+        if (el.closest('button') || el.closest('a') || el.closest('#apply-modal') || el.closest('#landing-edit-banner') || el.closest('#floating-edit-btn')) return;
+        el.setAttribute('contenteditable', 'true');
+        el.classList.add('editable-landing-element');
+      });
+    }
+
+    function disableLandingEditing() {
+      const targets = document.querySelectorAll('.editable-landing-element');
+      targets.forEach(el => {
+        el.removeAttribute('contenteditable');
+        el.classList.remove('editable-landing-element');
+      });
+    }
+
+    function toggleLandingEditMode() {
+      isLandingEditMode = !isLandingEditMode;
+      const banner = document.getElementById('landing-edit-banner');
+      const floatBtn = document.getElementById('floating-edit-btn');
+
+      if (isLandingEditMode) {
+        if (banner) banner.classList.remove('hidden');
+        if (floatBtn) floatBtn.innerHTML = '<span>✏️</span> <span>편집 켜짐 (E)</span>';
+        enableLandingEditing();
+      } else {
+        if (banner) banner.classList.add('hidden');
+        if (floatBtn) floatBtn.innerHTML = '<span>✏️</span> <span>화면 직접 수정 (E)</span>';
+        disableLandingEditing();
+      }
+    }
+
+    async function saveLandingToServer() {
+      const banner = document.getElementById('landing-edit-banner');
+      const floatBtn = document.getElementById('floating-edit-btn');
+
+      // 1. Clean editor artifacts
+      disableLandingEditing();
+      if (banner) banner.classList.add('hidden');
+
+      // 2. Extract full HTML
+      const fullHtml = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+
+      // 3. Restore UI state
+      if (isLandingEditMode) {
+        if (banner) banner.classList.remove('hidden');
+        enableLandingEditing();
+      }
+
+      // 4. Send to server
+      try {
+        const res = await fetch('/api/save-page', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ page: 'landing.html', html: fullHtml })
+        });
+        const json = await res.json();
+        if (res.ok && json.success) {
+          alert('✅ 랜딩페이지(landing.html) 파일에 즉시 영구 저장되었습니다!');
+        } else {
+          alert('저장 실패: ' + (json.error || '알 수 없는 오류'));
+        }
+      } catch (err) {
+        alert('서버 통신 오류: ' + err.message);
+      }
+    }
+
+    // Keydown listener for landing
+    window.addEventListener('keydown', (e) => {
+      if (e.target && e.target.isContentEditable) {
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
+          e.preventDefault();
+          saveLandingToServer();
+        }
+        return;
+      }
+      if (e.key.toLowerCase() === 'e') {
+        e.preventDefault();
+        toggleLandingEditMode();
+      } else if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
+        e.preventDefault();
+        saveLandingToServer();
+      }
+    });
+
+    // Parent iframe bridge
+    window.addEventListener('message', (e) => {
+      if (e.data && e.data.type === 'TOGGLE_EDIT_MODE') {
+        toggleLandingEditMode();
+      }
+    });
+  </script>
 </body>
 </html>

@@ -115,6 +115,26 @@ class DevilServerHandler(SimpleHTTPRequestHandler):
                     self.send_error_json(400, "내용이 비어 있습니다.")
             except Exception as e:
                 self.send_error_json(500, f"저장 실패: {str(e)}")
+        elif self.path == '/api/save-page':
+            content_length = int(self.headers.get('Content-Length', 0))
+            body = self.rfile.read(content_length).decode('utf-8')
+            try:
+                data = json.loads(body)
+                page = data.get('page', '').strip()
+                html_content = data.get('html', '')
+                allowed_pages = ['landing.html', 'presentation.html', 'curriculum.html', 'creator.html', 'process.html']
+                if page not in allowed_pages:
+                    self.send_error_json(400, f"저장 권한이 없는 페이지입니다: {page}")
+                    return
+                if html_content:
+                    file_path = os.path.join(DIRECTORY, page)
+                    with open(file_path, 'w', encoding='utf-8') as f:
+                        f.write(html_content)
+                    self.send_json_response(200, {"success": True, "message": f"{page} 파일에 즉시 영구 저장되었습니다!"})
+                else:
+                    self.send_error_json(400, "내용이 비어 있습니다.")
+            except Exception as e:
+                self.send_error_json(500, f"저장 실패: {str(e)}")
         elif self.path == '/api/open-browser':
             content_length = int(self.headers.get('Content-Length', 0))
             body = self.rfile.read(content_length).decode('utf-8')
