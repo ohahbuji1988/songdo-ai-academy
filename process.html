@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>송도 AI 아카데미 히스토리 & 프로세스 맵 — ohahbuji</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#0f766e',
+            brandDark: '#115e59',
+            brandLight: '#f0fdfa',
+            ink: '#0f172a',
+            inkBody: '#334155',
+            inkMuted: '#64748b',
+            surface: '#ffffff',
+            surfaceMuted: '#f8fafc',
+            borderSubtle: '#e2e8f0'
+          }
+        }
+      }
+    }
+  </script>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.1/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+      -webkit-font-smoothing: antialiased;
+      font-family: 'Wanted Sans Variable', 'Wanted Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    body {
+      background-color: #f8fafc;
+      color: #334155;
+      font-size: 15px;
+      line-height: 1.8;
+      letter-spacing: -0.015em;
+    }
+    h1, h2, h3, h4 {
+      color: #0f172a;
+      letter-spacing: -0.03em;
+      text-wrap: balance;
+    }
+    .font-signature {
+      font-family: 'Caveat', cursive !important;
+    }
+    .card-hover {
+      transition: all 180ms ease;
+    }
+    .card-hover:hover {
+      border-color: #cbd5e1;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body class="selection:bg-brand selection:text-white min-h-screen py-10 px-4 sm:px-6 md:px-8 flex justify-center">
+
+  <main class="w-full max-w-4xl bg-surface border border-borderSubtle rounded-2xl shadow-sm p-6 sm:p-12 md:p-16 flex flex-col gap-12">
+
+    <!-- Header -->
+    <header class="flex flex-col gap-4 border-b border-borderSubtle pb-6">
+      <div class="flex items-center justify-between text-xs text-inkMuted">
+        <span class="px-2.5 py-1 rounded bg-brandLight text-brand font-semibold tracking-wider uppercase">
+          PROJECT ARCHITECTURE & PROCESS MAP
+        </span>
+        <span>프로젝트 아카이브 및 의사결정 계통도</span>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-ink leading-tight">
+          우리가 걸어온 길: 기획, 결정, 그리고 모든 화면의 연결
+        </h1>
+        <p class="text-inkBody text-base sm:text-lg">
+          왜 시작했고, 어떤 피드백으로 의사결정이 바뀌었으며, 각 화면들이 어떻게 연결되어 있는지 한눈에 정리한 프로세스 지도입니다.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-2 pt-2 text-xs">
+        <a href="/curriculum.html" class="px-3 py-1.5 rounded-lg bg-slate-900 text-white font-medium hover:bg-slate-800 transition-all">
+          📑 공식 커리큘럼 (직접 편집 가능)
+        </a>
+        <a href="/courseware/index.html" class="px-3 py-1.5 rounded-lg bg-teal-700 text-white font-medium hover:bg-teal-800 transition-all">
+          📦 코스웨어 통합 대시보드
+        </a>
+        <a href="/courseware/starter-kit/index.html" class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-800 font-medium hover:bg-slate-200 transition-all">
+          🚀 1주차 스타터 웹 화면
+        </a>
+      </div>
+    </header>
+
+    <!-- 1. WHY WE STARTED -->
+    <section class="flex flex-col gap-4 bg-surfaceMuted border border-borderSubtle rounded-xl p-6 sm:p-8">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-brand"></span>
+        <h2 class="text-xs font-semibold tracking-wider text-brand uppercase">1. STARTING POINT · 왜 시작했는가?</h2>
+      </div>
+
+      <h3 class="text-xl font-bold text-ink">
+        "단순 질문과 텍스트 복붙에 지친 사람들에게, 진짜 내 웹 도구를 쥐어주자."
+      </h3>
+
+      <div class="text-sm text-inkBody flex flex-col gap-3 leading-relaxed">
+        <p>
+          처음에는 게임 아이디어 구상으로 시작했으나, <strong>"진짜 사람들에게 필요한 실질적인 AI 교육 프로그램을 기획해보자"</strong>는 제안으로 피벗(Pivot)했습니다.
+        </p>
+        <p>
+          실리콘밸리 빅테크에서 AI 파이프라인을 다루다 귀국해 송도에 정착한 학원장의 페르소나를 세우고,
+          기존 시중의 '프롬프트 100선', '챗봇과 잡담하기' 같은 겉핥기 강의의 한계를 돌파하기 위한 <strong>정직한 6주 실전 코스</strong>를 설계하게 되었습니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- 2. DECISION LOG -->
+    <section class="flex flex-col gap-5">
+      <div class="flex flex-col gap-1">
+        <span class="text-xs font-semibold tracking-wider text-brand uppercase">2. DECISION LOG · 핵심 의사결정의 변화</span>
+        <h2 class="text-2xl font-bold text-ink">피드백과 검증을 통해 진화한 6대 결정</h2>
+      </div>
+
+      <div class="flex flex-col gap-3 text-xs sm:text-sm">
+        
+        <!-- Decision 1 -->
+        <div class="border border-borderSubtle bg-white p-5 rounded-xl flex flex-col gap-2 card-hover">
+          <div class="flex items-center justify-between">
+            <strong class="text-ink font-semibold text-sm sm:text-base">① 브랜딩 전환: 강남 ➡️ 송도 국제 AI 아카데미</strong>
+            <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 text-xs font-medium">로컬 아이덴티티</span>
+          </div>
+          <p class="text-inkBody leading-relaxed">
+            단순 입시·단기 학원 밀집지인 강남 이미지를 벗어나, 송도 국제도시의 글로벌 인프라와 빅테크 귀국 원장의 세련된 감도를 결합했습니다.
+          </p>
+        </div>
+
+        <!-- Decision 2 -->
+        <div class="border border-borderSubtle bg-white p-5 rounded-xl flex flex-col gap-2 card-hover">
+          <div class="flex items-center justify-between">
+            <strong class="text-ink font-semibold text-sm sm:text-base">② 기간 현실화: 4주 초압축 ➡️ 6주 점진적 나선형 완성</strong>
+            <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 text-xs font-medium">학습 난이도 조정</span>
+          </div>
+          <p class="text-inkBody leading-relaxed">
+            비전공자가 4주 만에 배포와 디버깅을 다 소화하는 건 사기에 가깝다는 현실적 판단 아래, 6주로 호흡을 넓혀 체화할 수 있는 나선형 구조로 변경했습니다.
+          </p>
+        </div>
+
+        <!-- Decision 3 -->
+        <div class="border border-borderSubtle bg-white p-5 rounded-xl flex flex-col gap-2 card-hover">
+          <div class="flex items-center justify-between">
+            <strong class="text-ink font-semibold text-sm sm:text-base">③ 비용 경계선: 완전 0원 허구 ➡️ 단일 유료 구독 + 추가 API 과금 0원</strong>
+            <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 text-xs font-medium">비용 투명성</span>
+          </div>
+          <p class="text-inkBody leading-relaxed">
+            고성능 코딩 모델(ChatGPT Plus/Claude Pro) 구독 1개는 필수임을 정직하게 인정하고, 대신 복잡하고 불안한 종량제 API 토큰 추가 비용은 0원으로 통제했습니다.
+          </p>
+        </div>
+
+        <!-- Decision 4 -->
+        <div class="border border-borderSubtle bg-white p-5 rounded-xl flex flex-col gap-2 card-hover">
+          <div class="flex items-center justify-between">
+            <strong class="text-ink font-semibold text-sm sm:text-base">④ 카파시 피라미드 & 수치 제거 (Codex 74점 ➡️ 84점 도약)</strong>
+            <span class="px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 text-xs font-semibold">ChatGPT 검수 반영</span>
+          </div>
+          <p class="text-inkBody leading-relaxed">
+            '상위 0.05%'나 '상위 20%' 같은 근거 없는 숫자를 모두 털어내고, <strong>"AI와 대화하던 사람에서, 내 웹 도구를 만들고 고치는 사람으로"</strong>라는 명료하고 당당한 포지셔닝으로 전환했습니다.
+          </p>
+        </div>
+
+        <!-- Decision 5 -->
+        <div class="border border-borderSubtle bg-white p-5 rounded-xl flex flex-col gap-2 card-hover">
+          <div class="flex items-center justify-between">
+            <strong class="text-ink font-semibold text-sm sm:text-base">⑤ 배포 시점 혁신: 4주차 배포 지연 ➡️ 1주차 Day-1 조기 배포 (Win)</strong>
+            <span class="px-2 py-0.5 rounded bg-teal-50 text-brand text-xs font-semibold">교육 설계 혁신</span>
+          </div>
+          <p class="text-inkBody leading-relaxed">
+            마지막 주에 허겁지겁 배포하지 않고, 1주 차 첫 수업 30분 만에 1페이지를 먼저 전 세계에 배포해 성공 체험을 안겨준 뒤 매주 기능을 덧붙이도록 개선했습니다.
+          </p>
+        </div>
+
+        <!-- Decision 6 -->
+        <div class="border border-borderSubtle bg-white p-5 rounded-xl flex flex-col gap-2 card-hover">
+          <div class="flex items-center justify-between">
+            <strong class="text-ink font-semibold text-sm sm:text-base">⑥ 브라우저 직접 편집기 (In-Place Editor) 장착</strong>
+            <span class="px-2 py-0.5 rounded bg-purple-50 text-purple-800 text-xs font-semibold">UX 도구 개발</span>
+          </div>
+          <p class="text-inkBody leading-relaxed">
+            매번 AI 대화창에 문구 수정을 요청하는 번거로움을 해결하기 위해, 브라우저 화면에서 글자를 직접 클릭해 타이핑하고 [파일로 저장]하면 실제 HTML 파일이 갱신되는 툴바를 개발했습니다.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 3. SCREEN & ARTIFACT MAP -->
+    <section class="flex flex-col gap-5">
+      <div class="flex flex-col gap-1">
+        <span class="text-xs font-semibold tracking-wider text-brand uppercase">3. SYSTEM & SCREEN MAP · 모든 화면과 산출물의 연결</span>
+        <h2 class="text-2xl font-bold text-ink">현재 생성된 모든 화면과 교구 지도</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm">
+        
+        <!-- Screen 1 -->
+        <div class="border border-borderSubtle p-5 rounded-xl bg-white flex flex-col justify-between gap-3 card-hover">
+          <div class="flex flex-col gap-1">
+            <span class="text-brand font-bold">화면 01 · 기획 마스터</span>
+            <strong class="text-ink text-base">curriculum.html</strong>
+            <p class="text-inkBody text-xs leading-relaxed">
+              6주 정식 커리큘럼. 상단 우측에 <code>[✏️ 직접 편집 켜기]</code>와 <code>[💾 파일로 저장]</code> 툴바가 탑재되어 있어 브라우저에서 바로 문구를 다듬을 수 있습니다.
+            </p>
+          </div>
+          <a href="/curriculum.html" target="_blank" class="text-brand font-semibold hover:underline flex items-center gap-1 text-xs">
+            👉 화면 열기 (http://127.0.0.1:3000/curriculum.html)
+          </a>
+        </div>
+
+        <!-- Screen 2 -->
+        <div class="border border-borderSubtle p-5 rounded-xl bg-white flex flex-col justify-between gap-3 card-hover">
+          <div class="flex flex-col gap-1">
+            <span class="text-brand font-bold">화면 02 · 교구 대시보드</span>
+            <strong class="text-ink text-base">courseware/index.html</strong>
+            <p class="text-inkBody text-xs leading-relaxed">
+              스타터 킷, 프롬프트 핸드북, 수강생 워크북, 강사용 티칭 가이드까지 4대 교육 패키지를 한눈에 둘러보고 다운로드하는 허브 화면입니다.
+            </p>
+          </div>
+          <a href="/courseware/index.html" target="_blank" class="text-brand font-semibold hover:underline flex items-center gap-1 text-xs">
+            👉 화면 열기 (http://127.0.0.1:3000/courseware/index.html)
+          </a>
+        </div>
+
+        <!-- Screen 3 -->
+        <div class="border border-borderSubtle p-5 rounded-xl bg-white flex flex-col justify-between gap-3 card-hover">
+          <div class="flex flex-col gap-1">
+            <span class="text-brand font-bold">화면 03 · 수강생 스타터 웹</span>
+            <strong class="text-ink text-base">courseware/starter-kit/index.html</strong>
+            <p class="text-inkBody text-xs leading-relaxed">
+              수강생이 첫날 30분 만에 배포하는 1페이지 웹 골격. 2색 안티-슬롭, Wanted Sans, 2주차 요약 카드 슬롯, 4주차 계산기 슬롯이 완비되어 있습니다.
+            </p>
+          </div>
+          <a href="/courseware/starter-kit/index.html" target="_blank" class="text-brand font-semibold hover:underline flex items-center gap-1 text-xs">
+            👉 화면 열기 (http://127.0.0.1:3000/courseware/starter-kit/index.html)
+          </a>
+        </div>
+
+        <!-- Screen 4 -->
+        <div class="border border-borderSubtle p-5 rounded-xl bg-white flex flex-col justify-between gap-3 card-hover border-emerald-300 bg-emerald-50/20">
+          <div class="flex flex-col gap-1">
+            <div class="flex items-center justify-between">
+              <span class="text-emerald-700 font-bold">화면 04 · 통합 데스크톱 스튜디오</span>
+              <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold">핵심 도구</span>
+            </div>
+            <strong class="text-ink text-base">creator.html (Curriculum Studio)</strong>
+            <p class="text-inkBody text-xs leading-relaxed">
+              미리캔버스(MiriCanvas) 감성의 통합 에디터. 좁은 입력창 대신 <strong>실제 렌더링된 화면에서 직접 글자를 클릭해 타이핑</strong>하고, [Enter] 키로 한글 오와열(줄바꿈)을 다듬으며, Ctrl+S로 즉시 영구 저장합니다.
+            </p>
+          </div>
+          <a href="/creator.html" target="_blank" class="text-emerald-700 font-bold hover:underline flex items-center gap-1 text-xs">
+            👉 스튜디오 열기 (http://127.0.0.1:3000/creator.html)
+          </a>
+        </div>
+
+        <!-- Screen 5 -->
+        <div class="border border-borderSubtle p-5 rounded-xl bg-white flex flex-col justify-between gap-3 card-hover">
+          <div class="flex flex-col gap-1">
+            <span class="text-brand font-bold">화면 05 · 백엔드 저장 & 런처</span>
+            <strong class="text-ink text-base">server.py (포트 3000) & curriculum_creator.py</strong>
+            <p class="text-inkBody text-xs leading-relaxed">
+              브라우저 캐시 방지(Cache-Control: no-cache) 헤더를 탑재하고, 디스크 영구 저장 API(<code>/api/save-curriculum</code>, <code>/api/save-curriculum-data</code>) 및 바탕화면 단독 앱 실행을 지원합니다.
+            </p>
+          </div>
+          <span class="text-inkMuted text-xs font-mono">
+            STATUS: 200 OK (백그라운드 데몬 구동 중)
+          </span>
+        </div>
+
+        <!-- Screen 6 -->
+        <div class="border border-borderSubtle p-5 rounded-xl bg-white flex flex-col justify-between gap-3 card-hover border-emerald-300">
+          <div class="flex flex-col gap-1">
+            <span class="text-emerald-700 font-bold">화면 06 · 수강생 모집 랜딩페이지</span>
+            <strong class="text-ink text-base">landing.html</strong>
+            <p class="text-inkBody text-xs leading-relaxed">
+              송도 학부모 및 직장인 대상 고전환 수강 신청 페이지. 1주차 30분 Day-1 실시간 배포 시뮬레이션, 1초 신청 팝업 모달, 얼리버드 10% 혜택 완비.
+            </p>
+          </div>
+          <a href="/landing.html" target="_blank" class="text-emerald-700 font-bold hover:underline flex items-center gap-1 text-xs">
+            👉 랜딩페이지 열기 (http://127.0.0.1:3000/landing.html)
+          </a>
+        </div>
+
+        <!-- Screen 7 -->
+        <div class="border border-borderSubtle p-5 rounded-xl bg-white flex flex-col justify-between gap-3 card-hover border-indigo-300">
+          <div class="flex flex-col gap-1">
+            <span class="text-indigo-700 font-bold">화면 07 · 발표용 Web PPT 덱</span>
+            <strong class="text-ink text-base">presentation.html</strong>
+            <p class="text-inkBody text-xs leading-relaxed">
+              설명회 및 B2B 기관 출강 제안을 위한 12슬라이드 올인원 프레젠테이션. 전체화면(F), 발표자 대본 토글(N), PDF 1클릭 인쇄 완비.
+            </p>
+          </div>
+          <a href="/presentation.html" target="_blank" class="text-indigo-700 font-bold hover:underline flex items-center gap-1 text-xs">
+            👉 슬라이드 쇼 열기 (http://127.0.0.1:3000/presentation.html)
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-borderSubtle pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-inkMuted">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-brand"></span>
+        <span>Songdo AI Academy · Master Process & Decision Map</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span>Curated & Authored by</span>
+        <span class="font-signature text-2xl text-ink font-bold">ohahbuji</span>
+      </div>
+    </footer>
+
+  </main>
+
+</body>
+</html>

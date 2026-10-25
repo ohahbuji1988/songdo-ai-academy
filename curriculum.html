@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="ko"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>송도 국제 AI 아카데미 6주 실전 커리큘럼 — ohahbuji</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            paper: '#ffffff',
+            paperSubtle: '#f8fafc',
+            borderSubtle: '#e2e8f0',
+            ink: '#0f172a',
+            inkBody: '#334155',
+            inkMuted: '#64748b',
+            accentTeal: '#0f766e'
+          }
+        }
+      }
+    }
+  </script>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.1/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&amp;display=swap">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+      -webkit-font-smoothing: antialiased;
+      font-family: 'Wanted Sans Variable', 'Wanted Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    body {
+      background-color: #f8fafc;
+      color: #334155;
+      font-size: 15px;
+      line-height: 1.8;
+      letter-spacing: -0.015em;
+    }
+
+    h1, h2, h3, h4 {
+      color: #0f172a;
+      letter-spacing: -0.03em;
+      text-wrap: balance;
+    }
+
+    .clause {
+      display: block;
+      line-height: 1.75;
+    }
+
+    .font-signature {
+      font-family: 'Caveat', cursive !important;
+    }
+
+    .nowrap-badge {
+      white-space: nowrap !important;
+      display: inline-block !important;
+    }
+
+    th.cell-fixed, td.cell-fixed {
+      white-space: nowrap !important;
+      width: 1%;
+    }
+
+    .card-hover {
+      transition: all 180ms ease;
+    }
+    .card-hover:hover {
+      border-color: #cbd5e1;
+      transform: translateY(-1px);
+    }
+  </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.fixed{position:fixed}.right-4{right:1rem}.top-4{top:1rem}.z-50{z-index:50}.flex{display:flex}.grid{display:grid}.hidden{display:none}.h-2{height:0.5rem}.min-h-screen{min-height:100vh}.w-2{width:0.5rem}.w-full{width:100%}.max-w-4xl{max-width:56rem}.cursor-pointer{cursor:pointer}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-0\.5{gap:0.125rem}.gap-1{gap:0.25rem}.gap-1\.5{gap:0.375rem}.gap-12{gap:3rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-5{gap:1.25rem}.gap-6{gap:1.5rem}.divide-y > :not([hidden]) ~ :not([hidden]){--tw-divide-y-reverse:0;border-top-width:calc(1px * calc(1 - var(--tw-divide-y-reverse)));border-bottom-width:calc(1px * var(--tw-divide-y-reverse))}.divide-slate-100 > :not([hidden]) ~ :not([hidden]){--tw-divide-opacity:1;border-color:rgb(241 245 249 / var(--tw-divide-opacity, 1))}.overflow-x-auto{overflow-x:auto}.rounded{border-radius:0.25rem}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-borderSubtle{--tw-border-opacity:1;border-color:rgb(226 232 240 / var(--tw-border-opacity, 1))}.border-emerald-500{--tw-border-opacity:1;border-color:rgb(16 185 129 / var(--tw-border-opacity, 1))}.border-slate-100{--tw-border-opacity:1;border-color:rgb(241 245 249 / var(--tw-border-opacity, 1))}.border-slate-700{--tw-border-opacity:1;border-color:rgb(51 65 85 / var(--tw-border-opacity, 1))}.border-slate-800{--tw-border-opacity:1;border-color:rgb(30 41 59 / var(--tw-border-opacity, 1))}.border-slate-900{--tw-border-opacity:1;border-color:rgb(15 23 42 / var(--tw-border-opacity, 1))}.bg-accentTeal{--tw-bg-opacity:1;background-color:rgb(15 118 110 / var(--tw-bg-opacity, 1))}.bg-emerald-400{--tw-bg-opacity:1;background-color:rgb(52 211 153 / var(--tw-bg-opacity, 1))}.bg-emerald-50{--tw-bg-opacity:1;background-color:rgb(236 253 245 / var(--tw-bg-opacity, 1))}.bg-emerald-600{--tw-bg-opacity:1;background-color:rgb(5 150 105 / var(--tw-bg-opacity, 1))}.bg-emerald-950\/40{background-color:rgb(2 44 34 / 0.4)}.bg-paperSubtle{--tw-bg-opacity:1;background-color:rgb(248 250 252 / var(--tw-bg-opacity, 1))}.bg-slate-100{--tw-bg-opacity:1;background-color:rgb(241 245 249 / var(--tw-bg-opacity, 1))}.bg-slate-800{--tw-bg-opacity:1;background-color:rgb(30 41 59 / var(--tw-bg-opacity, 1))}.bg-slate-900\/60{background-color:rgb(15 23 42 / 0.6)}.bg-slate-900\/95{background-color:rgb(15 23 42 / 0.95)}.bg-slate-950{--tw-bg-opacity:1;background-color:rgb(2 6 23 / var(--tw-bg-opacity, 1))}.bg-teal-50{--tw-bg-opacity:1;background-color:rgb(240 253 250 / var(--tw-bg-opacity, 1))}.bg-teal-50\/20{background-color:rgb(240 253 250 / 0.2)}.bg-teal-600{--tw-bg-opacity:1;background-color:rgb(13 148 136 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-slate-700{--tw-bg-opacity:1;background-color:rgb(51 65 85 / var(--tw-bg-opacity, 1))}.p-4{padding:1rem}.p-6{padding:1.5rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.px-2\.5{padding-left:0.625rem;padding-right:0.625rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-3\.5{padding-left:0.875rem;padding-right:0.875rem}.px-4{padding-left:1rem;padding-right:1rem}.py-0\.5{padding-top:0.125rem;padding-bottom:0.125rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-1\.5{padding-top:0.375rem;padding-bottom:0.375rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.pb-3{padding-bottom:0.75rem}.pb-4{padding-bottom:1rem}.pb-8{padding-bottom:2rem}.pt-1{padding-top:0.25rem}.pt-3{padding-top:0.75rem}.pt-4{padding-top:1rem}.pt-8{padding-top:2rem}.text-left{text-align:left}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-\[11px\]{font-size:11px}.text-base{font-size:1rem;line-height:1.5rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-relaxed{line-height:1.625}.leading-snug{line-height:1.375}.leading-tight{line-height:1.25}.tracking-tight{letter-spacing:-0.025em}.tracking-wide{letter-spacing:0.025em}.tracking-wider{letter-spacing:0.05em}.text-accentTeal{--tw-text-opacity:1;color:rgb(15 118 110 / var(--tw-text-opacity, 1))}.text-emerald-200{--tw-text-opacity:1;color:rgb(167 243 208 / var(--tw-text-opacity, 1))}.text-emerald-300{--tw-text-opacity:1;color:rgb(110 231 183 / var(--tw-text-opacity, 1))}.text-emerald-400{--tw-text-opacity:1;color:rgb(52 211 153 / var(--tw-text-opacity, 1))}.text-emerald-800{--tw-text-opacity:1;color:rgb(6 95 70 / var(--tw-text-opacity, 1))}.text-ink{--tw-text-opacity:1;color:rgb(15 23 42 / var(--tw-text-opacity, 1))}.text-inkBody{--tw-text-opacity:1;color:rgb(51 65 85 / var(--tw-text-opacity, 1))}.text-inkMuted{--tw-text-opacity:1;color:rgb(100 116 139 / var(--tw-text-opacity, 1))}.text-slate-200{--tw-text-opacity:1;color:rgb(226 232 240 / var(--tw-text-opacity, 1))}.text-slate-300{--tw-text-opacity:1;color:rgb(203 213 225 / var(--tw-text-opacity, 1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184 / var(--tw-text-opacity, 1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139 / var(--tw-text-opacity, 1))}.text-slate-800{--tw-text-opacity:1;color:rgb(30 41 59 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.opacity-60{opacity:0.6}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.outline{outline-style:solid}.outline-2{outline-width:2px}.outline-teal-500\/50{outline-color:rgb(20 184 166 / 0.5)}.backdrop-blur{--tw-backdrop-blur:blur(8px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.selection\:bg-accentTeal *::selection{--tw-bg-opacity:1;background-color:rgb(15 118 110 / var(--tw-bg-opacity, 1))}.selection\:text-white *::selection{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.selection\:bg-accentTeal::selection{--tw-bg-opacity:1;background-color:rgb(15 118 110 / var(--tw-bg-opacity, 1))}.selection\:text-white::selection{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:bg-emerald-500:hover{--tw-bg-opacity:1;background-color:rgb(16 185 129 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-50\/50:hover{background-color:rgb(248 250 252 / 0.5)}.hover\:bg-teal-500:hover{--tw-bg-opacity:1;background-color:rgb(20 184 166 / var(--tw-bg-opacity, 1))}@media (min-width: 640px){.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.sm\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.sm\:grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}.sm\:flex-row{flex-direction:row}.sm\:items-center{align-items:center}.sm\:p-12{padding:3rem}.sm\:p-8{padding:2rem}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:text-2xl{font-size:1.5rem;line-height:2rem}.sm\:text-3xl{font-size:1.875rem;line-height:2.25rem}.sm\:text-4xl{font-size:2.25rem;line-height:2.5rem}.sm\:text-\[15px\]{font-size:15px}.sm\:text-base{font-size:1rem;line-height:1.5rem}.sm\:text-lg{font-size:1.125rem;line-height:1.75rem}.sm\:text-sm{font-size:0.875rem;line-height:1.25rem}}@media (min-width: 768px){.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:p-16{padding:4rem}.md\:px-8{padding-left:2rem;padding-right:2rem}.md\:text-5xl{font-size:3rem;line-height:1}}</style></head>
+<body class="selection:bg-accentTeal selection:text-white min-h-screen py-10 px-4 sm:px-6 md:px-8 flex justify-center">
+
+  <!-- FLOATING IN-PLACE EDITOR TOOLBAR -->
+  <aside id="editor-toolbar" contenteditable="false" class="fixed top-4 right-4 z-50 flex items-center gap-2 bg-slate-900/95 backdrop-blur text-white px-3.5 py-2 rounded-xl shadow-2xl border border-slate-700 text-xs transition-all">
+    <button onclick="toggleEditMode()" id="btn-toggle-edit" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-700 hover:bg-teal-500 font-semibold cursor-pointer transition-all">
+      <span id="edit-icon">🔒</span>
+      <span id="edit-label">편집 잠금</span>
+    </button>
+    <button onclick="saveToFile()" id="btn-save-file" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 font-semibold cursor-pointer transition-all">
+      <span>💾</span>
+      <span>파일로 저장</span>
+    </button>
+    <span id="edit-status" class="text-emerald-300 text-[11px] px-2 py-0.5 rounded bg-slate-800 font-medium">
+      글자를 클릭해서 바로 지우거나 줄바꿈(Enter)하세요
+    </span>
+  </aside>
+
+  <!-- MAIN DOCUMENT CONTAINER -->
+  <main class="w-full max-w-4xl bg-white border border-borderSubtle rounded-2xl shadow-sm p-6 sm:p-12 md:p-16 flex flex-col gap-12" contenteditable="false">
+
+    <!-- HEADER MASTHEAD -->
+    <header class="flex flex-col gap-5 border-b border-borderSubtle pb-8">
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <div class="flex items-center gap-2">
+          <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-800 text-xs font-semibold tracking-wider uppercase nowrap-badge">
+            SONGDO AI ACADEMY
+          </span>
+          <span class="text-xs text-inkMuted">송도 AI 아카데미 실전 코스</span>
+        </div>
+        <span class="text-xs text-inkMuted nowrap-badge">2026. 10. 25 최종 확정안</span>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-ink leading-tight">
+          AI와 대화하던 사람에서,<br>
+          <span class="text-accentTeal">내 웹 도구를 만들고 고치는 사람으로</span>
+        </h1>
+        <p class="text-inkBody text-base sm:text-lg pt-1">
+          <span class="clause">기존 유료 AI 구독 하나로, 나만의 웹 도구를 직접 만들고 검증하고 배포하는 6주.</span>
+          <span class="clause text-inkMuted">과대광고 없이, 1주 차 첫 배포부터 안전한 검증·재배포까지 완결하는 현실적 실전 로드맵</span>
+        </p>
+      </div>
+
+      <!-- Quick Metrics Badge Bar -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-slate-100 text-xs">
+        <div class="flex flex-col gap-0.5">
+          <span class="text-inkMuted">준비물</span>
+          <strong class="text-accentTeal text-sm font-semibold">AI 구독 1개 (ChatGPT / Claude)</strong>
+        </div>
+        <div class="flex flex-col gap-0.5">
+          <span class="text-inkMuted">추가 API 비용</span>
+          <strong class="text-ink text-sm font-semibold">0원 (지정 무료 호스팅 완결)</strong>
+        </div>
+        <div class="flex flex-col gap-0.5">
+          <span class="text-inkMuted">교육 시간</span>
+          <strong class="text-ink text-sm font-semibold">주 1회 집중 3h + 실습 2h</strong>
+        </div>
+        <div class="flex flex-col gap-0.5">
+          <span class="text-inkMuted">최종 수료 목표</span>
+          <strong class="text-ink text-sm font-semibold">스스로 수정·검증 후 안전 재배포</strong>
+        </div>
+      </div>
+    </header>
+
+    <!-- 1. DIRECTOR'S MANIFESTO -->
+    <section class="flex flex-col gap-4 bg-paperSubtle border border-borderSubtle rounded-xl p-6 sm:p-8">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-accentTeal"></span>
+        <h2 class="text-sm font-semibold tracking-wider text-accentTeal uppercase">DIRECTOR'S REALITY CHECK · 원장의 약속</h2>
+      </div>
+
+      <h3 class="text-xl sm:text-2xl font-bold text-ink leading-snug">
+        "복붙만 하던 사람이 '내 손으로 만들고 고치는 사람'이 되는 것, 그것으로 충분합니다."
+      </h3>
+
+      <div class="text-inkBody text-sm sm:text-[15px] flex flex-col gap-3 leading-relaxed">
+        <p>
+          <span class="clause">우리는 6주 만에 인공지능 천재 엔지니어를 만들어준다는 거짓말을 하지 않습니다.</span>
+          <span class="clause text-inkMuted">하지만 챗봇에게 날씨나 묻고 메일 초안이나 복사해서 쓰는 대화형 사용자에만 머무는 것도 아쉽습니다.</span>
+        </p>
+        <p>
+          <span class="clause">이 수업의 목표는 명확합니다. <strong>내가 일상과 업무에서 필요한 안내서, 카드, 계산기 같은 웹 도구를 자연어로 직접 띄우고,</strong></span>
+          <span class="clause text-inkMuted">오류가 났을 때 당황하지 않고 안전 백업본을 챙기며 스스로 원인을 찾아 고친 뒤,&nbsp;</span><span class="clause text-inkMuted">다시 인터넷 링크로 배포할 수 있는 <strong>자립형 바이브 빌더</strong>로 성장하는 것입니다.</span>
+        </p>
+        <p class="font-medium text-ink pt-1">
+          <span class="clause">마지막 주에 허겁지겁 코딩하지 않습니다. <strong>1주 차 첫 수업 30분 만에 1페이지를 먼저 인터넷에 배포해 보고,</strong></span>
+          <span class="clause text-accentTeal">6주 동안 '하나의 완성도 높은 실전 웹 도구'로 매주 기획-제작-검증-재배포 루프를 돌며 살을 붙여나갑니다.</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- 2. KARPATHY AI HIERARCHY -->
+    <section class="flex flex-col gap-5 border border-slate-900 bg-slate-950 text-white rounded-xl p-6 sm:p-8">
+      <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-4">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          <span class="text-xs font-semibold tracking-wider text-emerald-400 uppercase">AI BUILDER&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span style="color: rgb(148, 163, 184); font-size: 0.75rem; letter-spacing: -0.015em;">현실적인 AI 역량 단계와 본 과정의 목표</span></span></div>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <h3 class="text-2xl sm:text-3xl font-bold tracking-tight text-white leading-tight">
+          "대화창 안에서 글자만 주고받던 사람에서,<br>
+          <span class="text-emerald-400">내 손으로 도구를 만드는 자립형 바이브 빌더로"</span>
+        </h3>
+        <p class="text-slate-300 text-sm sm:text-base leading-relaxed pt-1">
+          <span class="clause">대다수의 사람들은 챗봇 대화창 안에서 글자만 주고받습니다.</span>
+          <span class="clause text-slate-400">우리의 목표는 유료 구독 하나로 <strong>대화창 밖으로 나와,&nbsp;</strong></span><span class="clause text-slate-400"><strong>직접 누르고 작동하는 웹 소프트웨어를 빚어내는 실전 영역</strong>으로 진입하는 것입니다.</span>
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-3 text-xs">
+        
+        <div class="border border-slate-800 bg-slate-900/60 p-4 rounded-lg flex flex-col gap-1.5 opacity-60">
+          <span class="text-slate-400 font-medium nowrap-badge">LEVEL 1 · 입문</span>
+          <strong class="text-slate-200 text-sm">대화형 사용자 <br>(Interactive Consumer)</strong>
+          <span class="text-slate-400 leading-relaxed text-[11px]">챗봇 대화창 안에서 프롬프트로 텍스트를 주고받고 문서를 작성하는 단계</span>
+        </div>
+
+        <div class="border border-emerald-500 bg-emerald-950/40 p-4 rounded-lg flex flex-col gap-1.5 shadow-sm">
+          <span class="text-emerald-400 font-semibold nowrap-badge">LEVEL 2 · 본 과정 수료 목표</span>
+          <strong class="text-white text-sm">자립형 바이브 빌더 <br>(Vibe Builder)</strong>
+          <span class="text-emerald-200 leading-relaxed text-[11px]">단 1개의 AI 구독으로 내 아이디어를 웹 화면으로 띄우고, 스스로 오류를 고쳐 재배포하는 실전가</span>
+        </div>
+
+        <div class="border border-slate-800 bg-slate-900/60 p-4 rounded-lg flex flex-col gap-1.5 opacity-60">
+          <span class="text-slate-400 font-medium nowrap-badge">LEVEL 3 · 전문 연구 영역</span>
+          <strong class="text-slate-300 text-sm">코어 시스템 엔지니어 <br>(Core AI Engineer)</strong>
+          <span class="text-slate-400 leading-relaxed text-[11px]">신경망 모델 자체를 훈련하고 대규모 GPU 인프라를 직접 설계하는 개발자</span>
+        </div>
+
+      </div>
+
+      <div class="border-t border-slate-800 pt-3 text-xs text-slate-300 flex items-center justify-between">
+        <span>비현실적인 LEVEL 3의 환상을 버리고, 일상과 업무에서 가장 강력하고 쓸모 있는 <strong>LEVEL 2 바이브 빌더</strong>로 안착합니다.</span>
+      </div>
+    </section>
+
+    <!-- 3. CORE 3 PRINCIPLES -->
+    <section class="flex flex-col gap-5">
+      <div class="flex flex-col gap-1">
+        <span class="text-xs font-semibold tracking-wider text-accentTeal uppercase">FOUNDATION</span>
+        <h2 class="text-2xl font-bold text-ink">수업을 지탱하는 3대 정직한 원칙</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        
+        <div class="border border-borderSubtle bg-white p-6 rounded-xl flex flex-col gap-2 card-hover">
+          <h3 class="text-base font-bold text-ink">01. 단일 AI 구독 완결</h3>
+          <p class="text-sm text-inkBody leading-relaxed">
+            복잡한 종량제 API 추가 결제가 일절 없습니다. 이미 사용 중인 ChatGPT Plus 또는 Claude Pro 단 1개와 지정 무료 호스팅 범위 안에서 전 과정을 끝냅니다.
+          </p>
+        </div>
+
+        <div class="border border-borderSubtle bg-white p-6 rounded-xl flex flex-col gap-2 card-hover">
+          <h3 class="text-base font-bold text-ink">02. 점진적 나선형 확장</h3>
+          <p class="text-sm text-inkBody leading-relaxed">
+            마지막 주에 허겁지겁 코딩하지 않습니다. 1주 차에 기본 1페이지를 먼저 배포하고, 매주 '요약 카드 ➡️ 디자인 개편 ➡️ 인터랙션 ➡️ 검증'으로 키웁니다.
+          </p>
+        </div>
+
+        <div class="border border-borderSubtle bg-white p-6 rounded-xl flex flex-col gap-2 card-hover">
+          <h3 class="text-base font-bold text-ink">03. 안티-슬롭 디자인 디렉팅</h3>
+          <p class="text-sm text-inkBody leading-relaxed">
+            촌스러운 AI 보라색 그라데이션을 배제합니다. 딱 2색 팔레트와 자연스러운 한글 어절 줄바꿈<br>(keep-all)으로 개발자 냄새 없는 정갈한 화면을 마감합니다.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 4. 6-WEEK SYLLABUS -->
+    <section class="flex flex-col gap-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-borderSubtle pb-4">
+        <div class="flex flex-col gap-1">
+          <span class="text-xs font-semibold tracking-wider text-accentTeal uppercase">6-WEEK REVISED SYLLABUS</span>
+          <h2 class="text-2xl font-bold text-ink">6주 주차별 상세 커리큘럼</h2>
+        </div>
+        <span class="text-xs text-inkMuted">단일 실전 프로젝트: <strong>"나만의 업무/안내용 실전 웹 유틸리티 &amp; 실시간 계산기"</strong></span>
+      </div>
+
+      <!-- Syllabus Stack (Weeks 1 to 6) -->
+      <div class="flex flex-col gap-5">
+
+        <!-- WEEK 1 -->
+        <article class="border border-borderSubtle rounded-xl p-6 bg-white flex flex-col gap-4 card-hover">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-0.5 rounded bg-teal-600 text-white text-xs font-semibold nowrap-badge">WEEK 01</span>
+              <strong class="text-ink text-base font-semibold">AI 뇌 구조 이해와 첫날 내 웹페이지 배포 (안전 백업 습관)</strong>
+            </div>
+            <span class="px-2 py-0.5 rounded bg-teal-50 text-accentTeal text-xs font-medium nowrap-badge">[1단계] 멘탈 모델 &amp; Day-1 조기 배포</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-sm">
+            <div class="flex flex-col gap-1.5">
+              <span class="font-bold text-slate-500 text-xs uppercase tracking-wider">이론 멘탈 모델</span>
+              <strong class="text-ink text-sm">손발 없는 인턴과 확률 예측</strong>
+              <p class="text-inkBody text-xs leading-relaxed">
+                "AI는 천재가 아니라 기억력만 좋은 신입 인턴이다." 챗봇이 왜 거짓말(할루시네이션)을 하고 훈화를 읊는지 이해하고 프롬프트 제약의 필요성 체득.
+              </p>
+            </div>
+
+            <div class="flex flex-col gap-1.5">
+              <span class="font-bold text-slate-500 text-xs uppercase tracking-wider">프롬프트 테크닉</span>
+              <strong class="text-ink text-sm">Few-Shot 지시 &amp; 안전 백업 습관</strong>
+              <p class="text-inkBody text-xs leading-relaxed">
+                모범 예시 3개를 쥐어주는 퓨샷 기법. AI에게 수정을 시키기 전에 정상 작동하던 파일을 복사해 두는 <strong>안전 롤백 습관</strong>을 첫날부터 장착.
+              </p>
+            </div>
+
+            <div class="flex flex-col gap-1.5">
+              <span class="font-bold text-slate-500 text-xs uppercase tracking-wider">실전 산출물 (Day-1 Win)</span>
+              <strong class="text-accentTeal text-sm">라이브 웹에 배포된 내 프로젝트 기본 안내 페이지</strong>
+              <p class="text-inkBody text-xs leading-relaxed">
+                무료 호스팅을 통해 첫 수업 30분 만에 인터넷 공개 주소를 생성하여, 다른 기기 브라우저에서 내 소개·안내 페이지 띄우기 성공 체험.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- WEEK 2 -->
+        <article class="border border-borderSubtle rounded-xl p-6 bg-white flex flex-col gap-4 card-hover">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-0.5 rounded bg-slate-100 text-slate-800 text-xs font-semibold nowrap-badge">WEEK 02</span>
+              <strong class="text-ink text-base font-semibold">내 자료 가두기와 출처 인용 정보 카드 섹션 추가</strong>
+            </div>
+            <span class="px-2 py-0.5 rounded bg-teal-50 text-accentTeal text-xs font-medium nowrap-badge">[2단계] 문맥 통제 &amp; 원문 대조 실습</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-sm">
+            <div class="flex flex-col gap-1.5">
+              <span class="font-bold text-slate-500 text-xs uppercase tracking-wider">정보 통제 원리</span>
+              <strong class="text-ink text-sm">문맥(Context) 주입과 문서 대조</strong>
+              <p class="text-inkBody text-xs leading-relaxed">
+                내 업무 문서나 메모장을 먹이고 "여기서만 찾아 답해" 가두기. 100% 차단이 아닌 출처 표시와 원문 대조 검증의 중요성 학습.
+              </p>
+            </div>
+
+            <div class="flex flex-col gap-1.5">
+              <span class="font-bold text-slate-500 text-xs uppercase tracking-wider">프롬프트 테크닉</span>
+              <strong class="text-ink text-sm">안전 가드레일 &amp; 모름 지침</strong>
+              <p class="text-inkBody text-xs leading-relaxed">
+                "문서에 없는 질문은 솔직히 모른다고 밝히고 추측하지 마라." 답변마다 원문 출처를 구체적으로 인용하게 만드는 프롬프트 제약.
+              </p>
+            </div>
+
+            <div class="flex flex-col gap-1.5">
+              <span class="font-bold text-slate-500 text-xs uppercase tracking-wider">실전 산출물 (UX)</span>
+              <strong class="text-accentTeal text-sm">출처 포함 3단 정보 카드 섹션 결합</strong>
+              <p class="text-inkBody text-xs leading-relaxed">
+                내 문서 핵심 내용을 AI로 정제하여, 1주 차 안내 웹페이지 하단에 3단 카드 형태로 결합하고 원문 대조 확인 완료.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- WEEK 3 -->
+        <article class="border border-borderSubtle rounded-xl p-6 bg-white flex flex-col gap-4 card-hover">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-0.5 rounded bg-slate-100 text-slate-800 text-xs font-semibold nowrap-badge">WEEK 03</span>
+              <strong class="text-ink text-base font-semibold">스킬(Skill)의 실체와 안티-슬롭 2색 디자인 리뉴얼</strong>
+            </div>
+            <span class="px-2 py-0.5 rounded bg-teal-50 text-accentTeal text-xs font-medium nowrap-badge">[3단계] 마크다운 지침서 &amp; UI 감도 개선</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-sm">
+            <div class="flex flex-col gap-1.5">
+              <span class="font-bold text-slate-500 text-xs uppercase tracking-wider">스킬의 실체</span>
+              <strong class="text-ink text-sm">마크다운 업무 매뉴얼 파일 해부</strong>
+              <p class="text-inkBody text-xs leading-relaxed">
+                스킬은 대단한 코드가 아니라 '알바생 매뉴얼 마크다운'이다. 오픈소스 디자인 스킬 파일을 열어보고 지침서의 구조와 작동 방식 이해.
+              </p>
+            </div>
+
+            <div class="flex flex-col gap-1.5">
+              <span class="font-bold text-slate-500 text-xs uppercase tracking-wider">프롬프트 테크닉</span>
+              <strong class="text-ink text-sm">커스텀 인스트럭션 1장 지침서</strong>
+              <p class="text-inkBody text-xs leading-relaxed">
+                매번 긴 지시를 반복하지 않고 챗봇이 내 작업 스타일과 디자인 규칙을 기억하게 만드는 1장짜리 영구 프롬프트 지침서 작성.
+              </p>
+            </div>
+
+            <div class="flex flex-col gap-1.5">
+              <span class="font-bold text-slate-500 text-xs uppercase tracking-wider">실전 산출물 (Design)</span>
+              <strong class="text-accentTeal text-sm">안티-슬롭 2색 UI 리뉴얼</strong>
+              <p class="text-inkBody text-xs leading-relaxed">
+                촌스러운 보라색 네온 금지! 딱 2색 팔레트와 한글 어절 줄바꿈(keep-all)을 적용해 웹페이지의 시각적 완성도 대폭 업그레이드.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- WEEK 4 -->
+        <article class="border border-borderSubtle rounded-xl p-6 bg-white flex flex-col gap-4 card-hover">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-0.5 rounded bg-slate-100 text-slate-800 text-xs font-semibold nowrap-badge">WEEK 04</span>
+              <strong class="text-ink text-base font-semibold">화면에 손맛 더하기 (실시간 견적/비용 계산 인터랙션)</strong>
+            </div>
+            <span class="px-2 py-0.5 rounded bg-teal-50 text-accentTeal text-xs font-medium nowrap-badge">[4단계] 클릭 반응 &amp; 실시간 연산 장착</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-sm">
+            <div class="flex flex-col gap-1.5">
+              <span class="font-bold text-slate-500 text-xs uppercase tracking-wider">인터랙션 원리</span>
+              <strong class="text-ink text-sm">클릭과 브라우저 연산 구조</strong>
+              <p class="text-inkBody text-xs leading-relaxed">
+                정적인 글 읽기 화면에서 벗어나, 버튼을 누르고 숫자가 바뀌며 결과가 도출되는 클라이언트 브라우저 연산 구조 이해.
+              </p>
+            </div>
+
+            <div class="flex flex-col gap-1.5">
+              <span class="font-bold text-slate-500 text-xs uppercase tracking-wider">프롬프트 테크닉</span>
+              <strong class="text-ink text-sm">기능별 분할 점진적 디렉팅</strong>
+              <p class="text-inkBody text-xs leading-relaxed">
+                한 번에 모든 걸 시켜서 코드가 깨지지 않게 "버튼 클릭 시 합산 금액이 즉시 바뀌게 해줘"처럼 기능을 단계별로 쪼개서 붙이는 대화법.
+              </p>
+            </div>
+
+            <div class="flex flex-col gap-1.5">
+              <span class="font-bold text-slate-500 text-xs uppercase tracking-wider">실전 산출물 (App)</span>
+              <strong class="text-accentTeal text-sm">실시간 견적/참가비 계산 유틸리티 장착</strong>
+              <p class="text-inkBody text-xs leading-relaxed">
+                방문자가 옵션을 선택하고 수량을 입력하면 즉시 계산되는 실시간 견적/비용 계산기를 기존 웹페이지에 자연스럽게 결합.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- WEEK 5 -->
+        <article class="border border-borderSubtle rounded-xl p-6 bg-white flex flex-col gap-4 card-hover">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-0.5 rounded bg-slate-100 text-slate-800 text-xs font-semibold nowrap-badge">WEEK 05</span>
+              <strong class="text-ink text-base font-semibold">에러가 나도 당황하지 않는 심화 디버깅과 복구(Rollback)</strong>
+            </div>
+            <span class="px-2 py-0.5 rounded bg-teal-50 text-accentTeal text-xs font-medium nowrap-badge">[5단계] 버그 해결 대화법 &amp; 복구 실습</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-sm">
+            <div class="flex flex-col gap-1.5">
+              <span class="font-bold text-slate-500 text-xs uppercase tracking-wider">디버깅 마인드셋</span>
+              <strong class="text-ink text-sm">코드를 몰라도 버그를 잡는 원리</strong>
+              <p class="text-inkBody text-xs leading-relaxed">
+                화면이 깨지거나 계산이 안 먹힐 때, 코드를 직접 읽지 않고 증상을 정확히 전달해 고치고, 필요 시 안전 백업본으로 되돌리는 요령.
+              </p>
+            </div>
+
+            <div class="flex flex-col gap-1.5">
+              <span class="font-bold text-slate-500 text-xs uppercase tracking-wider">프롬프트 테크닉</span>
+              <strong class="text-ink text-sm">에러 화면 4단 전달법 (증상·화면·기대값)</strong>
+              <p class="text-inkBody text-xs leading-relaxed">
+                "이 버튼을 눌렀을 때 원래 계산 결과가 나와야 하는데 공백으로 떠. 에러 문구는 이거야." 정확한 피드백을 주는 프롬프트 훈련.
+              </p>
+            </div>
+
+            <div class="flex flex-col gap-1.5">
+              <span class="font-bold text-slate-500 text-xs uppercase tracking-wider">실전 산출물 (Debug)</span>
+              <strong class="text-accentTeal text-sm">고의 에러 복구 실습 &amp; 오답 노트 1호</strong>
+              <p class="text-inkBody text-xs leading-relaxed">
+                강사가 일부러 심어둔 버그를 프롬프트와 백업본으로 직접 복구해 보고, <br>같은 실수를 피하는 나만의 오답 노트 완성.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- WEEK 6 -->
+        <article class="border border-borderSubtle rounded-xl p-6 bg-white flex flex-col gap-4 card-hover">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-0.5 rounded bg-accentTeal text-white text-xs font-semibold nowrap-badge">WEEK 06</span>
+              <strong class="text-ink text-base font-semibold">기능 검증 4대 시험지(Eval) 통과와 수료 실전 테스트</strong>
+            </div>
+            <span class="px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 text-xs font-semibold nowrap-badge">[6단계] 기능 검증 통과 &amp; 자립 런칭 (완성)</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-sm">
+            <div class="flex flex-col gap-1.5">
+              <span class="font-bold text-slate-500 text-xs uppercase tracking-wider">품질 검증 이론</span>
+              <strong class="text-ink text-sm">기능 검증 4대 체크리스트 (Eval)</strong>
+              <p class="text-inkBody text-xs leading-relaxed">
+                ①정상 입력, ②빈칸/오류 입력, ③기존 기능 정상 동작(사이드이펙트 방지), ④원문 출처 대조의 4단계 체크리스트로 결과물 품질 검증.
+              </p>
+            </div>
+
+            <div class="flex flex-col gap-1.5">
+              <span class="font-bold text-slate-500 text-xs uppercase tracking-wider">수료 실전 과제</span>
+              <strong class="text-ink text-sm">강사 도움 없이 기능 1개 스스로 고치기</strong>
+              <p class="text-inkBody text-xs leading-relaxed">
+                처음 보는 간단한 새 요구사항(할인율 옵션 추가, 색상 변경)을 AI에게 지시해 혼자 수정하고 다시 배포해보는 진짜 자립 테스트.
+              </p>
+            </div>
+
+            <div class="flex flex-col gap-1.5">
+              <span class="font-bold text-slate-500 text-xs uppercase tracking-wider">최종 런칭 (Launch)</span>
+              <strong class="text-accentTeal text-sm">내 시그니처가 박힌 완성형 라이브 웹 링크</strong>
+              <p class="text-inkBody text-xs leading-relaxed">
+                동료나 지인에게 공유하여 "설명 없이도 쓸 수 있는지" 실제 사용자 1명의 반응을 확인하고 완성하는 최종 웹 프로덕트.
+              </p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- 5. 6-WEEK SUMMARY TABLE -->
+    <section class="flex flex-col gap-4">
+      <div class="flex flex-col gap-1">
+        <span class="text-xs font-semibold tracking-wider text-accentTeal uppercase">AT A GLANCE</span>
+        <h2 class="text-xl font-bold text-ink">6주 커리큘럼 한눈에 보기</h2>
+      </div>
+
+      <div class="overflow-x-auto border border-borderSubtle rounded-xl bg-white">
+        <table class="w-full text-left text-xs sm:text-sm">
+          <thead class="bg-paperSubtle border-b border-borderSubtle text-ink font-semibold">
+            <tr>
+              <th class="py-3 px-4 cell-fixed">주차</th>
+              <th class="py-3 px-4 cell-fixed">단계</th>
+              <th class="py-3 px-4">이론적 멘탈 모델</th>
+              <th class="py-3 px-4">프롬프트 &amp; 디버깅 테크닉</th>
+              <th class="py-3 px-4">디자인 &amp; 실전 실습</th>
+              <th class="py-3 px-4">주차별 실전 산출물</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100 text-inkBody">
+            <tr class="hover:bg-slate-50/50">
+              <td class="py-3 px-4 font-semibold text-ink cell-fixed">W1</td>
+              <td class="py-3 px-4 cell-fixed"><span class="px-2.5 py-1 bg-slate-100 rounded text-slate-800 text-xs font-medium nowrap-badge">입문 1</span></td>
+              <td class="py-3 px-4">손발 없는 인턴과 확률 예측 구조</td>
+              <td class="py-3 px-4">퓨샷(Few-Shot) 지시 &amp; 안전 백업 습관</td>
+              <td class="py-3 px-4">HTML 1장으로 기본 안내 페이지 작성</td>
+              <td class="py-3 px-4 font-medium text-accentTeal">첫날 전 세계 라이브 웹 배포</td>
+            </tr>
+            <tr class="hover:bg-slate-50/50">
+              <td class="py-3 px-4 font-semibold text-ink cell-fixed">W2</td>
+              <td class="py-3 px-4 cell-fixed"><span class="px-2.5 py-1 bg-slate-100 rounded text-slate-800 text-xs font-medium nowrap-badge">입문 2</span></td>
+              <td class="py-3 px-4">문맥(Context) 주입과 문서 대조</td>
+              <td class="py-3 px-4">안전 가드레일 &amp; 모름 지침 강제</td>
+              <td class="py-3 px-4">3단 카드형 시선 동선(Hierarchy)</td>
+              <td class="py-3 px-4 font-medium text-accentTeal">출처 포함 정보 요약 카드 섹션 추가</td>
+            </tr>
+            <tr class="hover:bg-slate-50/50">
+              <td class="py-3 px-4 font-semibold text-ink cell-fixed">W3</td>
+              <td class="py-3 px-4 cell-fixed"><span class="px-2.5 py-1 bg-slate-100 rounded text-slate-800 text-xs font-medium nowrap-badge">초급 1</span></td>
+              <td class="py-3 px-4">스킬 마크다운 업무 매뉴얼 파일 해부</td>
+              <td class="py-3 px-4">커스텀 인스트럭션 1장 지침서 작성</td>
+              <td class="py-3 px-4">안티-슬롭 2색 팔레트, 어절 줄바꿈</td>
+              <td class="py-3 px-4 font-medium text-accentTeal">웹페이지 UI 디자인 감도 업그레이드</td>
+            </tr>
+            <tr class="hover:bg-slate-50/50">
+              <td class="py-3 px-4 font-semibold text-ink cell-fixed">W4</td>
+              <td class="py-3 px-4 cell-fixed"><span class="px-2.5 py-1 bg-slate-100 rounded text-slate-800 text-xs font-medium nowrap-badge">초급 2</span></td>
+              <td class="py-3 px-4">웹 클릭 반응 및 브라우저 연산 원리</td>
+              <td class="py-3 px-4">기능별 분할 점진적 디렉팅 기법</td>
+              <td class="py-3 px-4">버튼 클릭 시 반응하는 손맛 부여</td>
+              <td class="py-3 px-4 font-medium text-accentTeal">실시간 견적/비용 계산 유틸리티 장착</td>
+            </tr>
+            <tr class="hover:bg-slate-50/50">
+              <td class="py-3 px-4 font-semibold text-ink cell-fixed">W5</td>
+              <td class="py-3 px-4 cell-fixed"><span class="px-2.5 py-1 bg-slate-100 rounded text-slate-800 text-xs font-medium nowrap-badge">중급 1</span></td>
+              <td class="py-3 px-4">코드를 몰라도 버그를 잡는 원리</td>
+              <td class="py-3 px-4">에러 화면 4단 전달법(증상·기대값)</td>
+              <td class="py-3 px-4">고의 에러 발생 후 안전 복구(Rollback)</td>
+              <td class="py-3 px-4 font-medium text-accentTeal">내 프로젝트 실패 일기(오답 노트) 1호</td>
+            </tr>
+            <tr class="hover:bg-slate-50/50 bg-teal-50/20">
+              <td class="py-3 px-4 font-semibold text-accentTeal cell-fixed">W6</td>
+              <td class="py-3 px-4 cell-fixed"><span class="px-2.5 py-1 bg-accentTeal text-white rounded text-xs font-semibold nowrap-badge">완성</span></td>
+              <td class="py-3 px-4 font-medium text-ink">기능 검증 4대 체크리스트 (Eval)</td>
+              <td class="py-3 px-4">혼자 힘으로 기능 1개 수정 실습</td>
+              <td class="py-3 px-4">시그니처 푸터 장착 및 실제 사용자 테스트</td>
+              <td class="py-3 px-4 font-bold text-accentTeal">자립 검증 완료 라이브 웹 배포</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 6. TARGET & OUTCOME -->
+    <section class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+      <div class="border border-borderSubtle bg-white p-6 rounded-xl flex flex-col gap-3">
+        <span class="text-xs font-semibold text-accentTeal tracking-wider uppercase">WHO IS THIS FOR</span>
+        <strong class="text-ink text-base">이런 분들께 완벽하게 들어맞습니다</strong>
+        <ul class="flex flex-col gap-2 text-inkBody text-xs sm:text-sm">
+          <li class="flex items-start gap-2">
+            <span class="text-accentTeal font-bold">•</span>
+            <span>ChatGPT를 써봤지만 뻔한 답변과 설명 훈계에 지쳤던 분</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-accentTeal font-bold">•</span>
+            <span>코딩 문법 공부는 질색이지만 내 아이디어를 <br>진짜 웹으로 띄우고 싶은 분</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-accentTeal font-bold">•</span>
+            <span>복잡한 개발 도구에 휘둘리지 않고 <br>내 취향대로 AI를 부리고 싶은 분</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="border border-borderSubtle bg-paperSubtle p-6 rounded-xl flex flex-col gap-3">
+        <span class="text-xs font-semibold text-accentTeal tracking-wider uppercase">EXPECTED OUTCOME</span>
+        <strong class="text-ink text-base">수강 후 내 손에 쥐어지는 실전 역량</strong>
+        <ul class="flex flex-col gap-2 text-ink text-xs sm:text-sm">
+          <li class="flex items-start gap-2">
+            <span class="text-accentTeal font-bold">•</span>
+            <span><strong>프롬프트 자립력</strong>: 템플릿 복붙을 넘어 AI가 헛소리할 때 원인을 짚고 통제하는 디렉팅 능력</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-accentTeal font-bold">•</span>
+            <span><strong>프로덕트 구현력</strong>: 챗봇 대화창을 넘어 내 아이디어를 실제로 작동하는 웹 화면으로 완성하는 역량</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-accentTeal font-bold">•</span>
+            <span><strong>안전 복구 능력</strong>: AI가 코드를 망가뜨려도 패닉 없이 이전 버전으로 안전하게 되돌리는 대처력</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-accentTeal font-bold">•</span>
+            <span><strong>디렉터의 안목</strong>: 촌스러운 AI 양산형 결과물을 털어내고 정갈하게 마감하는 심미안</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- FOOTER & SIGNATURE -->
+    <footer class="border-t border-borderSubtle pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-inkMuted">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-accentTeal"></span>
+        <span>Songdo AI Academy · 6-Week Master Syllabus</span>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <span class="text-inkMuted text-[11px]">Curated &amp; Authored by</span>
+        <span class="font-signature text-2xl text-ink font-bold tracking-wide">
+          ohahbuji
+        </span>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Interactive In-Place Editor Script -->
+  <script>
+    let isEditing = true;
+
+    // IME-Safe Enter Handler
+    document.addEventListener('keydown', (e) => {
+      if (e.isComposing) return;
+      if (e.key === 'Enter' && e.target.isContentEditable) {
+        e.preventDefault();
+        document.execCommand('insertLineBreak');
+      }
+      if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+        e.preventDefault();
+        saveToFile();
+      }
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const mainEl = document.querySelector('main');
+      if (mainEl) {
+        mainEl.contentEditable = 'true';
+        mainEl.classList.add('outline', 'outline-2', 'outline-teal-500/50');
+      }
+    });
+
+    function toggleEditMode() {
+      isEditing = !isEditing;
+      const btn = document.getElementById('btn-toggle-edit');
+      const saveBtn = document.getElementById('btn-save-file');
+      const status = document.getElementById('edit-status');
+      const label = document.getElementById('edit-label');
+      const icon = document.getElementById('edit-icon');
+      const mainEl = document.querySelector('main');
+
+      if (isEditing) {
+        mainEl.contentEditable = 'true';
+        mainEl.classList.add('outline', 'outline-2', 'outline-teal-500/50');
+        label.innerText = '편집 잠금';
+        icon.innerText = '🔒';
+        btn.classList.replace('bg-teal-600', 'bg-slate-700');
+        saveBtn.classList.remove('hidden');
+        status.classList.remove('hidden');
+      } else {
+        mainEl.contentEditable = 'false';
+        mainEl.classList.remove('outline', 'outline-2', 'outline-teal-500/50');
+        label.innerText = '직접 편집 켜기';
+        icon.innerText = '✏️';
+        btn.classList.replace('bg-slate-700', 'bg-teal-600');
+        status.classList.add('hidden');
+      }
+    }
+
+    async function saveToFile() {
+      const mainEl = document.querySelector('main');
+      const wasEditing = isEditing;
+      
+      if (wasEditing) {
+        mainEl.contentEditable = 'false';
+        mainEl.classList.remove('outline', 'outline-2', 'outline-teal-500/50');
+      }
+
+      const fullHtml = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+
+      try {
+        const resp = await fetch('/api/save-curriculum', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ html: fullHtml })
+        });
+        const data = await resp.json();
+        if (resp.ok) {
+          alert('✅ curriculum.html 파일에 즉시 영구 저장되었습니다!\n새로고침(F5)해도 수정한 내용이 그대로 유지됩니다.');
+        } else {
+          alert('저장 실패: ' + (data.error || '오류가 발생했습니다.'));
+        }
+      } catch (err) {
+        localStorage.setItem('saved_curriculum_html', fullHtml);
+        alert('로컬 브라우저에 임시 저장되었습니다!');
+      }
+
+      if (wasEditing) {
+        mainEl.contentEditable = 'true';
+        mainEl.classList.add('outline', 'outline-2', 'outline-teal-500/50');
+      }
+    }
+  </script>
+
+
+
+</body></html>

@@ -1,0 +1,1655 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>송도 AI 아카데미 — 수업 계획 스튜디오 (직접 편집 에디터)</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            miriGreen: '#00c471',
+            miriGreenDark: '#00b064',
+            miriGreenLight: '#e6f9f0',
+            miriGreenSoft: '#f0fdf7',
+            studioBg: '#f8fafc',
+            panelBorder: '#e2e8f0',
+            inkHeading: '#0f172a',
+            inkBody: '#334155',
+            inkMuted: '#64748b',
+            accentTeal: '#0f766e'
+          }
+        }
+      }
+    }
+  </script>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.1/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+      -webkit-font-smoothing: antialiased;
+      font-family: 'Wanted Sans Variable', 'Wanted Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    body {
+      background-color: #f8fafc;
+      color: #1e293b;
+      font-size: 15px;
+      line-height: 1.6;
+      letter-spacing: -0.015em;
+    }
+    .font-signature {
+      font-family: 'Caveat', cursive !important;
+    }
+    .scrollbar-thin::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .scrollbar-thin::-webkit-scrollbar-thumb {
+      background-color: #cbd5e1;
+      border-radius: 9999px;
+    }
+    .dock-btn.active {
+      color: #00c471;
+      background-color: #e6f9f0;
+      font-weight: 700;
+    }
+    
+    /* Direct In-Place Editing Styles */
+    .editable-block {
+      outline: none;
+      transition: background-color 150ms ease, box-shadow 150ms ease;
+      border-radius: 6px;
+      padding: 1px 3px;
+      position: relative;
+    }
+    .editable-block:hover {
+      outline: 1.5px dashed #00c471 !important;
+      background-color: rgba(0, 196, 113, 0.04) !important;
+      cursor: text;
+    }
+    .editable-block:focus {
+      outline: 2px solid #00c471 !important;
+      background-color: #ffffff !important;
+      box-shadow: 0 0 0 4px rgba(0, 196, 113, 0.18) !important;
+    }
+    .clause {
+      display: inline-block;
+      line-height: 1.75;
+      word-break: keep-all;
+    }
+    .nowrap-badge {
+      white-space: nowrap !important;
+      display: inline-block !important;
+    }
+
+    /* Floating In-Place Formatting Bar */
+    #floating-format-bar {
+      position: fixed;
+      z-index: 100;
+      display: none;
+      background: #0f172a;
+      color: #ffffff;
+      padding: 6px 10px;
+      border-radius: 14px;
+      box-shadow: 0 16px 32px -4px rgba(15, 23, 42, 0.35);
+      border: 1px solid #334155;
+      gap: 6px;
+      align-items: center;
+      font-size: 12px;
+      backdrop-filter: blur(8px);
+    }
+    .format-btn {
+      padding: 4px 8px;
+      border-radius: 8px;
+      background: #1e293b;
+      color: #e2e8f0;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 120ms ease;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .format-btn:hover {
+      background: #00c471;
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    /* Tour highlight ring */
+    .tour-focus-ring {
+      outline: 3px solid #00c471 !important;
+      box-shadow: 0 0 0 6px rgba(0, 196, 113, 0.25) !important;
+      border-radius: 16px !important;
+      background-color: #f0fdf4 !important;
+    }
+  </style>
+</head>
+<body class="selection:bg-miriGreen selection:text-white h-screen flex flex-col overflow-hidden bg-slate-50 text-slate-800">
+
+  <!-- ========================================================
+       FLOATING FORMATTING BUBBLE TOOLBAR (Follows Selection)
+       ======================================================== -->
+  <div id="floating-format-bar">
+    <span class="text-[10px] text-emerald-400 font-bold px-1 uppercase tracking-wider">오와열 도구</span>
+    <div class="h-4 w-px bg-slate-700"></div>
+    <button onclick="applyFormat('insertLineBreak')" title="현재 위치에서 줄바꿈 (Enter)" class="format-btn">
+      <span>↵ 줄바꿈</span>
+    </button>
+    <button onclick="applyFormat('bold')" title="굵게 (Bold)" class="format-btn font-extrabold">
+      <span>B 굵게</span>
+    </button>
+    <button onclick="applyColor('#00c471')" title="에메랄드 포인트 강조" class="format-btn">
+      <span class="w-2.5 h-2.5 rounded-full bg-miriGreen inline-block"></span>
+      <span>포인트</span>
+    </button>
+    <button onclick="applyColor('#0f172a')" title="기본 먹색" class="format-btn">
+      <span class="w-2.5 h-2.5 rounded-full bg-slate-900 inline-block"></span>
+      <span>먹색</span>
+    </button>
+    <div class="h-4 w-px bg-slate-700"></div>
+    <button onclick="toggleKeepAll()" title="단어가 잘리지 않게 줄바꿈 (word-break: keep-all)" class="format-btn">
+      <span>↔️ 단어유지</span>
+    </button>
+    <button onclick="toggleBalance()" title="줄 길이 균형 (text-wrap: balance)" class="format-btn">
+      <span>⚖️ 줄균형</span>
+    </button>
+    <button onclick="applyFormat('removeFormat')" title="서식 지우기" class="format-btn text-slate-400 hover:text-white">
+      <span>🧹 서식제거</span>
+    </button>
+  </div>
+
+  <!-- ========================================================
+       TOP GLOBAL APP BAR
+       ======================================================== -->
+  <header class="h-16 bg-white border-b border-panelBorder px-4 sm:px-6 flex items-center justify-between flex-shrink-0 z-30 shadow-xs">
+    
+    <!-- Left: Brand Logo & Navigation -->
+    <div class="flex items-center gap-4">
+      <div onclick="showView('home')" class="flex items-center gap-2.5 cursor-pointer pr-4 border-r border-slate-200 group">
+        <div class="w-9 h-9 rounded-xl bg-miriGreen flex items-center justify-center text-white font-black text-xl shadow-sm group-hover:scale-105 transition-transform">
+          M
+        </div>
+        <div class="flex flex-col">
+          <span class="text-sm font-black tracking-tight text-slate-900 leading-none">CURRICULUM</span>
+          <span class="text-[11px] font-bold text-miriGreen tracking-wider uppercase">Studio</span>
+        </div>
+      </div>
+
+      <!-- Home / Editor Tabs -->
+      <div class="flex items-center gap-1 bg-slate-100 p-1 rounded-xl text-xs font-semibold">
+        <button onclick="showView('home')" id="nav-btn-home" class="px-3.5 py-1.5 rounded-lg text-slate-500 hover:text-slate-900 transition-all cursor-pointer">
+          🏠 홈 대시보드
+        </button>
+        <button onclick="showView('studio')" id="nav-btn-studio" class="px-3.5 py-1.5 rounded-lg bg-white text-slate-900 shadow-xs transition-all cursor-pointer font-bold">
+          🎨 화면 직접 편집 (오와열 교정)
+        </button>
+      </div>
+
+      <!-- Tour Help Button -->
+      <button onclick="startTour(0)" class="hidden xl:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-xs font-bold border border-emerald-200 transition-all cursor-pointer">
+        <span>💡</span>
+        <span>직접 편집 가이드 (1분)</span>
+      </button>
+    </div>
+
+    <!-- Center: In-Place Editing Helper Badge -->
+    <div id="top-title-container" class="hidden md:flex items-center gap-3">
+      <div class="flex items-center gap-2 bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs px-3.5 py-1.5 rounded-xl font-bold">
+        <span class="w-2 h-2 rounded-full bg-miriGreen animate-pulse"></span>
+        <span>화면의 글자를 직접 클릭해 타이핑 & [Enter]로 오와열을 맞추세요</span>
+      </div>
+    </div>
+
+    <!-- Right: Concise Action Buttons -->
+    <div class="flex items-center gap-2">
+      <!-- Toggle Sidebar Width Button -->
+      <button onclick="toggleSidebars()" id="btn-toggle-wide" title="좌우 패널 접어서 100% 와이드 원본 화면 보기" class="px-3 py-2 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer shadow-2xs">
+        <span id="wide-icon">◨</span>
+        <span id="wide-label">와이드 보기</span>
+      </button>
+
+      <button onclick="openLiveWindow('/curriculum.html')" class="px-3.5 py-2 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer shadow-2xs">
+        <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+        <span>완성본 새 창</span>
+      </button>
+
+      <button onclick="saveAllData()" id="tour-save-btn" class="px-4 py-2 rounded-xl bg-miriGreen hover:bg-miriGreenDark text-white text-xs font-bold flex items-center gap-1.5 shadow-sm transition-all cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>
+        <span>저장 (Ctrl+S)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ========================================================
+       VIEW 1: MiriCanvas-Style LANDING / HOME DASHBOARD
+       ======================================================== -->
+  <div id="view-home" class="hidden flex-1 overflow-y-auto scrollbar-thin p-6 sm:p-10 md:p-14 flex flex-col gap-10 max-w-6xl mx-auto w-full">
+    
+    <!-- Hero Banner -->
+    <div class="rounded-3xl bg-gradient-to-r from-emerald-600 via-teal-600 to-slate-900 p-8 sm:p-12 text-white shadow-lg flex flex-col gap-6 relative overflow-hidden">
+      <div class="flex flex-col gap-2 max-w-2xl z-10">
+        <span class="px-3 py-1 rounded-full bg-white/20 backdrop-blur text-white text-xs font-bold w-fit tracking-wide uppercase">
+          SONGDO AI ACADEMY STUDIO
+        </span>
+        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white leading-tight">
+          선생님, 화면을 직접 보며<br>한글 오와열을 정갈하게 다듬어 보세요.
+        </h1>
+        <p class="text-slate-100 text-sm sm:text-base leading-relaxed opacity-95">
+          좁은 입력창 대신, 실제 완성될 웹페이지 화면에서 글자를 직접 클릭하여 타이핑하고 [Enter] 키로 완벽한 줄바꿈을 완성하세요.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-3 z-10 pt-2">
+        <button onclick="showView('studio')" class="px-5 py-3 rounded-xl bg-white text-emerald-800 hover:bg-slate-100 font-extrabold text-sm shadow-md transition-all flex items-center gap-2 cursor-pointer">
+          <span>🎨 화면 직접 편집하러 가기</span>
+          <span>→</span>
+        </button>
+        <button onclick="startTour(0)" class="px-4 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-sm transition-all cursor-pointer">
+          💡 직접 편집 가이드
+        </button>
+      </div>
+
+      <div class="absolute -right-8 -bottom-10 text-white/10 text-9xl font-black select-none pointer-events-none">
+        WYSIWYG
+      </div>
+    </div>
+
+    <!-- Quick Launch Hub Cards -->
+    <div class="flex flex-col gap-4">
+      <div class="flex items-center justify-between">
+        <h2 class="text-lg font-bold text-slate-900">무엇을 하고 싶으신가요?</h2>
+        <span class="text-xs text-slate-500">카드를 누르면 바로 이동합니다</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        
+        <!-- Card 1: Direct In-Place Editor -->
+        <div onclick="showView('studio')" class="p-6 rounded-2xl bg-white border border-slate-200 hover:border-miriGreen hover:shadow-md transition-all cursor-pointer flex flex-col justify-between gap-4 group">
+          <div class="flex flex-col gap-2">
+            <div class="w-10 h-10 rounded-xl bg-emerald-50 text-miriGreen text-xl flex items-center justify-center font-bold group-hover:scale-110 transition-transform">
+              ✏️
+            </div>
+            <strong class="text-base font-bold text-slate-900">화면 직접 타이핑 교정</strong>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              화면의 모든 글자를 직접 클릭해 고치고, Enter로 어색한 한글 줄바꿈을 바로잡습니다.
+            </p>
+          </div>
+          <span class="text-xs font-bold text-miriGreen flex items-center gap-1">
+            직접 편집 열기 →
+          </span>
+        </div>
+
+        <!-- Card 2: Student Enrollment Landing Page -->
+        <div onclick="openLiveWindow('/landing.html')" class="p-6 rounded-2xl bg-white border border-emerald-200 bg-emerald-50/20 hover:border-miriGreen hover:shadow-md transition-all cursor-pointer flex flex-col justify-between gap-4 group">
+          <div class="flex flex-col gap-2">
+            <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 text-xl flex items-center justify-center font-bold group-hover:scale-110 transition-transform">
+              📢
+            </div>
+            <div class="flex items-center justify-between">
+              <strong class="text-base font-bold text-slate-900">수강생 모집 랜딩페이지</strong>
+              <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold">1기 모집</span>
+            </div>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              송도 학부모 및 직장인 대상 1초 수강신청 폼과 얼리버드 10% 혜택이 담긴 공식 페이지입니다.
+            </p>
+          </div>
+          <span class="text-xs font-bold text-emerald-700 flex items-center gap-1">
+            모집 페이지 열기 →
+          </span>
+        </div>
+
+        <!-- Card 3: Universal Web Presentation Deck -->
+        <div onclick="openLiveWindow('/presentation.html')" class="p-6 rounded-2xl bg-white border border-slate-200 hover:border-miriGreen hover:shadow-md transition-all cursor-pointer flex flex-col justify-between gap-4 group">
+          <div class="flex flex-col gap-2">
+            <div class="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 text-xl flex items-center justify-center font-bold group-hover:scale-110 transition-transform">
+              📊
+            </div>
+            <div class="flex items-center justify-between">
+              <strong class="text-base font-bold text-slate-900">발표용 Web PPT 덱</strong>
+              <span class="px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-800 text-[10px] font-bold">설명회/제안</span>
+            </div>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              전체화면(F), 발표자 대본(N), PDF 인쇄를 지원하는 12슬라이드 올인원 프레젠테이션 덱입니다.
+            </p>
+          </div>
+          <span class="text-xs font-bold text-indigo-600 flex items-center gap-1">
+            슬라이드 쇼 열기 →
+          </span>
+        </div>
+
+        <!-- Card 4: Courseware & 6-Week Kits Hub -->
+        <div onclick="openLiveWindow('/courseware/index.html')" class="p-6 rounded-2xl bg-white border border-slate-200 hover:border-miriGreen hover:shadow-md transition-all cursor-pointer flex flex-col justify-between gap-4 group">
+          <div class="flex flex-col gap-2">
+            <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 text-xl flex items-center justify-center font-bold group-hover:scale-110 transition-transform">
+              📦
+            </div>
+            <strong class="text-base font-bold text-slate-900">교구 & 실습 키트 허브</strong>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              4대 마스터 교구(핸드북·워크북·시간표)와 W1~W6 주차별 실전 실습 코드를 통합 확인합니다.
+            </p>
+          </div>
+          <span class="text-xs font-bold text-blue-600 flex items-center gap-1">
+            자료실 열기 →
+          </span>
+        </div>
+
+        <!-- Card 5: Week 1 Starter Win -->
+        <div onclick="openLiveWindow('/courseware/starter-kit/index.html')" class="p-6 rounded-2xl bg-white border border-slate-200 hover:border-miriGreen hover:shadow-md transition-all cursor-pointer flex flex-col justify-between gap-4 group">
+          <div class="flex flex-col gap-2">
+            <div class="w-10 h-10 rounded-xl bg-teal-50 text-teal-600 text-xl flex items-center justify-center font-bold group-hover:scale-110 transition-transform">
+              🚀
+            </div>
+            <strong class="text-base font-bold text-slate-900">1주차 첫 배포 웹</strong>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              학생들이 첫날 30분 만에 인터넷에 띄우는 실제 1페이지 웹 화면을 구경합니다.
+            </p>
+          </div>
+          <span class="text-xs font-bold text-teal-600 flex items-center gap-1">
+            실제 화면 보기 →
+          </span>
+        </div>
+
+        <!-- Card 6: Project Evolution & Decision Map -->
+        <div onclick="openLiveWindow('/process.html')" class="p-6 rounded-2xl bg-white border border-slate-200 hover:border-miriGreen hover:shadow-md transition-all cursor-pointer flex flex-col justify-between gap-4 group">
+          <div class="flex flex-col gap-2">
+            <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 text-xl flex items-center justify-center font-bold group-hover:scale-110 transition-transform">
+              🗺️
+            </div>
+            <strong class="text-base font-bold text-slate-900">기획 발전 과정</strong>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              왜 송도로 정했고 어떻게 6주 과정이 완성되었는지 전체 의사결정을 돌아봅니다.
+            </p>
+          </div>
+          <span class="text-xs font-bold text-purple-600 flex items-center gap-1">
+            히스토리 보기 →
+          </span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Active Summary Card -->
+    <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 flex flex-col gap-4 shadow-xs">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+        <div>
+          <span class="text-xs font-bold text-miriGreen uppercase tracking-wider">현재 확정된 수업 계획</span>
+          <h3 class="text-xl font-bold text-slate-900 mt-0.5">송도 국제 AI 아카데미 6주 실전 마스터</h3>
+        </div>
+        <span class="px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-semibold border border-emerald-200">
+          실시간 직접 편집 가능
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-1">
+          <span class="text-slate-500">수업 슬로건</span>
+          <strong class="text-slate-900 font-semibold text-sm">AI와 대화하던 사람에서, 내 웹 도구를 만들고 고치는 사람으로</strong>
+        </div>
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-1">
+          <span class="text-slate-500">필요한 준비물</span>
+          <strong class="text-slate-900 font-semibold text-sm">AI 유료 구독 1개 + 추가 API 비용 0원</strong>
+        </div>
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-1">
+          <span class="text-slate-500">총 수업 기간</span>
+          <strong class="text-emerald-700 font-bold text-sm">6주 완성 (1주차 첫 배포 ➡️ 6주차 자립)</strong>
+        </div>
+      </div>
+
+      <div class="flex justify-end pt-2">
+        <button onclick="showView('studio')" class="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer">
+          <span>화면 직접 편집하기</span>
+          <span>→</span>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ========================================================
+       VIEW 2: MiriCanvas-Style 3-COLUMN STUDIO IN-PLACE EDITOR
+       ======================================================== -->
+  <div id="view-studio" class="flex-1 flex overflow-hidden relative">
+
+    <!-- 1. FAR-LEFT SLIM DOCK (64px) -->
+    <nav id="studio-dock" class="w-16 bg-white border-r border-panelBorder flex flex-col items-center py-3 justify-between flex-shrink-0 z-20 transition-all">
+      <div class="flex flex-col items-center gap-2 w-full px-1">
+        
+        <button onclick="switchDrawerTab('weeks')" id="dock-weeks" class="dock-btn active w-full py-2.5 rounded-xl flex flex-col items-center gap-1 text-slate-600 hover:bg-slate-100 cursor-pointer">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          <span class="text-[10px] font-medium">주차 목록</span>
+        </button>
+
+        <button onclick="switchDrawerTab('principles')" id="dock-principles" class="dock-btn w-full py-2.5 rounded-xl flex flex-col items-center gap-1 text-slate-600 hover:bg-slate-100 cursor-pointer">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+          <span class="text-[10px] font-medium">수업 원칙</span>
+        </button>
+
+        <button onclick="switchDrawerTab('prompts')" id="dock-prompts" class="dock-btn w-full py-2.5 rounded-xl flex flex-col items-center gap-1 text-slate-600 hover:bg-slate-100 cursor-pointer">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+          <span class="text-[10px] font-medium">프롬프트</span>
+        </button>
+
+        <button onclick="switchDrawerTab('courseware')" id="dock-courseware" class="dock-btn w-full py-2.5 rounded-xl flex flex-col items-center gap-1 text-slate-600 hover:bg-slate-100 cursor-pointer">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+          <span class="text-[10px] font-medium">실습 자료</span>
+        </button>
+
+      </div>
+
+      <div class="flex flex-col items-center gap-2 text-slate-400">
+        <button onclick="showView('home')" title="홈으로 이동" class="p-2.5 rounded-xl hover:bg-slate-100 hover:text-slate-800 transition-all cursor-pointer">
+          🏠
+        </button>
+      </div>
+    </nav>
+
+    <!-- 2. SECONDARY DRAWER PANEL (300px) -->
+    <aside id="tour-drawer" class="w-72 bg-white border-r border-panelBorder flex flex-col flex-shrink-0 z-10 transition-all shadow-xs">
+      
+      <div class="p-4 border-b border-slate-100 flex flex-col gap-3">
+        <div class="flex items-center justify-between">
+          <h2 id="drawer-title" class="font-bold text-slate-900 text-sm flex items-center gap-1.5">
+            <span>📅</span> 주차 바로가기
+          </h2>
+          <button onclick="toggleSidebars()" class="p-1.5 text-slate-400 hover:text-slate-700 rounded-lg hover:bg-slate-100 cursor-pointer" title="패널 접기">
+            ✕
+          </button>
+        </div>
+
+        <!-- Filter Chips -->
+        <div id="drawer-filter-chips" class="flex flex-wrap gap-1.5 text-xs">
+          <button onclick="filterDrawerWeeks('all')" class="chip active px-3 py-1 rounded-lg bg-slate-900 text-white font-semibold">전체</button>
+          <button onclick="filterDrawerWeeks('입문')" class="chip px-3 py-1 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200">입문</button>
+          <button onclick="filterDrawerWeeks('초급')" class="chip px-3 py-1 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200">초급</button>
+          <button onclick="filterDrawerWeeks('중급')" class="chip px-3 py-1 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200">중급</button>
+          <button onclick="filterDrawerWeeks('완성')" class="chip px-3 py-1 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200">완성</button>
+        </div>
+      </div>
+
+      <div id="drawer-items-list" class="flex-1 overflow-y-auto p-3 flex flex-col gap-2 scrollbar-thin text-xs">
+        <!-- Injected via JavaScript -->
+      </div>
+    </aside>
+
+    <!-- 3. CENTRAL WORKSPACE STAGE (수업 계획 직접 편집 캔버스) -->
+    <div class="flex-1 bg-slate-100 overflow-y-auto p-4 sm:p-8 flex flex-col items-center scrollbar-thin relative" id="canvas-scroll-container">
+
+      <!-- In-Place Editing Helper Top Bar inside stage -->
+      <div class="w-full max-w-4xl mb-4 flex items-center justify-between bg-white/80 backdrop-blur border border-slate-200 px-4 py-2.5 rounded-2xl shadow-xs text-xs">
+        <div class="flex items-center gap-2 text-slate-700">
+          <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-bold">✏️ 화면 직접 편집 활성</span>
+          <span class="text-slate-500 hidden sm:inline">글자를 마우스로 클릭하여 타이핑하고 [Enter]로 줄바꿈하세요.</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="autoFixKoreanTypography()" class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold transition-all cursor-pointer" title="모든 문장에 한글 어절 줄바꿈(keep-all)을 일괄 적용합니다">
+            ✨ 한글 어절 자동정돈
+          </button>
+          <button onclick="toggleSidebars()" class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold transition-all cursor-pointer">
+            ◨ 와이드 보기
+          </button>
+        </div>
+      </div>
+
+      <!-- MAIN DOCUMENT CONTAINER (Directly Editable WYSIWYG Webpage) -->
+      <main id="tour-canvas" class="w-full max-w-4xl bg-white border border-slate-200 rounded-3xl shadow-xl p-6 sm:p-12 md:p-16 flex flex-col gap-12 relative transition-all">
+
+        <!-- HEADER MASTHEAD -->
+        <header class="flex flex-col gap-5 border-b border-slate-200 pb-8">
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-2">
+              <span contenteditable="true" class="editable-block px-2.5 py-1 rounded bg-slate-100 text-slate-800 text-xs font-semibold tracking-wider uppercase nowrap-badge">
+                SONGDO AI ACADEMY
+              </span>
+              <span contenteditable="true" class="editable-block text-xs text-slate-500 font-medium">송도 AI 아카데미 실전 코스</span>
+            </div>
+            <span contenteditable="true" class="editable-block text-xs text-slate-400 nowrap-badge">2026. 10. 25 최종 확정안</span>
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <h1 contenteditable="true" id="canvas-title" class="editable-block text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-900 leading-tight">
+              AI와 대화하던 사람에서,<br>
+              <span class="text-accentTeal">내 웹 도구를 만들고 고치는 사람으로</span>
+            </h1>
+            <div contenteditable="true" id="canvas-subtitle" class="editable-block text-slate-700 text-base sm:text-lg pt-1 flex flex-col gap-1">
+              <span class="clause">기존 유료 AI 구독 하나로, 나만의 웹 도구를 직접 만들고 검증하고 배포하는 6주.</span>
+              <span class="clause text-slate-500">과대광고 없이, 1주 차 첫 배포부터 안전한 검증·재배포까지 완결하는 현실적 실전 로드맵</span>
+            </div>
+          </div>
+
+          <!-- Quick Metrics Badge Bar -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-slate-100 text-xs">
+            <div class="flex flex-col gap-0.5">
+              <span class="text-slate-400">준비물</span>
+              <strong contenteditable="true" id="c-meta-req" class="editable-block text-accentTeal text-sm font-semibold">AI 구독 1개 (ChatGPT / Claude)</strong>
+            </div>
+            <div class="flex flex-col gap-0.5">
+              <span class="text-slate-400">추가 API 비용</span>
+              <strong contenteditable="true" id="c-meta-cost" class="editable-block text-slate-900 text-sm font-semibold">0원 (지정 무료 호스팅 완결)</strong>
+            </div>
+            <div class="flex flex-col gap-0.5">
+              <span class="text-slate-400">교육 시간</span>
+              <strong contenteditable="true" id="c-meta-duration" class="editable-block text-slate-900 text-sm font-semibold">주 1회 집중 3h + 실습 2h</strong>
+            </div>
+            <div class="flex flex-col gap-0.5">
+              <span class="text-slate-400">최종 수료 목표</span>
+              <strong contenteditable="true" id="c-meta-goal" class="editable-block text-slate-900 text-sm font-semibold">스스로 수정·검증 후 안전 재배포</strong>
+            </div>
+          </div>
+        </header>
+
+        <!-- 1. DIRECTOR'S MANIFESTO -->
+        <section class="flex flex-col gap-4 bg-slate-50 border border-slate-200 rounded-2xl p-6 sm:p-8">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-accentTeal"></span>
+            <span class="text-xs font-semibold tracking-wider text-accentTeal uppercase">DIRECTOR'S REALITY CHECK · 원장의 약속</span>
+          </div>
+
+          <h3 contenteditable="true" class="editable-block text-xl sm:text-2xl font-bold text-slate-900 leading-snug">
+            "복붙만 하던 사람이 '내 손으로 만들고 고치는 사람'이 되는 것, 그것으로 충분합니다."
+          </h3>
+
+          <div contenteditable="true" class="editable-block text-slate-700 text-sm sm:text-[15px] flex flex-col gap-3 leading-relaxed">
+            <p>
+              <span class="clause">우리는 6주 만에 인공지능 천재 엔지니어를 만들어준다는 거짓말을 하지 않습니다.</span>
+              <span class="clause text-slate-500">하지만 챗봇에게 날씨나 묻고 메일 초안이나 복사해서 쓰는 대화형 사용자에만 머무는 것도 아쉽습니다.</span>
+            </p>
+            <p>
+              <span class="clause">이 수업의 목표는 명확합니다. <strong>내가 일상과 업무에서 필요한 안내서, 카드, 계산기 같은 웹 도구를 자연어로 직접 띄우고,</strong></span>
+              <span class="clause text-slate-500">오류가 났을 때 당황하지 않고 안전 백업본을 챙기며 스스로 원인을 찾아 고친 뒤, 다시 인터넷 링크로 배포할 수 있는 <strong>자립형 바이브 빌더</strong>로 성장하는 것입니다.</span>
+            </p>
+            <p class="font-medium text-slate-900 pt-1">
+              <span class="clause">마지막 주에 허겁지겁 코딩하지 않습니다. <strong>1주 차 첫 수업 30분 만에 1페이지를 먼저 인터넷에 배포해 보고,</strong></span>
+              <span class="clause text-accentTeal font-bold">6주 동안 '하나의 완성도 높은 실전 웹 도구'로 매주 기획-제작-검증-재배포 루프를 돌며 살을 붙여나갑니다.</span>
+            </p>
+          </div>
+        </section>
+
+        <!-- 2. KARPATHY AI HIERARCHY -->
+        <section class="flex flex-col gap-5 border border-slate-900 bg-slate-950 text-white rounded-2xl p-6 sm:p-8">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-4">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+              <span class="text-xs font-semibold tracking-wider text-emerald-400 uppercase">AI BUILDER SPECTRUM · 현실적인 AI 역량 단계</span>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <h3 contenteditable="true" class="editable-block text-2xl sm:text-3xl font-bold tracking-tight text-white leading-tight">
+              "대화창 안에서 글자만 주고받던 사람에서,<br>
+              <span class="text-emerald-400">내 손으로 도구를 만드는 자립형 바이브 빌더로"</span>
+            </h3>
+            <p contenteditable="true" class="editable-block text-slate-300 text-sm sm:text-base leading-relaxed pt-1">
+              <span class="clause">대다수의 사람들은 챗봇 대화창 안에서 글자만 주고받습니다.</span>
+              <span class="clause text-slate-400">우리의 목표는 유료 구독 하나로 <strong>대화창 밖으로 나와, 직접 누르고 작동하는 웹 소프트웨어를 빚어내는 실전 영역</strong>으로 진입하는 것입니다.</span>
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-3 text-xs">
+            
+            <div class="border border-slate-800 bg-slate-900/60 p-4 rounded-xl flex flex-col gap-1.5 opacity-60">
+              <span class="text-slate-400 font-medium nowrap-badge">LEVEL 1 · 입문</span>
+              <strong contenteditable="true" class="editable-block text-slate-200 text-sm">대화형 사용자<br>(Interactive Consumer)</strong>
+              <span contenteditable="true" class="editable-block text-slate-400 leading-relaxed text-[11px]">챗봇 대화창 안에서 프롬프트로 텍스트를 주고받고 문서를 작성하는 단계</span>
+            </div>
+
+            <div class="border border-emerald-500 bg-emerald-950/40 p-4 rounded-xl flex flex-col gap-1.5 shadow-sm">
+              <span class="text-emerald-400 font-semibold nowrap-badge">LEVEL 2 · 본 과정 수료 목표</span>
+              <strong contenteditable="true" class="editable-block text-white text-sm">자립형 바이브 빌더<br>(Vibe Builder)</strong>
+              <span contenteditable="true" class="editable-block text-emerald-200 leading-relaxed text-[11px]">단 1개의 AI 구독으로 내 아이디어를 웹 화면으로 띄우고, 스스로 오류를 고쳐 재배포하는 실전가</span>
+            </div>
+
+            <div class="border border-slate-800 bg-slate-900/60 p-4 rounded-xl flex flex-col gap-1.5 opacity-60">
+              <span class="text-slate-400 font-medium nowrap-badge">LEVEL 3 · 전문 연구 영역</span>
+              <strong contenteditable="true" class="editable-block text-slate-300 text-sm">코어 시스템 엔지니어<br>(Core AI Engineer)</strong>
+              <span contenteditable="true" class="editable-block text-slate-400 leading-relaxed text-[11px]">신경망 모델 자체를 훈련하고 대규모 GPU 인프라를 직접 설계하는 개발자</span>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- 3. CORE 3 PRINCIPLES -->
+        <section class="flex flex-col gap-5">
+          <div class="flex flex-col gap-1">
+            <span class="text-xs font-semibold tracking-wider text-accentTeal uppercase">FOUNDATION</span>
+            <h2 class="text-2xl font-bold text-slate-900">수업을 지탱하는 3대 정직한 원칙</h2>
+          </div>
+
+          <div id="canvas-principles-grid" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <!-- Dynamic Principles Cards -->
+          </div>
+        </section>
+
+        <!-- 4. 6-WEEK SYLLABUS DETAILED CARDS -->
+        <section class="flex flex-col gap-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 pb-4">
+            <div class="flex flex-col gap-1">
+              <span class="text-xs font-semibold tracking-wider text-accentTeal uppercase">6-WEEK DETAILED SYLLABUS</span>
+              <h2 class="text-2xl font-bold text-slate-900">6주 주차별 상세 커리큘럼</h2>
+            </div>
+            <span class="text-xs text-slate-500">단일 실전 프로젝트: <strong>"나만의 업무/안내용 실전 웹 유틸리티 & 실시간 계산기"</strong></span>
+          </div>
+
+          <!-- Dynamic Weeks Cards on Canvas -->
+          <div id="canvas-weeks-container" class="flex flex-col gap-5">
+            <!-- Injected via JavaScript -->
+          </div>
+        </section>
+
+        <!-- 5. 6-WEEK SUMMARY TABLE -->
+        <section class="flex flex-col gap-4">
+          <div class="flex flex-col gap-1">
+            <span class="text-xs font-semibold tracking-wider text-accentTeal uppercase">AT A GLANCE</span>
+            <h2 class="text-xl font-bold text-slate-900">6주 커리큘럼 한눈에 보기</h2>
+          </div>
+
+          <div class="overflow-x-auto border border-slate-200 rounded-2xl bg-white shadow-2xs">
+            <table class="w-full text-left text-xs sm:text-sm">
+              <thead class="bg-slate-50 border-b border-slate-200 text-slate-800 font-semibold">
+                <tr>
+                  <th class="py-3 px-4">주차</th>
+                  <th class="py-3 px-4">단계</th>
+                  <th class="py-3 px-4">이론적 멘탈 모델</th>
+                  <th class="py-3 px-4">프롬프트 & 테크닉</th>
+                  <th class="py-3 px-4">디자인 & 실습</th>
+                  <th class="py-3 px-4">주차별 실전 산출물</th>
+                </tr>
+              </thead>
+              <tbody id="canvas-summary-table-body" class="divide-y divide-slate-100 text-slate-700">
+                <!-- Injected via JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Artboard Footer Signature -->
+        <footer class="border-t border-slate-200 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-accentTeal"></span>
+            <span contenteditable="true" class="editable-block">Songdo AI Academy · 6-Week Master Syllabus</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-slate-400 text-[11px]">Curated & Authored by</span>
+            <span contenteditable="true" class="editable-block font-signature text-2xl text-slate-900 font-bold tracking-wide">
+              ohahbuji
+            </span>
+          </div>
+        </footer>
+
+      </main>
+
+    </div>
+
+    <!-- 4. RIGHT TYPOGRAPHY & "오와열" ASSISTANT PANEL (300px) -->
+    <aside id="tour-inspector" class="w-72 bg-white border-l border-panelBorder flex flex-col flex-shrink-0 z-20 shadow-xs transition-all">
+      
+      <div class="h-14 border-b border-slate-100 px-4 flex items-center justify-between">
+        <div class="flex items-center gap-2 font-bold text-slate-900 text-xs">
+          <span class="w-2.5 h-2.5 rounded-full bg-miriGreen"></span>
+          <span>오와열 & 타이포 도우미</span>
+        </div>
+        <button onclick="toggleSidebars()" class="p-1 text-slate-400 hover:text-slate-700 rounded-lg hover:bg-slate-100 cursor-pointer" title="패널 접어 넓게 보기">
+          ❯
+        </button>
+      </div>
+
+      <div class="flex-1 overflow-y-auto p-4 flex flex-col gap-4 scrollbar-thin text-xs">
+
+        <!-- Quick 1-Click Korean Typography Wizard -->
+        <div class="p-3.5 bg-emerald-50/70 border border-emerald-200 rounded-2xl flex flex-col gap-2.5">
+          <div class="flex items-center justify-between">
+            <strong class="text-xs font-bold text-emerald-950 flex items-center gap-1">
+              <span>📐</span> 1클릭 오와열 교정
+            </strong>
+          </div>
+          <p class="text-[11px] text-emerald-800 leading-relaxed">
+            한글은 글자가 단어 중간에서 뚝뚝 끊기면 가독성이 떨어집니다. 버튼을 누르면 단어 어절을 안전하게 유지합니다.
+          </p>
+          <div class="flex flex-col gap-1.5 pt-1">
+            <button onclick="autoFixKoreanTypography()" class="w-full py-2 px-3 rounded-xl bg-miriGreen hover:bg-miriGreenDark text-white font-bold text-xs shadow-xs transition-all cursor-pointer flex items-center justify-center gap-1.5">
+              <span>✨ 한글 어절 줄바꿈 일괄 적용</span>
+            </button>
+            <button onclick="applyFormat('insertLineBreak')" class="w-full py-2 px-3 rounded-xl bg-white hover:bg-slate-50 border border-emerald-300 text-emerald-900 font-semibold text-xs transition-all cursor-pointer flex items-center justify-center gap-1">
+              <span>↵ 커서 위치에 줄바꿈 삽입</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Typography Controls -->
+        <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-2xl flex flex-col gap-3">
+          <strong class="text-xs font-bold text-slate-900 flex items-center gap-1">
+            <span>🎨</span> 서식 및 스타일 조정
+          </strong>
+
+          <!-- Bold / Color Buttons -->
+          <div class="grid grid-cols-2 gap-2">
+            <button onclick="applyFormat('bold')" class="py-2 px-3 rounded-xl bg-white border border-slate-200 hover:border-miriGreen text-slate-800 font-bold flex items-center justify-center gap-1 cursor-pointer">
+              <span>B</span> 굵게
+            </button>
+            <button onclick="applyColor('#00c471')" class="py-2 px-3 rounded-xl bg-white border border-slate-200 hover:border-miriGreen text-miriGreenDark font-bold flex items-center justify-center gap-1 cursor-pointer">
+              <span class="w-2.5 h-2.5 rounded-full bg-miriGreen"></span> 포인트색
+            </button>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2">
+            <button onclick="toggleKeepAll()" class="py-2 px-3 rounded-xl bg-white border border-slate-200 hover:border-miriGreen text-slate-800 font-semibold flex items-center justify-center gap-1 cursor-pointer">
+              <span>↔️</span> 어절유지
+            </button>
+            <button onclick="toggleBalance()" class="py-2 px-3 rounded-xl bg-white border border-slate-200 hover:border-miriGreen text-slate-800 font-semibold flex items-center justify-center gap-1 cursor-pointer">
+              <span>⚖️</span> 줄균형
+            </button>
+          </div>
+
+          <div class="flex items-center justify-between border-t border-slate-200 pt-2 text-[11px] text-slate-500">
+            <span>글자 크기 미세조절</span>
+            <div class="flex items-center gap-1">
+              <button onclick="adjustFontSize(-1)" class="w-7 h-7 rounded-lg bg-white border border-slate-200 hover:bg-slate-100 font-bold text-slate-700">A-</button>
+              <button onclick="adjustFontSize(1)" class="w-7 h-7 rounded-lg bg-white border border-slate-200 hover:bg-slate-100 font-bold text-slate-700">A+</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Tips for Korean Typography -->
+        <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-2xl flex flex-col gap-2">
+          <strong class="text-xs font-bold text-slate-900">💡 오와열 잘 맞추는 요령</strong>
+          <ul class="text-[11px] text-slate-600 flex flex-col gap-1.5 leading-relaxed">
+            <li class="flex items-start gap-1.5">
+              <span class="text-miriGreen font-bold">•</span>
+              <span><strong>조사 외톨이 방지</strong>: '을/를/이/가' 혼자 다음 줄로 넘어가지 않게 그 앞에서 [Enter]를 치세요.</span>
+            </li>
+            <li class="flex items-start gap-1.5">
+              <span class="text-miriGreen font-bold">•</span>
+              <span><strong>제목은 2줄 이내</strong>: 긴 제목은 핵심 키워드 직전에서 줄을 나눠 시선을 모아줍니다.</span>
+            </li>
+            <li class="flex items-start gap-1.5">
+              <span class="text-miriGreen font-bold">•</span>
+              <span><strong>Ctrl+S 단축키</strong>: 수정 중 언제든 Ctrl+S를 누르면 파일에 즉시 영구 저장됩니다.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex flex-col gap-2 pt-2 border-t border-slate-100">
+          <button onclick="addNewWeek()" class="w-full py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs cursor-pointer transition-all shadow-xs flex items-center justify-center gap-1.5">
+            <span>+</span> 새로운 주차 추가하기
+          </button>
+          <button onclick="saveAllData()" class="w-full py-2.5 rounded-xl bg-miriGreen hover:bg-miriGreenDark text-white font-bold text-xs cursor-pointer transition-all shadow-xs flex items-center justify-center gap-1.5">
+            <span>💾</span> 지금 바로 영구 저장
+          </button>
+        </div>
+
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- ========================================================
+       IMPROVED INTERACTIVE ONBOARDING TOUR MODAL
+       ======================================================== -->
+  <div id="tour-backdrop" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+    
+    <div class="w-full max-w-lg bg-white rounded-3xl p-7 shadow-2xl border border-slate-200 flex flex-col gap-6 animate-in fade-in zoom-in-95 duration-200">
+      
+      <div class="flex items-center justify-between">
+        <span id="tour-step-badge" class="px-3 py-1 rounded-full bg-emerald-50 text-miriGreenDark font-bold text-xs border border-emerald-200">
+          1단계 / 총 4단계
+        </span>
+        <button onclick="endTour()" class="text-slate-400 hover:text-slate-700 text-xs font-bold cursor-pointer">
+          가이드 닫기 ✕
+        </button>
+      </div>
+
+      <div class="flex items-start gap-4">
+        <div id="tour-icon" class="w-12 h-12 rounded-2xl bg-emerald-50 text-miriGreen text-2xl flex items-center justify-center font-bold flex-shrink-0">
+          ✏️
+        </div>
+        <div class="flex flex-col gap-1.5">
+          <h3 id="tour-title" class="text-lg font-extrabold text-slate-900">
+            화면의 글자를 마우스로 직접 클릭하세요
+          </h3>
+          <p id="tour-desc" class="text-sm text-slate-600 leading-relaxed">
+            제목이나 설명 글자를 클릭하면 그 자리에서 바로 타이핑하고 수정할 수 있습니다.
+          </p>
+        </div>
+      </div>
+
+      <!-- Action buttons -->
+      <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+        <div class="flex items-center gap-1.5" id="tour-dots">
+          <!-- Injected via JavaScript -->
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button onclick="prevTour()" id="tour-prev-btn" class="hidden px-4 py-2 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-bold cursor-pointer">
+            이전
+          </button>
+          <button onclick="nextTour()" id="tour-next-btn" class="px-5 py-2 rounded-xl bg-miriGreen hover:bg-miriGreenDark text-white text-xs font-bold cursor-pointer transition-all shadow-xs">
+            다음 단계 →
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Client-side Logic -->
+  <script>
+    let appData = null;
+    let selectedWeekIndex = 0;
+    let currentDrawerTab = 'weeks';
+    let currentFilter = 'all';
+    let tourStep = 0;
+    let isSidebarsCollapsed = false;
+    let activeFocusedElement = null;
+
+    // Tour Steps Focused on Direct In-Place Editing & Korean Typography
+    const tourSteps = [
+      {
+        icon: "✏️",
+        badge: "1단계 / 총 4단계",
+        title: "화면의 글자를 직접 클릭하세요",
+        desc: "복잡한 입력창이 아니라, 가운데 보이는 실제 완성 화면의 글자를 마우스로 클릭하면 바로 수정 모드가 됩니다.",
+        targetId: "canvas-title"
+      },
+      {
+        icon: "↵",
+        badge: "2단계 / 총 4단계",
+        title: "[Enter] 키로 어색한 오와열을 맞추세요",
+        desc: "한글 단어가 어색하게 끊겨 보이면 줄을 바꾸고 싶은 위치에서 [Enter]를 쳐서 깔끔하게 줄바꿈할 수 있습니다.",
+        targetId: "tour-canvas"
+      },
+      {
+        icon: "🎨",
+        badge: "3단계 / 총 4단계",
+        title: "오른쪽 도우미로 한글 어절을 단번에 정리하세요",
+        desc: "'✨ 한글 어절 자동정돈'을 누르면 단어가 중간에서 잘리지 않도록 keep-all 규칙이 전체 화면에 적용됩니다.",
+        targetId: "tour-inspector"
+      },
+      {
+        icon: "💾",
+        badge: "4단계 / 총 4단계",
+        title: "Ctrl + S 또는 [저장] 누르면 끝!",
+        desc: "오른쪽 위 초록색 [저장] 버튼이나 키보드의 Ctrl+S를 누르면 파일에 즉시 영구 저장됩니다.",
+        targetId: "tour-save-btn"
+      }
+    ];
+
+    // 1. Initial Load
+    async function loadData() {
+      try {
+        const resp = await fetch('/api/curriculum-data');
+        if (!resp.ok) throw new Error('Data fetch failed');
+        appData = await resp.json();
+        renderAll();
+
+        // Setup In-Place Editing Listeners
+        setupInPlaceEditorListeners();
+
+        // Check if first visit
+        if (!localStorage.getItem('studio_wysiwyg_tour_seen')) {
+          setTimeout(() => startTour(0), 400);
+        }
+      } catch (err) {
+        console.error('Data load error:', err);
+      }
+    }
+
+    // View Navigation (Home vs Studio)
+    function showView(view) {
+      if (view === 'home') {
+        document.getElementById('view-home').classList.remove('hidden');
+        document.getElementById('view-studio').classList.add('hidden');
+        document.getElementById('nav-btn-home').classList.add('bg-white', 'text-slate-900', 'shadow-xs');
+        document.getElementById('nav-btn-home').classList.remove('text-slate-500');
+        document.getElementById('nav-btn-studio').classList.remove('bg-white', 'text-slate-900', 'shadow-xs');
+        document.getElementById('nav-btn-studio').classList.add('text-slate-500');
+        document.getElementById('top-title-container').classList.add('hidden');
+      } else {
+        document.getElementById('view-home').classList.add('hidden');
+        document.getElementById('view-studio').classList.remove('hidden');
+        document.getElementById('nav-btn-studio').classList.add('bg-white', 'text-slate-900', 'shadow-xs');
+        document.getElementById('nav-btn-studio').classList.remove('text-slate-500');
+        document.getElementById('nav-btn-home').classList.remove('bg-white', 'text-slate-900', 'shadow-xs');
+        document.getElementById('nav-btn-home').classList.add('text-slate-500');
+        document.getElementById('top-title-container').classList.remove('hidden');
+      }
+    }
+
+    // Toggle Wide View (Collapse Sidebars)
+    function toggleSidebars() {
+      isSidebarsCollapsed = !isSidebarsCollapsed;
+      const dock = document.getElementById('studio-dock');
+      const drawer = document.getElementById('tour-drawer');
+      const inspector = document.getElementById('tour-inspector');
+      const label = document.getElementById('wide-label');
+
+      if (isSidebarsCollapsed) {
+        dock.classList.add('hidden');
+        drawer.classList.add('hidden');
+        inspector.classList.add('hidden');
+        label.innerText = '패널 펼치기';
+      } else {
+        dock.classList.remove('hidden');
+        drawer.classList.remove('hidden');
+        inspector.classList.remove('hidden');
+        label.innerText = '와이드 보기';
+      }
+    }
+
+    // Tour Logic
+    function startTour(step = 0) {
+      showView('studio');
+      tourStep = step;
+      document.getElementById('tour-backdrop').classList.remove('hidden');
+      renderTourStep();
+    }
+
+    function renderTourStep() {
+      const cur = tourSteps[tourStep];
+      if (!cur) return;
+
+      document.getElementById('tour-icon').innerText = cur.icon;
+      const badgeEl = document.getElementById('tour-step-badge');
+      if (badgeEl) badgeEl.textContent = cur.badge;
+
+      document.getElementById('tour-title').textContent = cur.title;
+      document.getElementById('tour-desc').textContent = cur.desc;
+
+      // Update Dots
+      const dotsContainer = document.getElementById('tour-dots');
+      dotsContainer.innerHTML = '';
+      tourSteps.forEach((_, idx) => {
+        const dot = document.createElement('span');
+        dot.className = `w-2.5 h-2.5 rounded-full transition-all ${idx === tourStep ? 'bg-miriGreen w-5' : 'bg-slate-200'}`;
+        dotsContainer.appendChild(dot);
+      });
+
+      // Prev/Next buttons
+      const prevBtn = document.getElementById('tour-prev-btn');
+      const nextBtn = document.getElementById('tour-next-btn');
+      if (tourStep === 0) {
+        prevBtn.classList.add('hidden');
+      } else {
+        prevBtn.classList.remove('hidden');
+      }
+
+      if (tourStep === tourSteps.length - 1) {
+        nextBtn.innerText = '시작하기 🎉';
+      } else {
+        nextBtn.innerText = '다음 단계 →';
+      }
+
+      // Highlight target element safely with border
+      document.querySelectorAll('.tour-focus-ring').forEach(el => el.classList.remove('tour-focus-ring'));
+      const target = document.getElementById(cur.targetId);
+      if (target) {
+        target.classList.add('tour-focus-ring');
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+
+    function nextTour() {
+      if (tourStep < tourSteps.length - 1) {
+        tourStep++;
+        renderTourStep();
+      } else {
+        endTour();
+      }
+    }
+
+    function prevTour() {
+      if (tourStep > 0) {
+        tourStep--;
+        renderTourStep();
+      }
+    }
+
+    function endTour() {
+      document.querySelectorAll('.tour-focus-ring').forEach(el => el.classList.remove('tour-focus-ring'));
+      document.getElementById('tour-backdrop').classList.add('hidden');
+      localStorage.setItem('studio_wysiwyg_tour_seen', 'true');
+    }
+
+    // 2. Render All Canvas Elements
+    function renderAll() {
+      if (!appData) return;
+
+      if (appData.title) {
+        document.getElementById('canvas-title').innerHTML = appData.title.replace(/\n/g, '<br>');
+      }
+      if (appData.subtitle) {
+        document.getElementById('canvas-subtitle').innerHTML = `<span class="clause">${appData.subtitle}</span>`;
+      }
+      
+      if (appData.meta_info) {
+        document.getElementById('c-meta-req').innerText = appData.meta_info.requirements || '';
+        document.getElementById('c-meta-cost').innerText = appData.meta_info.api_cost || '';
+        document.getElementById('c-meta-duration').innerText = appData.meta_info.duration || '';
+        document.getElementById('c-meta-goal').innerText = appData.meta_info.goal || '';
+      }
+
+      renderPrinciples();
+      renderDrawerList();
+      renderCanvasWeeks();
+      renderSummaryTable();
+    }
+
+    function renderPrinciples() {
+      const grid = document.getElementById('canvas-principles-grid');
+      grid.innerHTML = '';
+      (appData.principles || []).forEach((p, idx) => {
+        const card = document.createElement('div');
+        card.className = 'border border-slate-200 bg-white p-6 rounded-2xl flex flex-col gap-2 hover:border-slate-300 transition-all shadow-xs';
+        card.innerHTML = `
+          <h3 contenteditable="true" data-prop="principle_title_${idx}" class="editable-block text-base font-bold text-slate-900">${p.id}. ${p.title}</h3>
+          <p contenteditable="true" data-prop="principle_desc_${idx}" class="editable-block text-sm text-slate-600 leading-relaxed">${p.desc}</p>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function renderDrawerList() {
+      const container = document.getElementById('drawer-items-list');
+      container.innerHTML = '';
+
+      if (currentDrawerTab === 'weeks') {
+        const filteredWeeks = (appData.weeks || []).filter(w => {
+          if (currentFilter === 'all') return true;
+          return (w.badge && w.badge.includes(currentFilter)) || (w.stage && w.stage.includes(currentFilter));
+        });
+
+        filteredWeeks.forEach((w, idx) => {
+          const originalIndex = appData.weeks.indexOf(w);
+          const isSelected = originalIndex === selectedWeekIndex;
+          const item = document.createElement('div');
+          item.className = `p-3 rounded-xl border cursor-pointer transition-all flex flex-col gap-1 ${
+            isSelected ? 'border-miriGreen bg-miriGreenSoft font-bold' : 'border-slate-200 bg-white hover:border-slate-300'
+          }`;
+          item.onclick = () => scrollToWeek(originalIndex);
+          item.innerHTML = `
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] font-bold px-2 py-0.5 rounded ${isSelected ? 'bg-miriGreen text-white' : 'bg-slate-100 text-slate-700'}">${w.week}</span>
+              <span class="text-[11px] font-semibold text-miriGreenDark">${w.badge}</span>
+            </div>
+            <strong class="text-xs text-slate-900 line-clamp-1">${w.title}</strong>
+          `;
+          container.appendChild(item);
+        });
+      } else if (currentDrawerTab === 'prompts') {
+        renderPromptsDrawer(container);
+      } else if (currentDrawerTab === 'courseware') {
+        renderCoursewareDrawer(container);
+      } else if (currentDrawerTab === 'principles') {
+        renderPrinciplesDrawer(container);
+      }
+    }
+
+    function renderCanvasWeeks() {
+      const container = document.getElementById('canvas-weeks-container');
+      container.innerHTML = '';
+
+      (appData.weeks || []).forEach((w, idx) => {
+        const card = document.createElement('article');
+        card.id = `week-card-${idx}`;
+        card.className = `border border-slate-200 rounded-2xl p-6 bg-white flex flex-col gap-4 shadow-xs transition-all hover:border-slate-300`;
+        card.innerHTML = `
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-3">
+            <div class="flex items-center gap-2">
+              <span contenteditable="true" data-week-idx="${idx}" data-field="week" class="editable-block px-2.5 py-0.5 rounded bg-slate-900 text-white text-xs font-semibold nowrap-badge">${w.week}</span>
+              <strong contenteditable="true" data-week-idx="${idx}" data-field="title" class="editable-block text-slate-900 text-base font-bold">${w.title}</strong>
+            </div>
+            <span contenteditable="true" data-week-idx="${idx}" data-field="stage" class="editable-block px-2.5 py-0.5 rounded bg-emerald-50 text-miriGreenDark text-xs font-bold border border-emerald-200 nowrap-badge">${w.stage}</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-sm">
+            <div class="flex flex-col gap-1.5 bg-slate-50 p-4 rounded-xl border border-slate-100">
+              <span class="font-bold text-slate-500 text-xs uppercase tracking-wider">이론 멘탈 모델</span>
+              <strong contenteditable="true" data-week-idx="${idx}" data-field="theory_title" class="editable-block text-slate-900 text-sm font-bold">${w.theory_title}</strong>
+              <p contenteditable="true" data-week-idx="${idx}" data-field="theory_desc" class="editable-block text-slate-600 text-xs leading-relaxed">${w.theory_desc}</p>
+            </div>
+
+            <div class="flex flex-col gap-1.5 bg-slate-50 p-4 rounded-xl border border-slate-100">
+              <span class="font-bold text-slate-500 text-xs uppercase tracking-wider">프롬프트 테크닉</span>
+              <strong contenteditable="true" data-week-idx="${idx}" data-field="technique_title" class="editable-block text-slate-900 text-sm font-bold">${w.technique_title}</strong>
+              <p contenteditable="true" data-week-idx="${idx}" data-field="technique_desc" class="editable-block text-slate-600 text-xs leading-relaxed">${w.technique_desc}</p>
+            </div>
+
+            <div class="flex flex-col gap-1.5 bg-emerald-50/70 p-4 rounded-xl border border-emerald-200">
+              <span class="font-bold text-miriGreenDark text-xs uppercase tracking-wider">실전 산출물 (Outcomes)</span>
+              <strong contenteditable="true" data-week-idx="${idx}" data-field="output_title" class="editable-block text-emerald-950 text-sm font-bold">${w.output_title}</strong>
+              <p contenteditable="true" data-week-idx="${idx}" data-field="output_desc" class="editable-block text-slate-700 text-xs leading-relaxed">${w.output_desc}</p>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function renderSummaryTable() {
+      const tbody = document.getElementById('canvas-summary-table-body');
+      tbody.innerHTML = '';
+      (appData.weeks || []).forEach((w, idx) => {
+        const tr = document.createElement('tr');
+        tr.className = `hover:bg-slate-50/70 transition-colors ${idx === 5 ? 'bg-emerald-50/30' : ''}`;
+        tr.innerHTML = `
+          <td class="py-3 px-4 font-bold text-slate-900 whitespace-nowrap"><span contenteditable="true" class="editable-block">${w.week}</span></td>
+          <td class="py-3 px-4 whitespace-nowrap"><span contenteditable="true" class="editable-block px-2 py-0.5 rounded bg-slate-100 text-slate-800 text-xs font-semibold">${w.badge}</span></td>
+          <td class="py-3 px-4"><span contenteditable="true" class="editable-block">${w.theory_title}</span></td>
+          <td class="py-3 px-4"><span contenteditable="true" class="editable-block">${w.technique_title}</span></td>
+          <td class="py-3 px-4"><span contenteditable="true" class="editable-block">${w.stage}</span></td>
+          <td class="py-3 px-4 font-semibold text-emerald-800"><span contenteditable="true" class="editable-block">${w.output_title}</span></td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function scrollToWeek(index) {
+      selectedWeekIndex = index;
+      renderDrawerList();
+      const el = document.getElementById(`week-card-${index}`);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        el.classList.add('ring-2', 'ring-miriGreen');
+        setTimeout(() => el.classList.remove('ring-2', 'ring-miriGreen'), 1200);
+      }
+    }
+
+    // 3. Korean Typography & In-Place Editing Handlers
+    function setupInPlaceEditorListeners() {
+      const container = document.getElementById('canvas-scroll-container');
+      
+      // Handle IME-Safe Enter Key for clean line breaks
+      container.addEventListener('keydown', (e) => {
+        const target = e.target;
+        if (!target || !target.isContentEditable) return;
+        
+        if (e.isComposing) return; // Wait for Korean syllable composition!
+
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          document.execCommand('insertLineBreak');
+        }
+      });
+
+      // Track active element & show/position floating toolbar
+      container.addEventListener('focusin', (e) => {
+        if (e.target.isContentEditable) {
+          activeFocusedElement = e.target;
+        }
+      });
+
+      // Update Selection Bubble Bar
+      document.addEventListener('selectionchange', () => {
+        const sel = window.getSelection();
+        const bar = document.getElementById('floating-format-bar');
+        if (!sel || sel.isCollapsed || !bar) {
+          bar.style.display = 'none';
+          return;
+        }
+
+        const range = sel.getRangeAt(0);
+        const rect = range.getBoundingClientRect();
+        if (rect.width > 0 && rect.top > 0) {
+          bar.style.display = 'flex';
+          bar.style.top = `${Math.max(10, rect.top - 52)}px`;
+          bar.style.left = `${Math.max(10, rect.left + (rect.width / 2) - 180)}px`;
+        }
+      });
+    }
+
+    // Floating Bar Command Actions
+    function applyFormat(command, value = null) {
+      document.execCommand(command, false, value);
+    }
+
+    function applyColor(hex) {
+      document.execCommand('foreColor', false, hex);
+    }
+
+    function toggleKeepAll() {
+      if (!activeFocusedElement) return;
+      const cur = activeFocusedElement.style.wordBreak;
+      activeFocusedElement.style.wordBreak = (cur === 'keep-all') ? 'normal' : 'keep-all';
+      showToast(activeFocusedElement.style.wordBreak === 'keep-all' ? '↔️ 어절 유지(keep-all) 적용' : '기본 줄바꿈 적용');
+    }
+
+    function toggleBalance() {
+      if (!activeFocusedElement) return;
+      const cur = activeFocusedElement.style.textWrap;
+      activeFocusedElement.style.textWrap = (cur === 'balance') ? 'auto' : 'balance';
+      showToast(activeFocusedElement.style.textWrap === 'balance' ? '⚖️ 줄 길이 균형(balance) 적용' : '기본 줄바꿈 적용');
+    }
+
+    function adjustFontSize(delta) {
+      if (!activeFocusedElement) return;
+      const curSize = parseFloat(window.getComputedStyle(activeFocusedElement).fontSize) || 15;
+      activeFocusedElement.style.fontSize = `${Math.max(10, curSize + delta)}px`;
+    }
+
+    function autoFixKoreanTypography() {
+      const editables = document.querySelectorAll('#tour-canvas .editable-block');
+      editables.forEach(el => {
+        el.style.wordBreak = 'keep-all';
+        el.style.overflowWrap = 'break-word';
+        if (el.tagName.startsWith('H') || el.classList.contains('font-bold')) {
+          el.style.textWrap = 'balance';
+        }
+      });
+      showToast('✨ 전체 화면에 한글 어절 줄바꿈(keep-all)과 균형(balance)이 적용되었습니다!');
+    }
+
+    function showToast(msg) {
+      const existing = document.getElementById('studio-toast');
+      if (existing) existing.remove();
+
+      const toast = document.createElement('div');
+      toast.id = 'studio-toast';
+      toast.className = 'fixed bottom-6 right-6 z-50 bg-slate-900 text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-2 text-xs font-bold animate-in fade-in slide-in-from-bottom-2';
+      toast.innerHTML = `<span>⚡</span><span>${msg}</span>`;
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 2500);
+    }
+
+    // 4. Drawer & Navigation Utilities
+    function addNewWeek() {
+      const nextNum = (appData.weeks.length + 1).toString().padStart(2, '0');
+      appData.weeks.push({
+        week: `WEEK ${nextNum}`,
+        badge: `실전 ${appData.weeks.length + 1}`,
+        stage: `[${appData.weeks.length + 1}단계] 점진적 확장`,
+        title: `새로운 실전 확장 프로젝트 ${nextNum}`,
+        theory_title: "새 핵심 개념",
+        theory_desc: "여기에 개념 설명을 타이핑하여 입력하세요.",
+        technique_title: "새 AI 요청 방법",
+        technique_desc: "여기에 프롬프트 요청법을 입력하세요.",
+        output_title: "새 완성 산출물",
+        output_desc: "여기에 학생들이 만들 결과물을 입력하세요."
+      });
+      selectedWeekIndex = appData.weeks.length - 1;
+      renderAll();
+      scrollToWeek(selectedWeekIndex);
+      showToast('새 주차가 추가되었습니다! 화면에서 바로 글자를 수정하세요.');
+    }
+
+    function filterDrawerWeeks(filter) {
+      currentFilter = filter;
+      document.querySelectorAll('#drawer-filter-chips button').forEach(b => {
+        b.classList.remove('bg-slate-900', 'text-white');
+        b.classList.add('bg-slate-100', 'text-slate-600');
+      });
+      event.target.classList.add('bg-slate-900', 'text-white');
+      event.target.classList.remove('bg-slate-100', 'text-slate-600');
+      renderDrawerList();
+    }
+
+    function switchDrawerTab(tab) {
+      currentDrawerTab = tab;
+      document.querySelectorAll('.dock-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(`dock-${tab}`).classList.add('active');
+
+      const titleEl = document.getElementById('drawer-title');
+      const filterBox = document.getElementById('drawer-filter-chips');
+
+      if (tab === 'weeks') {
+        titleEl.innerHTML = '<span>📅</span> 주차 바로가기';
+        filterBox.classList.remove('hidden');
+      } else if (tab === 'principles') {
+        titleEl.innerHTML = '<span>🏛️</span> 3대 원칙';
+        filterBox.classList.add('hidden');
+      } else if (tab === 'prompts') {
+        titleEl.innerHTML = '<span>📋</span> 프롬프트 모음';
+        filterBox.classList.add('hidden');
+      } else if (tab === 'courseware') {
+        titleEl.innerHTML = '<span>📦</span> 실습 자료실';
+        filterBox.classList.add('hidden');
+      }
+
+      renderDrawerList();
+    }
+
+    function renderPromptsDrawer(container) {
+      container.innerHTML = `
+        <div class="flex flex-col gap-3">
+          <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl flex flex-col gap-1.5">
+            <strong class="text-xs font-bold text-slate-900">1주차. 스타터 코드 지시문</strong>
+            <p class="text-[11px] text-slate-500">코드 생략 금지 및 내 정보 주입 프롬프트</p>
+            <button onclick="copyToClip('W1_PROMPT')" class="py-1.5 px-3 rounded-lg bg-white hover:bg-slate-100 border border-slate-300 text-slate-800 text-[11px] font-bold cursor-pointer">
+              📋 1클릭 복사
+            </button>
+          </div>
+          <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl flex flex-col gap-1.5">
+            <strong class="text-xs font-bold text-slate-900">2주차. 문서 가두기 지침</strong>
+            <p class="text-[11px] text-slate-500">문서에 없는 질문은 모른다고 답하기</p>
+            <button onclick="copyToClip('W2_PROMPT')" class="py-1.5 px-3 rounded-lg bg-white hover:bg-slate-100 border border-slate-300 text-slate-800 text-[11px] font-bold cursor-pointer">
+              📋 1클릭 복사
+            </button>
+          </div>
+          <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl flex flex-col gap-1.5">
+            <strong class="text-xs font-bold text-slate-900">5주차. 에러 고치기 요청문</strong>
+            <p class="text-[11px] text-slate-500">증상·화면오류·기대값 전달 프롬프트</p>
+            <button onclick="copyToClip('W5_PROMPT')" class="py-1.5 px-3 rounded-lg bg-white hover:bg-slate-100 border border-slate-300 text-slate-800 text-[11px] font-bold cursor-pointer">
+              📋 1클릭 복사
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderCoursewareDrawer(container) {
+      container.innerHTML = `
+        <div class="flex flex-col gap-2.5">
+          <a href="/courseware/starter-kit/index.html" target="_blank" class="p-3 rounded-xl border border-slate-200 bg-white hover:border-miriGreen transition-all flex flex-col gap-1">
+            <strong class="text-xs font-bold text-slate-900">1. 스타터 킷 웹 화면</strong>
+            <span class="text-[11px] text-miriGreenDark">첫날 30분 만에 배포하는 1페이지</span>
+          </a>
+          <a href="/courseware/index.html" target="_blank" class="p-3 rounded-xl border border-slate-200 bg-white hover:border-miriGreen transition-all flex flex-col gap-1">
+            <strong class="text-xs font-bold text-slate-900">2. 실습 자료실 허브</strong>
+            <span class="text-[11px] text-slate-500">워크북·핸드북·시간표 통합 보기</span>
+          </a>
+        </div>
+      `;
+    }
+
+    function renderPrinciplesDrawer(container) {
+      container.innerHTML = `
+        <div class="flex flex-col gap-2.5 text-xs">
+          <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl">
+            <strong class="text-slate-900 font-bold">1. 단일 AI 구독 완결</strong>
+            <p class="text-slate-500 mt-0.5 text-[11px]">추가 API 종량 과금 0원 원칙</p>
+          </div>
+          <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl">
+            <strong class="text-slate-900 font-bold">2. 점진적 나선형 확장</strong>
+            <p class="text-slate-500 mt-0.5 text-[11px]">1주차 배포 ➡️ 매주 기능 확장</p>
+          </div>
+          <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl">
+            <strong class="text-slate-900 font-bold">3. 안티-슬롭 디자인</strong>
+            <p class="text-slate-500 mt-0.5 text-[11px]">2색 팔레트 & 한글 어절 줄바꿈</p>
+          </div>
+        </div>
+      `;
+    }
+
+    // 5. Dual Save: Sync Canvas into JSON & curriculum.html
+    async function saveAllData() {
+      const btn = document.getElementById('tour-save-btn');
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '<span>저장 중...</span>';
+
+      try {
+        // Harvest all editable blocks back into appData
+        harvestCanvasData();
+
+        // 1. Save curriculum_data.json
+        const respJson = await fetch('/api/save-curriculum-data', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(appData)
+        });
+
+        // 2. Also save to curriculum.html
+        // We construct the clean curriculum.html body from the live canvas
+        const canvasHtml = document.getElementById('tour-canvas').outerHTML;
+        const fullCurriculumHtml = buildCurriculumHtmlFromCanvas(canvasHtml);
+
+        const respHtml = await fetch('/api/save-curriculum', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ html: fullCurriculumHtml })
+        });
+
+        if (respJson.ok && respHtml.ok) {
+          showToast('✅ 모든 변경사항이 파일에 안전하게 영구 저장되었습니다!');
+        } else {
+          showToast('일부 저장 응답에 문제가 있습니다.');
+        }
+      } catch (err) {
+        showToast('저장 오류: ' + err.message);
+      } finally {
+        btn.innerHTML = originalText;
+      }
+    }
+
+    function harvestCanvasData() {
+      if (!appData) return;
+
+      // Extract Title & Subtitle
+      const titleEl = document.getElementById('canvas-title');
+      if (titleEl) appData.title = titleEl.innerText;
+
+      const subEl = document.getElementById('canvas-subtitle');
+      if (subEl) appData.subtitle = subEl.innerText;
+
+      // Extract Meta
+      appData.meta_info = {
+        requirements: document.getElementById('c-meta-req')?.innerText || '',
+        api_cost: document.getElementById('c-meta-cost')?.innerText || '',
+        duration: document.getElementById('c-meta-duration')?.innerText || '',
+        goal: document.getElementById('c-meta-goal')?.innerText || ''
+      };
+
+      // Extract Weeks
+      document.querySelectorAll('#canvas-weeks-container article').forEach((card, idx) => {
+        if (!appData.weeks[idx]) return;
+        const w = appData.weeks[idx];
+
+        const getField = (field) => {
+          const el = card.querySelector(`[data-field="${field}"]`);
+          return el ? el.innerText.trim() : w[field];
+        };
+
+        w.week = getField('week');
+        w.title = getField('title');
+        w.stage = getField('stage');
+        w.theory_title = getField('theory_title');
+        w.theory_desc = getField('theory_desc');
+        w.technique_title = getField('technique_title');
+        w.technique_desc = getField('technique_desc');
+        w.output_title = getField('output_title');
+        w.output_desc = getField('output_desc');
+      });
+    }
+
+    function buildCurriculumHtmlFromCanvas(canvasHtml) {
+      // Clean temporary editor outlines/classes before persisting to curriculum.html
+      let cleanCanvas = canvasHtml
+        .replace(/id="tour-canvas"/g, '')
+        .replace(/contenteditable="true"/g, 'contenteditable="false"')
+        .replace(/tour-focus-ring/g, '')
+        .replace(/ring-2 ring-miriGreen/g, '');
+
+      return `<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>송도 국제 AI 아카데미 6주 실전 커리큘럼 — ohahbuji</title>
+  
+  <script src="https://cdn.tailwindcss.com"><\/script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            paper: '#ffffff',
+            paperSubtle: '#f8fafc',
+            borderSubtle: '#e2e8f0',
+            ink: '#0f172a',
+            inkBody: '#334155',
+            inkMuted: '#64748b',
+            accentTeal: '#0f766e'
+          }
+        }
+      }
+    }
+  <\/script>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.1/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+      -webkit-font-smoothing: antialiased;
+      font-family: 'Wanted Sans Variable', 'Wanted Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    body {
+      background-color: #f8fafc;
+      color: #334155;
+      font-size: 15px;
+      line-height: 1.8;
+      letter-spacing: -0.015em;
+    }
+    h1, h2, h3, h4 {
+      color: #0f172a;
+      letter-spacing: -0.03em;
+      text-wrap: balance;
+    }
+    .clause {
+      display: inline-block;
+      line-height: 1.75;
+      word-break: keep-all;
+    }
+    .font-signature {
+      font-family: 'Caveat', cursive !important;
+    }
+    .nowrap-badge {
+      white-space: nowrap !important;
+      display: inline-block !important;
+    }
+    .editable-block {
+      outline: none;
+      border-radius: 4px;
+      padding: 1px 2px;
+    }
+    .editable-block:hover {
+      outline: 1.5px dashed #0f766e;
+      background-color: rgba(15, 118, 110, 0.04);
+      cursor: text;
+    }
+    .editable-block:focus {
+      outline: 2px solid #0f766e !important;
+      background-color: #ffffff !important;
+    }
+  </style>
+</head>
+<body class="selection:bg-accentTeal selection:text-white min-h-screen py-10 px-4 sm:px-6 md:px-8 flex justify-center">
+
+  <!-- FLOATING IN-PLACE EDITOR TOOLBAR -->
+  <aside id="editor-toolbar" class="fixed top-4 right-4 z-50 flex items-center gap-2 bg-slate-900/95 backdrop-blur text-white px-3.5 py-2 rounded-xl shadow-2xl border border-slate-700 text-xs transition-all">
+    <button onclick="toggleEditMode()" id="btn-toggle-edit" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-teal-600 hover:bg-teal-500 font-semibold cursor-pointer transition-all">
+      <span id="edit-icon">✏️</span>
+      <span id="edit-label">직접 편집 켜기</span>
+    </button>
+    <button onclick="saveToFile()" id="btn-save-file" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 font-semibold cursor-pointer transition-all">
+      <span>💾</span>
+      <span>파일로 저장</span>
+    </button>
+    <span id="edit-status" class="hidden text-emerald-300 text-[11px] px-2 py-0.5 rounded bg-slate-800 font-medium">
+      글자를 클릭해서 바로 지우거나 줄바꿈(Enter)하세요
+    </span>
+  </aside>
+
+  ${cleanCanvas}
+
+  <script>
+    let isEditing = false;
+    function toggleEditMode() {
+      isEditing = !isEditing;
+      const btn = document.getElementById('btn-toggle-edit');
+      const label = document.getElementById('edit-label');
+      const icon = document.getElementById('edit-icon');
+      const status = document.getElementById('edit-status');
+      const editables = document.querySelectorAll('.editable-block');
+
+      if (isEditing) {
+        editables.forEach(el => el.contentEditable = 'true');
+        label.innerText = '편집 완료';
+        icon.innerText = '🔒';
+        btn.classList.replace('bg-teal-600', 'bg-slate-700');
+        status.classList.remove('hidden');
+      } else {
+        editables.forEach(el => el.contentEditable = 'false');
+        label.innerText = '직접 편집 켜기';
+        icon.innerText = '✏️';
+        btn.classList.replace('bg-slate-700', 'bg-teal-600');
+        status.classList.add('hidden');
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (!isEditing || e.isComposing) return;
+      if (e.key === 'Enter' && e.target.isContentEditable) {
+        e.preventDefault();
+        document.execCommand('insertLineBreak');
+      }
+      if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+        e.preventDefault();
+        saveToFile();
+      }
+    });
+
+    async function saveToFile() {
+      const fullHtml = '<!DOCTYPE html>\\n' + document.documentElement.outerHTML;
+      try {
+        const resp = await fetch('/api/save-curriculum', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ html: fullHtml })
+        });
+        if (resp.ok) {
+          alert('✅ curriculum.html 파일에 즉시 영구 저장되었습니다!');
+        } else {
+          alert('저장 실패: ' + resp.statusText);
+        }
+      } catch (err) {
+        alert('저장 통신 오류: ' + err.message);
+      }
+    }
+  <\/script>
+</body>
+</html>`;
+    }
+
+    function openLiveWindow(url) {
+      window.open(url, '_blank');
+    }
+
+    function copyToClip(type) {
+      let text = "프롬프트 내용입니다.";
+      if (type === 'W1_PROMPT') {
+        text = `너는 시니어 웹 퍼블리셔이자 초보자를 돕는 코딩 디렉터야.
+내가 아래 제공하는 [HTML 원본 코드]의 디자인과 틀은 그대로 유지하면서, 내 내용만 정확하게 바꿔줘.
+[규칙] 코드를 생략하지 말고 전체 코드를 한 번에 출력해 줘.`;
+      } else if (type === 'W2_PROMPT') {
+        text = `너는 팩트 기반 정보 검증 전문 에디터야. 제공된 문서에 없는 질문은 모른다고 답하고, 모든 요약 문장 끝에 [출처: ...]를 명기해.`;
+      } else if (type === 'W5_PROMPT') {
+        text = `[1. 발생한 증상] [2. F12 콘솔 에러] [3. 기대한 정상 동작] [4. 수정한 코드 위치]를 바탕으로 원인을 찾아 고쳐줘.`;
+      }
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('📋 프롬프트가 클립보드에 복사되었습니다!');
+      });
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+        e.preventDefault();
+        saveAllData();
+      }
+    });
+
+    window.addEventListener('DOMContentLoaded', loadData);
+  </script>
+
+</body>
+</html>

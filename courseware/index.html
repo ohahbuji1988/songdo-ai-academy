@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>송도 AI 아카데미 교육 패키지 & 주차별 실습 키트 — ohahbuji</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#0f766e',
+            brandDark: '#115e59',
+            brandLight: '#f0fdfa',
+            ink: '#0f172a',
+            inkBody: '#334155',
+            inkMuted: '#64748b',
+            surface: '#ffffff',
+            surfaceMuted: '#f8fafc',
+            borderSubtle: '#e2e8f0'
+          }
+        }
+      }
+    }
+  </script>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.1/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+      -webkit-font-smoothing: antialiased;
+      font-family: 'Wanted Sans Variable', 'Wanted Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    body {
+      background-color: #f8fafc;
+      color: #334155;
+      font-size: 15px;
+      line-height: 1.8;
+      letter-spacing: -0.015em;
+    }
+    h1, h2, h3, h4 {
+      color: #0f172a;
+      letter-spacing: -0.03em;
+      text-wrap: balance;
+    }
+    .font-signature {
+      font-family: 'Caveat', cursive !important;
+    }
+    .card-hover {
+      transition: all 180ms ease;
+    }
+    .card-hover:hover {
+      border-color: #cbd5e1;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body class="selection:bg-brand selection:text-white min-h-screen py-10 px-4 sm:px-6 md:px-8 flex justify-center">
+
+  <main class="w-full max-w-4xl bg-surface border border-borderSubtle rounded-3xl shadow-sm p-6 sm:p-12 md:p-16 flex flex-col gap-10">
+
+    <!-- Header -->
+    <header class="flex flex-col gap-4 border-b border-borderSubtle pb-6">
+      <div class="flex items-center justify-between text-xs text-inkMuted">
+        <span class="px-2.5 py-1 rounded-lg bg-brandLight text-brand font-bold tracking-wider uppercase border border-teal-200">
+          COURSEWARE & PRACTICAL KITS
+        </span>
+        <span>송도 국제 AI 아카데미 교육 패키지</span>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-ink leading-tight">
+          실전 교육 교구 & 6주 주차별 실습 키트 통합 센터
+        </h1>
+        <p class="text-inkBody text-base sm:text-lg">
+          수강생이 첫날 30분 배포부터 6주 차 자립 검증까지 완결하도록 제작된 4대 핵심 교구와 주차별 작동 실습 키트입니다.
+        </p>
+      </div>
+
+      <!-- Quick Nav Pills -->
+      <div class="flex flex-wrap items-center gap-2 pt-2 text-xs">
+        <a href="/curriculum.html" class="px-3.5 py-1.5 rounded-xl bg-slate-900 text-white font-bold hover:bg-slate-800 transition-all">
+          📑 공식 강의계획서
+        </a>
+        <a href="/creator.html" class="px-3.5 py-1.5 rounded-xl bg-teal-600 text-white font-bold hover:bg-teal-700 transition-all">
+          🎨 직접 편집 스튜디오
+        </a>
+        <a href="/landing.html" class="px-3.5 py-1.5 rounded-xl bg-emerald-600 text-white font-bold hover:bg-emerald-700 transition-all">
+          📢 수강생 모집 랜딩페이지
+        </a>
+        <a href="/presentation.html" class="px-3.5 py-1.5 rounded-xl bg-slate-100 text-slate-800 font-bold hover:bg-slate-200 transition-all">
+          📊 발표용 Web PPT 덱
+        </a>
+      </div>
+    </header>
+
+    <!-- Section 1: 4 Core Master Packages -->
+    <section class="flex flex-col gap-4">
+      <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-teal-600"></span>
+        <span>1. 아카데미 4대 마스터 교구 (Guides & Books)</span>
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+        <!-- 1. Starter Kit -->
+        <div class="border border-borderSubtle rounded-2xl p-6 bg-white flex flex-col justify-between gap-4 card-hover shadow-xs">
+          <div class="flex flex-col gap-2">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-0.5 rounded bg-brand text-white text-xs font-semibold">교구 01</span>
+              <span class="text-xs text-emerald-600 font-medium">Day-1 배포 즉시 성공</span>
+            </div>
+            <h3 class="text-lg font-bold text-ink pt-1">1주차 스타터 킷 & 배포 가이드</h3>
+            <p class="text-xs text-inkBody leading-relaxed">
+              비전공자가 30분 만에 웹 배포를 성공할 수 있는 정갈한 1페이지 HTML 골격 템플릿과 Netlify 30초 드래그앤드롭 실습 교안.
+            </p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-100">
+            <a href="/courseware/starter-kit/index.html" target="_blank" class="px-3 py-1.5 rounded-xl bg-brand hover:bg-brandDark text-white text-xs font-semibold transition-all">
+              🖥️ 스타터 웹 열기
+            </a>
+            <span class="text-xs text-inkMuted">DAY1_DEPLOY_GUIDE.md</span>
+          </div>
+        </div>
+
+        <!-- 2. Prompt Playbook -->
+        <div class="border border-borderSubtle rounded-2xl p-6 bg-white flex flex-col justify-between gap-4 card-hover shadow-xs">
+          <div class="flex flex-col gap-2">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-0.5 rounded bg-slate-800 text-white text-xs font-semibold">교구 02</span>
+              <span class="text-xs text-brand font-medium">W1 ~ W6 검증 템플릿</span>
+            </div>
+            <h3 class="text-lg font-bold text-ink pt-1">6주 실전 프롬프트 핸드북</h3>
+            <p class="text-xs text-inkBody leading-relaxed">
+              Few-Shot 주입, 문서 외 답변 차단 RAG, 안티-슬롭 DESIGN.md 지침서, 실시간 계산기 결합, 에러 4단 디버깅 프롬프트 수록.
+            </p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-100 text-xs">
+            <span class="px-3 py-1.5 rounded-xl bg-slate-100 text-slate-800 font-semibold">
+              📄 프롬프트 모음집 완비
+            </span>
+            <span class="text-inkMuted">PROMPT_HANDBOOK.md</span>
+          </div>
+        </div>
+
+        <!-- 3. Student Workbook -->
+        <div class="border border-borderSubtle rounded-2xl p-6 bg-white flex flex-col justify-between gap-4 card-hover shadow-xs">
+          <div class="flex flex-col gap-2">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-0.5 rounded bg-slate-800 text-white text-xs font-semibold">교구 03</span>
+              <span class="text-xs text-brand font-medium">수강생 미션 & 체크리스트</span>
+            </div>
+            <h3 class="text-lg font-bold text-ink pt-1">주차별 수강생 실습 워크북</h3>
+            <p class="text-xs text-inkBody leading-relaxed">
+              매주 "오늘의 목표 ➡️ 체크리스트 점검 ➡️ 오답 노트 작성"으로 이어지는 주차별 실습 일지. 6주 차 자립 수정 시험지 포함.
+            </p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-100 text-xs">
+            <span class="px-3 py-1.5 rounded-xl bg-slate-100 text-slate-800 font-semibold">
+              📓 6주 실습 워크북 완비
+            </span>
+            <span class="text-inkMuted">STUDENT_WORKBOOK.md</span>
+          </div>
+        </div>
+
+        <!-- 4. Instructor Guide -->
+        <div class="border border-borderSubtle rounded-2xl p-6 bg-white flex flex-col justify-between gap-4 card-hover shadow-xs">
+          <div class="flex flex-col gap-2">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-0.5 rounded bg-slate-800 text-white text-xs font-semibold">교구 04</span>
+              <span class="text-xs text-amber-700 font-medium">강사용 180분 타임테이블</span>
+            </div>
+            <h3 class="text-lg font-bold text-ink pt-1">강사용 3시간 수업 운영 가이드</h3>
+            <p class="text-xs text-inkBody leading-relaxed">
+              "학생 키보드 잡지 않기", 오프닝 20분 ➡️ 라이브 시연 40분 ➡️ 집중 실습 70분 ➡️ 롤백 클리닉 30분 ➡️ 배포 10분 진행 시나리오.
+            </p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-100 text-xs">
+            <span class="px-3 py-1.5 rounded-xl bg-amber-50 text-amber-800 font-semibold">
+              ⏱️ 180분 타임테이블 완비
+            </span>
+            <span class="text-inkMuted">TEACHING_GUIDE.md</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 2: 1 to 6 Week Interactive Practical Kits -->
+    <section class="flex flex-col gap-4">
+      <div class="flex items-center justify-between">
+        <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+          <span>2. 1주차~6주차 실습 코드 패키지 (Weekly Practical Kits)</span>
+        </h2>
+        <span class="text-xs text-slate-400">클릭하면 실습 화면으로 바로 이동합니다</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 text-xs">
+        
+        <!-- W1 -->
+        <a href="/courseware/starter-kit/index.html" class="p-4 rounded-2xl border border-slate-200 bg-white hover:border-teal-500 hover:shadow-xs transition-all flex flex-col justify-between gap-3 group">
+          <div class="flex flex-col gap-1">
+            <span class="font-bold text-teal-700">WEEK 01</span>
+            <strong class="text-sm font-bold text-slate-900 group-hover:text-teal-700">1주차: 첫날 30분 배포 스타터</strong>
+            <p class="text-slate-500 line-clamp-2">HTML 1장 2색 안티-슬롭 기본 안내 페이지와 Netlify 배포.</p>
+          </div>
+          <span class="text-teal-700 font-semibold flex items-center gap-1">실습 열기 →</span>
+        </a>
+
+        <!-- W2 -->
+        <a href="/courseware/weekly-kits/week02-context-cards/index.html" class="p-4 rounded-2xl border border-slate-200 bg-white hover:border-teal-500 hover:shadow-xs transition-all flex flex-col justify-between gap-3 group">
+          <div class="flex flex-col gap-1">
+            <span class="font-bold text-teal-700">WEEK 02</span>
+            <strong class="text-sm font-bold text-slate-900 group-hover:text-teal-700">2주차: 문서 가두기 & 3단 카드</strong>
+            <p class="text-slate-500 line-clamp-2">원문 문서 외 답변 차단 프롬프트와 출처 인용 배지 카드.</p>
+          </div>
+          <span class="text-teal-700 font-semibold flex items-center gap-1">실습 열기 →</span>
+        </a>
+
+        <!-- W3 -->
+        <a href="/courseware/weekly-kits/week03-antislop-design/index.html" class="p-4 rounded-2xl border border-slate-200 bg-white hover:border-teal-500 hover:shadow-xs transition-all flex flex-col justify-between gap-3 group">
+          <div class="flex flex-col gap-1">
+            <span class="font-bold text-teal-700">WEEK 03</span>
+            <strong class="text-sm font-bold text-slate-900 group-hover:text-teal-700">3주차: 안티-슬롭 2색 디자인</strong>
+            <p class="text-slate-500 line-clamp-2">촌스러운 네온 보라색 제거, Wanted Sans와 DESIGN.md 토큰.</p>
+          </div>
+          <span class="text-teal-700 font-semibold flex items-center gap-1">실습 열기 →</span>
+        </a>
+
+        <!-- W4 -->
+        <a href="/courseware/weekly-kits/week04-interactive-calc/index.html" class="p-4 rounded-2xl border border-slate-200 bg-white hover:border-teal-500 hover:shadow-xs transition-all flex flex-col justify-between gap-3 group">
+          <div class="flex flex-col gap-1">
+            <span class="font-bold text-teal-700">WEEK 04</span>
+            <strong class="text-sm font-bold text-slate-900 group-hover:text-teal-700">4주차: 실시간 견적 계산기</strong>
+            <p class="text-slate-500 line-clamp-2">버튼 클릭과 수량 변경 시 브라우저가 즉시 재계산하는 인터랙션.</p>
+          </div>
+          <span class="text-teal-700 font-semibold flex items-center gap-1">실습 열기 →</span>
+        </a>
+
+        <!-- W5 -->
+        <a href="/courseware/weekly-kits/week05-debug-lab/index.html" class="p-4 rounded-2xl border border-slate-200 bg-white hover:border-teal-500 hover:shadow-xs transition-all flex flex-col justify-between gap-3 group">
+          <div class="flex flex-col gap-1">
+            <span class="font-bold text-rose-600">WEEK 05</span>
+            <strong class="text-sm font-bold text-slate-900 group-hover:text-rose-600">5주차: 고의 에러 복구 랩</strong>
+            <p class="text-slate-500 line-clamp-2">화면 멈춤 콘솔 에러 발생 시 백업본 롤백 및 4단계 에러 전달법.</p>
+          </div>
+          <span class="text-rose-600 font-semibold flex items-center gap-1">실습 열기 →</span>
+        </a>
+
+        <!-- W6 -->
+        <a href="/courseware/weekly-kits/week06-final-launch/index.html" class="p-4 rounded-2xl border border-slate-200 bg-white hover:border-emerald-600 hover:shadow-xs transition-all flex flex-col justify-between gap-3 group">
+          <div class="flex flex-col gap-1">
+            <span class="font-bold text-emerald-600">WEEK 06</span>
+            <strong class="text-sm font-bold text-slate-900 group-hover:text-emerald-600">6주차: 4대 Eval 검증 & 수료</strong>
+            <p class="text-slate-500 line-clamp-2">정상·에러·사이드이펙트·출처 4대 시험지 통과 및 시그니처 런칭.</p>
+          </div>
+          <span class="text-emerald-600 font-semibold flex items-center gap-1">실습 열기 →</span>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-borderSubtle pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-inkMuted">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-brand"></span>
+        <span>Songdo AI Academy · Master Courseware Package</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span>Curated & Authored by</span>
+        <span class="font-signature text-2xl text-ink font-bold">ohahbuji</span>
+      </div>
+    </footer>
+
+  </main>
+
+</body>
+</html>

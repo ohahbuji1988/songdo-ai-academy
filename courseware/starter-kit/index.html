@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- [수정 포인트 0] 브라우저 탭에 표시될 페이지 제목입니다. -->
+  <title>내 첫 실전 프로젝트 웹 안내서 — 송도 AI 아카데미</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#0f766e',      /* 안티-슬롭 핵심 메인 컬러: 딥 틸(Teal) */
+            brandDark: '#115e59',
+            brandLight: '#f0fdfa',
+            ink: '#0f172a',        /* 본문 진한 잉크색 */
+            inkBody: '#334155',    /* 본문 읽기용 차분한 슬레이트 */
+            inkMuted: '#64748b',   /* 각주 및 설명용 연한 색 */
+            surface: '#ffffff',
+            surfaceMuted: '#f8fafc',
+            borderSubtle: '#e2e8f0'
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- 프리미엄 한글 웹폰트: Wanted Sans -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.1/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      word-break: keep-all;        /* 한글 단어가 중간에 어색하게 잘리지 않게 방지 */
+      overflow-wrap: break-word;
+      -webkit-font-smoothing: antialiased;
+      font-family: 'Wanted Sans Variable', 'Wanted Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    body {
+      background-color: #f8fafc;
+      color: #334155;
+      font-size: 15px;
+      line-height: 1.8;
+      letter-spacing: -0.015em;
+    }
+
+    h1, h2, h3, h4 {
+      color: #0f172a;
+      letter-spacing: -0.03em;
+      text-wrap: balance;          /* 제목 줄바꿈이 양쪽 대칭으로 예쁘게 정렬됨 */
+    }
+
+    .card-hover {
+      transition: all 180ms ease;
+    }
+    .card-hover:hover {
+      border-color: #cbd5e1;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body class="selection:bg-brand selection:text-white min-h-screen py-10 px-4 sm:px-6 md:px-8 flex justify-center">
+
+  <!-- ============================================================
+       [메인 컨테이너] 
+       깔끔한 카드 형태로 화면 중앙에 정렬되는 1페이지 웹 골격입니다.
+       ============================================================ -->
+  <main class="w-full max-w-3xl bg-surface border border-borderSubtle rounded-2xl shadow-sm p-6 sm:p-12 flex flex-col gap-10">
+
+    <!-- 1. 헤더 영역 (프로젝트 명 & 날짜) -->
+    <header class="flex flex-col gap-3 border-b border-borderSubtle pb-6">
+      <div class="flex items-center justify-between text-xs text-inkMuted">
+        <span class="px-2.5 py-1 rounded bg-brandLight text-brand font-semibold tracking-wider uppercase">
+          PROJECT 01
+        </span>
+        <span id="current-date">Day-1 라이브 배포 완료</span>
+      </div>
+
+      <!-- [수정 포인트 1] 프로젝트의 메인 제목과 슬로건을 AI에게 지시해 변경해보세요 -->
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-ink leading-tight">
+        나의 첫 라이브 프로젝트 안내서
+      </h1>
+      <p class="text-inkBody text-base sm:text-lg">
+        AI와 대화하던 사람에서, 내 손으로 도구를 만들고 배포하는 사람으로의 첫걸음.
+      </p>
+    </header>
+
+    <!-- 2. 제작자 프로필 카드 -->
+    <section class="flex flex-col sm:flex-row items-start sm:items-center gap-5 p-5 bg-surfaceMuted border border-borderSubtle rounded-xl">
+      <div class="w-14 h-14 rounded-full bg-brand text-white flex items-center justify-center font-bold text-xl flex-shrink-0 shadow-sm">
+        <!-- [수정 포인트 2] 내 이니셜 또는 아이콘 -->
+        💡
+      </div>
+      <div class="flex flex-col gap-1">
+        <div class="flex items-center gap-2">
+          <!-- [수정 포인트 3] 내 이름이나 닉네임 -->
+          <strong class="text-ink font-semibold text-base">홍길동 (Gildong Hong)</strong>
+          <span class="text-xs text-inkMuted bg-white border border-borderSubtle px-2 py-0.5 rounded">빌더 1기</span>
+        </div>
+        <!-- [수정 포인트 4] 내 한 줄 소개 -->
+        <p class="text-xs sm:text-sm text-inkBody">
+          송도 AI 아카데미에서 단 1개의 AI 구독으로 나만의 웹 도구를 빚어내고 있습니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- 3. 프로젝트 개요 & 핵심 목표 -->
+    <section class="flex flex-col gap-4">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-brand"></span>
+        <h2 class="text-xs font-semibold tracking-wider text-brand uppercase">OVERVIEW · 프로젝트 개요</h2>
+      </div>
+
+      <div class="text-inkBody text-sm leading-relaxed flex flex-col gap-3">
+        <p>
+          이 페이지는 <strong>수업 첫날 30분 만에 인터넷 세상에 배포된 살아있는 웹페이지</strong>입니다.
+          복잡한 코딩 문법을 공부하지 않고도, 자연어 대화만으로 구조를 잡고 무료 호스팅을 통해 고유 인터넷 주소를 발급받았습니다.
+        </p>
+        <p class="text-xs text-inkMuted bg-slate-50 p-3.5 rounded-lg border border-slate-200">
+          💡 <strong>앞으로 6주간 이 페이지 위에 살을 붙여나갑니다:</strong><br>
+          • 2주 차: 핵심 문서 요약 및 출처 인용 정보 카드 섹션 결합<br>
+          • 3주 차: 2색 팔레트 안티-슬롭 정갈한 디자인 리뉴얼<br>
+          • 4주 차: 옵션을 고르면 즉시 계산되는 실시간 견적/비용 계산기 장착<br>
+          • 5~6주 차: 에러 복구 훈련 및 기능 검증 체크리스트 통과
+        </p>
+      </div>
+    </section>
+
+    <!-- 4. [2주차 결합 슬롯] 정보 카드 영역 (미리보기 자리) -->
+    <section class="flex flex-col gap-4 border-t border-dashed border-slate-200 pt-8">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+          <h2 class="text-xs font-semibold tracking-wider text-inkMuted uppercase">WEEK 02 SLOT · 정보 요약 카드</h2>
+        </div>
+        <span class="text-[11px] text-slate-400">2주 차에 채워질 공간입니다</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+        <div class="border border-borderSubtle bg-white p-4 rounded-lg flex flex-col gap-1.5 card-hover">
+          <span class="text-brand font-semibold">01. 핵심 요약</span>
+          <p class="text-inkBody leading-relaxed">내 업무 문서나 기획서를 요약한 1호 카드가 들어옵니다.</p>
+        </div>
+        <div class="border border-borderSubtle bg-white p-4 rounded-lg flex flex-col gap-1.5 card-hover">
+          <span class="text-brand font-semibold">02. 근거 및 출처</span>
+          <p class="text-inkBody leading-relaxed">AI의 거짓말을 막기 위해 원문 출처를 대조한 내용이 들어옵니다.</p>
+        </div>
+        <div class="border border-borderSubtle bg-white p-4 rounded-lg flex flex-col gap-1.5 card-hover">
+          <span class="text-brand font-semibold">03. 실천 가이드</span>
+          <p class="text-inkBody leading-relaxed">누구나 바로 실행할 수 있는 행동 지침이 들어옵니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. [4주차 결합 슬롯] 실시간 계산기 영역 (미리보기 자리) -->
+    <section class="flex flex-col gap-4 border-t border-dashed border-slate-200 pt-8">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+          <h2 class="text-xs font-semibold tracking-wider text-inkMuted uppercase">WEEK 04 SLOT · 실시간 계산 유틸리티</h2>
+        </div>
+        <span class="text-[11px] text-slate-400">4주 차에 인터랙션이 장착됩니다</span>
+      </div>
+
+      <div class="p-5 bg-slate-50 border border-slate-200 rounded-xl text-center flex flex-col items-center justify-center gap-2">
+        <span class="text-2xl">⚡</span>
+        <strong class="text-ink text-sm">실시간 인터랙티브 계산기가 작동할 자리입니다</strong>
+        <p class="text-xs text-inkMuted max-w-sm">
+          버튼을 누르고 옵션을 변경하면 브라우저 안에서 숫자가 즉시 바뀌는 손맛을 4주 차에 결합합니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- 6. 푸터 및 시그니처 -->
+    <footer class="border-t border-borderSubtle pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-inkMuted">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+        <span>Live on Web · Songdo AI Academy Week 01</span>
+      </div>
+      <!-- [수정 포인트 5] 내 시그니처 이름 -->
+      <div class="text-[11px]">
+        Built with AI · Directed by <strong class="text-ink">홍길동</strong>
+      </div>
+    </footer>
+
+  </main>
+
+</body>
+</html>

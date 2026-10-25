@@ -1,0 +1,16 @@
+{
+  "name": "송도 AI 아카데미 통합 플랫폼",
+  "short_name": "송도 AI 아카데미",
+  "description": "송도 국제도시 실전 AI 교육 통합 워크스페이스 (랜딩페이지, 발표 덱, 커리큘럼 스튜디오, 코스웨어)",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#090d16",
+  "theme_color": "#0ea5e9",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230ea5e9'/><text x='50' y='65' font-size='50' font-family='sans-serif' font-weight='900' fill='white' text-anchor='middle'>AI</text></svg>",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}

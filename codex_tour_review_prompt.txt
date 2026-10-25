@@ -1,0 +1,56 @@
+너는 실리콘밸리 글로벌 SaaS(Canva, Notion, Figma 등) 및 한국 대표 프로덕트(미리캔버스, 토스)의 UX/UI 및 프로덕트 디자인 총괄이자 시니어 프론트엔드 엔지니어 관점에서 아래 앱의 코드와 사용자 피드백을 냉철하게 분석하고 해결책을 제시해 줘.
+
+[사용자 피드백]
+"이용 가이드 투어 에러 있고, 일단 가독성은 0이고 쉬운 말로 안 써져 있어서 뭐가 뭔지 모르겠어. 직관적이지 않고 쓰임을 모르겠는걸."
+
+[현재 상황 및 코드 요약]
+앱 목적: 비전공자/일반인 대상 '송도 AI 아카데미 6주 실전 커리큘럼'을 조립하고 편집하는 데스크톱/웹 통합 앱 (Curriculum Studio).
+미리캔버스(MiriCanvas) 3단 레이아웃(좌측 서랍 + 중앙 캔버스 아트보드 + 우측 속성창)을 차용함.
+
+현재 온보딩 투어 HTML:
+```html
+<div id="tour-backdrop" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+  <div class="w-full max-w-md bg-white rounded-3xl p-6 sm:p-7 shadow-2xl border border-slate-200 flex flex-col gap-5">
+    <div class="flex items-center justify-between">
+      <span id="tour-step-badge" class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-miriGreenDark font-bold text-xs border border-emerald-200">
+        STEP 1 / 4
+      </span>
+      <button onclick="endTour()">건너뛰기 ✕</button>
+    </div>
+    <div class="flex flex-col gap-2">
+      <div id="tour-icon">🧩</div>
+      <h3 id="tour-title">주차별 블록 서랍</h3>
+      <p id="tour-desc">좌측 서랍에서 1주차부터 6주차까지의 블록을 클릭해 보세요...</p>
+    </div>
+    ...
+  </div>
+</div>
+```
+
+현재 온보딩 투어 JS (에러 의심 지점):
+```javascript
+const tourSteps = [
+  { icon: "🧩", badge: "STEP 1 / 4", title: "좌측 블록 & 교구 서랍", desc: "미리캔버스처럼 좌측 서랍에서 [주차 블록], [원칙], [프롬프트], [교구]를 열어보세요. 각 주차 카드를 누르면 즉시 편집할 수 있습니다.", targetId: "tour-drawer" },
+  { icon: "🎨", badge: "STEP 2 / 4", title: "중앙 실시간 캔버스 아트보드", desc: "가운데 넓은 공간은 실제 배포될 교육 기획서가 살아 숨 쉬는 캔버스입니다. 카드를 직접 클릭해도 초록색 링이 감기며 즉시 선택됩니다.", targetId: "tour-canvas" },
+  { icon: "⚙️", badge: "STEP 3 / 4", title: "우측 실시간 속성 편집창", desc: "선택한 주차의 타이틀, 이론 비유, 프롬프트 테크닉, 산출물을 여기서 타이핑하면 캔버스에 즉시 양방향으로 동기화됩니다.", targetId: "tour-inspector" },
+  { icon: "💾", badge: "STEP 4 / 4", title: "원클릭 저장 & 라이브 미리보기", desc: "상단 우측 [저장] 버튼이나 단축키 Ctrl+S를 누르면 파일에 1초 만에 영구 저장됩니다.", targetId: "tour-save-btn" }
+];
+
+function renderTourStep() {
+  const cur = tourSteps[tourStep];
+  document.getElementById('tour-icon').innerText = cur.icon;
+  document.getElementById('tour-badge').innerText = cur.badge; // <-- [HTML에는 id="tour-step-badge"로 되어 있음!]
+  document.getElementById('tour-title').innerText = cur.title;
+  document.getElementById('tour-desc').innerText = cur.desc;
+  ...
+  document.querySelectorAll('.spotlight-active').forEach(el => el.classList.remove('spotlight-active'));
+  const target = document.getElementById(cur.targetId);
+  if (target) target.classList.add('spotlight-active');
+}
+```
+
+질문 사항:
+1. 기술적 버그(Error) 분석: JavaScript 런타임 에러 원인 및 CSS spotlight 오버레이(`box-shadow: 0 0 0 9999px`)가 다단 overflow 레이아웃에서 왜 문제를 일으키는지 진단해 줘.
+2. UX 카피(문구) 및 쉬운 말 개선: "아트보드", "속성창", "동기화" 같은 개발자 전문용어를 버리고, 일반인이 "아, 이걸로 이걸 하는 거구나!" 하고 바로 이해할 수 있는 친절하고 직관적인 3~4단계 문구를 작성해 줘.
+3. 온보딩 투어 UI/UX 인터랙션 설계: 화면 정중앙 팝업 대신 실제 해당 요소를 가리키는 툴팁 형태나, 모달이 방해되지 않는 가장 직관적이고 깔끔한 온보딩 방식 제안.
+4. 전체적인 가독성 및 UI 개선 가이드: 복잡해 보이는 화면을 어떻게 더 시원하고 정돈된 형태로 보여줄 수 있는지 구체적 조언.

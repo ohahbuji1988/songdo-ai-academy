@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[6주차 실습] 기능 검증 4대 시험지(Eval) & 최종 자립 런칭 — 송도 AI 아카데미</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#0f766e',
+            brandDark: '#115e59',
+            brandLight: '#f0fdfa',
+            ink: '#0f172a',
+            inkBody: '#334155',
+            inkMuted: '#64748b'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.1/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap">
+  <style>
+    * { box-sizing: border-box; word-break: keep-all; font-family: 'Wanted Sans Variable', 'Wanted Sans', sans-serif; }
+    body { background-color: #f8fafc; color: #334155; line-height: 1.7; letter-spacing: -0.015em; }
+    .font-signature { font-family: 'Caveat', cursive !important; }
+  </style>
+</head>
+<body class="min-h-screen py-10 px-4 sm:px-6 md:px-8 flex justify-center">
+
+  <main class="w-full max-w-4xl bg-white border border-slate-200 rounded-3xl shadow-sm p-6 sm:p-12 flex flex-col gap-10">
+
+    <!-- Header -->
+    <header class="flex flex-col gap-3 border-b border-slate-100 pb-6">
+      <div class="flex items-center justify-between text-xs text-slate-500">
+        <span class="px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-800 font-bold border border-emerald-200">
+          WEEK 06 FINAL GRADUATION KIT
+        </span>
+        <span>송도 AI 아카데미 실전 교구</span>
+      </div>
+      <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-tight">
+        6주차: 기능 검증 4대 시험지(Eval) 통과와 수료 실전 런칭
+      </h1>
+      <p class="text-sm text-slate-600">
+        "내가 만든 웹 도구가 세상에 나가도 안전한가?"를 검증하는 4대 기능 시험지(Eval)를 통과하고, 내 시그니처가 새겨진 라이브 웹 링크로 실제 지인에게 공개하는 완성 단계입니다.
+      </p>
+    </header>
+
+    <!-- Interactive 4-Step Eval Runner -->
+    <section class="p-6 sm:p-8 rounded-3xl bg-slate-50 border border-slate-200 flex flex-col gap-6 shadow-xs">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-4">
+        <div>
+          <span class="text-xs font-bold text-teal-700 uppercase tracking-wider">EVALUATION CHECKLIST</span>
+          <h2 class="text-lg font-bold text-slate-900 mt-0.5">실전 수료 시험지 (4대 Eval 검증기)</h2>
+        </div>
+        <span id="eval-score-badge" class="px-3 py-1 rounded-full bg-slate-200 text-slate-700 text-xs font-bold">
+          진행률: 0 / 4 통과
+        </span>
+      </div>
+
+      <div class="flex flex-col gap-3 text-xs">
+        
+        <!-- Eval 1 -->
+        <label class="p-4 rounded-2xl bg-white border border-slate-200 flex items-start gap-3 cursor-pointer hover:border-slate-300 transition-all select-none">
+          <input type="checkbox" class="eval-check w-4 h-4 text-teal-600 rounded mt-0.5" onchange="updateEvalProgress()">
+          <div class="flex flex-col gap-0.5 flex-1">
+            <strong class="text-sm text-slate-900">EVAL 1. 정상 입력 경로 검증 (Happy Path)</strong>
+            <p class="text-slate-600">이름, 연락처, 희망 트랙을 정상적으로 입력했을 때 정상 접수 메시지가 출력되고 금액이 오차 없이 정확한가?</p>
+          </div>
+        </label>
+
+        <!-- Eval 2 -->
+        <label class="p-4 rounded-2xl bg-white border border-slate-200 flex items-start gap-3 cursor-pointer hover:border-slate-300 transition-all select-none">
+          <input type="checkbox" class="eval-check w-4 h-4 text-teal-600 rounded mt-0.5" onchange="updateEvalProgress()">
+          <div class="flex flex-col gap-0.5 flex-1">
+            <strong class="text-sm text-slate-900">EVAL 2. 비정상·빈칸 입력 시 방어 (Edge Case Defense)</strong>
+            <p class="text-slate-600">숫자 칸에 문자를 치거나 빈칸으로 제출했을 때 화면이 멈추지 않고 친절한 에러 안내문이 뜨는가?</p>
+          </div>
+        </label>
+
+        <!-- Eval 3 -->
+        <label class="p-4 rounded-2xl bg-white border border-slate-200 flex items-start gap-3 cursor-pointer hover:border-slate-300 transition-all select-none">
+          <input type="checkbox" class="eval-check w-4 h-4 text-teal-600 rounded mt-0.5" onchange="updateEvalProgress()">
+          <div class="flex flex-col gap-0.5 flex-1">
+            <strong class="text-sm text-slate-900">EVAL 3. 기존 기능 온전성 (Side-Effect / Regression Test)</strong>
+            <p class="text-slate-600">4주차 계산기를 붙이고 5주차 에러를 고친 뒤에도 1~2주차에 만든 안내 문구와 레이아웃이 깨지지 않고 유지되는가?</p>
+          </div>
+        </label>
+
+        <!-- Eval 4 -->
+        <label class="p-4 rounded-2xl bg-white border border-slate-200 flex items-start gap-3 cursor-pointer hover:border-slate-300 transition-all select-none">
+          <input type="checkbox" class="eval-check w-4 h-4 text-teal-600 rounded mt-0.5" onchange="updateEvalProgress()">
+          <div class="flex flex-col gap-0.5 flex-1">
+            <strong class="text-sm text-slate-900">EVAL 4. 원문 출처 대조 (Fact Checking)</strong>
+            <p class="text-slate-600">웹 화면에 적힌 모든 정책과 환불 규정, 교육 일정이 원문 문서와 100% 일치하며 출처가 명시되어 있는가?</p>
+          </div>
+        </label>
+
+      </div>
+
+      <!-- Graduation Certificate Banner (Unlocked when 4/4) -->
+      <div id="grad-banner" class="hidden p-6 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-700 text-white flex flex-col sm:flex-row items-center justify-between gap-4 animate-in fade-in">
+        <div class="flex flex-col gap-1">
+          <span class="px-2.5 py-0.5 rounded-full bg-white/20 text-white text-[11px] font-bold w-fit">CONGRATULATIONS!</span>
+          <strong class="text-base font-bold">🎉 4대 Eval 검증 전 항목 통과! 수료 자격을 획득하셨습니다.</strong>
+          <span class="text-xs text-emerald-100">이제 강사의 도움 없이 내 손으로 웹을 고치고 배포할 수 있는 진짜 '바이브 빌더'입니다.</span>
+        </div>
+        <button onclick="alert('🎖️ 송도 AI 아카데미 6주 실전 마스터 자립 인증서 발급 완료!');" class="py-2.5 px-5 rounded-xl bg-white text-emerald-900 font-extrabold text-xs shadow-md hover:bg-slate-100 transition-all cursor-pointer whitespace-nowrap">
+          수료 인증서 확인
+        </button>
+      </div>
+    </section>
+
+    <!-- Student Graduation Signature Box -->
+    <section class="border border-slate-200 rounded-2xl p-6 bg-white flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+      <div class="flex flex-col gap-1">
+        <strong class="text-sm font-bold text-slate-900">내 시그니처 라이브 런칭</strong>
+        <p class="text-slate-500">6주간 완성한 나만의 웹 도구 하단에 강사/저자 시그니처를 새겨 인터넷에 영구 배포합니다.</p>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="text-slate-400">Curated & Authored by</span>
+        <span class="font-signature text-3xl text-slate-900 font-bold">ohahbuji</span>
+      </div>
+    </section>
+
+    <!-- Footer Navigation -->
+    <footer class="flex items-center justify-between border-t border-slate-100 pt-6 text-xs text-slate-400">
+      <a href="/courseware/weekly-kits/week05-debug-lab/index.html" class="hover:text-slate-800 transition-colors">← 5주차 에러 복구 랩</a>
+      <a href="/courseware/index.html" class="font-bold text-teal-700 hover:underline">📦 코스웨어 허브로 돌아가기</a>
+      <a href="/landing.html" class="font-bold text-emerald-700 hover:underline">📢 수강생 모집 랜딩페이지 보기 →</a>
+    </footer>
+
+  </main>
+
+  <script>
+    function updateEvalProgress() {
+      const checks = document.querySelectorAll('.eval-check');
+      const passed = Array.from(checks).filter(c => c.checked).length;
+      const badge = document.getElementById('eval-score-badge');
+      const banner = document.getElementById('grad-banner');
+
+      badge.innerText = `진행률: ${passed} / 4 통과`;
+      if (passed === 4) {
+        badge.className = 'px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold';
+        banner.classList.remove('hidden');
+      } else {
+        badge.className = 'px-3 py-1 rounded-full bg-slate-200 text-slate-700 text-xs font-bold';
+        banner.classList.add('hidden');
+      }
+    }
+  </script>
+
+</body>
+</html>

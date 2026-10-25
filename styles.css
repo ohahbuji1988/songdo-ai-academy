@@ -1,0 +1,152 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root {
+  /* Strict 2-Tone Palette: Black & Red */
+  --black-void: #000000;
+  --black-surface: #0a0a0a;
+  --black-subtle: #141414;
+  --black-border: #222222;
+  
+  --red-pure: #ff1e27;
+  --red-dark: #990e13;
+  --red-glow: rgba(255, 30, 39, 0.18);
+  
+  --text-white: #ffffff;
+  --text-dim: #777777;
+  
+  --font-display: 'Space Grotesk', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-sans: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Korean typography rule: Never break words awkwardly mid-syllable */
+body, h1, h2, h3, p, span, button, input, div {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+body {
+  background-color: var(--black-void);
+  color: var(--text-white);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: var(--black-void);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--black-border);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--red-pure);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Red / Black specific UI tokens */
+.bg-void { background-color: var(--black-void); }
+.bg-surface { background-color: var(--black-surface); }
+.bg-subtle { background-color: var(--black-subtle); }
+.border-dark { border-color: var(--black-border); }
+.border-red { border-color: var(--red-pure); }
+.text-red { color: var(--red-pure); }
+.text-dim { color: var(--text-dim); }
+
+/* Minimalist Red Glow */
+.red-glow {
+  box-shadow: 0 0 30px var(--red-glow);
+}
+
+/* Red button hover & active state */
+.btn-red {
+  background-color: var(--red-pure);
+  color: var(--black-void);
+  font-weight: 700;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-red:hover {
+  background-color: #ff3840;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(255, 30, 39, 0.35);
+}
+.btn-red:active {
+  transform: translateY(0);
+}
+
+/* Preset Pills */
+.pill-button {
+  background-color: var(--black-subtle);
+  border: 1px solid var(--black-border);
+  color: var(--text-dim);
+  transition: all 0.15s ease;
+  user-select: none;
+  line-height: 1.4;
+}
+.pill-button:hover {
+  border-color: var(--red-pure);
+  color: var(--text-white);
+  transform: translateY(-1px);
+}
+
+/* Damage meter bar */
+.damage-bar-fill {
+  transition: width 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Result Card Typography - High Contrast & Balanced Wrapping */
+#headlineText {
+  color: var(--red-pure);
+  font-family: var(--font-sans);
+  font-weight: 900;
+  line-height: 1.35;
+  text-wrap: balance;
+  letter-spacing: -0.02em;
+}
+
+#subtextText {
+  color: #f5f5f5;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  white-space: pre-line;
+  text-wrap: pretty;
+  word-break: keep-all;
+}
+
+/* Toast */
+.toast-slide {
+  animation: toastIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 15px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}

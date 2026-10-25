@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>송도 국제 AI 아카데미 — 1기 공식 수강 신청 (6주 실전 마스터)</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            miriGreen: '#00c471',
+            miriGreenDark: '#00b064',
+            miriGreenLight: '#e6f9f0',
+            miriGreenSoft: '#f0fdf7',
+            brand: '#0f766e',
+            brandDark: '#115e59',
+            brandLight: '#f0fdfa',
+            ink: '#0f172a',
+            inkBody: '#334155',
+            inkMuted: '#64748b'
+          }
+        }
+      }
+    }
+  </script>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.1/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+      -webkit-font-smoothing: antialiased;
+      font-family: 'Wanted Sans Variable', 'Wanted Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    body {
+      background-color: #ffffff;
+      color: #1e293b;
+      font-size: 15px;
+      line-height: 1.7;
+      letter-spacing: -0.015em;
+    }
+    .font-signature {
+      font-family: 'Caveat', cursive !important;
+    }
+    .clause {
+      display: inline-block;
+      line-height: 1.75;
+      word-break: keep-all;
+    }
+  </style>
+</head>
+<body class="selection:bg-miriGreen selection:text-white bg-white text-slate-800">
+
+  <!-- ========================================================
+       TOP GLOBAL NAVIGATION
+       ======================================================== -->
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-slate-100 px-6 sm:px-10 h-16 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-xl bg-miriGreen flex items-center justify-center text-white font-extrabold text-base shadow-xs">
+        S
+      </div>
+      <div class="flex flex-col">
+        <span class="text-xs font-black tracking-tight text-slate-900 leading-none">SONGDO AI ACADEMY</span>
+        <span class="text-[10px] font-bold text-miriGreen tracking-wider uppercase">송도 국제 AI 아카데미</span>
+      </div>
+    </div>
+
+    <nav class="hidden md:flex items-center gap-6 text-xs font-bold text-slate-600">
+      <a href="#section-hero" class="hover:text-slate-900 transition-colors">소개</a>
+      <a href="#section-day1" class="hover:text-slate-900 transition-colors">Day-1 배포</a>
+      <a href="#section-roadmap" class="hover:text-slate-900 transition-colors">6주 로드맵</a>
+      <a href="#section-tuition" class="hover:text-slate-900 transition-colors">수강료 & 혜택</a>
+      <a href="#section-faq" class="hover:text-slate-900 transition-colors">자주 묻는 질문</a>
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <a href="/curriculum.html" target="_blank" class="hidden sm:inline-flex px-3 py-1.5 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-bold transition-all">
+        강의계획서
+      </a>
+      <button onclick="openApplyModal()" class="px-4 py-2 rounded-xl bg-miriGreen hover:bg-miriGreenDark text-white text-xs font-bold transition-all shadow-sm cursor-pointer">
+        1기 수강 신청 (선착순 12명)
+      </button>
+    </div>
+  </header>
+
+  <!-- ========================================================
+       1. HERO SECTION (High-Conversion Pitch)
+       ======================================================== -->
+  <section id="section-hero" class="relative overflow-hidden pt-12 pb-20 sm:pt-20 sm:pb-28 px-6 sm:px-10 max-w-6xl mx-auto flex flex-col items-center text-center gap-6">
+    
+    <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-bold border border-emerald-200">
+      <span class="w-2 h-2 rounded-full bg-miriGreen animate-pulse"></span>
+      <span>2026 송도 1기 모집 오픈 · 선착순 12명 소수 정예 클리닉</span>
+    </div>
+
+    <h1 class="text-3xl sm:text-5xl md:text-6xl font-black text-slate-900 tracking-tight leading-tight max-w-4xl">
+      AI와 대화하던 사람에서,<br>
+      <span class="text-miriGreen">내 손으로 웹을 만들고 고치는 사람으로</span>
+    </h1>
+
+    <p class="text-slate-600 text-base sm:text-xl max-w-2xl leading-relaxed">
+      <span class="clause">비전공자도 첫날 30분 만에 내 웹페이지를 인터넷에 띄우고,</span>
+      <span class="clause">오류가 났을 때 당황하지 않고 스스로 원인을 찾아 다시 배포하는 <strong>자립형 바이브 코딩 6주</strong>.</span>
+    </p>
+
+    <!-- CTAs -->
+    <div class="flex flex-wrap items-center justify-center gap-3 pt-4">
+      <button onclick="openApplyModal()" class="px-6 py-3.5 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-sm shadow-md transition-all cursor-pointer flex items-center gap-2">
+        <span>⚡ 1기 수강 신청하기 (얼리버드 10%)</span>
+        <span>→</span>
+      </button>
+      <a href="/presentation.html" target="_blank" class="px-5 py-3.5 rounded-2xl bg-white border border-slate-200 hover:border-miriGreen text-slate-800 font-bold text-sm shadow-xs transition-all flex items-center gap-2">
+        <span>📊 설명회 발표 PPT 덱 보기</span>
+      </a>
+    </div>
+
+    <!-- 3 Core Trust Badges -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-10 w-full max-w-3xl text-left text-xs">
+      <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col gap-1">
+        <span class="text-slate-400 font-bold">1주차 즉시 성공</span>
+        <strong class="text-slate-900 font-bold text-sm">30분 Day-1 전원 배포</strong>
+        <p class="text-slate-500 text-[11px]">이론만 듣다 지치지 않고 첫날 바로 내 링크 획득</p>
+      </div>
+      <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col gap-1">
+        <span class="text-slate-400 font-bold">비용 안심 서약</span>
+        <strong class="text-miriGreenDark font-bold text-sm">추가 종량제 API 과금 0원</strong>
+        <p class="text-slate-500 text-[11px]">단 1개의 유료 AI 구독으로 전 과정 완결</p>
+      </div>
+      <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col gap-1">
+        <span class="text-slate-400 font-bold">오프라인 밀착</span>
+        <strong class="text-slate-900 font-bold text-sm">기수당 12명 제한 클리닉</strong>
+        <p class="text-slate-500 text-[11px]">송도 테크노파크역 도보 5분 현장 1:1 디버깅</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ========================================================
+       2. DAY-1 WIN SIMULATION (Interactive Live Preview)
+       ======================================================== -->
+  <section id="section-day1" class="bg-slate-50 border-y border-slate-200 py-16 px-6 sm:px-10">
+    <div class="max-w-5xl mx-auto flex flex-col gap-8">
+      
+      <div class="flex flex-col gap-2 text-center items-center">
+        <span class="text-xs font-bold text-miriGreen uppercase tracking-wider">DAY-1 PROOF</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">
+          "정말 첫날 30분 만에 웹사이트가 뜬다고요?"
+        </h2>
+        <p class="text-sm text-slate-600 max-w-xl">
+          실제 수강생들이 1주 차 수업 시작 30분 만에 Netlify 무료 호스팅을 통해 전 세계 라이브 웹으로 띄우는 실제 1페이지 골격입니다.
+        </p>
+      </div>
+
+      <!-- Mock Browser Frame -->
+      <div class="rounded-3xl border border-slate-200 bg-white shadow-xl overflow-hidden flex flex-col">
+        <!-- Browser Bar -->
+        <div class="h-10 bg-slate-100 border-b border-slate-200 px-4 flex items-center justify-between text-xs text-slate-400">
+          <div class="flex items-center gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-rose-400"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+          </div>
+          <div class="bg-white border border-slate-200 rounded-lg px-4 py-1 text-[11px] font-mono text-slate-600 w-80 text-center truncate">
+            https://student-demo.netlify.app
+          </div>
+          <a href="/courseware/starter-kit/index.html" target="_blank" class="text-miriGreen font-bold hover:underline text-[11px]">
+            새 창으로 열기 ↗
+          </a>
+        </div>
+
+        <!-- Rendered Starter Kit Webpage -->
+        <div class="p-8 sm:p-12 flex flex-col gap-6 text-slate-800">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+            <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-800 text-xs font-bold uppercase">
+              MY SONGDO UTILITY
+            </span>
+            <span class="text-xs text-slate-400">Day-1 Win Live Demo</span>
+          </div>
+          <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 leading-snug">
+            나만의 업무 안내 및 실시간 계산 웹페이지
+          </h3>
+          <p class="text-sm text-slate-600 leading-relaxed max-w-2xl">
+            AI에게 자연어로 내 정보만 쥐어주면, 복잡한 코딩 문법 없이 정갈한 2색 안티-슬롭 레이아웃이 즉시 완성됩니다. 1주차에 이 1페이지를 먼저 띄운 뒤, 매주 살을 붙여나갑니다.
+          </p>
+          <div class="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-950 text-xs font-semibold flex items-center gap-2">
+            <span>🎉</span>
+            <span>첫날 30분 만에 이 웹페이지의 인터넷 공개 주소(URL)를 내 스마트폰으로 열어보게 됩니다.</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================
+       2.5. BEFORE vs AFTER & TARGET PERSONAS (Conversion Catalyst)
+       ======================================================== -->
+  <section class="py-16 px-6 sm:px-10 max-w-5xl mx-auto flex flex-col gap-12">
+    
+    <!-- Before vs After -->
+    <div class="flex flex-col gap-8">
+      <div class="flex flex-col gap-2 text-center items-center">
+        <span class="text-xs font-bold text-miriGreen uppercase tracking-wider">TRANSFORMATION</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">
+          6주 후, 당신의 AI 활용은 이렇게 완전히 달라집니다
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs sm:text-sm">
+        
+        <!-- Before -->
+        <div class="p-6 sm:p-8 rounded-3xl bg-slate-50 border border-slate-200 flex flex-col gap-4">
+          <div class="flex items-center gap-2 text-rose-600 font-bold text-sm">
+            <span>❌</span> <span>기존 대다수의 AI 사용자 (수강 전)</span>
+          </div>
+          <ul class="flex flex-col gap-3 text-slate-600 leading-relaxed">
+            <li class="flex items-start gap-2">
+              <span class="text-rose-400 font-bold">•</span>
+              <span>챗봇 대화창에 갇혀 메일 초안이나 요약문만 복붙하고 끝납니다.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-rose-400 font-bold">•</span>
+              <span>AI가 뱉은 코드에 빨간 에러가 나면 원인을 못 짚고 포기합니다.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-rose-400 font-bold">•</span>
+              <span>언제 수십만원 추가 결제될지 모르는 종량제 API 과금에 불안합니다.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-rose-400 font-bold">•</span>
+              <span>수업이 끝나도 내 손에 남는 웹 링크가 하나도 없습니다.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- After -->
+        <div class="p-6 sm:p-8 rounded-3xl bg-emerald-50/40 border-2 border-emerald-500 flex flex-col gap-4 shadow-sm">
+          <div class="flex items-center gap-2 text-emerald-800 font-bold text-sm">
+            <span>✅</span> <span>자립형 바이브 빌더 (6주 수료 후)</span>
+          </div>
+          <ul class="flex flex-col gap-3 text-slate-800 leading-relaxed">
+            <li class="flex items-start gap-2">
+              <span class="text-miriGreen font-bold">•</span>
+              <span>내 아이디어를 30분 만에 실제 작동하는 1페이지 웹 화면으로 제작합니다.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-miriGreen font-bold">•</span>
+              <span>오류가 나도 4단계 전달법과 안전 백업본으로 당황하지 않고 롤백 복구합니다.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-miriGreen font-bold">•</span>
+              <span>유료 구독 1개 외 추가 종량제 과금 0원으로 평생 자립합니다.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-miriGreen font-bold">•</span>
+              <span>내 시그니처가 새겨진 라이브 웹 주소를 지인과 동료에게 당당히 공유합니다.</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Target Personas -->
+    <div class="p-8 rounded-3xl bg-slate-900 text-white flex flex-col gap-6">
+      <div class="flex flex-col gap-1">
+        <span class="text-xs font-bold text-miriGreen uppercase tracking-wider">WHO IS THIS FOR</span>
+        <h3 class="text-xl font-bold text-white">이런 분들께 가장 완벽하게 들어맞습니다</h3>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+        <div class="p-5 rounded-2xl bg-slate-800/80 border border-slate-700 flex flex-col gap-2">
+          <span class="text-2xl">💼</span>
+          <strong class="text-sm font-bold text-white">송도 직장인 / 전문직</strong>
+          <p class="text-slate-400 leading-relaxed">
+            매번 반복되는 업무 안내서, 서식 계산기를 내 손으로 만들어 사내외에 링크로 공유하고 싶은 분
+          </p>
+        </div>
+        <div class="p-5 rounded-2xl bg-slate-800/80 border border-slate-700 flex flex-col gap-2">
+          <span class="text-2xl">🚀</span>
+          <strong class="text-sm font-bold text-white">1인 사업가 / 창업가</strong>
+          <p class="text-slate-400 leading-relaxed">
+            비싼 외주 개발비 없이, 내 아이디어를 실시간 견적서와 안내 페이지로 즉시 검증하고 싶은 분
+          </p>
+        </div>
+        <div class="p-5 rounded-2xl bg-slate-800/80 border border-slate-700 flex flex-col gap-2">
+          <span class="text-2xl">👨‍👩‍👧</span>
+          <strong class="text-sm font-bold text-white">송도 학부모</strong>
+          <p class="text-slate-400 leading-relaxed">
+            구식 주입식 코딩 문법 대신, AI 시대를 주도하는 '디렉터의 안목과 자립심'을 체화하고 싶은 분
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ========================================================
+       3. 6-WEEK ROADMAP (The Spiral Curriculum)
+       ======================================================== -->
+  
+  <!-- ========================================================
+       2.8. 30-SECOND SELF-DIAGNOSTIC (Friction Remover)
+       ======================================================== -->
+  <section class="py-12 px-6 sm:px-10 max-w-4xl mx-auto">
+    <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200 flex flex-col gap-6 shadow-xs">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-4">
+        <div class="flex flex-col gap-1">
+          <span class="text-xs font-bold text-miriGreen uppercase tracking-wider">SELF-CHECK</span>
+          <h3 class="text-xl font-bold text-slate-900">"코딩 문법을 1도 모르는데, 나도 진짜 수강할 수 있을까?"</h3>
+        </div>
+        <span class="px-3 py-1 rounded-full bg-slate-200 text-slate-700 text-xs font-bold">
+          30초 자가진단
+        </span>
+      </div>
+
+      <div class="flex flex-col gap-3 text-xs sm:text-sm">
+        <label class="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 cursor-pointer hover:border-miriGreen transition-all select-none">
+          <input type="checkbox" onchange="checkDiagnostic()" class="diag-chk w-4 h-4 text-miriGreen rounded" checked>
+          <span class="text-slate-700">인터넷 브라우저(크롬, 엣지)를 켜고 검색이나 유튜브를 볼 수 있다.</span>
+        </label>
+        <label class="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 cursor-pointer hover:border-miriGreen transition-all select-none">
+          <input type="checkbox" onchange="checkDiagnostic()" class="diag-chk w-4 h-4 text-miriGreen rounded" checked>
+          <span class="text-slate-700">ChatGPT 등 대화형 AI에게 질문을 한 번이라도 던져본 적이 있다.</span>
+        </label>
+        <label class="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 cursor-pointer hover:border-miriGreen transition-all select-none">
+          <input type="checkbox" onchange="checkDiagnostic()" class="diag-chk w-4 h-4 text-miriGreen rounded">
+          <span class="text-slate-700">일상이나 업무에서 '이런 안내 화면이나 계산기 하나 있으면 편하겠는데' 생각해 본 적이 있다.</span>
+        </label>
+      </div>
+
+      <div id="diag-result" class="p-4 rounded-2xl bg-emerald-100/70 border border-emerald-300 text-emerald-950 text-xs font-bold flex items-center justify-between gap-3">
+        <span>🎉 진단 결과: 수강 준비 100% 완료! 복잡한 코딩 문법 없이도 1주차 30분 만에 첫 웹페이지를 배포할 수 있습니다.</span>
+        <button onclick="openApplyModal()" class="px-3 py-1.5 rounded-lg bg-miriGreen hover:bg-miriGreenDark text-white font-extrabold whitespace-nowrap">
+          1기 신청하기
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section id="section-roadmap" class="py-20 px-6 sm:px-10 max-w-5xl mx-auto flex flex-col gap-12">
+    
+    <div class="flex flex-col gap-2 text-center items-center">
+      <span class="text-xs font-bold text-miriGreen uppercase tracking-wider">6-WEEK CURRICULUM</span>
+      <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900">
+        매주 살을 붙여 완성하는 6주 나선형 교육 로드맵
+      </h2>
+      <p class="text-sm text-slate-600 max-w-xl">
+        잡다한 위젯을 무작위로 만들지 않습니다. '나만의 실전 웹 도구'라는 단 하나의 프로덕트를 6주 동안 점진적으로 키웁니다.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm">
+      
+      <!-- Week 1 -->
+      <div class="p-6 rounded-2xl border border-slate-200 bg-white hover:border-miriGreen hover:shadow-sm transition-all flex flex-col justify-between gap-4">
+        <div class="flex flex-col gap-2">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-0.5 rounded bg-slate-900 text-white font-mono text-xs font-bold">WEEK 01</span>
+            <span class="text-xs font-bold text-miriGreenDark">멘탈 모델 & Day-1 조기 배포</span>
+          </div>
+          <strong class="text-base text-slate-900 font-bold">AI 뇌 구조 이해와 첫날 내 웹페이지 배포</strong>
+          <p class="text-slate-600 text-xs leading-relaxed">
+            "AI는 천재가 아닌 기억력 좋은 신입 인턴이다." 퓨샷 지시와 첫날 30분 만에 전 세계 라이브 웹 배포 성공.
+          </p>
+        </div>
+        <a href="/courseware/starter-kit/index.html" target="_blank" class="text-xs font-bold text-miriGreen flex items-center gap-1">
+          1주차 실습 키트 보기 →
+        </a>
+      </div>
+
+      <!-- Week 2 -->
+      <div class="p-6 rounded-2xl border border-slate-200 bg-white hover:border-miriGreen hover:shadow-sm transition-all flex flex-col justify-between gap-4">
+        <div class="flex flex-col gap-2">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-0.5 rounded bg-slate-900 text-white font-mono text-xs font-bold">WEEK 02</span>
+            <span class="text-xs font-bold text-miriGreenDark">문맥 가두기 & 원문 대조</span>
+          </div>
+          <strong class="text-base text-slate-900 font-bold">내 문서 가두기와 출처 인용 정보 카드 섹션</strong>
+          <p class="text-slate-600 text-xs leading-relaxed">
+            내 문서를 먹이고 "없는 내용은 모른다고 답하라" 가드레일 적용. 모든 문장에 [출처: 원문 N조] 배지 결합.
+          </p>
+        </div>
+        <a href="/courseware/weekly-kits/week02-context-cards/index.html" target="_blank" class="text-xs font-bold text-miriGreen flex items-center gap-1">
+          2주차 실습 키트 보기 →
+        </a>
+      </div>
+
+      <!-- Week 3 -->
+      <div class="p-6 rounded-2xl border border-slate-200 bg-white hover:border-miriGreen hover:shadow-sm transition-all flex flex-col justify-between gap-4">
+        <div class="flex flex-col gap-2">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-0.5 rounded bg-slate-900 text-white font-mono text-xs font-bold">WEEK 03</span>
+            <span class="text-xs font-bold text-miriGreenDark">안티-슬롭 & UI 감도 개편</span>
+          </div>
+          <strong class="text-base text-slate-900 font-bold">스킬(Skill)의 실체와 2색 디자인 시스템</strong>
+          <p class="text-slate-600 text-xs leading-relaxed">
+            스킬은 마크다운 업무 매뉴얼입니다. 촌스러운 네온 보라색을 배제하고 딱 2색 팔레트와 어절 줄바꿈 적용.
+          </p>
+        </div>
+        <a href="/courseware/weekly-kits/week03-antislop-design/index.html" target="_blank" class="text-xs font-bold text-miriGreen flex items-center gap-1">
+          3주차 실습 키트 보기 →
+        </a>
+      </div>
+
+      <!-- Week 4 -->
+      <div class="p-6 rounded-2xl border border-slate-200 bg-white hover:border-miriGreen hover:shadow-sm transition-all flex flex-col justify-between gap-4">
+        <div class="flex flex-col gap-2">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-0.5 rounded bg-slate-900 text-white font-mono text-xs font-bold">WEEK 04</span>
+            <span class="text-xs font-bold text-miriGreenDark">클릭 연산 & 실시간 인터랙션</span>
+          </div>
+          <strong class="text-base text-slate-900 font-bold">화면에 손맛 더하기 (실시간 견적/비용 계산기)</strong>
+          <p class="text-slate-600 text-xs leading-relaxed">
+            버튼을 누르면 새로고침 없이 즉각 합산 금액이 재계산되는 자바스크립트 연산 인터랙션 장착.
+          </p>
+        </div>
+        <a href="/courseware/weekly-kits/week04-interactive-calc/index.html" target="_blank" class="text-xs font-bold text-miriGreen flex items-center gap-1">
+          4주차 실습 키트 보기 →
+        </a>
+      </div>
+
+      <!-- Week 5 -->
+      <div class="p-6 rounded-2xl border border-slate-200 bg-white hover:border-miriGreen hover:shadow-sm transition-all flex flex-col justify-between gap-4">
+        <div class="flex flex-col gap-2">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-0.5 rounded bg-rose-600 text-white font-mono text-xs font-bold">WEEK 05</span>
+            <span class="text-xs font-bold text-rose-600">버그 해결 & 안전 롤백</span>
+          </div>
+          <strong class="text-base text-slate-900 font-bold">에러가 나도 당황하지 않는 디버깅과 복구</strong>
+          <p class="text-slate-600 text-xs leading-relaxed">
+            강사가 일부러 심은 버그를 4단 전달법(증상·화면·기대값)으로 AI에게 고치게 만들고, 안전 백업본 복구 실습.
+          </p>
+        </div>
+        <a href="/courseware/weekly-kits/week05-debug-lab/index.html" target="_blank" class="text-xs font-bold text-rose-600 flex items-center gap-1">
+          5주차 실습 키트 보기 →
+        </a>
+      </div>
+
+      <!-- Week 6 -->
+      <div class="p-6 rounded-2xl border-2 border-emerald-500 bg-emerald-50/20 hover:shadow-md transition-all flex flex-col justify-between gap-4">
+        <div class="flex flex-col gap-2">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-0.5 rounded bg-emerald-700 text-white font-mono text-xs font-bold">WEEK 06</span>
+            <span class="text-xs font-bold text-emerald-800">4대 Eval 통과 & 자립 수료</span>
+          </div>
+          <strong class="text-base text-slate-900 font-bold">기능 검증 4대 시험지(Eval) 통과와 자립 런칭</strong>
+          <p class="text-slate-600 text-xs leading-relaxed">
+            정상값·에러값·사이드이펙트 방지·출처 4대 시험지를 통과하고 강사 도움 없이 1개 기능 스스로 고치기.
+          </p>
+        </div>
+        <a href="/courseware/weekly-kits/week06-final-launch/index.html" target="_blank" class="text-xs font-bold text-emerald-800 flex items-center gap-1">
+          6주차 실습 키트 보기 →
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================
+       4. TUITION & EARLY-BIRD BENEFIT
+       ======================================================== -->
+  <section id="section-tuition" class="bg-slate-900 text-white py-20 px-6 sm:px-10">
+    <div class="max-w-4xl mx-auto flex flex-col gap-10">
+      
+      <div class="flex flex-col gap-2 text-center items-center">
+        <span class="text-xs font-bold text-miriGreen uppercase tracking-wider">ENROLLMENT & PRICING</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+          송도 1기 수강료 및 얼리버드 혜택
+        </h2>
+        <p class="text-slate-400 text-sm max-w-lg">
+          추가 API 요금이나 숨겨진 교재비가 일절 없습니다. 정직하고 투명한 1회 결제로 전 과정을 끝냅니다.
+        </p>
+      </div>
+
+            <!-- 100% Money-Back Guarantee Banner -->
+      <div class="p-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/40 text-emerald-300 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+        <div class="flex items-center gap-3">
+          <span class="text-3xl">🛡️</span>
+          <div class="flex flex-col gap-0.5">
+            <strong class="text-white text-sm">1주차 첫 수업 30분 전원 배포 보증제 (100% 전액 환불)</strong>
+            <span>첫날 30분 만에 웹페이지 배포에 성공하지 못하거나 만족하지 않으시면, 이유를 묻지 않고 100% 전액 환불해 드립니다.</span>
+          </div>
+        </div>
+        <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 font-bold whitespace-nowrap">
+          리스크 0% 보증
+        </span>
+      </div>
+
+      <!-- Pricing Card -->
+      <div class="rounded-3xl border border-slate-800 bg-slate-950 p-8 sm:p-12 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl">
+        <div class="flex flex-col gap-4 max-w-md">
+          <div class="flex items-center gap-2">
+            <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold">
+              송도 1기 특별가
+            </span>
+            <span class="text-xs text-rose-400 font-bold">선착순 12명 마감</span>
+          </div>
+          <h3 class="text-2xl font-bold text-white">6주 실전 마스터 정규 트랙</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            주 1회 집중 3시간 오프라인 클리닉 + 실시간 1:1 디버깅 코칭 + 4대 교구 패키지(스타터킷, 핸드북, 워크북) 평생 소장.
+          </p>
+          <ul class="flex flex-col gap-2 text-xs text-slate-300 pt-2">
+            <li class="flex items-center gap-2"><span class="text-miriGreen font-bold">✓</span> 1주차 30분 전원 전 세계 웹 배포 성공 보장</li>
+            <li class="flex items-center gap-2"><span class="text-miriGreen font-bold">✓</span> 추가 API 종량제 청구 0원 서약</li>
+            <li class="flex items-center gap-2"><span class="text-miriGreen font-bold">✓</span> 수업 중 오류 발생 시 1:1 롤백 클리닉 지원</li>
+          </ul>
+        </div>
+
+        <div class="w-full md:w-72 p-6 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col gap-4 text-center">
+          <div class="flex flex-col">
+            <span class="text-xs text-slate-500 line-through">정가 480,000원</span>
+            <div class="flex items-baseline justify-center gap-1">
+              <span class="text-3xl sm:text-4xl font-black text-miriGreen">432,000</span>
+              <span class="text-sm font-bold text-slate-300">원</span>
+            </div>
+            <span class="text-[11px] text-emerald-400 font-bold mt-1">얼리버드 10% 자동 할인 적용</span>
+          </div>
+
+          <button onclick="openApplyModal()" class="w-full py-3.5 rounded-xl bg-miriGreen hover:bg-miriGreenDark text-white font-extrabold text-xs shadow-md transition-all cursor-pointer">
+            1기 수강 신청하기
+          </button>
+          <span class="text-[10px] text-slate-500">동반 신청 시 1인당 추가 5% 할인</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================
+       5. FREQUENTLY ASKED QUESTIONS (FAQ)
+       ======================================================== -->
+  <section id="section-faq" class="py-20 px-6 sm:px-10 max-w-4xl mx-auto flex flex-col gap-10">
+    <div class="flex flex-col gap-2 text-center items-center">
+      <span class="text-xs font-bold text-miriGreen uppercase tracking-wider">FAQ</span>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">자주 묻는 질문</h2>
+    </div>
+
+    <div class="flex flex-col gap-3 text-sm">
+      <details class="p-5 rounded-2xl border border-slate-200 bg-white group cursor-pointer">
+        <summary class="font-bold text-slate-900 flex items-center justify-between">
+          <span>Q1. 정말 코딩 문법을 전혀 몰라도 수강할 수 있나요?</span>
+          <span class="text-slate-400 group-open:rotate-180 transition-transform">▼</span>
+        </summary>
+        <p class="text-xs text-slate-600 pt-3 leading-relaxed">
+          네, 100% 가능합니다. 본 과정은 파이썬이나 자바스크립트 문법을 외우는 강의가 아닙니다. AI를 '손발 없는 고학력 인턴'으로 부리며 자연어 지시(프롬프트)로 화면을 띄우고, 발생한 에러를 증상 기반으로 해결하는 '디렉터의 안목'을 훈련합니다.
+        </p>
+      </details>
+
+      <details class="p-5 rounded-2xl border border-slate-200 bg-white group cursor-pointer">
+        <summary class="font-bold text-slate-900 flex items-center justify-between">
+          <span>Q2. 추가로 결제해야 하는 API 비용이나 서버 비용이 정말 없나요?</span>
+          <span class="text-slate-400 group-open:rotate-180 transition-transform">▼</span>
+        </summary>
+        <p class="text-xs text-slate-600 pt-3 leading-relaxed">
+          네, 전혀 없습니다. 이미 사용 중이신 ChatGPT Plus 또는 Claude Pro 유료 구독(월 약 2.7만원) 1개만 있으면 됩니다. 웹 배포 역시 영구 무료 지정 호스팅 범위 안에서 진행하므로, 수업 중이나 수료 후에도 추가 요금이 발생하지 않습니다.
+        </p>
+      </details>
+
+      <details class="p-5 rounded-2xl border border-slate-200 bg-white group cursor-pointer">
+        <summary class="font-bold text-slate-900 flex items-center justify-between">
+          <span>Q3. 노트북은 맥북이어야 하나요, 윈도우도 가능한가요?</span>
+          <span class="text-slate-400 group-open:rotate-180 transition-transform">▼</span>
+        </summary>
+        <p class="text-xs text-slate-600 pt-3 leading-relaxed">
+          기종 상관없이 크롬(Chrome) 브라우저만 실행되는 일반 노트북이면 모두 수강 가능합니다.
+        </p>
+      </details>
+
+      <details class="p-5 rounded-2xl border border-slate-200 bg-white group cursor-pointer">
+        <summary class="font-bold text-slate-900 flex items-center justify-between">
+          <span>Q4. 결석 시 보강이나 녹화본이 제공되나요?</span>
+          <span class="text-slate-400 group-open:rotate-180 transition-transform">▼</span>
+        </summary>
+        <p class="text-xs text-slate-600 pt-3 leading-relaxed">
+          모든 수강생에게 주차별 실습 핸드북과 녹화 핵심 요약 클립이 제공되며, 다음 주차 수업 30분 전 오프라인 1:1 보강 클리닉을 지원합니다.
+        </p>
+      </details>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       APPLICATION MODAL (1초 수강 신청 팝업)
+       ======================================================== -->
+  <div id="apply-modal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="w-full max-w-lg bg-white rounded-3xl p-7 shadow-2xl border border-slate-200 flex flex-col gap-5 animate-in fade-in zoom-in-95">
+      
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-miriGreen"></span>
+          <strong class="text-base font-bold text-slate-900">송도 1기 수강 신청서 접수</strong>
+        </div>
+        <button onclick="closeApplyModal()" class="text-slate-400 hover:text-slate-700 text-xs font-bold cursor-pointer">
+          ✕ 닫기
+        </button>
+      </div>
+
+      <form onsubmit="handleApplySubmit(event)" class="flex flex-col gap-4 text-xs">
+        <div class="flex flex-col gap-1.5">
+          <label class="font-bold text-slate-700">신청자 성함 *</label>
+          <input type="text" id="app-name" required placeholder="홍길동" class="p-3 rounded-xl border border-slate-200 focus:border-miriGreen focus:outline-none bg-slate-50">
+        </div>
+
+        <div class="flex flex-col gap-1.5">
+          <label class="font-bold text-slate-700">휴대폰 번호 (안내 문자 발송용) *</label>
+          <input type="tel" id="app-phone" required placeholder="010-1234-5678" class="p-3 rounded-xl border border-slate-200 focus:border-miriGreen focus:outline-none bg-slate-50">
+        </div>
+
+        <div class="flex flex-col gap-1.5">
+          <label class="font-bold text-slate-700">희망 교육 트랙</label>
+          <select id="app-track" class="p-3 rounded-xl border border-slate-200 focus:border-miriGreen focus:outline-none bg-slate-50 font-bold">
+            <option value="regular">6주 정규 트랙 (얼리버드 432,000원)</option>
+            <option value="vip">VIP 1:1 집중 클리닉 트랙</option>
+            <option value="b2b">기업 / 기관 단체 출강 문의</option>
+          </select>
+        </div>
+
+        <div class="flex flex-col gap-1.5">
+          <label class="font-bold text-slate-700">만들고 싶은 웹 도구나 질문 (선택)</label>
+          <textarea id="app-note" rows="2" placeholder="예: 우리 학원 수강생 안내 카드, 부동산 견적기 등" class="p-3 rounded-xl border border-slate-200 focus:border-miriGreen focus:outline-none bg-slate-50 resize-none"></textarea>
+        </div>
+
+        <button type="submit" class="w-full py-3.5 rounded-xl bg-miriGreen hover:bg-miriGreenDark text-white font-extrabold text-sm shadow-md transition-all cursor-pointer mt-2">
+          수강 신청서 접수하기 (선착순 마감 전)
+        </button>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-200 py-12 px-6 sm:px-10 bg-slate-50 text-xs text-slate-500">
+    <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="flex flex-col gap-1">
+        <strong class="text-slate-900 font-bold">송도 국제 AI 아카데미 (Songdo AI Academy)</strong>
+        <span>인천광역시 연수구 송도과학로 32 (테크노파크역 도보 5분)</span>
+        <span>교육 상담 문의: academy@songdo-ai.edu | 032-123-4567</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="text-slate-400">Curated & Authored by</span>
+        <span class="font-signature text-3xl text-slate-900 font-bold">ohahbuji</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function checkDiagnostic() {
+      const checks = document.querySelectorAll('.diag-chk:checked');
+      const res = document.getElementById('diag-result');
+      if (checks.length >= 1) {
+        res.innerHTML = '<span>🎉 진단 결과: 수강 준비 100% 완료! 복잡한 코딩 문법 없이도 1주차 30분 만에 첫 웹페이지를 배포할 수 있습니다.</span><button onclick="openApplyModal()" class="px-3 py-1.5 rounded-lg bg-miriGreen hover:bg-miriGreenDark text-white font-extrabold whitespace-nowrap">1기 신청하기</button>';
+        res.className = 'p-4 rounded-2xl bg-emerald-100/70 border border-emerald-300 text-emerald-950 text-xs font-bold flex items-center justify-between gap-3';
+      } else {
+        res.innerHTML = '<span>하나 이상 체크해 보세요. 마우스와 브라우저만 쓸 수 있다면 누구나 수강 가능합니다.</span>';
+        res.className = 'p-4 rounded-2xl bg-slate-100 border border-slate-300 text-slate-700 text-xs font-bold flex items-center justify-between gap-3';
+      }
+    }
+    function openApplyModal() {
+      document.getElementById('apply-modal').classList.remove('hidden');
+    }
+    function closeApplyModal() {
+      document.getElementById('apply-modal').classList.add('hidden');
+    }
+    function handleApplySubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('app-name').value;
+      const phone = document.getElementById('app-phone').value;
+      const track = document.getElementById('app-track').value;
+
+      closeApplyModal();
+      alert(`🎉 [신청 접수 완료]\n\n${name}님, 송도 1기 수강 신청이 정상 접수되었습니다!\n입력하신 번호(${phone})로 상세 강의실 위치 및 안내 문자를 발송해 드립니다.`);
+    }
+  </script>
+
+</body>
+</html>

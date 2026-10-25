@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>방향의 혼란에서 실전 아키텍트로 — ohahbuji</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            mono: ['inherit'],
+            sans: ['inherit']
+          },
+          colors: {
+            paper: '#ffffff',
+            paperSubtle: '#f8fafc',
+            borderSubtle: '#e2e8f0',
+            ink: '#0f172a',
+            inkBody: '#334155',
+            inkMuted: '#64748b',
+            accentTeal: '#0f766e'
+          }
+        }
+      }
+    }
+  </script>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.1/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;400;500;600&family=Noto+Serif+KR:wght@400;500;600&family=Gowun+Batang:wght@400;700&family=Caveat:wght@700&display=swap">
+
+  <style>
+    /* 절제된 순수 에디토리얼 타이포그래피 */
+    * {
+      box-sizing: border-box;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    body {
+      background-color: #ffffff;
+      color: #334155;
+      font-family: 'Wanted Sans Variable', 'Wanted Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+      font-size: 15px;
+      line-height: 1.8;
+      letter-spacing: -0.015em;
+    }
+
+    /* 4가지 폰트 시안 테마 (모든 하위 요소 강제 통일) */
+    body, body * {
+      font-family: 'Wanted Sans Variable', 'Wanted Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    body.font-wanted, body.font-wanted * {
+      font-family: 'Wanted Sans Variable', 'Wanted Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+      letter-spacing: -0.015em;
+    }
+    body.font-ibm, body.font-ibm * {
+      font-family: 'IBM Plex Sans KR', -apple-system, BlinkMacSystemFont, sans-serif !important;
+      letter-spacing: -0.018em;
+    }
+    body.font-noto-serif, body.font-noto-serif * {
+      font-family: 'Noto Serif KR', Georgia, serif !important;
+      letter-spacing: -0.02em;
+    }
+    body.font-gowun, body.font-gowun * {
+      font-family: 'Gowun Batang', Georgia, serif !important;
+      letter-spacing: -0.015em;
+    }
+    body.font-pretendard, body.font-pretendard * {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif !important;
+      letter-spacing: -0.022em;
+    }
+    .font-signature, .font-signature * {
+      font-family: 'Caveat', cursive !important;
+    }
+
+    h1, h2, h3, h4 {
+      color: #0f172a;
+      letter-spacing: -0.032em;
+      text-wrap: balance;
+    }
+
+    .clause {
+      display: block;
+      line-height: 1.75;
+    }
+
+    .font-display,
+    .font-mono,
+    [class*="font-mono"] { 
+      font-family: inherit !important; 
+    }
+    .font-signature { font-family: 'Caveat', cursive; }
+
+    /* Active Nav Tab */
+    .nav-tab {
+      transition: all 120ms ease;
+    }
+    .nav-tab:active {
+      transform: scale(0.98);
+    }
+    .nav-tab.active {
+      background-color: #f1f5f9;
+      color: #0f766e;
+      border-color: #cbd5e1;
+      font-weight: 600;
+    }
+
+    /* Clean Quiet Quote */
+    .editorial-quote {
+      border-left: 2px solid #0f766e;
+      background: #f8fafc;
+      padding: 1rem 1.25rem;
+      border-radius: 0 0.5rem 0.5rem 0;
+    }
+  </style>
+</head>
+<body class="selection:bg-accentTeal selection:text-white min-h-screen flex flex-col md:flex-row">
+
+  <!-- LEFT SIDEBAR TABS -->
+  <aside class="w-full md:w-72 md:h-screen md:sticky md:top-0 border-b md:border-b-0 md:border-r border-borderSubtle bg-paperSubtle/60 p-6 flex flex-col justify-between shrink-0 z-30">
+    <div class="flex flex-col gap-6">
+      
+      <!-- Brand Header -->
+      <div class="flex flex-col gap-1 border-b border-borderSubtle pb-5">
+        <span class="font-mono text-[11px] font-semibold text-accentTeal tracking-wider uppercase">FACILITATION NOTE</span>
+        <h2 class="font-display font-bold text-base text-ink tracking-tight">AI Architecture & Mindset</h2>
+        <span class="text-xs text-inkMuted font-mono">Curated for <strong>ohahbuji</strong></span>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <nav class="flex flex-col gap-1 text-[13px]">
+        <button onclick="switchTab('tab-overview')" id="btn-tab-overview" class="nav-tab active w-full text-left px-3.5 py-2.5 rounded-lg border border-transparent hover:bg-paper hover:text-ink flex items-center gap-2.5 cursor-pointer">
+          <span class="font-mono text-xs opacity-60">00</span>
+          <span>전체 개요 (Overview)</span>
+        </button>
+
+        <button onclick="switchTab('tab-demystify')" id="btn-tab-demystify" class="nav-tab w-full text-left px-3.5 py-2.5 rounded-lg border border-transparent hover:bg-paper hover:text-ink flex items-center gap-2.5 cursor-pointer">
+          <span class="font-mono text-xs opacity-60">01</span>
+          <span>Skill과 Agent의 민낯</span>
+        </button>
+
+        <button onclick="switchTab('tab-product')" id="btn-tab-product" class="nav-tab w-full text-left px-3.5 py-2.5 rounded-lg border border-transparent hover:bg-paper hover:text-ink flex items-center gap-2.5 cursor-pointer">
+          <span class="font-mono text-xs opacity-60">02</span>
+          <span>실전 제품 검증 (Devil)</span>
+        </button>
+
+        <button onclick="switchTab('tab-harness')" id="btn-tab-harness" class="nav-tab w-full text-left px-3.5 py-2.5 rounded-lg border border-transparent hover:bg-paper hover:text-ink flex items-center gap-2.5 cursor-pointer">
+          <span class="font-mono text-xs opacity-60">03</span>
+          <span>하네스 분업과 편향 검증</span>
+        </button>
+
+        <button onclick="switchTab('tab-eval')" id="btn-tab-eval" class="nav-tab w-full text-left px-3.5 py-2.5 rounded-lg border border-transparent hover:bg-paper hover:text-ink flex items-center gap-2.5 cursor-pointer">
+          <span class="font-mono text-xs opacity-60">04</span>
+          <span>12세 라면 로봇과 Eval</span>
+        </button>
+
+        <button onclick="switchTab('tab-epilogue')" id="btn-tab-epilogue" class="nav-tab w-full text-left px-3.5 py-2.5 rounded-lg border border-transparent hover:bg-paper hover:text-ink flex items-center gap-2.5 cursor-pointer">
+          <span class="font-mono text-xs opacity-60">05</span>
+          <span>최종 3×3 제언 & 결론</span>
+        </button>
+      </nav>
+
+      <!-- Live Font Switcher -->
+      <div class="mt-4 pt-4 border-t border-borderSubtle flex flex-col gap-2">
+        <span class="text-[11px] font-semibold text-accentTeal tracking-wider uppercase">실시간 폰트 시안 테스트</span>
+        <div class="flex flex-col gap-1 text-xs">
+          <button onclick="setFont('wanted')" id="btn-font-wanted" class="font-switcher-btn active w-full text-left px-3 py-2 rounded border border-slate-300 bg-white font-medium flex items-center justify-between transition-all">
+            <span>1. 원티드 산스 (Wanted)</span>
+            <span class="text-[10px] text-inkMuted font-mono">Modern UI</span>
+          </button>
+          <button onclick="setFont('ibm')" id="btn-font-ibm" class="font-switcher-btn w-full text-left px-3 py-2 rounded border border-transparent hover:border-borderSubtle text-inkBody flex items-center justify-between transition-all">
+            <span>2. IBM Plex KR</span>
+            <span class="text-[10px] text-inkMuted font-mono">Architect</span>
+          </button>
+          <button onclick="setFont('noto-serif')" id="btn-font-noto-serif" class="font-switcher-btn w-full text-left px-3 py-2 rounded border border-transparent hover:border-borderSubtle text-inkBody flex items-center justify-between transition-all">
+            <span>3. 본명조 (Noto Serif)</span>
+            <span class="text-[10px] text-inkMuted font-mono">Editorial</span>
+          </button>
+          <button onclick="setFont('gowun')" id="btn-font-gowun" class="font-switcher-btn w-full text-left px-3 py-2 rounded border border-transparent hover:border-borderSubtle text-inkBody flex items-center justify-between transition-all">
+            <span>4. 고운바탕 (Gowun)</span>
+            <span class="text-[10px] text-inkMuted font-mono">Humanist</span>
+          </button>
+          <button onclick="setFont('pretendard')" id="btn-font-pretendard" class="font-switcher-btn w-full text-left px-3 py-1.5 rounded border border-transparent hover:border-borderSubtle text-inkMuted text-[11px] flex items-center justify-between transition-all">
+            <span>기존 (Pretendard)</span>
+            <span class="text-[10px] text-inkMuted font-mono">Default</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-borderSubtle pt-4 hidden md:flex flex-col gap-1 text-xs text-inkMuted">
+      <span class="font-mono text-ink font-semibold">BUILDER LEVEL: TOP 3%</span>
+      <span>Direction Realignment Note</span>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT AREA -->
+  <main class="flex-1 max-w-3xl p-6 sm:p-10 md:p-14 flex flex-col justify-between">
+    
+    <div class="flex flex-col gap-10">
+
+      <!-- ========================================== -->
+      <!-- TAB 0: OVERVIEW (랜딩 대시보드) -->
+      <!-- ========================================== -->
+      <section id="tab-overview" class="tab-panel flex flex-col gap-8">
+        
+        <!-- Header Masthead -->
+        <div class="flex flex-col gap-2.5 border-b border-borderSubtle pb-6">
+          <div class="flex items-center gap-2">
+            <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 font-mono text-xs font-semibold">
+              ALIGNMENT COMPLETE
+            </span>
+            <span class="text-xs font-mono text-inkMuted">2026. 10. 25</span>
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-ink leading-tight">
+            방향의 혼란에서<br>
+            <span class="text-accentTeal">실전 아키텍트로의 전환</span>
+          </h1>
+
+          <div class="pt-1 text-inkBody">
+            <span class="clause">기술 소음에 압도되어 길을 잃었던 밤에서 시작했습니다.</span>
+            <span class="clause text-inkMuted">에이전트의 실체를 직접 해부하고 실전 제품을 구축하며 찾아낸 명확한 좌표입니다.</span>
+          </div>
+        </div>
+
+        <!-- Initial Question Box -->
+        <div class="editorial-quote flex flex-col gap-1">
+          <span class="text-accentTeal font-semibold text-xs uppercase tracking-wider">세션의 출발점이 된 화두</span>
+          <p class="text-ink font-medium leading-relaxed italic">
+            <span class="clause">"남들은 새로운 에이전트와 스킬을 뚝딱 만드는데,</span>
+            <span class="clause">나는 AI 이해도가 낮고 문 앞에 턱 막힌 느낌이야.</span>
+            <span class="clause">나는 지금 어디로 가야 할까?"</span>
+          </p>
+        </div>
+
+        <!-- Session Journey Map Cards -->
+        <div class="flex flex-col gap-2.5">
+          <span class="text-xs font-semibold text-inkMuted uppercase tracking-wider">세션 흐름도 (클릭 시 해당 챕터로 이동)</span>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm">
+            
+            <div onclick="switchTab('tab-demystify')" class="border border-borderSubtle bg-paper hover:border-slate-400 p-4 rounded-lg flex flex-col gap-1 cursor-pointer transition-all">
+              <span class="font-mono text-accentTeal font-semibold text-xs">STEP 01</span>
+              <strong class="text-ink text-sm">마법의 껍데기 해체</strong>
+              <span class="clause text-inkMuted text-xs">Skill은 마크다운 지침서이고,</span>
+              <span class="clause text-inkMuted text-xs">Agent는 파이썬 함수를 부르는 루프다.</span>
+            </div>
+
+            <div onclick="switchTab('tab-product')" class="border border-borderSubtle bg-paper hover:border-slate-400 p-4 rounded-lg flex flex-col gap-1 cursor-pointer transition-all">
+              <span class="font-mono text-accentTeal font-semibold text-xs">STEP 02</span>
+              <strong class="text-ink text-sm">실전 제품 제작</strong>
+              <span class="clause text-inkMuted text-xs">안티-슬롭 2색 디자인과</span>
+              <span class="clause text-inkMuted text-xs">Groq 초고속 LPU로 시비 봇을 완성하다.</span>
+            </div>
+
+            <div onclick="switchTab('tab-harness')" class="border border-borderSubtle bg-paper hover:border-slate-400 p-4 rounded-lg flex flex-col gap-1 cursor-pointer transition-all">
+              <span class="font-mono text-accentTeal font-semibold text-xs">STEP 03</span>
+              <strong class="text-ink text-sm">하네스 분업과 편향</strong>
+              <span class="clause text-inkMuted text-xs">실제 사람 조직을 본뜬 3단계 분업과</span>
+              <span class="clause text-inkMuted text-xs">이종 AI 교차 검증의 힘을 확인하다.</span>
+            </div>
+
+            <div onclick="switchTab('tab-eval')" class="border border-borderSubtle bg-paper hover:border-slate-400 p-4 rounded-lg flex flex-col gap-1 cursor-pointer transition-all">
+              <span class="font-mono text-accentTeal font-semibold text-xs">STEP 04</span>
+              <strong class="text-ink text-sm">상위 1%의 비밀 (Eval)</strong>
+              <span class="clause text-inkMuted text-xs">12세 라면 로봇 비유로 터득한</span>
+              <span class="clause text-inkMuted text-xs">실패 일기 기반의 자동 시험지.</span>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Core Alignment 3 Pillars -->
+        <div class="border border-borderSubtle bg-paperSubtle rounded-xl p-6 flex flex-col gap-4">
+          <span class="text-xs font-semibold text-inkMuted uppercase tracking-wider">세션 3대 핵심 결론</span>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-sm">
+            
+            <div class="flex flex-col gap-1">
+              <strong class="text-ink font-semibold">1. 환상 제거 (Demystify)</strong>
+              <span class="clause text-inkBody text-xs">거창한 신기술 용어에 기죽을 필요가 없습니다.</span>
+              <span class="clause text-inkMuted text-xs">모든 에이전트는 프롬프트와 함수 호출의 조합입니다.</span>
+            </div>
+
+            <div class="flex flex-col gap-1">
+              <strong class="text-ink font-semibold">2. 상위 3% 위치 (Valuation)</strong>
+              <span class="clause text-inkBody text-xs">당신은 이미 3단계 하네스를 굴리는 빌더입니다.</span>
+              <span class="clause text-inkMuted text-xs">부족한 건 지식이 아니라 감각에 대한 확신입니다.</span>
+            </div>
+
+            <div class="flex flex-col gap-1">
+              <strong class="text-ink font-semibold">3. 추상화 탈피 (Action)</strong>
+              <span class="clause text-inkBody text-xs">머릿속으로 거대한 시스템을 상상하지 마세요.</span>
+              <span class="clause text-inkMuted text-xs">끝까지 작동하는 작은 결과물 하나를 쥐는 게 전부입니다.</span>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Font Specimen Showcase -->
+        <div class="border border-borderSubtle bg-paper rounded-xl p-6 flex flex-col gap-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-borderSubtle pb-3">
+            <div>
+              <span class="font-mono text-xs font-semibold text-accentTeal uppercase tracking-wider">TYPOGRAPHY PROPOSALS</span>
+              <h3 class="text-base font-semibold text-ink">추천 폰트 4종 시안 비교</h3>
+            </div>
+            <span class="text-xs text-inkMuted">카드를 클릭하면 전체 문서의 폰트가 즉시 전환됩니다</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            
+            <!-- Specimen 1: Wanted Sans -->
+            <div onclick="setFont('wanted')" class="p-4 rounded-lg border border-borderSubtle hover:border-slate-500 bg-paperSubtle cursor-pointer flex flex-col gap-2 transition-all" style="font-family: 'Wanted Sans Variable', 'Wanted Sans', sans-serif;">
+              <div class="flex items-center justify-between">
+                <span class="font-semibold text-ink text-sm">1. 원티드 산스 (Wanted)</span>
+                <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-slate-200 text-slate-700">모던 테크 고딕</span>
+              </div>
+              <p class="text-xs text-inkBody leading-relaxed">
+                "AI를 두려워할 필요가 없습니다. 도구를 쥔 인간의 감각이 전부입니다."
+              </p>
+              <span class="text-[11px] text-inkMuted">특징: 토스/원티드 스타일. 프리텐다드의 밋밋함을 벗겨낸 정교하고 단단한 자간.</span>
+            </div>
+
+            <!-- Specimen 2: IBM Plex Sans KR -->
+            <div onclick="setFont('ibm')" class="p-4 rounded-lg border border-borderSubtle hover:border-slate-500 bg-paperSubtle cursor-pointer flex flex-col gap-2 transition-all" style="font-family: 'IBM Plex Sans KR', sans-serif;">
+              <div class="flex items-center justify-between">
+                <span class="font-semibold text-ink text-sm">2. IBM Plex KR</span>
+                <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-slate-200 text-slate-700">테크니컬 아키텍트</span>
+              </div>
+              <p class="text-xs text-inkBody leading-relaxed">
+                "AI를 두려워할 필요가 없습니다. 도구를 쥔 인간의 감각이 전부입니다."
+              </p>
+              <span class="text-[11px] text-inkMuted">특징: 글로벌 기술 명가 IBM 설계. 신뢰감과 구조적 균형미가 돋보이는 엔지니어링 서체.</span>
+            </div>
+
+            <!-- Specimen 3: 본명조 (Noto Serif KR) -->
+            <div onclick="setFont('noto-serif')" class="p-4 rounded-lg border border-borderSubtle hover:border-slate-500 bg-paperSubtle cursor-pointer flex flex-col gap-2 transition-all" style="font-family: 'Noto Serif KR', serif;">
+              <div class="flex items-center justify-between">
+                <span class="font-semibold text-ink text-sm">3. 본명조 (Noto Serif)</span>
+                <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-slate-200 text-slate-700">정통 에디토리얼</span>
+              </div>
+              <p class="text-xs text-inkBody leading-relaxed">
+                "AI를 두려워할 필요가 없습니다. 도구를 쥔 인간의 감각이 전부입니다."
+              </p>
+              <span class="text-[11px] text-inkMuted">특징: 고급 잡지 칼럼·학술 리포트 느낌. AI 특유의 냄새가 사라지고 깊은 인문학적 밀도 형성.</span>
+            </div>
+
+            <!-- Specimen 4: 고운바탕 (Gowun Batang) -->
+            <div onclick="setFont('gowun')" class="p-4 rounded-lg border border-borderSubtle hover:border-slate-500 bg-paperSubtle cursor-pointer flex flex-col gap-2 transition-all" style="font-family: 'Gowun Batang', serif;">
+              <div class="flex items-center justify-between">
+                <span class="font-semibold text-ink text-sm">4. 고운바탕 (Gowun)</span>
+                <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-slate-200 text-slate-700">따뜻한 휴머니스트</span>
+              </div>
+              <p class="text-xs text-inkBody leading-relaxed">
+                "AI를 두려워할 필요가 없습니다. 도구를 쥔 인간의 감각이 전부입니다."
+              </p>
+              <span class="text-[11px] text-inkMuted">특징: 부드러운 붓터치가 느껴지는 감성 명조. 지인과의 대화록이나 회고록에 가장 자연스러운 체감.</span>
+            </div>
+
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ========================================== -->
+      <!-- TAB 1: DEMYSTIFY (Skill & Agent 실체) -->
+      <!-- ========================================== -->
+      <section id="tab-demystify" class="tab-panel hidden flex flex-col gap-6">
+        <div class="border-b border-borderSubtle pb-4 flex flex-col gap-1">
+          <span class="font-mono text-xs font-semibold text-accentTeal uppercase">CHAPTER 01</span>
+          <h2 class="text-2xl font-bold text-ink">Skill과 Agent의 진짜 민낯</h2>
+          <p class="text-inkMuted text-sm">남들이 대단하다고 포장하던 용어들의 껍데기를 벗겨낸 실체입니다.</p>
+        </div>
+
+        <!-- Curated Question Box -->
+        <div class="editorial-quote flex flex-col gap-1">
+          <span class="text-accentTeal font-semibold text-xs uppercase tracking-wider">질문자의 질문</span>
+          <p class="text-ink font-medium leading-relaxed italic">
+            <span class="clause">"남들이 말하는 Skill이나 에이전트들은 대체 안에 뭐가 들어있길래 대단해 보이나요?</span>
+            <span class="clause">제가 모르는 엄청난 딥러닝 기술이 숨어 있는 건가요?"</span>
+          </p>
+        </div>
+
+        <!-- Clean Flat Beginner Translation (No gaudy background/border) -->
+        <div class="border-b border-borderSubtle pb-4 flex flex-col gap-1">
+          <span class="text-xs font-semibold text-accentTeal uppercase tracking-wider">초심자 1초 번역</span>
+          <div class="text-ink font-medium leading-relaxed">
+            <span class="clause">Skill은 알바생에게 쥐어주는 '업무 매뉴얼 종이'이고,</span>
+            <span class="clause">Agent는 그 알바생에게 '계산기랑 스마트폰(도구)을 쥐어준 것'입니다.</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+          <div class="border border-borderSubtle bg-paper p-5 rounded-lg flex flex-col gap-2">
+            <strong class="text-ink text-[15px] flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-accentTeal"></span>
+              Skill의 본질: 자연어 업무 매뉴얼
+            </strong>
+            <div class="text-inkBody leading-relaxed text-xs sm:text-sm">
+              <span class="clause">신경망 모델을 개조하는 복잡한 코드가 아닙니다.</span>
+              <span class="clause text-inkMuted">함께 열어본 <span class="font-mono text-accentTeal font-medium">taste-skill.md</span>처럼,</span>
+              <span class="clause text-inkMuted">"뻔한 보라색 그라데이션 쓰지 마라"고 규칙을 적어둔 텍스트 지침서에 불과합니다.</span>
+            </div>
+          </div>
+
+          <div class="border border-borderSubtle bg-paper p-5 rounded-lg flex flex-col gap-2">
+            <strong class="text-ink text-[15px] flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-accentTeal"></span>
+              Agent의 본질: 손발 달린 루프
+            </strong>
+            <div class="text-inkBody leading-relaxed text-xs sm:text-sm">
+              <span class="clause">챗봇이 방에 갇혀 입만 살아있는 천재라면,</span>
+              <span class="clause">에이전트는 파이썬 함수라는 손발을 쥐어준 구조입니다.</span>
+              <span class="clause text-inkMuted">AI가 "이 함수 좀 실행해줘"라고 쪽지를 보내면 프로그램이 대신 실행해 줍니다.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-paperSubtle border border-borderSubtle p-5 rounded-lg flex flex-col gap-1.5">
+          <span class="text-accentTeal font-semibold text-xs uppercase tracking-wider">에이전트의 단 한 줄 공식</span>
+          <p class="text-ink font-mono font-bold text-base sm:text-lg">
+            Agent = LLM(두뇌의 판단) + Tool(파이썬 함수) + Loop(반복문)
+          </p>
+          <span class="clause text-inkMuted text-xs">도구만 바꾸면 코딩 에이전트, 검색 에이전트, 주식 매매 에이전트로 무한히 변신합니다.</span>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- TAB 2: PRODUCT (Devil's Advocate 실전) -->
+      <!-- ========================================== -->
+      <section id="tab-product" class="tab-panel hidden flex flex-col gap-6">
+        <div class="border-b border-borderSubtle pb-4 flex flex-col gap-1">
+          <span class="font-mono text-xs font-semibold text-accentTeal uppercase">CHAPTER 02</span>
+          <h2 class="text-2xl font-bold text-ink">Devil's Advocate로 도출한 프로덕트 4원칙</h2>
+          <p class="text-inkMuted text-sm">이론에 그치지 않고 로컬에 직접 띄워 테스트하며 찾아낸 실전 설계 원칙입니다.</p>
+        </div>
+
+        <!-- Curated Question Box -->
+        <div class="editorial-quote flex flex-col gap-1">
+          <span class="text-accentTeal font-semibold text-xs uppercase tracking-wider">질문자의 질문</span>
+          <p class="text-ink font-medium leading-relaxed italic">
+            <span class="clause">"디자인이 촌스럽거나 글자가 줄바꿈에서 잘리는 건 참기 힘들어요.</span>
+            <span class="clause">그리고 AI는 왜 자꾸 지루하게 훈계하고 설명충 짓을 할까요?</span>
+            <span class="clause">찰지고 웃기게 만들 수는 없나요?"</span>
+          </p>
+        </div>
+
+        <!-- Clean Flat Beginner Translation -->
+        <div class="border-b border-borderSubtle pb-4 flex flex-col gap-1">
+          <span class="text-xs font-semibold text-accentTeal uppercase tracking-wider">초심자 1초 번역</span>
+          <div class="text-ink font-medium leading-relaxed">
+            <span class="clause">AI는 원래 공부만 한 범생이라 가만히 두면 교장선생님 훈화를 읊습니다.</span>
+            <span class="clause"><strong>"개그맨처럼 멕여라"</strong> 하고 예시를 3개 쥐어주면(Few-shot) 그때부터 미친 듯이 웃겨집니다.</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+          <div class="border border-borderSubtle p-5 rounded-lg flex flex-col gap-1.5">
+            <strong class="text-ink text-[15px]">1. 컬러는 딱 2개만 쓴다 (Anti-Slop)</strong>
+            <span class="clause text-inkBody text-xs sm:text-sm">보라색 네온 같은 AI 양산형 클리셰를 전면 배제했습니다.</span>
+            <span class="clause text-inkMuted text-xs">옵시디언 블랙과 루시퍼 레드 단 2색만 사용하여 날카로운 심문실 분위기를 완성했습니다.</span>
+          </div>
+
+          <div class="border border-borderSubtle p-5 rounded-lg flex flex-col gap-1.5">
+            <strong class="text-ink text-[15px]">2. 한글 줄바꿈 통제 (Typography)</strong>
+            <span class="clause text-inkBody text-xs sm:text-sm">글자가 단어 중간에 뚝뚝 끊기는 피로감을 없앴습니다.</span>
+            <span class="clause text-inkMuted text-xs"><span class="font-mono text-accentTeal font-medium">word-break: keep-all</span>로 어절 단위로 시원하게 읽히도록 강제했습니다.</span>
+          </div>
+
+          <div class="border border-borderSubtle p-5 rounded-lg flex flex-col gap-1.5">
+            <strong class="text-ink text-[15px]">3. 2단 위계로 압축 (No Cognitive Load)</strong>
+            <span class="clause text-inkBody text-xs sm:text-sm">결함 진단, 판결 요약 등 복잡한 라벨들을 전부 지웠습니다.</span>
+            <span class="clause text-inkMuted text-xs">대문짝 펀치라인 하나와 짤막한 서브 팩폭의 2단 구조로 시선이 단번에 꽂히게 만들었습니다.</span>
+          </div>
+
+          <div class="border border-borderSubtle p-5 rounded-lg flex flex-col gap-1.5">
+            <strong class="text-ink text-[15px]">4. 설명충 모드 끄기 (Few-Shot Injection)</strong>
+            <span class="clause text-inkBody text-xs sm:text-sm">칼로리 수치나 과학 통계를 읊는 지루한 AI의 입을 틀어막았습니다.</span>
+            <span class="clause text-inkMuted text-xs">SNL/침착맨 스타일의 찰진 퓨샷 모범 예시를 주입하여 빵 터지는 깐족 멘트를 즉석 생성했습니다.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- TAB 3: HARNESS (하네스 분업과 편향) -->
+      <!-- ========================================== -->
+      <section id="tab-harness" class="tab-panel hidden flex flex-col gap-6">
+        <div class="border-b border-borderSubtle pb-4 flex flex-col gap-1">
+          <span class="font-mono text-xs font-semibold text-accentTeal uppercase">CHAPTER 03</span>
+          <h2 class="text-2xl font-bold text-ink">하네스 분업의 황금률과 오버스펙 방지</h2>
+          <p class="text-inkMuted text-sm">질문자가 보유한 3단계 하네스의 가치와 경계해야 할 뇌절의 기준입니다.</p>
+        </div>
+
+        <!-- Curated Question Box -->
+        <div class="editorial-quote flex flex-col gap-1">
+          <span class="text-accentTeal font-semibold text-xs uppercase tracking-wider">질문자의 질문</span>
+          <p class="text-ink font-medium leading-relaxed italic">
+            <span class="clause">"에이전트가 많을수록 좋다면, 제목 에이전트, 본문 에이전트까지 다 나눠야 하나요?</span>
+            <span class="clause">어디까지 나눠야 전문적이고 어디까지 합쳐야 통일성이 유지되나요?"</span>
+          </p>
+        </div>
+
+        <!-- Clean Flat Beginner Translation -->
+        <div class="border-b border-borderSubtle pb-4 flex flex-col gap-1">
+          <span class="text-xs font-semibold text-accentTeal uppercase tracking-wider">초심자 1초 번역</span>
+          <div class="text-ink font-medium leading-relaxed">
+            <span class="clause">현실 회사처럼 나누면 됩니다.</span>
+            <span class="clause">회사에서 '제목 쓰는 디자이너' 따로 뽑으면 회사가 망하듯이,</span>
+            <span class="clause"><strong>[기획자 1명, 개발자 1명, 검수자 1명]</strong>이 가장 일 잘하는 3인 팀입니다.</span>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-4 text-sm">
+          <div class="border border-borderSubtle p-5 rounded-lg bg-paper flex flex-col gap-1.5">
+            <strong class="text-ink text-[15px]">에이전트 분업의 황금 기준: "실제 사람 조직을 보라"</strong>
+            <span class="clause text-inkBody text-xs sm:text-sm">현실에서 '제목 디자이너'와 '본문 디자이너'를 따로 뽑지 않습니다. 그렇게 쪼개면 통일성이 깨집니다.</span>
+            <span class="clause text-inkMuted text-xs">[기획자 → 제작자 → 검수자]의 3~4인 팀 규모가 가장 완벽한 황금 비율입니다.</span>
+          </div>
+
+          <div class="border border-borderSubtle p-5 rounded-lg bg-paper flex flex-col gap-1.5">
+            <strong class="text-ink text-[15px]">오버스펙(프랑켄슈타인) 방지 3원칙</strong>
+            <span class="clause text-inkBody text-xs sm:text-sm">두 AI의 기획을 무작정 합치면 기능이 2배로 불어난 괴물이 됩니다.</span>
+            <span class="clause text-inkMuted text-xs">최종 기능은 최대 3개로 예산 상한을 걸고, 조율자 AI에게 "50%를 가차 없이 쳐내라"는 감산 지침을 주어야 합니다.</span>
+          </div>
+
+          <div class="border border-borderSubtle p-5 rounded-lg bg-paper flex flex-col gap-1.5">
+            <strong class="text-ink text-[15px]">이종 AI(Heterogeneous) 교차 검증의 정당성</strong>
+            <span class="clause text-inkBody text-xs sm:text-sm">자기가 짠 코드를 스스로 검수하면 자기확증 편향으로 버그를 놓칩니다.</span>
+            <span class="clause text-inkMuted text-xs">Claude가 짠 코드를 Gemini가 검수하도록 단계를 분리한 질문자의 하네스는 글로벌 스탠다드에 부합하는 설계입니다.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- TAB 4: EVAL (12세 라면 로봇과 시험지) -->
+      <!-- ========================================== -->
+      <section id="tab-eval" class="tab-panel hidden flex flex-col gap-6">
+        <div class="border-b border-borderSubtle pb-4 flex flex-col gap-1">
+          <span class="font-mono text-xs font-semibold text-accentTeal uppercase">CHAPTER 04</span>
+          <h2 class="text-2xl font-bold text-ink">12살도 10초 만에 이해하는 에이전트와 시험지</h2>
+          <p class="text-inkMuted text-sm">상위 1% 프로덕션 엔지니어들이 변덕스러운 AI를 길들이는 단 하나의 비밀입니다.</p>
+        </div>
+
+        <!-- Curated Question Box -->
+        <div class="editorial-quote flex flex-col gap-1">
+          <span class="text-accentTeal font-semibold text-xs uppercase tracking-wider">질문자의 질문</span>
+          <p class="text-ink font-medium leading-relaxed italic">
+            <span class="clause">"AI로 게임을 만들 때, 발차기 타격감이 부족하면 AI가 알아서 고치게 할 수는 없나요?</span>
+            <span class="clause">그리고 그 결과물이 진짜 좋아졌는지는 어떻게 검증하나요?"</span>
+          </p>
+        </div>
+
+        <!-- Clean Flat Beginner Translation -->
+        <div class="border-b border-borderSubtle pb-4 flex flex-col gap-1">
+          <span class="text-xs font-semibold text-accentTeal uppercase tracking-wider">초심자 1초 번역</span>
+          <div class="text-ink font-medium leading-relaxed">
+            <span class="clause">사람이 매번 화면을 쳐다볼 필요가 없습니다.</span>
+            <span class="clause"><strong>"타격 순간 화면 흔들림 코드가 들어있는가?"</strong>를 확인하는</span>
+            <span class="clause">10문제짜리 자동 채점 시험지(Eval)를 돌리면 1초 만에 합격/불합격이 나옵니다.</span>
+          </div>
+        </div>
+
+        <div class="bg-paperSubtle border border-borderSubtle rounded-xl p-6 flex flex-col gap-4 text-sm">
+          <span class="font-semibold text-ink text-base">라면 끓이는 AI 로봇 이야기</span>
+          
+          <div class="flex flex-col gap-4">
+            <div>
+              <strong class="text-ink block font-semibold mb-1 text-[15px]">1. AI는 입만 달린 로봇입니다.</strong>
+              <span class="clause text-inkBody text-xs sm:text-sm">라면 끓여달라고 하면 지가 냄비를 잡는 게 아닙니다.</span>
+              <span class="clause text-inkMuted text-xs">개발자한테 "가스레인지 켜줘"라고 부탁 쪽지를 보냅니다. (이게 <strong>Tool Calling</strong>입니다.)</span>
+            </div>
+
+            <div>
+              <strong class="text-ink block font-semibold mb-1 text-[15px]">2. 한 번 잘했다고 안심하면 망합니다.</strong>
+              <span class="clause text-inkBody text-xs sm:text-sm">"라면 하나 줘" 했을 때 잘 끓여서 친구를 초대했습니다.</span>
+              <span class="clause text-inkMuted text-xs">친구가 "계란 빼줘" 하니까 로봇이 고장 나서 멈춰버립니다.</span>
+            </div>
+
+            <div>
+              <strong class="text-ink block font-semibold mb-1 text-[15px]">3. 그래서 '10문제 시험지(Eval)'를 줍니다.</strong>
+              <span class="clause text-inkBody text-xs sm:text-sm">공책에 "매운 라면", "계란 빼기", "2인분" 등 까다로운 주문 10개를 적어둡니다.</span>
+              <span class="clause text-inkMuted text-xs">코드를 고칠 때마다 1초 만에 10문제를 풀게 해서 어제 60점 → 오늘 90점으로 똑똑해졌는지 점수로 확인하는 겁니다.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="border border-borderSubtle p-5 rounded-lg bg-paper text-sm flex flex-col gap-1">
+          <strong class="text-ink font-semibold text-[15px]">시험지는 오답 노트(실패 일기)로 만듭니다</strong>
+          <span class="clause text-inkBody text-xs sm:text-sm">처음부터 거창한 50문제를 만들려 하지 마세요.</span>
+          <span class="clause text-inkMuted text-xs">개발하다가 AI가 헛소리를 할 때마다 그 문장을 메모장에 한 줄씩 적어두는 것만으로 2주 뒤 최고의 모의고사가 완성됩니다.</span>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- TAB 5: EPILOGUE (최종 3x3 제언 & 결론) -->
+      <!-- ========================================== -->
+      <section id="tab-epilogue" class="tab-panel hidden flex flex-col gap-6">
+        <div class="border-b border-borderSubtle pb-4 flex flex-col gap-1">
+          <span class="font-mono text-xs font-semibold text-accentTeal uppercase">FINAL EPILOGUE</span>
+          <h2 class="text-2xl font-bold text-ink">퍼실리테이터의 최종 3 × 3 메시지</h2>
+          <p class="text-inkMuted text-sm">세션을 마무리하며 질문자와 이 글을 읽을 지인들을 위해 남기는 핵심 요약입니다.</p>
+        </div>
+
+        <!-- Curated Question Box -->
+        <div class="editorial-quote flex flex-col gap-1">
+          <span class="text-accentTeal font-semibold text-xs uppercase tracking-wider">질문자의 질문</span>
+          <p class="text-ink font-medium leading-relaxed italic">
+            <span class="clause">"당신이 보기에 나는 지금 냉철하게 어느 위치에 있나요?</span>
+            <span class="clause">그리고 나는 앞으로 무엇을 해야 할까요?"</span>
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          
+          <!-- Column 1: 나에게 -->
+          <div class="border border-borderSubtle rounded-lg p-5 bg-paper flex flex-col gap-3">
+            <span class="font-semibold text-ink text-[15px] border-b border-borderSubtle pb-2">나(빌더)에게 하고 싶은 말</span>
+            <div class="flex flex-col gap-3 text-inkBody leading-relaxed text-xs sm:text-sm">
+              <div>
+                <span class="clause font-medium text-ink">1. 당신은 이미 상위 3%의 무기를 쥐고 있습니다.</span>
+                <span class="clause text-inkMuted text-xs">절대 남들의 겉멋 든 용어에 쫄지 마세요.</span>
+              </div>
+              <div>
+                <span class="clause font-medium text-ink">2. 당신의 진짜 무기는 AI 기술이 아닙니다.</span>
+                <span class="clause text-inkMuted text-xs">UI/UX와 톤앤매너를 가려내는 날카로운 '디렉터 감각'입니다.</span>
+              </div>
+              <div>
+                <span class="clause font-medium text-ink">3. 머릿속으로 은하수를 짓는 완벽주의를 버리세요.</span>
+                <span class="clause text-inkMuted text-xs">끝까지 작동하는 작은 결과물 하나에만 집중하세요.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 2: 이후 할 일 -->
+          <div class="border border-borderSubtle rounded-lg p-5 bg-paper flex flex-col gap-3">
+            <span class="font-semibold text-ink text-[15px] border-b border-borderSubtle pb-2">이 이후에 내가 할 일</span>
+            <div class="flex flex-col gap-3 text-inkBody leading-relaxed text-xs sm:text-sm">
+              <div>
+                <span class="clause font-medium text-ink">1. 복잡한 시스템은 다 치우세요.</span>
+                <span class="clause text-inkMuted text-xs">지금 하네스로 100줄짜리 미니 게임 하나를 끝까지 뽑아보세요.</span>
+              </div>
+              <div>
+                <span class="clause font-medium text-ink">2. AI가 헛소리할 때마다 그냥 넘기지 마세요.</span>
+                <span class="clause text-inkMuted text-xs">그 문장을 메모장에 한 줄씩 적어 '오답 노트'를 만드세요.</span>
+              </div>
+              <div>
+                <span class="clause font-medium text-ink">3. 바깥 소식을 전하는 SNS를 당분간 끄세요.</span>
+                <span class="clause text-inkMuted text-xs">오늘 만든 'Devil's Advocate' 같은 장난감을 세상에 배포해 보세요.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 3: 지인들에게 -->
+          <div class="border border-borderSubtle rounded-lg p-5 bg-paperSubtle flex flex-col gap-3">
+            <span class="font-semibold text-accentTeal text-[15px] border-b border-borderSubtle pb-2">이 글을 읽는 내 친한 지인들에게</span>
+            <div class="flex flex-col gap-3 text-ink leading-relaxed text-xs sm:text-sm">
+              <div>
+                <span class="clause font-medium text-ink">1. AI를 공부하려 하지 마세요.</span>
+                <span class="clause text-inkMuted text-xs">스마트폰 처음 샀을 때처럼 그냥 만지작거리며 익히는 장난감일 뿐입니다.</span>
+              </div>
+              <div>
+                <span class="clause font-medium text-ink">2. SNS의 자극적인 신기술 소음에 휩쓸리지 마세요.</span>
+                <span class="clause text-inkMuted text-xs">오늘 내 일상에서 귀찮은 것 딱 하나만 AI에게 시켜보세요.</span>
+              </div>
+              <div>
+                <span class="clause font-medium text-ink">3. AI 시대의 진짜 경쟁력은 코딩이 아닙니다.</span>
+                <span class="clause text-inkMuted text-xs">내가 원하는 결과를 정확히 집어내는 당신의 취향과 상식입니다.</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+
+    <!-- PERSISTENT FOOTER & SIGNATURE -->
+    <footer class="border-t border-borderSubtle pt-8 mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-inkMuted">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-accentTeal"></span>
+        <span>FACILITATION SESSION SYNTHESIS</span>
+      </div>
+
+      <!-- Signature -->
+      <div class="flex items-center gap-3">
+        <span class="text-inkMuted text-[11px]">Curated & Authored by</span>
+        <span class="font-signature text-2xl text-ink font-bold tracking-wide">
+          ohahbuji
+        </span>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Interactive Scripts -->
+  <script>
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-panel').forEach(panel => {
+        panel.classList.add('hidden');
+      });
+
+      const target = document.getElementById(tabId);
+      if (target) {
+        target.classList.remove('hidden');
+      }
+
+      document.querySelectorAll('.nav-tab').forEach(btn => {
+        btn.classList.remove('active');
+      });
+
+      const activeBtn = document.getElementById('btn-' + tabId);
+      if (activeBtn) {
+        activeBtn.classList.add('active');
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function setFont(fontName) {
+      // Remove all font classes
+      document.body.classList.remove('font-wanted', 'font-ibm', 'font-noto-serif', 'font-gowun', 'font-pretendard');
+      
+      // Add chosen font class
+      document.body.classList.add('font-' + fontName);
+
+      // Update sidebar buttons
+      document.querySelectorAll('.font-switcher-btn').forEach(btn => {
+        btn.classList.remove('bg-white', 'border-slate-300', 'font-medium');
+        btn.classList.add('border-transparent', 'text-inkBody');
+      });
+
+      const activeBtn = document.getElementById('btn-font-' + fontName);
+      if (activeBtn) {
+        activeBtn.classList.remove('border-transparent', 'text-inkBody');
+        activeBtn.classList.add('bg-white', 'border-slate-300', 'font-medium');
+      }
+    }
+  </script>
+
+</body>
+</html>

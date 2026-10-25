@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[5주차 실습] 고의 에러 복구(Rollback) 및 디버깅 랩 — 송도 AI 아카데미</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#0f766e',
+            brandDark: '#115e59',
+            brandLight: '#f0fdfa',
+            ink: '#0f172a',
+            inkBody: '#334155',
+            inkMuted: '#64748b'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.1/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css">
+  <style>
+    * { box-sizing: border-box; word-break: keep-all; font-family: 'Wanted Sans Variable', 'Wanted Sans', sans-serif; }
+    body { background-color: #f8fafc; color: #334155; line-height: 1.7; letter-spacing: -0.015em; }
+  </style>
+</head>
+<body class="min-h-screen py-10 px-4 sm:px-6 md:px-8 flex justify-center">
+
+  <main class="w-full max-w-4xl bg-white border border-slate-200 rounded-3xl shadow-sm p-6 sm:p-12 flex flex-col gap-10">
+
+    <!-- Header -->
+    <header class="flex flex-col gap-3 border-b border-slate-100 pb-6">
+      <div class="flex items-center justify-between text-xs text-slate-500">
+        <span class="px-2.5 py-1 rounded-lg bg-rose-50 text-rose-700 font-bold border border-rose-200">
+          WEEK 05 PRACTICAL KIT
+        </span>
+        <span>송도 AI 아카데미 실전 교구</span>
+      </div>
+      <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-tight">
+        5주차: 에러가 나도 당황하지 않는 심화 디버깅 & 안전 복구(Rollback)
+      </h1>
+      <p class="text-sm text-slate-600">
+        AI가 생성한 코드가 먹통이 되거나 브라우저 콘솔에 빨간 에러가 떴을 때, 패닉 없이 안전 백업본으로 롤백하고 AI에게 증상을 정확히 전달해 원인을 뿌리뽑는 실습 샌드박스입니다.
+      </p>
+    </header>
+
+    <!-- Interactive Debugging Sandbox -->
+    <section class="p-6 rounded-3xl bg-slate-50 border border-slate-200 flex flex-col gap-5">
+      <div class="flex items-center justify-between">
+        <span class="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
+          <span>🧪</span> 실시간 고의 버그 발생 및 복구 시뮬레이터
+        </span>
+        <span id="bug-status" class="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold">
+          정상 상태 (정상 작동 중)
+        </span>
+      </div>
+
+      <!-- Live Mock Component -->
+      <div id="mock-box" class="p-5 rounded-2xl bg-white border border-slate-200 flex flex-col gap-3 transition-all">
+        <div class="flex items-center justify-between">
+          <strong class="text-sm font-bold text-slate-900">수강 신청 데이터 전송 모듈</strong>
+          <span class="text-xs text-slate-400 font-mono">v1.0.0-stable</span>
+        </div>
+        <p class="text-xs text-slate-600">
+          아래 버튼을 누르면 정상적으로 신청 데이터가 처리되어 환영 안내창이 뜹니다.
+        </p>
+        <div class="flex items-center gap-2 pt-2">
+          <button onclick="triggerAction()" id="action-btn" class="px-4 py-2 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs shadow-xs transition-all cursor-pointer">
+            신청서 제출 테스트
+          </button>
+        </div>
+      </div>
+
+      <!-- Controls: Break it vs Fix it -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+        <button onclick="injectBug()" class="py-2.5 px-4 rounded-xl bg-rose-50 hover:bg-rose-100 border border-rose-200 text-rose-700 font-bold text-xs transition-all cursor-pointer flex items-center justify-center gap-1.5">
+          <span>💥 일부러 치명적 버그 심기 (고장 발생)</span>
+        </button>
+        <button onclick="rollbackBackup()" class="py-2.5 px-4 rounded-xl bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 text-emerald-800 font-bold text-xs transition-all cursor-pointer flex items-center justify-center gap-1.5">
+          <span>🛡️ 안전 백업본으로 1클릭 롤백 (복구)</span>
+        </button>
+      </div>
+
+      <!-- F12 Console Error Simulation Log -->
+      <div class="flex flex-col gap-1.5">
+        <span class="text-[11px] font-bold text-slate-500 uppercase">가상 F12 개발자도구 콘솔 창</span>
+        <div id="console-log" class="p-3 bg-slate-950 text-emerald-400 font-mono text-xs rounded-xl min-h-16 flex items-center">
+          &gt; 시스템 준비 완료. 에러 없음. (All systems nominal)
+        </div>
+      </div>
+    </section>
+
+    <!-- 4-Step Error Reporting Framework (The Method) -->
+    <section class="flex flex-col gap-3">
+      <h2 class="text-base font-bold text-slate-900 flex items-center gap-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-teal-600"></span>
+        <span>에러 화면 4단 전달법 (코드를 몰라도 고치는 프롬프트 공식)</span>
+      </h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 text-xs">
+        <div class="p-4 rounded-2xl bg-white border border-slate-200 flex flex-col gap-1">
+          <span class="text-teal-700 font-bold">1단계. 발생 증상</span>
+          <p class="text-slate-600">"신청서 제출 버튼을 눌렀는데 화면에 아무 반응이 없어."</p>
+        </div>
+        <div class="p-4 rounded-2xl bg-white border border-slate-200 flex flex-col gap-1">
+          <span class="text-teal-700 font-bold">2단계. 콘솔 에러</span>
+          <p class="text-slate-600">"F12 콘솔에 'Uncaught TypeError: Cannot read properties...' 라고 떠."</p>
+        </div>
+        <div class="p-4 rounded-2xl bg-white border border-slate-200 flex flex-col gap-1">
+          <span class="text-teal-700 font-bold">3단계. 기대 동작</span>
+          <p class="text-slate-600">"정상이라면 alert 창으로 접수 완료 메시지가 떠야 해."</p>
+        </div>
+        <div class="p-4 rounded-2xl bg-white border border-slate-200 flex flex-col gap-1">
+          <span class="text-teal-700 font-bold">4단계. 마지막 변경</span>
+          <p class="text-slate-600">"직전에 견적기 계산 로직 붙인 이후부터 안 돼."</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Navigation -->
+    <footer class="flex items-center justify-between border-t border-slate-100 pt-6 text-xs text-slate-400">
+      <a href="/courseware/weekly-kits/week04-interactive-calc/index.html" class="hover:text-slate-800 transition-colors">← 4주차 계산기 인터랙션</a>
+      <a href="/courseware/index.html" class="font-bold text-teal-700 hover:underline">📦 코스웨어 허브로 돌아가기</a>
+      <a href="/courseware/weekly-kits/week06-final-launch/index.html" class="hover:text-slate-800 transition-colors">6주차 최종 런칭 & Eval →</a>
+    </footer>
+
+  </main>
+
+  <script>
+    let hasBug = false;
+
+    function triggerAction() {
+      const log = document.getElementById('console-log');
+      if (hasBug) {
+        log.className = 'p-3 bg-slate-950 text-rose-400 font-mono text-xs rounded-xl min-h-16 flex items-center';
+        log.innerHTML = '&gt; Uncaught TypeError: undefined is not a function at Object.submitAction (<anonymous>:4:12)';
+        alert('❌ [화면 멈춤] 오류가 발생했습니다! 브라우저 F12 콘솔 창에 빨간 에러가 출력되었습니다.');
+      } else {
+        log.className = 'p-3 bg-slate-950 text-emerald-400 font-mono text-xs rounded-xl min-h-16 flex items-center';
+        log.innerHTML = '&gt; [200 OK] 신청서가 정상 접수되었습니다. (Response: { success: true })';
+        alert('✅ [정상 작동] 신청서 접수가 성공적으로 처리되었습니다!');
+      }
+    }
+
+    function injectBug() {
+      hasBug = true;
+      document.getElementById('bug-status').className = 'px-2.5 py-0.5 rounded-full bg-rose-100 text-rose-800 text-xs font-bold';
+      document.getElementById('bug-status').innerText = '💥 버그 주입됨 (오류 상태)';
+      document.getElementById('mock-box').classList.add('border-rose-300', 'bg-rose-50/20');
+      document.getElementById('console-log').innerHTML = '&gt; [경고] 의도적인 결함 코드가 주입되었습니다. [신청서 제출]을 눌러보세요.';
+    }
+
+    function rollbackBackup() {
+      hasBug = false;
+      document.getElementById('bug-status').className = 'px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold';
+      document.getElementById('bug-status').innerText = '🛡️ 백업본 복구 완료 (안전 상태)';
+      document.getElementById('mock-box').classList.remove('border-rose-300', 'bg-rose-50/20');
+      document.getElementById('console-log').className = 'p-3 bg-slate-950 text-emerald-400 font-mono text-xs rounded-xl min-h-16 flex items-center';
+      document.getElementById('console-log').innerHTML = '&gt; [복구 성공] backup_v1.0.0 버전으로 안전하게 롤백되었습니다.';
+      alert('🛡️ [롤백 완료] 안전 백업본으로 복원되었습니다. 이제 버튼을 누르면 정상 작동합니다.');
+    }
+  </script>
+
+</body>
+</html>
