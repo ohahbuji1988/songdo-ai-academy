@@ -176,91 +176,210 @@
        2. DAY-1 WIN SIMULATION (Interactive Live Preview)
        ======================================================== -->
     <!-- ========================================================
-       1.5. 4-CUT WEBTOON (The Emotional Niche Hook)
+       1.5. ANIMATED SHORTS & 4-CUT WEBTOON (High-Converting Video & Comic)
        ======================================================== -->
   <section class="py-12 px-6 sm:px-10 max-w-5xl mx-auto">
-    <div class="p-6 sm:p-10 rounded-3xl bg-slate-900 text-white shadow-xl border border-slate-800 flex flex-col gap-8">
+    <div class="p-6 sm:p-10 rounded-3xl bg-slate-900 text-white shadow-2xl border border-slate-800 flex flex-col gap-6">
       
-      <div class="flex flex-col gap-1 text-center items-center">
-        <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xs uppercase tracking-wider border border-emerald-500/30">
-          4컷 공감 웹툰 · 왜 송도 AI 아카데미인가?
-        </span>
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-          "코딩 학원 6개월 다닌 민우(12세)의 진짜 실전 AI 탈출기"
-        </h2>
-        <p class="text-xs sm:text-sm text-slate-400">
-          장난감 블록 맞추기에서 벗어나, 가족에게 진짜 쓸모 있는 웹 도구를 만드는 감동의 여정
-        </p>
+      <!-- Section Header & Mode Toggle -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-slate-800 pb-5">
+        <div class="flex flex-col gap-1 text-center sm:text-left">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xs uppercase tracking-wider border border-emerald-500/30 w-fit mx-auto sm:mx-0">
+            <span>🎬</span> <span>실전 애니메이션 릴스 & 4컷 웹툰</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+            "코딩 학원 6개월 다닌 민우(12세)의 진짜 실전 AI 탈출기"
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-400">
+            장난감 블록 맞추기에서 벗어나, 아빠 매장 실전 계산기를 만드는 감동의 스토리
+          </p>
+        </div>
+
+        <!-- Mode Switcher Buttons -->
+        <div class="flex items-center bg-slate-950 p-1 rounded-xl border border-slate-800 shrink-0 text-xs">
+          <button id="viewModeReelBtn" onclick="switchStoryMode('reel')" class="px-3.5 py-1.5 rounded-lg bg-emerald-600 text-white font-bold transition-all shadow-sm flex items-center gap-1.5">
+            <span>🎬</span> <span>애니 릴스 재생</span>
+          </button>
+          <button id="viewModeGridBtn" onclick="switchStoryMode('grid')" class="px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition-all flex items-center gap-1.5">
+            <span>📖</span> <span>4컷 전체보기</span>
+          </button>
+        </div>
       </div>
 
-      <!-- 4 Comic Strips Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+      <!-- MODE A: ANIMATED SHORTS CINEMA PLAYER -->
+      <div id="storyReelContainer" class="flex flex-col items-center gap-4">
+        
+        <!-- Video Screen Frame (16:9 Cinema Aspect) -->
+        <div class="w-full max-w-3xl aspect-[16/9] rounded-2xl bg-black border-2 border-emerald-500/60 shadow-2xl relative overflow-hidden flex flex-col justify-between group">
+          
+          <!-- Top Story Segment Progress Bars (4 Bars) -->
+          <div class="absolute top-0 left-0 right-0 z-30 p-3 bg-gradient-to-b from-black/80 to-transparent flex items-center gap-1.5">
+            <div class="flex-1 h-1 bg-white/20 rounded-full overflow-hidden">
+              <div id="storyBar0" class="h-full bg-emerald-400 w-0 transition-all duration-100"></div>
+            </div>
+            <div class="flex-1 h-1 bg-white/20 rounded-full overflow-hidden">
+              <div id="storyBar1" class="h-full bg-emerald-400 w-0 transition-all duration-100"></div>
+            </div>
+            <div class="flex-1 h-1 bg-white/20 rounded-full overflow-hidden">
+              <div id="storyBar2" class="h-full bg-emerald-400 w-0 transition-all duration-100"></div>
+            </div>
+            <div class="flex-1 h-1 bg-white/20 rounded-full overflow-hidden">
+              <div id="storyBar3" class="h-full bg-emerald-400 w-0 transition-all duration-100"></div>
+            </div>
+          </div>
+
+          <!-- Top Badge & Scene Counter -->
+          <div class="absolute top-7 left-4 right-4 z-30 flex items-center justify-between text-xs">
+            <span id="reelCutBadge" class="px-2.5 py-0.5 rounded-full bg-emerald-950/80 border border-emerald-500/60 text-emerald-300 font-mono font-bold text-[11px] backdrop-blur">
+              SCENE 01 / 04
+            </span>
+            <button onclick="toggleStoryAudio()" id="audioToggleBtn" class="px-2.5 py-1 rounded-full bg-black/60 hover:bg-black/80 border border-white/20 text-white text-[11px] font-bold backdrop-blur flex items-center gap-1 transition-all">
+              <span id="audioIcon">🔊</span> <span id="audioText">효과음 ON</span>
+            </button>
+          </div>
+
+          <!-- Scene Image with Ken-Burns Motion -->
+          <div class="absolute inset-0 z-10 overflow-hidden">
+            <img id="reelMainImage" src="/assets/story/scene1.jpg" alt="Songdo AI Story Scene" class="w-full h-full object-cover transition-all duration-700 transform scale-100">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/30 pointer-events-none"></div>
+          </div>
+
+          <!-- Floating Character Speech Bubble -->
+          <div class="absolute top-14 left-4 z-20 max-w-md animate-bounce-subtle">
+            <div id="reelSpeechBox" class="p-3 sm:p-4 rounded-2xl bg-slate-900/90 border border-emerald-500/80 text-white shadow-xl backdrop-blur flex items-start gap-3">
+              <span id="reelAvatar" class="text-2xl sm:text-3xl shrink-0">👦</span>
+              <div class="flex flex-col">
+                <span id="reelCharacterName" class="text-[11px] font-extrabold text-emerald-400">민우 (12세)</span>
+                <p id="reelDialogue" class="text-xs sm:text-sm font-bold text-slate-100 leading-snug">
+                  "엄마! 나 코딩 학원에서 고양이가 점프하는 게임 만들었어!"
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Subtitle Bar & Story Narration -->
+          <div class="absolute bottom-3 left-4 right-4 z-20 flex flex-col gap-1 text-center">
+            <div id="reelSubtitleBar" class="px-4 py-2 rounded-xl bg-black/75 border border-white/10 text-xs sm:text-sm font-semibold text-emerald-200 backdrop-blur shadow-lg truncate">
+              학원비 300만 원을 썼지만, 학교 밖에서는 쓸모없는 장난감 코딩의 씁쓸한 현실...
+            </div>
+          </div>
+
+          <!-- Click Overlay: Tap Left for Prev, Tap Right for Next -->
+          <div class="absolute inset-0 z-20 flex">
+            <div onclick="prevStoryScene()" class="w-1/3 h-full cursor-pointer" title="이전 장면 (클릭)"></div>
+            <div onclick="toggleStoryPlay()" class="w-1/3 h-full cursor-pointer" title="재생/일시정지 (클릭)"></div>
+            <div onclick="nextStoryScene()" class="w-1/3 h-full cursor-pointer" title="다음 장면 (클릭)"></div>
+          </div>
+
+        </div>
+
+        <!-- Video Player Bottom Controls -->
+        <div class="w-full max-w-3xl flex flex-wrap items-center justify-between gap-3 text-xs px-2">
+          
+          <div class="flex items-center gap-2">
+            <button onclick="prevStoryScene()" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold transition-all flex items-center gap-1">
+              <span>◀</span> <span>이전</span>
+            </button>
+            <button id="storyPlayBtn" onclick="toggleStoryPlay()" class="px-4 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-extrabold transition-all shadow-md flex items-center gap-1.5">
+              <span id="playBtnIcon">⏸</span> <span id="playBtnText">일시정지</span>
+            </button>
+            <button onclick="nextStoryScene()" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold transition-all flex items-center gap-1">
+              <span>다음</span> <span>▶</span>
+            </button>
+          </div>
+
+          <!-- Scene Quick Dots -->
+          <div class="flex items-center gap-2">
+            <button onclick="jumpStoryScene(0)" class="scene-dot w-2.5 h-2.5 rounded-full bg-emerald-400 transition-all" title="Scene 1"></button>
+            <button onclick="jumpStoryScene(1)" class="scene-dot w-2.5 h-2.5 rounded-full bg-slate-600 transition-all" title="Scene 2"></button>
+            <button onclick="jumpStoryScene(2)" class="scene-dot w-2.5 h-2.5 rounded-full bg-slate-600 transition-all" title="Scene 3"></button>
+            <button onclick="jumpStoryScene(3)" class="scene-dot w-2.5 h-2.5 rounded-full bg-slate-600 transition-all" title="Scene 4"></button>
+          </div>
+
+          <button onclick="openApplyModal()" class="px-4 py-1.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-400 hover:brightness-110 text-slate-950 font-black transition-all shadow-md flex items-center gap-1">
+            <span>✨ 1기 수강 신청하기</span>
+            <span>→</span>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- MODE B: 4-CUT WEBTOON GRID (Card View) -->
+      <div id="storyGridContainer" class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
         
         <!-- Cut 1 -->
-        <div class="p-5 rounded-2xl bg-slate-800/90 border border-slate-700 flex flex-col justify-between gap-4 relative overflow-hidden">
-          <div class="flex items-center justify-between">
-            <span class="px-2 py-0.5 rounded bg-slate-700 text-slate-300 font-mono font-bold text-[11px]">CUT 01</span>
-            <span class="text-xl">🐱</span>
+        <div class="rounded-2xl bg-slate-800/90 border border-slate-700 flex flex-col overflow-hidden shadow-md">
+          <div class="w-full aspect-video overflow-hidden relative">
+            <img src="/assets/story/scene1.jpg" alt="Scene 1" class="w-full h-full object-cover">
+            <span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/70 text-slate-200 font-mono font-bold text-[10px]">CUT 01</span>
           </div>
-          <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 text-slate-200 italic leading-relaxed">
-            "엄마! 나 코딩 학원에서 고양이가 점프하는 게임 만들었어!"
-          </div>
-          <div class="flex flex-col gap-1">
-            <strong class="text-slate-100 font-bold text-sm">6개월의 씁쓸한 현실</strong>
-            <p class="text-slate-400 text-[11px] leading-relaxed">
-              학원비 300만 원을 썼지만, 학교 밖이나 현실 생활에서는 아무 데도 쓸모없는 블록 장난감...
-            </p>
+          <div class="p-4 flex flex-col justify-between gap-2.5 flex-1">
+            <div class="p-2.5 rounded-xl bg-slate-900/80 border border-slate-800 text-slate-200 italic leading-snug">
+              "엄마! 나 코딩 학원에서 고양이가 점프하는 게임 만들었어!"
+            </div>
+            <div class="flex flex-col gap-0.5">
+              <strong class="text-slate-100 font-bold text-sm">6개월의 씁쓸한 현실</strong>
+              <p class="text-slate-400 text-[11px] leading-relaxed">
+                학원비 300만 원을 썼지만, 학교 밖 현실에선 아무 데도 쓸모없는 블록 장난감...
+              </p>
+            </div>
           </div>
         </div>
 
         <!-- Cut 2 -->
-        <div class="p-5 rounded-2xl bg-slate-800/90 border border-slate-700 flex flex-col justify-between gap-4 relative overflow-hidden">
-          <div class="flex items-center justify-between">
-            <span class="px-2 py-0.5 rounded bg-rose-900/60 text-rose-300 font-mono font-bold text-[11px]">CUT 02</span>
-            <span class="text-xl">😱</span>
+        <div class="rounded-2xl bg-slate-800/90 border border-slate-700 flex flex-col overflow-hidden shadow-md">
+          <div class="w-full aspect-video overflow-hidden relative">
+            <img src="/assets/story/scene2.jpg" alt="Scene 2" class="w-full h-full object-cover">
+            <span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-rose-900/80 text-rose-200 font-mono font-bold text-[10px]">CUT 02</span>
           </div>
-          <div class="p-3 rounded-xl bg-rose-950/40 border border-rose-800/60 text-rose-200 italic leading-relaxed">
-            "아빠 가게 도와주려 코드 고쳤더니 화면이 하얗게 멈췄어요 ㅠㅠ"
-          </div>
-          <div class="flex flex-col gap-1">
-            <strong class="text-rose-400 font-bold text-sm">글자 하나에 터지는 공포</strong>
-            <p class="text-slate-400 text-[11px] leading-relaxed">
-              컴퓨터가 고장 난 줄 알고 울먹이며 '난 코딩 체질이 아닌가 봐' 지레 포기해 버리는 아이들.
-            </p>
+          <div class="p-4 flex flex-col justify-between gap-2.5 flex-1">
+            <div class="p-2.5 rounded-xl bg-rose-950/40 border border-rose-800/60 text-rose-200 italic leading-snug">
+              "아빠 가게 도와주려 코드 고쳤더니 화면이 하얗게 멈췄어요 ㅠㅠ"
+            </div>
+            <div class="flex flex-col gap-0.5">
+              <strong class="text-rose-400 font-bold text-sm">글자 하나에 터지는 공포</strong>
+              <p class="text-slate-400 text-[11px] leading-relaxed">
+                컴퓨터가 고장 난 줄 알고 울먹이며 '난 코딩 체질이 아닌가 봐' 지레 포기해 버리는 아이들.
+              </p>
+            </div>
           </div>
         </div>
 
         <!-- Cut 3 -->
-        <div class="p-5 rounded-2xl bg-slate-800/90 border border-slate-700 flex flex-col justify-between gap-4 relative overflow-hidden">
-          <div class="flex items-center justify-between">
-            <span class="px-2 py-0.5 rounded bg-teal-900/60 text-teal-300 font-mono font-bold text-[11px]">CUT 03</span>
-            <span class="text-xl">👨‍🏫</span>
+        <div class="rounded-2xl bg-slate-800/90 border border-slate-700 flex flex-col overflow-hidden shadow-md">
+          <div class="w-full aspect-video overflow-hidden relative">
+            <img src="/assets/story/scene3.jpg" alt="Scene 3" class="w-full h-full object-cover">
+            <span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-teal-900/80 text-teal-200 font-mono font-bold text-[10px]">CUT 03</span>
           </div>
-          <div class="p-3 rounded-xl bg-teal-950/40 border border-teal-800/60 text-teal-200 italic leading-relaxed">
-            "당황하지 마! AI는 우리 인턴이고, 3초 타임머신이 있잖아!"
-          </div>
-          <div class="flex flex-col gap-1">
-            <strong class="text-teal-400 font-bold text-sm">ohahbuji 원장님의 비법</strong>
-            <p class="text-slate-400 text-[11px] leading-relaxed">
-              망가져도 3초 만에 백업본으로 원복! 두려움 제로의 상태에서 AI에게 일시키는 안목을 전수.
-            </p>
+          <div class="p-4 flex flex-col justify-between gap-2.5 flex-1">
+            <div class="p-2.5 rounded-xl bg-teal-950/40 border border-teal-800/60 text-teal-200 italic leading-snug">
+              "당황하지 마! AI는 우리 인턴이고, 3초 타임머신이 있잖아!"
+            </div>
+            <div class="flex flex-col gap-0.5">
+              <strong class="text-teal-400 font-bold text-sm">ohahbuji 원장님의 비법</strong>
+              <p class="text-slate-400 text-[11px] leading-relaxed">
+                망가져도 3초 만에 백업본으로 원복! 두려움 제로의 상태에서 AI에게 일시키는 안목을 전수.
+              </p>
+            </div>
           </div>
         </div>
 
         <!-- Cut 4 -->
-        <div class="p-5 rounded-2xl bg-gradient-to-b from-emerald-950/50 to-slate-800/90 border-2 border-emerald-500 flex flex-col justify-between gap-4 relative overflow-hidden shadow-lg">
-          <div class="flex items-center justify-between">
-            <span class="px-2 py-0.5 rounded bg-emerald-500 text-slate-950 font-mono font-bold text-[11px]">CUT 04</span>
-            <span class="text-xl">🥐</span>
+        <div class="rounded-2xl bg-gradient-to-b from-emerald-950/50 to-slate-800/90 border-2 border-emerald-500 flex flex-col overflow-hidden shadow-lg">
+          <div class="w-full aspect-video overflow-hidden relative">
+            <img src="/assets/story/scene4.jpg" alt="Scene 4" class="w-full h-full object-cover">
+            <span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-emerald-500 text-slate-950 font-mono font-bold text-[10px]">CUT 04</span>
           </div>
-          <div class="p-3 rounded-xl bg-emerald-900/50 border border-emerald-600/60 text-emerald-200 italic leading-relaxed">
-            "아빠 매장 태블릿에 배포 완료! 오늘 주문 싹 다 받았다!"
-          </div>
-          <div class="flex flex-col gap-1">
-            <strong class="text-emerald-400 font-bold text-sm">가족 모두가 감동하는 순간</strong>
-            <p class="text-slate-300 text-[11px] leading-relaxed">
-              12살 아이가 만든 실제 URL 주소가 아빠 가게의 실전 주문 계산기로 살아 숨 쉬는 기적!
-            </p>
+          <div class="p-4 flex flex-col justify-between gap-2.5 flex-1">
+            <div class="p-2.5 rounded-xl bg-emerald-900/50 border border-emerald-600/60 text-emerald-200 italic leading-snug">
+              "아빠 매장 태블릿에 배포 완료! 오늘 주문 싹 다 받았다!"
+            </div>
+            <div class="flex flex-col gap-0.5">
+              <strong class="text-emerald-400 font-bold text-sm">가족 모두가 감동하는 순간</strong>
+              <p class="text-slate-300 text-[11px] leading-relaxed">
+                12살 아이가 만든 실제 URL 주소가 아빠 가게의 실전 주문 계산기로 살아 숨 쉬는 기적!
+              </p>
+            </div>
           </div>
         </div>
 
