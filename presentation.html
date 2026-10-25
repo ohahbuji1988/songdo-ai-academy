@@ -66,6 +66,20 @@
       border: 1px solid #e2e8f0;
       transition: all 0.2s ease;
     }
+    
+    /* In-Place Slide Editor Styles */
+    .editable-slide-element:hover {
+      outline: 2px dashed #059669 !important;
+      cursor: text !important;
+      background-color: rgba(5, 150, 105, 0.08) !important;
+      border-radius: 4px;
+    }
+    .editable-slide-element:focus {
+      outline: 2px solid #059669 !important;
+      background-color: rgba(5, 150, 105, 0.14) !important;
+      border-radius: 4px;
+    }
+
     .card-light:hover {
       background: #ffffff;
       border-color: #cbd5e1;
@@ -127,11 +141,39 @@
       <button onclick="toggleFullscreen()" title="전체화면 (F)" class="px-2.5 py-1.5 rounded-lg border border-slate-200 hover:bg-slate-100 text-slate-700 font-medium text-xs transition-all">
         전체화면 (F)
       </button>
-      <button onclick="window.print()" title="PDF 인쇄" class="px-2.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition-all shadow-sm">
+      <button id="btn-toggle-edit" onclick="toggleEditMode()" title="슬라이드 직접 편집 모드 (단축키 E)" class="px-2.5 py-1.5 rounded-lg border border-slate-200 hover:bg-slate-100 text-slate-700 font-medium text-xs transition-all cursor-pointer">
+        <span id="edit-mode-label">편집 (E)</span>
+      </button>
+      <button id="btn-save-slides" onclick="saveSlidesToServer()" style="display: none;" title="수정한 슬라이드 영구 저장 (Ctrl+S)" class="px-2.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition-all shadow-sm cursor-pointer">
+        <span>저장 (Ctrl+S)</span>
+      </button>
+      <button onclick="window.print()" title="PDF 인쇄" class="px-2.5 py-1.5 rounded-lg border border-slate-200 hover:bg-slate-100 text-slate-700 font-medium text-xs transition-all">
         PDF 인쇄
       </button>
     </div>
   </header>
+
+  <!-- FLOATING EDIT BANNER -->
+  <div id="edit-banner" class="hidden fixed top-14 left-0 right-0 z-40 bg-emerald-50 border-b border-emerald-200 px-6 py-2 flex items-center justify-between text-xs text-emerald-900 backdrop-blur shadow-sm">
+    <div class="flex items-center gap-2">
+      <span class="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
+      <span class="font-bold">슬라이드 직접 편집 켜짐:</span>
+      <span class="text-slate-600">수정하고 싶은 글자를 마우스로 클릭하고 바로 입력하세요. 오와열과 줄바꿈도 유지됩니다.</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <button onclick="saveSlidesToServer()" class="px-3 py-1 rounded bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-xs cursor-pointer">
+        지금 저장하기 (Ctrl+S)
+      </button>
+      <button onclick="toggleEditMode()" class="px-2.5 py-1 rounded bg-white hover:bg-slate-50 text-slate-700 text-xs border border-slate-300 cursor-pointer">
+        편집 종료 (E)
+      </button>
+    </div>
+  </div>
+
+  <!-- FLOATING TOAST -->
+  <div id="edit-toast" class="hidden fixed bottom-16 left-1/2 -translate-x-1/2 z-50 bg-slate-900 text-white text-xs px-4 py-2 rounded-xl shadow-xl transition-all">
+    알림 내용
+  </div>
 
   <!-- ========================================================
        SLIDES CONTAINER (14 Clean Slides, Emojiless, Light Theme)
@@ -164,9 +206,9 @@
     </div>
 
     <!-- SLIDE 2: Step-Up Vision -->
-    <div class="slide flex-col justify-center p-8 sm:p-14 max-w-4xl w-full mx-auto gap-6 slide-canvas rounded-3xl" data-title="AI 활용의 다음 단계" data-note="단순 챗봇 질의응답을 넘어, 스마트폰에서 링크 하나로 즉시 열리는 나만의 웹 도구를 갖는 것이 진짜 자립입니다.">
+    <div class="slide flex-col justify-center p-8 sm:p-14 max-w-4xl w-full mx-auto gap-6 slide-canvas rounded-3xl" data-title="AI를 더 유용하게 쓰는 법" data-note="단순 대화창 질의응답을 넘어, 스마트폰에서 링크 하나로 즉시 열리는 나만의 웹 도구를 갖는 것이 진짜 자립입니다.">
       <div class="flex flex-col gap-1.5">
-        <span class="text-xs font-bold text-emerald-700 uppercase tracking-wider">AI 활용의 다음 단계</span>
+        <span class="text-xs font-bold text-emerald-700 uppercase tracking-wider">AI 한 걸음 더 나아가기</span>
         <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-snug">
           대화창 속 텍스트를 넘어,<br>
           스마트폰에서 열리는 '나만의 실전 웹 도구'로
@@ -175,24 +217,24 @@
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm pt-2">
         <div class="p-5 rounded-2xl card-light flex flex-col gap-2">
-          <span class="text-xs font-mono font-bold text-emerald-700">01. 소장용 웹 링크</span>
-          <strong class="text-slate-900 text-sm">복붙 대신 URL 생성</strong>
+          <span class="text-xs font-bold text-emerald-700">01. 복붙도 OK, 내 작품도 OK!</span>
+          <strong class="text-slate-900 text-sm">소장용 웹 링크 배포</strong>
           <p class="text-slate-600 text-xs leading-relaxed">
-            매번 챗봇에 같은 질문을 치지 않아도, 링크 하나로 온 가족이 바로 쓰는 계산기와 안내 페이지를 배포합니다.
+            매번 대화창에 같은 질문을 치지 않아도, 링크 하나로 온 가족과 고객이 스마트폰에서 바로 쓰는 전용 웹페이지를 완성합니다.
           </p>
         </div>
         <div class="p-5 rounded-2xl card-light flex flex-col gap-2">
-          <span class="text-xs font-mono font-bold text-emerald-700">02. 3초 롤백 복구</span>
-          <strong class="text-slate-900 text-sm">에러 공포의 원천 소멸</strong>
+          <span class="text-xs font-bold text-emerald-700">02. 뜻대로 안 되거나 멈춰도 걱정 제로!</span>
+          <strong class="text-slate-900 text-sm">3초 타임머신 복구</strong>
           <p class="text-slate-600 text-xs leading-relaxed">
-            화면이 하얗게 멈추거나 코드가 꼬여도 당황하지 않고 3초 만에 직전 상태로 복원하는 타임머신 습관을 배웁니다.
+            화면이 하얗게 멈추거나 코드가 꼬여도 당황하지 않고 3초 만에 직전 상태로 복원하는 안전한 복구 습관을 배웁니다.
           </p>
         </div>
         <div class="p-5 rounded-2xl card-light flex flex-col gap-2">
-          <span class="text-xs font-mono font-bold text-emerald-700">03. 고정비 0원 원칙</span>
-          <strong class="text-slate-900 text-sm">투명한 도구 경제성</strong>
+          <span class="text-xs font-bold text-emerald-700">03. 추가 요금 0원, 안심 시작!</span>
+          <strong class="text-slate-900 text-sm">고정비 0원 원칙</strong>
           <p class="text-slate-600 text-xs leading-relaxed">
-            예상치 못한 클라우드 서버 종량제 과금 없이, 이미 보유한 도구와 무료 배포 인프라만으로 완성합니다.
+            예상치 못한 클라우드 서버 종량제 과금 없이, 이미 보유한 무료 도구와 인프라만으로 평생 안전하게 운영합니다.
           </p>
         </div>
       </div>
@@ -209,21 +251,21 @@
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs pt-2">
         <div class="p-5 rounded-2xl card-light flex flex-col gap-2 opacity-60">
-          <span class="text-slate-400 font-mono font-bold">LEVEL 1</span>
+          <span class="text-slate-400 font-bold">LEVEL 1</span>
           <strong class="text-slate-700 text-sm">단순 관망자</strong>
           <p class="text-slate-500 leading-relaxed">
             AI 챗봇에 몇 문장 던져보고 신기해하지만, 대화창 밖으로 나만의 결과물을 꺼내지 못하는 단계.
           </p>
         </div>
         <div class="p-5 rounded-2xl card-light flex flex-col gap-2 opacity-80">
-          <span class="text-slate-500 font-mono font-bold">LEVEL 2</span>
+          <span class="text-slate-500 font-bold">LEVEL 2</span>
           <strong class="text-slate-800 text-sm">블록 조립자</strong>
           <p class="text-slate-600 leading-relaxed">
             남들이 만든 코딩 템플릿을 복붙해 보지만, 에러가 나면 원인을 찾지 못해 포기하는 단계.
           </p>
         </div>
         <div class="p-5 rounded-2xl bg-emerald-50/70 border border-emerald-300 flex flex-col gap-2">
-          <span class="text-emerald-700 font-mono font-bold">LEVEL 3</span>
+          <span class="text-emerald-700 font-bold">LEVEL 3</span>
           <strong class="text-emerald-900 text-sm">실전 디렉터 (우리의 목표)</strong>
           <p class="text-emerald-800 leading-relaxed">
             문법 암기 없이 AI에게 명확한 제약을 지시하고, 당일 배포와 복구를 스스로 완결하는 자립 단계.
@@ -243,21 +285,21 @@
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm pt-2">
         <div class="p-5 rounded-2xl card-light flex flex-col gap-2">
-          <span class="text-xs font-mono font-bold text-emerald-700">약속 01</span>
+          <span class="text-xs font-bold text-emerald-700">약속 01</span>
           <strong class="text-slate-900 text-sm">숨은 종량제 0원 원칙</strong>
           <p class="text-slate-600 text-xs leading-relaxed">
             강의 결제 후 추가 API 비용이나 서버 유지비가 들지 않는 로컬/무료 호스팅 스택을 전수합니다.
           </p>
         </div>
         <div class="p-5 rounded-2xl card-light flex flex-col gap-2">
-          <span class="text-xs font-mono font-bold text-emerald-700">약속 02</span>
+          <span class="text-xs font-bold text-emerald-700">약속 02</span>
           <strong class="text-slate-900 text-sm">Day-1 첫날 즉시 배포</strong>
           <p class="text-slate-600 text-xs leading-relaxed">
             이론만 4주 듣다 지치지 않습니다. 수업 첫날 30분 만에 내 이름이 걸린 실제 웹페이지를 배포합니다.
           </p>
         </div>
         <div class="p-5 rounded-2xl card-light flex flex-col gap-2">
-          <span class="text-xs font-mono font-bold text-emerald-700">약속 03</span>
+          <span class="text-xs font-bold text-emerald-700">약속 03</span>
           <strong class="text-slate-900 text-sm">안티슬롭 정제된 디자인</strong>
           <p class="text-slate-600 text-xs leading-relaxed">
             어색한 번역투 문구와 촌스러운 보라색 AI 템플릿을 배제하고, 애플 감성의 미니멀 UI를 체화합니다.
@@ -284,7 +326,7 @@
           </p>
         </div>
         <div class="flex flex-col items-center justify-center p-5 bg-white border border-slate-200 rounded-xl shadow-sm w-full sm:w-48 text-center shrink-0">
-          <span class="text-3xl font-black text-emerald-700 font-mono">30분</span>
+          <span class="text-3xl font-black text-emerald-700 font-semibold">30분</span>
           <span class="text-[11px] font-semibold text-slate-500 mt-1">소요 시간</span>
         </div>
       </div>
@@ -301,32 +343,32 @@
 
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2.5 text-xs pt-1">
         <div class="p-3.5 rounded-xl card-light flex flex-col gap-1">
-          <span class="font-bold text-emerald-700 font-mono">01주</span>
+          <span class="font-bold text-emerald-700 font-semibold">01주</span>
           <strong class="text-slate-900">조기 배포</strong>
           <span class="text-[11px] text-slate-500">Day-1 라이브 링크</span>
         </div>
         <div class="p-3.5 rounded-xl card-light flex flex-col gap-1">
-          <span class="font-bold text-emerald-700 font-mono">02주</span>
+          <span class="font-bold text-emerald-700 font-semibold">02주</span>
           <strong class="text-slate-900">맥락 주입</strong>
           <span class="text-[11px] text-slate-500">컨텍스트 카드</span>
         </div>
         <div class="p-3.5 rounded-xl card-light flex flex-col gap-1">
-          <span class="font-bold text-emerald-700 font-mono">03주</span>
+          <span class="font-bold text-emerald-700 font-semibold">03주</span>
           <strong class="text-slate-900">UI 디자인</strong>
           <span class="text-[11px] text-slate-500">안티슬롭 원칙</span>
         </div>
         <div class="p-3.5 rounded-xl card-light flex flex-col gap-1">
-          <span class="font-bold text-emerald-700 font-mono">04주</span>
+          <span class="font-bold text-emerald-700 font-semibold">04주</span>
           <strong class="text-slate-900">인터랙션</strong>
           <span class="text-[11px] text-slate-500">실시간 계산 로직</span>
         </div>
         <div class="p-3.5 rounded-xl card-light flex flex-col gap-1">
-          <span class="font-bold text-emerald-700 font-mono">05주</span>
+          <span class="font-bold text-emerald-700 font-semibold">05주</span>
           <strong class="text-slate-900">에러 복구</strong>
           <span class="text-[11px] text-slate-500">3초 롤백 타임머신</span>
         </div>
         <div class="p-3.5 rounded-xl bg-emerald-50/80 border border-emerald-300 flex flex-col gap-1">
-          <span class="font-bold text-emerald-800 font-mono">06주</span>
+          <span class="font-bold text-emerald-800 font-semibold">06주</span>
           <strong class="text-emerald-950">공식 런칭</strong>
           <span class="text-[11px] text-emerald-700">모바일 설치 & 공유</span>
         </div>
@@ -425,22 +467,22 @@
 
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs pt-2">
         <div class="p-4 rounded-2xl card-light flex flex-col gap-1.5">
-          <span class="text-emerald-700 font-mono font-bold">팩 01</span>
+          <span class="text-emerald-700 font-bold">팩 01</span>
           <strong class="text-slate-900 text-xs">Day-1 스타터킷</strong>
           <p class="text-slate-500 text-[11px] leading-relaxed">클릭 한 번으로 즉시 열리는 1주차 기본 템플릿</p>
         </div>
         <div class="p-4 rounded-2xl card-light flex flex-col gap-1.5">
-          <span class="text-emerald-700 font-mono font-bold">팩 02</span>
+          <span class="text-emerald-700 font-bold">팩 02</span>
           <strong class="text-slate-900 text-xs">프롬프트 핸드북</strong>
           <p class="text-slate-500 text-[11px] leading-relaxed">상황별 검증된 지시문 24선 수록</p>
         </div>
         <div class="p-4 rounded-2xl card-light flex flex-col gap-1.5">
-          <span class="text-emerald-700 font-mono font-bold">팩 03</span>
+          <span class="text-emerald-700 font-bold">팩 03</span>
           <strong class="text-slate-900 text-xs">학생 워크북</strong>
           <p class="text-slate-500 text-[11px] leading-relaxed">매주 실습 과제 체크리스트와 핵심 요약</p>
         </div>
         <div class="p-4 rounded-2xl card-light flex flex-col gap-1.5">
-          <span class="text-emerald-700 font-mono font-bold">팩 04</span>
+          <span class="text-emerald-700 font-bold">팩 04</span>
           <strong class="text-slate-900 text-xs">인터랙티브 강의실</strong>
           <p class="text-slate-500 text-[11px] leading-relaxed">웹 브라우저 안에서 실시간 작동하는 27분 교구</p>
         </div>
@@ -597,6 +639,7 @@
     let currentSlideIndex = 0;
 
     function updateSlide() {
+      if (isEditMode) disableSlideEditing();
       slides.forEach((s, i) => {
         if (i === currentSlideIndex) {
           s.classList.add('active');
@@ -607,6 +650,7 @@
           document.title = `${title} | 송도 AI 아카데미 발표 덱`;
           const note = s.getAttribute('data-note') || "작성된 대본이 없습니다.";
           document.getElementById('notes-content').innerText = note;
+          if (isEditMode) enableSlideEditing();
         } else {
           s.classList.remove('active');
         }
@@ -639,12 +683,117 @@
       }
     }
 
+
+    let isEditMode = false;
+
+    function showToast(msg) {
+      const toast = document.getElementById('edit-toast');
+      if (!toast) return;
+      toast.innerText = msg;
+      toast.classList.remove('hidden');
+      setTimeout(() => toast.classList.add('hidden'), 2500);
+    }
+
+    function enableSlideEditing() {
+      const activeSlide = slides[currentSlideIndex];
+      if (!activeSlide) return;
+      const targets = activeSlide.querySelectorAll('h1, h2, h3, h4, p, strong, span:not(.font-signature), div.card-light, td, th');
+      targets.forEach(el => {
+        if (!el.closest('#deck-controls') && !el.closest('#presenter-notes-box') && !el.closest('#edit-banner') && !el.closest('#deck-footer')) {
+          el.setAttribute('contenteditable', 'true');
+          el.classList.add('editable-slide-element');
+        }
+      });
+    }
+
+    function disableSlideEditing() {
+      const targets = document.querySelectorAll('.editable-slide-element');
+      targets.forEach(el => {
+        el.removeAttribute('contenteditable');
+        el.classList.remove('editable-slide-element');
+      });
+    }
+
+    function toggleEditMode() {
+      isEditMode = !isEditMode;
+      const editLabel = document.getElementById('edit-mode-label');
+      const saveBtn = document.getElementById('btn-save-slides');
+      const banner = document.getElementById('edit-banner');
+      if (isEditMode) {
+        if (editLabel) editLabel.innerText = '편집 켜짐 (E)';
+        if (saveBtn) saveBtn.style.display = 'inline-flex';
+        if (banner) banner.classList.remove('hidden');
+        enableSlideEditing();
+        showToast('슬라이드 편집 모드가 켜졌습니다. 수정할 글자를 클릭하세요.');
+      } else {
+        if (editLabel) editLabel.innerText = '편집 (E)';
+        if (saveBtn) saveBtn.style.display = 'none';
+        if (banner) banner.classList.add('hidden');
+        disableSlideEditing();
+        showToast('편집 모드가 종료되었습니다.');
+      }
+    }
+
+    async function saveSlidesToServer() {
+      const saveBtn = document.getElementById('btn-save-slides');
+      if (saveBtn) saveBtn.innerText = '저장 중...';
+
+      disableSlideEditing();
+      const banner = document.getElementById('edit-banner');
+      if (banner) banner.classList.add('hidden');
+      if (saveBtn) saveBtn.style.display = 'none';
+      const editLabel = document.getElementById('edit-mode-label');
+      if (editLabel) editLabel.innerText = '편집 (E)';
+
+      const fullHtml = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+
+      if (isEditMode) {
+        if (saveBtn) saveBtn.style.display = 'inline-flex';
+        if (banner) banner.classList.remove('hidden');
+        if (editLabel) editLabel.innerText = '편집 켜짐 (E)';
+        enableSlideEditing();
+      }
+
+      try {
+        const res = await fetch('/api/save-page', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ page: 'presentation.html', html: fullHtml })
+        });
+        const json = await res.json();
+        if (res.ok && json.success) {
+          if (saveBtn) saveBtn.innerText = '저장 완료!';
+          showToast('presentation.html 파일에 즉시 영구 저장되었습니다.');
+          setTimeout(() => {
+            if (saveBtn) saveBtn.innerText = '저장 (Ctrl+S)';
+          }, 2000);
+        } else {
+          alert('저장 실패: ' + (json.error || '알 수 없는 오류'));
+        }
+      } catch (err) {
+        alert('서버 통신 오류: ' + err.message);
+      }
+    }
+
     window.addEventListener('keydown', (e) => {
+      if (e.target && e.target.isContentEditable) {
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
+          e.preventDefault();
+          saveSlidesToServer();
+        }
+        return;
+      }
       if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') nextSlide();
       else if (e.key === 'ArrowLeft' || e.key === 'PageUp') prevSlide();
       else if (e.key === 'n' || e.key === 'N') toggleNotes();
       else if (e.key === 'f' || e.key === 'F') toggleFullscreen();
-      else if (e.key === 'Home') { currentSlideIndex = 0; updateSlide(); }
+      else if (e.key === 'e' || e.key === 'E') {
+        e.preventDefault();
+        toggleEditMode();
+      } else if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
+        e.preventDefault();
+        saveSlidesToServer();
+      } else if (e.key === 'Home') { currentSlideIndex = 0; updateSlide(); }
       else if (e.key === 'End') { currentSlideIndex = totalSlides - 1; updateSlide(); }
     });
 
