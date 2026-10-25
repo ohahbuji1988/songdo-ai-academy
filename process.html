@@ -384,5 +384,112 @@
   </main>
 </div>
 
+  <!-- PROCESS PAGE INTERACTION & EDIT SCRIPT -->
+  <script>
+    let isProcessEditMode = false;
+
+    function goBackToPortal() {
+      window.location.href = '/landing.html';
+    }
+
+    function switchToTab(event, tabName) {
+      return true;
+    }
+
+    function enableProcessEditing() {
+      const targets = document.querySelectorAll('main h1, main h2, main h3, main h4, main p, main span, main strong, main li, main td, main th');
+      targets.forEach(el => {
+        if (el.closest('button') || el.closest('a') || el.closest('#process-edit-banner') || el.closest('header')) return;
+        el.setAttribute('contenteditable', 'true');
+        el.classList.add('editable-process-element');
+      });
+    }
+
+    function disableProcessEditing() {
+      const targets = document.querySelectorAll('.editable-process-element');
+      targets.forEach(el => {
+        el.removeAttribute('contenteditable');
+        el.classList.remove('editable-process-element');
+      });
+    }
+
+    function toggleProcessEditMode() {
+      isProcessEditMode = !isProcessEditMode;
+      const banner = document.getElementById('process-edit-banner');
+      const btnText = document.getElementById('process-edit-btn-text');
+      const saveBtn = document.getElementById('btn-save-process');
+
+      if (isProcessEditMode) {
+        if (banner) banner.classList.remove('hidden');
+        if (btnText) btnText.innerText = '편집 종료 (E)';
+        if (saveBtn) saveBtn.style.display = 'inline-flex';
+        enableProcessEditing();
+        showProcessToast('공정 로드맵 직접 수정 모드가 켜졌습니다. (Ctrl+S로 영구 저장)');
+      } else {
+        if (banner) banner.classList.add('hidden');
+        if (btnText) btnText.innerText = '편집 (E)';
+        if (saveBtn) saveBtn.style.display = 'none';
+        disableProcessEditing();
+        showProcessToast('수정 모드가 종료되었습니다.');
+      }
+    }
+
+    async function saveProcessToServer() {
+      const banner = document.getElementById('process-edit-banner');
+      const saveBtn = document.getElementById('btn-save-process');
+
+      disableProcessEditing();
+      if (banner) banner.classList.add('hidden');
+
+      const fullHtml = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+
+      if (isProcessEditMode) {
+        if (banner) banner.classList.remove('hidden');
+        enableProcessEditing();
+      }
+
+      try {
+        const res = await fetch('/api/save-page', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ page: 'process.html', html: fullHtml })
+        });
+        const json = await res.json();
+        if (res.ok && json.success) {
+          showProcessToast('✅ 공정 로드맵(process.html)이 영구 저장되었습니다!');
+        } else {
+          alert('저장 실패: ' + (json.error || '알 수 없는 오류'));
+        }
+      } catch (err) {
+        console.error(err);
+        alert('저장 중 통신 오류가 발생했습니다.');
+      }
+    }
+
+    function showProcessToast(msg) {
+      const toast = document.getElementById('process-toast');
+      if (!toast) return;
+      toast.innerText = msg;
+      toast.classList.remove('hidden');
+      setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 2500);
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'e' || e.key === 'E') {
+        const active = document.activeElement;
+        if (active && (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA' || active.getAttribute('contenteditable') === 'true')) {
+          return;
+        }
+        e.preventDefault();
+        toggleProcessEditMode();
+      }
+      if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'S')) {
+        e.preventDefault();
+        saveProcessToServer();
+      }
+    });
+  </script>
 </body>
 </html>

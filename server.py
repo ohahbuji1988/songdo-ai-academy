@@ -1,6 +1,8 @@
 import os
 import sys
 import json
+import time
+from datetime import datetime
 import urllib.request
 import urllib.error
 import webbrowser
@@ -51,6 +53,23 @@ class ContentStore:
 
     def save_curriculum_data(self, data: dict) -> None:
         self.save_file('curriculum_data.json', json.dumps(data, ensure_ascii=False, indent=2))
+
+    def save_application(self, record: dict) -> None:
+        app_file = os.path.join(self.base_dir, 'applications.json')
+        applications = []
+        if os.path.exists(app_file):
+            try:
+                with open(app_file, 'r', encoding='utf-8') as f:
+                    applications = json.load(f)
+                    if not isinstance(applications, list):
+                        applications = []
+            except Exception:
+                applications = []
+        applications.append(record)
+        tmp_path = app_file + '.tmp'
+        with open(tmp_path, 'w', encoding='utf-8') as f:
+            json.dump(applications, f, ensure_ascii=False, indent=2)
+        os.replace(tmp_path, app_file)
 
     def save_file(self, rel_path: str, content: str) -> str:
         clean_path = rel_path.replace('\\', '/').strip('/')
@@ -201,6 +220,13 @@ class DevilServerHandler(SimpleHTTPRequestHandler):
 
     def do_GET(self):
         clean_path = self.path.split('?')[0]
+
+        # Security Guard: Block dotfiles (.env, .git, .DS_Store, etc.)
+        path_parts = [p for p in clean_path.split('/') if p]
+        if any(p.startswith('.') for p in path_parts):
+            self.send_error_json(403, "비공개 시스템 파일 접근이 제한되었습니다.")
+            return
+
         if clean_path == '/api/curriculum-data':
             try:
                 data = self.content_store.get_curriculum_data()
@@ -251,6 +277,34 @@ class DevilServerHandler(SimpleHTTPRequestHandler):
             except Exception as e:
                 self.send_error_json(500, f"저장 실패: {str(e)}")
 
+        elif clean_path == '/api/apply':
+            name = str(body.get('name', '')).strip()
+            phone = str(body.get('phone', '')).strip()
+            track = str(body.get('track', 'regular')).strip()
+            note = str(body.get('note', '')).strip()
+
+            if not name or not phone:
+                self.send_error_json(400, "성함과 연락처는 필수 입력 항목입니다.")
+                return
+
+            try:
+                record = {
+                    "id": f"APP-{int(time.time()*1000)}",
+                    "name": name,
+                    "phone": phone,
+                    "track": track,
+                    "note": note,
+                    "created_at": datetime.now().isoformat()
+                }
+                self.content_store.save_application(record)
+                self.send_json_response(200, {
+                    "success": True,
+                    "message": f"{name}님의 송도 1기 수강 신청이 정상 접수되었습니다.",
+                    "record": record
+                })
+            except Exception as e:
+                self.send_error_json(500, f"수강 신청 저장 실패: {str(e)}")
+
         elif clean_path == '/api/save-curriculum-data':
             try:
                 self.content_store.save_curriculum_data(body)
@@ -300,8 +354,8 @@ class DevilServerHandler(SimpleHTTPRequestHandler):
 
 if __name__ == '__main__':
     load_env()
-    print(f"[Songdo AI Suite Server] running at http://localhost:{PORT}")
-    server = HTTPServer(('', PORT), DevilServerHandler)
+    print(f"[Songdo AI Suite Server] running at http://127.0.0.1:{PORT}")
+    server = HTTPServer(('127.0.0.1', PORT), DevilServerHandler)
     try:
         server.serve_forever()
     except KeyboardInterrupt:

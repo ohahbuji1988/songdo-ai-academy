@@ -1087,52 +1087,52 @@
  function closeApplyModal() {
  document.getElementById('apply-modal').classList.add('hidden');
  }
- function handleApplySubmit(e) {
- e.preventDefault();
- const name = document.getElementById('app-name').value;
- const phone = document.getElementById('app-phone').value;
- const track = document.getElementById('app-track').value;
+ async function handleApplySubmit(e) {
+    e.preventDefault();
+    const name = (document.getElementById('app-name')?.value || '').trim();
+    const phone = (document.getElementById('app-phone')?.value || '').trim();
+    const track = document.getElementById('app-track')?.value || 'regular';
+    const note = (document.getElementById('app-note')?.value || '').trim();
+    const submitBtn = e.target.querySelector('button[type="submit"]');
 
- closeApplyModal();
- alert(`[신청 접수 완료]\n\n${name}님, 송도 1기 수강 신청이 정상 접수되었습니다!\n입력하신 번호(${phone})로 상세 강의실 위치 및 안내 문자를 발송해 드립니다.`);
- }
- </script>
+    if (!name || !phone) {
+      alert('성함과 휴대폰 번호를 모두 입력해 주세요.');
+      return;
+    }
 
- <script>
- let isLandingEditMode = false;
+    const prevBtnText = submitBtn ? submitBtn.innerText : '';
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerText = '신청 접수 처리 중...';
+    }
 
- function enableLandingEditing() {
- const targets = document.querySelectorAll('main h1, main h2, main h3, main h4, main p, main span, main strong, main li, main td, main th, header h1, header span, section h1, section h2, section h3, section p, section span, section strong, section li');
- targets.forEach(el => {
- if (el.closest('button') || el.closest('a') || el.closest('#apply-modal') || el.closest('#landing-edit-banner') || el.closest('#floating-edit-btn')) return;
- el.setAttribute('contenteditable', 'true');
- el.classList.add('editable-landing-element');
- });
- }
+    try {
+      const res = await fetch('/api/apply', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, phone, track, note })
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        closeApplyModal();
+        alert(`[신청 접수 완료]
 
- function disableLandingEditing() {
- const targets = document.querySelectorAll('.editable-landing-element');
- targets.forEach(el => {
- el.removeAttribute('contenteditable');
- el.classList.remove('editable-landing-element');
- });
- }
-
- function toggleLandingEditMode() {
- isLandingEditMode = !isLandingEditMode;
- const banner = document.getElementById('landing-edit-banner');
- const floatBtn = document.getElementById('floating-edit-btn');
-
- if (isLandingEditMode) {
- if (banner) banner.classList.remove('hidden');
- if (floatBtn) floatBtn.innerHTML = '<span>✏️</span> <span>편집 켜짐 (E)</span>';
- enableLandingEditing();
- } else {
- if (banner) banner.classList.add('hidden');
- if (floatBtn) floatBtn.innerHTML = '<span>✏️</span> <span>화면 직접 수정 (E)</span>';
- disableLandingEditing();
- }
- }
+${name}님, 송도 1기 수강 신청이 정상 접수되었습니다!
+입력하신 번호(${phone})로 상세 강의실 입장 안내 문자를 발송해 드립니다.`);
+        e.target.reset();
+      } else {
+        alert('신청 접수 실패: ' + (data.error || '잠시 후 다시 시도해 주세요.'));
+      }
+    } catch (err) {
+      console.error(err);
+      alert('서버와 통신할 수 없습니다. 로컬 서버 상태를 확인해 주세요.');
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerText = prevBtnText;
+      }
+    }
+  }
 
  async function saveLandingToServer() {
  const banner = document.getElementById('landing-edit-banner');
@@ -1279,9 +1279,7 @@
  }
  }
 
- }
-
- // ========================================================
+  // ========================================================
  // 2. INTERACTIVE 10-SECOND LIVE FAMILY SIMULATOR
  // ========================================================
  let demoCounts = { bread: 2, coffee: 1 };

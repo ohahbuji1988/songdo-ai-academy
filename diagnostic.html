@@ -328,7 +328,7 @@
             </button>
           </div>
 
-          <a href="/landing.html#curriculum" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm text-center shadow-lg transition-all active:scale-[0.98]">
+          <a href="/landing.html#section-tuition" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm text-center shadow-lg transition-all active:scale-[0.98]">
             <span>6주 정규 과정 신청하기 &rarr;</span>
           </a>
         </div>
@@ -545,13 +545,13 @@
       optEl.innerHTML = '';
       q.options.forEach((opt, idx) => {
         const btn = document.createElement('button');
-        btn.className = "p-4 sm:p-5 rounded-2xl glass-card hover:border-emerald-400/80 text-left transition-all flex items-start gap-3.5 group cursor-pointer text-xs sm:text-sm active:scale-[0.99]";
+        btn.className = "p-4 sm:p-5 rounded-2xl glass-card hover:border-emerald-500 text-left transition-all flex items-start gap-3.5 group cursor-pointer text-xs sm:text-sm active:scale-[0.99]";
         btn.onclick = () => selectOption(opt.score);
         btn.innerHTML = `
-          <span class="w-7 h-7 rounded-lg bg-obsidian-850 border border-obsidian-700 text-slate-400 group-hover:bg-emerald-500 group-hover:text-slate-950 group-hover:border-emerald-400 flex items-center justify-center font-mono font-bold text-xs shrink-0 transition-all option-key">
+          <span class="w-7 h-7 rounded-lg bg-slate-100 border border-slate-300 text-slate-700 group-hover:bg-emerald-600 group-hover:text-white group-hover:border-emerald-600 flex items-center justify-center font-mono font-bold text-xs shrink-0 transition-all option-key">
             ${String.fromCharCode(65 + idx)}
           </span>
-          <span class="text-slate-200 group-hover:text-white font-medium leading-relaxed pt-0.5">
+          <span class="text-slate-800 group-hover:text-slate-950 font-medium leading-relaxed pt-0.5">
             ${opt.label}
           </span>
         `;
@@ -577,10 +577,14 @@
       }
     }
 
+    let keyListenersInitialized = false;
     function setupKeyListeners() {
+      if (keyListenersInitialized) return;
+      keyListenersInitialized = true;
       window.addEventListener('keydown', (e) => {
+        if (e.repeat) return; // Prevent repeated triggers from key hold
         const quizCard = document.getElementById('quizCard');
-        if (quizCard.classList.contains('hidden')) return;
+        if (!quizCard || quizCard.classList.contains('hidden')) return;
 
         const key = e.key.toUpperCase();
         if (['A', '1'].includes(key)) {
