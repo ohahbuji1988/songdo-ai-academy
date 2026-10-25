@@ -224,9 +224,10 @@
           </button>
         </div>
 
-        <!-- Main Image -->
-        <div class="absolute inset-0 z-10 overflow-hidden">
-          <img id="portalMainImage" src="/assets/story/scene1.jpg" alt="Portal Story Scene" class="w-full h-full object-cover transition-all duration-700">
+        <!-- Main Video / Image -->
+        <div class="absolute inset-0 z-10 overflow-hidden bg-black flex items-center justify-center">
+          <video id="portalVideoPlayer" src="/assets/story/scene1.mp4" poster="/assets/story/scene1.jpg" autoplay muted playsinline class="w-full h-full object-cover transition-opacity duration-500"></video>
+          <img id="portalMainImage" src="/assets/story/scene1.jpg" alt="Portal Story Scene" class="hidden w-full h-full object-cover transition-all duration-700">
           <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/30 pointer-events-none"></div>
         </div>
 
@@ -517,6 +518,7 @@
       {
         cut: "SCENE 01 / 04 · 씁쓸한 현실",
         image: "/assets/story/scene1.jpg",
+        video: "/assets/story/scene1.mp4",
         avatar: "👦",
         character: "민우 (12세)",
         dialogue: '"엄마! 나 코딩 학원에서 고양이가 점프하는 게임 만들었어!"',
@@ -526,6 +528,7 @@
       {
         cut: "SCENE 02 / 04 · 공포의 멘붕",
         image: "/assets/story/scene2.jpg",
+        video: "/assets/story/scene2.mp4",
         avatar: "😱",
         character: "민우 (멘붕)",
         dialogue: '"아빠 가게 도와주려 코드 고쳤더니 화면이 하얗게 멈췄어요 ㅠㅠ"',
@@ -535,6 +538,7 @@
       {
         cut: "SCENE 03 / 04 · 원장님의 구원",
         image: "/assets/story/scene3.jpg",
+        video: "/assets/story/scene3.mp4",
         avatar: "👨‍🏫",
         character: "ohahbuji 원장님",
         dialogue: '"당황하지 마! AI는 우리 인턴이고, 3초 타임머신이 있잖아!"',
@@ -544,6 +548,7 @@
       {
         cut: "SCENE 04 / 04 · 가족 감동 실전 성공",
         image: "/assets/story/scene4.jpg",
+        video: "/assets/story/scene4.mp4",
         avatar: "🥐",
         character: "민우 & 아빠",
         dialogue: '"아빠 매장 태블릿에 배포 완료! 오늘 주문 싹 다 받았다!"',
@@ -579,6 +584,7 @@
       portalProgress = 0;
       const data = PORTAL_SCENES[idx];
 
+      const videoEl = document.getElementById('portalVideoPlayer');
       const imgEl = document.getElementById('portalMainImage');
       const badgeEl = document.getElementById('portalCutBadge');
       const avatarEl = document.getElementById('portalAvatar');
@@ -586,10 +592,20 @@
       const dialogueEl = document.getElementById('portalDialogue');
       const subEl = document.getElementById('portalSubtitleBar');
 
+      if (videoEl && data.video) {
+        if (!videoEl.src.endsWith(data.video)) {
+          videoEl.src = data.video;
+        }
+        videoEl.poster = data.image;
+        videoEl.currentTime = 0;
+        if (isPortalPlaying) {
+          videoEl.play().catch(() => {});
+        } else {
+          videoEl.pause();
+        }
+      }
       if (imgEl) {
-        imgEl.style.opacity = '0.3';
         imgEl.src = data.image;
-        setTimeout(() => { imgEl.style.opacity = '1'; }, 50);
       }
       if (badgeEl) badgeEl.innerText = data.cut;
       if (avatarEl) avatarEl.innerText = data.avatar;
