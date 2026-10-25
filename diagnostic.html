@@ -40,58 +40,61 @@
     .font-signature {
       font-family: 'Caveat', cursive !important;
     }
-    /* Glassmorphism & Micro-borders */
+    /* Apple-grade Light Theme */
     .glass-panel {
-      background: rgba(12, 17, 28, 0.75);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.03);
     }
     .glass-card {
-      background: rgba(17, 23, 38, 0.6);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      transition: all 0.18s ease;
     }
     .glass-card:hover {
-      background: rgba(23, 32, 51, 0.8);
-      border-color: rgba(16, 185, 129, 0.4);
+      background: #ffffff;
+      border-color: #cbd5e1;
+      box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.05);
     }
     .option-key {
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.15), 0 2px 4px rgba(0,0,0,0.3);
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      color: #334155;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
     }
     /* Print Styles for Certificate */
     @media print {
-      body { background: #000 !important; color: #fff !important; }
+      body { background: #ffffff !important; color: #000000 !important; }
       header, #printHideBtn, #introCard, #quizCard { display: none !important; }
       #resultCard { display: block !important; margin: 0 !important; padding: 0 !important; }
     }
   </style>
 </head>
-<body class="bg-obsidian-950 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-emerald-500 selection:text-black">
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between selection:bg-emerald-100 selection:text-emerald-900">
 
-  <!-- TOP HEADER -->
-  <header class="h-16 border-b border-obsidian-800 bg-obsidian-900/90 backdrop-blur-xl sticky top-0 z-40 px-5 sm:px-10 flex items-center justify-between">
+  <!-- TOP HEADER (Light) -->
+  <header class="h-16 border-b border-slate-200 bg-white/95 backdrop-blur-md sticky top-0 z-40 px-5 sm:px-10 flex items-center justify-between">
     <div class="flex items-center gap-3">
-      <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center font-black text-slate-950 text-sm shadow-lg shadow-emerald-500/20">
+      <div class="w-8 h-8 rounded-lg bg-emerald-600 flex items-center justify-center text-white font-black text-xs shadow-sm">
         AI
       </div>
       <div class="flex items-center gap-2">
         <div class="flex flex-col">
           <div class="flex items-center gap-1.5">
-            <span class="text-xs font-black tracking-tight text-white leading-none">SONGDO AI ACADEMY</span>
-            <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">12문항 정밀 진단</span>
+            <span class="text-xs font-black tracking-tight text-slate-900 leading-none">SONGDO AI ACADEMY</span>
+            <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">12문항 정밀 진단 (Light)</span>
           </div>
-          <span class="text-[10px] text-slate-400 mt-0.5">실전 AI 자립 역량 진단 매트릭스</span>
+          <span class="text-[10px] text-slate-500 mt-0.5">실전 AI 자립 역량 진단 매트릭스</span>
         </div>
-        <span class="font-signature text-2xl sm:text-3xl text-emerald-400 font-bold select-none ml-2 tracking-wide leading-none">ohahbuji</span>
+        <span class="font-signature text-2xl sm:text-3xl text-emerald-700 font-bold select-none ml-2 tracking-wide leading-none">ohahbuji</span>
       </div>
     </div>
 
     <div class="flex items-center gap-2">
-      <a href="/landing.html" class="px-3 py-1.5 rounded-xl border border-obsidian-700 hover:bg-obsidian-800 text-slate-300 hover:text-white text-xs font-bold transition-all flex items-center gap-1.5">
+      <a href="/landing.html" class="px-3 py-1.5 rounded-xl border border-slate-200 hover:bg-slate-100 text-slate-700 text-xs font-bold transition-all flex items-center gap-1.5">
         <span>모집 랜딩</span>
       </a>
-      <a href="/courseware/lessons.html" class="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-400 hover:brightness-110 text-slate-950 text-xs font-black transition-all shadow-md flex items-center gap-1">
+      <a href="/courseware/lessons.html" class="px-3.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all shadow-xs flex items-center gap-1">
         <span>실전 강의실</span>
       </a>
     </div>
@@ -106,46 +109,46 @@
       <div class="absolute -top-24 -left-24 w-80 h-80 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none"></div>
       <div class="absolute -bottom-24 -right-24 w-80 h-80 rounded-full bg-teal-500/10 blur-3xl pointer-events-none"></div>
 
-      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold">
         <span>12문항 실전 자가진단 매트릭스</span>
       </div>
 
-      <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
+      <h1 class="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight">
         "당신은 AI의 단순 관망자입니까,<br>
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-300">진짜 문제를 푸는 실전 디렉터입니까?</span>"
+        <span class="text-emerald-700">진짜 문제를 푸는 실전 디렉터입니까?</span>"
       </h1>
 
-      <p class="text-slate-300 text-sm sm:text-base max-w-2xl leading-relaxed">
+      <p class="text-slate-600 text-sm sm:text-base max-w-2xl leading-relaxed">
         기초 상식이나 코딩 문법 시험이 아닙니다. 일상에서 내가 AI를 대하는 <strong>진짜 행동 습관, 에러 대처, 도구 경제성, 제품 자립력</strong>의 4대 영역 12문항을 종합 분석하여 현재 나의 자립 레벨과 맞춤형 6주 처방전을 발급해 드립니다.
       </p>
 
       <!-- 4 Diagnostic Dimensions Preview -->
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full text-left text-xs pt-2">
         <div class="p-3.5 rounded-2xl glass-card flex flex-col gap-1 border-t-2 border-t-emerald-500">
-          <span class="text-emerald-400 font-mono font-bold text-[10px]">DIMENSION 1</span>
-          <strong class="text-white font-bold text-xs">프롬프트 지시력</strong>
-          <span class="text-slate-400 text-[11px]">역할/제약/맥락 엔지니어링</span>
+          <span class="text-emerald-700 font-mono font-bold text-[10px]">DIMENSION 1</span>
+          <strong class="text-slate-900 font-bold text-xs">프롬프트 지시력</strong>
+          <span class="text-slate-500 text-[11px]">역할/제약/맥락 엔지니어링</span>
         </div>
         <div class="p-3.5 rounded-2xl glass-card flex flex-col gap-1 border-t-2 border-t-teal-400">
-          <span class="text-teal-400 font-mono font-bold text-[10px]">DIMENSION 2</span>
-          <strong class="text-white font-bold text-xs">에러 면역 & 복구력</strong>
-          <span class="text-slate-400 text-[11px]">3초 타임머신 롤백 & 디버깅</span>
+          <span class="text-emerald-700 font-mono font-bold text-[10px]">DIMENSION 2</span>
+          <strong class="text-slate-900 font-bold text-xs">에러 면역 & 복구력</strong>
+          <span class="text-slate-500 text-[11px]">3초 타임머신 롤백 & 디버깅</span>
         </div>
         <div class="p-3.5 rounded-2xl glass-card flex flex-col gap-1 border-t-2 border-t-cyan-400">
-          <span class="text-cyan-400 font-mono font-bold text-[10px]">DIMENSION 3</span>
-          <strong class="text-white font-bold text-xs">실전 웹 배포력</strong>
-          <span class="text-slate-400 text-[11px]">URL 생성 & 실사용자 전달</span>
+          <span class="text-emerald-700 font-mono font-bold text-[10px]">DIMENSION 3</span>
+          <strong class="text-slate-900 font-bold text-xs">실전 웹 배포력</strong>
+          <span class="text-slate-500 text-[11px]">URL 생성 & 실사용자 전달</span>
         </div>
         <div class="p-3.5 rounded-2xl glass-card flex flex-col gap-1 border-t-2 border-t-sky-400">
-          <span class="text-sky-400 font-mono font-bold text-[10px]">DIMENSION 4</span>
-          <strong class="text-white font-bold text-xs">도구 경제성</strong>
-          <span class="text-slate-400 text-[11px]">추가 과금 0원 & 지속가능성</span>
+          <span class="text-emerald-700 font-mono font-bold text-[10px]">DIMENSION 4</span>
+          <strong class="text-slate-900 font-bold text-xs">도구 경제성</strong>
+          <span class="text-slate-500 text-[11px]">추가 과금 0원 & 지속가능성</span>
         </div>
       </div>
 
       <!-- Start CTA -->
       <div class="flex flex-col items-center gap-2 pt-2">
-        <button onclick="startDiagnostic()" class="px-8 py-4 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-400 hover:brightness-110 text-slate-950 font-black text-sm sm:text-base shadow-xl transition-all cursor-pointer flex items-center gap-2.5 active:scale-[0.98]">
+        <button onclick="startDiagnostic()" class="px-8 py-4 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm sm:text-base shadow-xl transition-all cursor-pointer flex items-center gap-2.5 active:scale-[0.98]">
           <span>12문항 정밀 진단 시작하기 (소요시간 약 3분)</span>
           <span>→</span>
         </button>
@@ -157,21 +160,21 @@
     <div id="quizCard" class="hidden glass-panel p-6 sm:p-10 rounded-3xl shadow-2xl flex flex-col gap-6 relative">
       
       <!-- Top Meta: Dimension Pill + Question Counter -->
-      <div class="flex flex-col gap-3 border-b border-obsidian-800 pb-4">
+      <div class="flex flex-col gap-3 border-b border-slate-200 pb-4">
         <div class="flex items-center justify-between text-xs font-bold">
-          <span id="questionDimensionBadge" class="px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-[11px] font-mono">
+          <span id="questionDimensionBadge" class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-[11px] font-mono">
             DIMENSION 01 / 04 · 프롬프트 지시력
           </span>
           <div class="flex items-center gap-2 text-slate-400 font-mono">
-            <span id="questionCounter" class="text-white font-bold">QUESTION 01 / 12</span>
+            <span id="questionCounter" class="text-slate-900 font-bold">QUESTION 01 / 12</span>
             <span class="text-slate-600">|</span>
-            <span id="progressPercent" class="text-emerald-400 font-bold">8%</span>
+            <span id="progressPercent" class="text-emerald-700 font-bold">8%</span>
           </div>
         </div>
 
         <!-- Animated Progress Bar -->
-        <div class="w-full h-2 bg-obsidian-800 rounded-full overflow-hidden p-0.5">
-          <div id="quizProgressBar" class="h-full bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-400 rounded-full w-[8%] transition-all duration-300"></div>
+        <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden p-0.5">
+          <div id="quizProgressBar" class="h-full bg-emerald-600 rounded-full w-[8%] transition-all duration-300"></div>
         </div>
       </div>
 
@@ -180,7 +183,7 @@
         <span id="questionCategory" class="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider">
           Q01. 프롬프트 지시 및 컨텍스트 제어
         </span>
-        <h2 id="questionText" class="text-xl sm:text-2xl font-extrabold text-white leading-snug">
+        <h2 id="questionText" class="text-xl sm:text-2xl font-extrabold text-slate-900 leading-snug">
           복잡한 요구사항이나 기획 아이디어를 AI에게 요청할 때 주로 어떤 방식을 사용하시나요?
         </h2>
       </div>
@@ -191,12 +194,12 @@
       </div>
 
       <!-- Keyboard navigation helper -->
-      <div class="flex items-center justify-between pt-2 border-t border-obsidian-800 text-[11px] text-slate-500">
+      <div class="flex items-center justify-between pt-2 border-t border-slate-200 text-[11px] text-slate-500">
         <span class="flex items-center gap-1.5">
-          <kbd class="px-1.5 py-0.5 rounded bg-obsidian-800 border border-obsidian-700 font-mono text-slate-400">A</kbd>
-          <kbd class="px-1.5 py-0.5 rounded bg-obsidian-800 border border-obsidian-700 font-mono text-slate-400">B</kbd>
-          <kbd class="px-1.5 py-0.5 rounded bg-obsidian-800 border border-obsidian-700 font-mono text-slate-400">C</kbd>
-          <kbd class="px-1.5 py-0.5 rounded bg-obsidian-800 border border-obsidian-700 font-mono text-slate-400">D</kbd>
+          <kbd class="px-1.5 py-0.5 rounded bg-white border border-slate-300 font-mono text-slate-700">A</kbd>
+          <kbd class="px-1.5 py-0.5 rounded bg-white border border-slate-300 font-mono text-slate-700">B</kbd>
+          <kbd class="px-1.5 py-0.5 rounded bg-white border border-slate-300 font-mono text-slate-700">C</kbd>
+          <kbd class="px-1.5 py-0.5 rounded bg-white border border-slate-300 font-mono text-slate-700">D</kbd>
           <span>키로 즉시 선택 가능</span>
         </span>
         <button onclick="prevQuestion()" id="prevBtn" class="text-slate-400 hover:text-white transition-colors hidden text-xs font-semibold">
@@ -208,47 +211,43 @@
     <!-- STAGE 3: RESULT REPORT & CERTIFICATE -->
     <div id="resultCard" class="hidden flex flex-col gap-8">
       
-      <!-- Official Certificate Box -->
-      <div class="p-7 sm:p-12 rounded-3xl bg-gradient-to-b from-obsidian-900 via-obsidian-900 to-obsidian-950 border-2 border-emerald-500/80 shadow-[0_0_80px_rgba(16,185,129,0.25)] flex flex-col gap-8 relative overflow-hidden">
+      <!-- Official Certificate Box (Clean Keynote Light) -->
+      <div class="p-7 sm:p-12 rounded-3xl bg-white border-2 border-emerald-600 shadow-xl flex flex-col gap-8 relative overflow-hidden text-slate-900">
         
-        <!-- Ambient glow blur -->
-        <div class="absolute -right-16 -bottom-16 w-80 h-80 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none"></div>
-        <div class="absolute -left-16 -top-16 w-80 h-80 rounded-full bg-teal-500/10 blur-3xl pointer-events-none"></div>
-
         <!-- Top Certificate Header -->
-        <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-4 border-b border-obsidian-800 pb-6">
+        <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-4 border-b border-slate-200 pb-6">
           <div class="flex flex-col gap-1">
             <div class="flex items-center gap-2">
-              <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span class="text-[11px] font-mono font-bold text-emerald-400 tracking-widest uppercase">SONGDO AI ACADEMY · OFFICIAL DIAGNOSTIC REPORT</span>
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-600 animate-pulse"></span>
+              <span class="text-[11px] font-mono font-bold text-emerald-700 tracking-widest uppercase">SONGDO AI ACADEMY · OFFICIAL DIAGNOSTIC REPORT</span>
             </div>
-            <h2 class="text-2xl sm:text-3xl font-black text-white">실전 AI 자립 역량 12문항 정밀 진단 결과서</h2>
-            <span id="certMeta" class="text-xs font-mono text-slate-400 mt-1">ISSUED: 2026-10-25 &bull; CERT-ID: SA-2026-A94F</span>
+            <h2 class="text-2xl sm:text-3xl font-black text-slate-900">실전 AI 자립 역량 12문항 정밀 진단 결과서</h2>
+            <span id="certMeta" class="text-xs font-mono text-slate-500 mt-1">ISSUED: 2026-10-25 &bull; CERT-ID: SA-2026-A94F</span>
           </div>
           <div class="flex flex-col sm:items-end">
-            <span class="text-[10px] text-slate-500 font-mono uppercase">Master Director Signature</span>
-            <span class="font-signature text-3xl sm:text-4xl text-emerald-400 font-bold select-none tracking-wide leading-none mt-1">ohahbuji</span>
+            <span class="text-[10px] text-slate-400 font-mono uppercase">Master Director Signature</span>
+            <span class="font-signature text-3xl sm:text-4xl text-emerald-700 font-bold select-none tracking-wide leading-none mt-1">ohahbuji</span>
           </div>
         </div>
 
         <!-- Main Score & Level Badge -->
-        <div class="flex flex-col sm:flex-row items-center justify-between gap-6 bg-obsidian-850/90 p-6 sm:p-8 rounded-2xl border border-obsidian-700/80">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-6 bg-slate-50 p-6 sm:p-8 rounded-2xl border border-slate-200">
           <div class="flex items-center gap-5">
-            <div id="resultLevelIcon" class="w-18 h-18 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-400 text-slate-950 flex items-center justify-center text-3xl sm:text-4xl font-black shadow-lg shrink-0">
+            <div id="resultLevelIcon" class="w-18 h-18 sm:w-20 sm:h-20 rounded-2xl bg-emerald-600 text-white flex items-center justify-center text-3xl sm:text-4xl font-black shadow-md shrink-0">
               4
             </div>
             <div class="flex flex-col">
-              <span class="text-xs font-mono font-bold text-slate-400">당신의 현재 AI 실전 수준</span>
-              <strong id="resultLevelTitle" class="text-2xl sm:text-3xl font-black text-white">LEVEL 4 · 실전 디렉터 (Builder)</strong>
-              <p id="resultLevelSubtitle" class="text-xs text-emerald-400 font-medium mt-1">상위 5% 실전 역량 &bull; 가족과 매장을 위한 살아있는 웹 빌더</p>
+              <span class="text-xs font-mono font-bold text-slate-500">당신의 현재 AI 실전 수준</span>
+              <strong id="resultLevelTitle" class="text-2xl sm:text-3xl font-black text-slate-900">LEVEL 4 · 실전 디렉터 (Builder)</strong>
+              <p id="resultLevelSubtitle" class="text-xs text-emerald-700 font-medium mt-1">상위 5% 실전 역량 &bull; 가족과 매장을 위한 살아있는 웹 빌더</p>
             </div>
           </div>
 
-          <div class="flex flex-col items-center sm:items-end border-t sm:border-t-0 sm:border-l border-obsidian-700 pt-4 sm:pt-0 sm:pl-8">
-            <span class="text-xs font-bold text-slate-400">12문항 종합 자립 지수</span>
+          <div class="flex flex-col items-center sm:items-end border-t sm:border-t-0 sm:border-l border-slate-200 pt-4 sm:pt-0 sm:pl-8">
+            <span class="text-xs font-bold text-slate-500">12문항 종합 자립 지수</span>
             <div class="flex items-baseline gap-1 mt-1">
-              <span id="resultScore" class="text-4xl sm:text-5xl font-black text-emerald-400 font-mono">92</span>
-              <span class="text-slate-500 text-sm font-mono">/ 100점</span>
+              <span id="resultScore" class="text-4xl sm:text-5xl font-black text-emerald-700 font-mono">92</span>
+              <span class="text-slate-400 text-sm font-mono">/ 100점</span>
             </div>
           </div>
         </div>
@@ -260,10 +259,10 @@
             
             <div class="p-4 rounded-xl glass-card flex flex-col gap-2">
               <div class="flex justify-between font-bold">
-                <span class="text-slate-300">1. 프롬프트 지시력 & 컨텍스트 제어</span>
-                <span id="dimScore1" class="text-emerald-400 font-mono">90%</span>
+                <span class="text-slate-700">1. 프롬프트 지시력 & 컨텍스트 제어</span>
+                <span id="dimScore1" class="text-emerald-700 font-mono font-bold">90%</span>
               </div>
-              <div class="w-full h-2 bg-obsidian-950 rounded-full overflow-hidden p-0.5">
+              <div class="w-full h-2 bg-slate-200 rounded-full overflow-hidden p-0.5">
                 <div id="dimFill1" class="h-full bg-emerald-400 rounded-full w-[90%] transition-all duration-500"></div>
               </div>
               <span id="dimNote1" class="text-[11px] text-slate-400">역할 및 제약 분리, 환각 방지 능력</span>
@@ -271,10 +270,10 @@
 
             <div class="p-4 rounded-xl glass-card flex flex-col gap-2">
               <div class="flex justify-between font-bold">
-                <span class="text-slate-300">2. 에러 면역 & 3초 롤백 복구력</span>
-                <span id="dimScore2" class="text-teal-400 font-mono">85%</span>
+                <span class="text-slate-700">2. 에러 면역 & 3초 롤백 복구력</span>
+                <span id="dimScore2" class="text-emerald-700 font-mono font-bold">85%</span>
               </div>
-              <div class="w-full h-2 bg-obsidian-950 rounded-full overflow-hidden p-0.5">
+              <div class="w-full h-2 bg-slate-200 rounded-full overflow-hidden p-0.5">
                 <div id="dimFill2" class="h-full bg-teal-400 rounded-full w-[85%] transition-all duration-500"></div>
               </div>
               <span id="dimNote2" class="text-[11px] text-slate-400">에러 공포 극복, 스냅샷 롤백 복원력</span>
@@ -282,10 +281,10 @@
 
             <div class="p-4 rounded-xl glass-card flex flex-col gap-2">
               <div class="flex justify-between font-bold">
-                <span class="text-slate-300">3. 실전 웹 배포 & 프로덕트 자립력</span>
-                <span id="dimScore3" class="text-cyan-400 font-mono">95%</span>
+                <span class="text-slate-700">3. 실전 웹 배포 & 프로덕트 자립력</span>
+                <span id="dimScore3" class="text-emerald-700 font-mono font-bold">95%</span>
               </div>
-              <div class="w-full h-2 bg-obsidian-950 rounded-full overflow-hidden p-0.5">
+              <div class="w-full h-2 bg-slate-200 rounded-full overflow-hidden p-0.5">
                 <div id="dimFill3" class="h-full bg-cyan-400 rounded-full w-[95%] transition-all duration-500"></div>
               </div>
               <span id="dimNote3" class="text-[11px] text-slate-400">실제 URL 링크 생성, 가족/고객 공유 경험</span>
@@ -293,10 +292,10 @@
 
             <div class="p-4 rounded-xl glass-card flex flex-col gap-2">
               <div class="flex justify-between font-bold">
-                <span class="text-slate-300">4. 도구 경제성 & 지속 가능성</span>
-                <span id="dimScore4" class="text-sky-400 font-mono">100%</span>
+                <span class="text-slate-700">4. 도구 경제성 & 지속 가능성</span>
+                <span id="dimScore4" class="text-emerald-700 font-mono font-bold">100%</span>
               </div>
-              <div class="w-full h-2 bg-obsidian-950 rounded-full overflow-hidden p-0.5">
+              <div class="w-full h-2 bg-slate-200 rounded-full overflow-hidden p-0.5">
                 <div id="dimFill4" class="h-full bg-sky-400 rounded-full w-[100%] transition-all duration-500"></div>
               </div>
               <span id="dimNote4" class="text-[11px] text-slate-400">추가 종량제 0원 유지, 신기술 빠른 흡수력</span>
@@ -306,30 +305,30 @@
         </div>
 
         <!-- Prescribed Diagnostic Analysis Box -->
-        <div class="p-6 rounded-2xl bg-emerald-950/20 border border-emerald-500/30 flex flex-col gap-3">
+        <div class="p-6 rounded-2xl bg-emerald-50 border border-emerald-200 flex flex-col gap-3">
           <span class="text-xs font-mono font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
             <span class="font-bold">오아버지(ohahbuji) 정밀 분석 및 맞춤 처방</span>
           </span>
-          <p id="resultPrescription" class="text-slate-200 text-sm leading-relaxed">
+          <p id="resultPrescription" class="text-slate-700 text-sm leading-relaxed">
             이미 단순 대화창 수준을 넘어 나만의 실전 도구를 만들 준비가 완벽히 되셨습니다! 장난감 블록 코딩으로 시간을 낭비하지 마시고, 첫날 30분 만에 아빠 매장 계산기 같은 실전 웹을 세상에 배포하는 6주 마스터 코스를 권장합니다.
           </p>
         </div>
 
         <!-- Bottom Actions (Print Hide) -->
-        <div id="printHideBtn" class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-obsidian-800">
+        <div id="printHideBtn" class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-slate-200">
           <div class="flex items-center gap-2">
-            <button onclick="restartQuiz()" class="px-4 py-2.5 rounded-xl border border-obsidian-700 hover:bg-obsidian-800 text-slate-300 hover:text-white text-xs font-bold transition-all">
+            <button onclick="restartQuiz()" class="px-4 py-2.5 rounded-xl border border-slate-300 hover:bg-slate-100 text-slate-700 text-xs font-bold transition-all">
               &circlearrowleft; 다시 진단하기
             </button>
             <button onclick="window.print()" class="px-4 py-2.5 rounded-xl border border-emerald-500/40 hover:bg-emerald-500/10 text-emerald-400 text-xs font-bold transition-all flex items-center gap-1.5">
               <span>진단서 인쇄 / PDF 저장</span>
             </button>
-            <button onclick="copyResultSummary()" class="px-4 py-2.5 rounded-xl border border-obsidian-700 hover:bg-obsidian-800 text-slate-300 hover:text-white text-xs font-bold transition-all flex items-center gap-1.5">
+            <button onclick="copyResultSummary()" class="px-4 py-2.5 rounded-xl border border-slate-300 hover:bg-slate-100 text-slate-700 text-xs font-bold transition-all flex items-center gap-1.5">
               <span>결과 복사</span>
             </button>
           </div>
 
-          <a href="/landing.html#curriculum" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-400 hover:brightness-110 text-slate-950 font-black text-xs sm:text-sm text-center shadow-lg transition-all active:scale-[0.98]">
+          <a href="/landing.html#curriculum" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm text-center shadow-lg transition-all active:scale-[0.98]">
             <span>6주 정규 과정 신청하기 &rarr;</span>
           </a>
         </div>
@@ -340,7 +339,7 @@
   </main>
 
   <!-- FOOTER -->
-  <footer class="border-t border-obsidian-800 py-6 text-center text-xs text-slate-500">
+  <footer class="border-t border-slate-200 py-6 text-center text-xs text-slate-500">
     <div class="flex items-center justify-center gap-2">
       <span>송도 국제 AI 아카데미</span>
       <span>&bull;</span>

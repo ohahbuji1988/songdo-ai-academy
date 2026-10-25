@@ -343,6 +343,13 @@
         switchTab(hash);
       }
     });
+
+    // Parent Iframe Message Bridge for Sub-Apps
+    window.addEventListener('message', (e) => {
+      if (e.data && e.data.type === 'SWITCH_TAB' && e.data.tab) {
+        switchTab(e.data.tab);
+      }
+    });
   </script>
 </body>
 </html>
