@@ -96,9 +96,12 @@
       <div class="w-8 h-8 rounded-xl bg-miriGreen flex items-center justify-center text-white font-extrabold text-base shadow-xs">
         S
       </div>
-      <div class="flex flex-col">
-        <span class="text-xs font-black tracking-tight text-slate-900 leading-none">SONGDO AI ACADEMY</span>
-        <span class="text-[10px] font-bold text-miriGreen tracking-wider uppercase">송도 국제 AI 아카데미</span>
+      <div class="flex items-center gap-2">
+        <div class="flex flex-col">
+          <span class="text-xs font-black tracking-tight text-slate-900 leading-none">SONGDO AI ACADEMY</span>
+          <span class="text-[10px] font-bold text-miriGreen tracking-wider uppercase">송도 국제 AI 아카데미</span>
+        </div>
+        <span class="font-signature text-3xl sm:text-4xl text-emerald-600 font-bold select-none ml-2 tracking-wide leading-none">ohahbuji</span>
       </div>
     </div>
 
@@ -951,8 +954,8 @@
         <span>교육 상담 문의: academy@songdo-ai.edu | 032-123-4567</span>
       </div>
       <div class="flex items-center gap-3">
-        <span class="text-slate-400">Curated &amp; Authored by</span>
-        <span class="font-signature text-3xl text-slate-900 font-bold">ohahbuji</span>
+        <span class="text-slate-400 text-sm">Curated &amp; Authored by</span>
+        <span class="font-signature text-4xl sm:text-5xl text-slate-900 font-bold select-none tracking-wide">ohahbuji</span>
       </div>
     </div>
   </footer>
@@ -1140,202 +1143,7 @@
     const SCENE_DURATION_MS = 4000;
     const TICK_INTERVAL_MS = 50;
 
-    // Web Audio Synthesizer
-    let audioCtx = null;
-    function playStorySound(type) {
-      if (!isStoryAudioOn) return;
-      try {
-        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        if (audioCtx.state === 'suspended') audioCtx.resume();
-        const now = audioCtx.currentTime;
-
-        if (type === 'blip') {
-          const osc = audioCtx.createOscillator();
-          const gain = audioCtx.createGain();
-          osc.type = 'square';
-          osc.frequency.setValueAtTime(440, now);
-          osc.frequency.exponentialRampToValueAtTime(880, now + 0.15);
-          gain.gain.setValueAtTime(0.08, now);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
-          osc.connect(gain); gain.connect(audioCtx.destination);
-          osc.start(now); osc.stop(now + 0.15);
-        } else if (type === 'error') {
-          const osc = audioCtx.createOscillator();
-          const gain = audioCtx.createGain();
-          osc.type = 'sawtooth';
-          osc.frequency.setValueAtTime(320, now);
-          osc.frequency.exponentialRampToValueAtTime(110, now + 0.25);
-          gain.gain.setValueAtTime(0.1, now);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
-          osc.connect(gain); gain.connect(audioCtx.destination);
-          osc.start(now); osc.stop(now + 0.25);
-        } else if (type === 'magic') {
-          [523.25, 659.25, 783.99, 1046.50].forEach((freq, i) => {
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(freq, now + i * 0.05);
-            gain.gain.setValueAtTime(0.06, now + i * 0.05);
-            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.4 + i * 0.05);
-            osc.connect(gain); gain.connect(audioCtx.destination);
-            osc.start(now + i * 0.05); osc.stop(now + 0.45 + i * 0.05);
-          });
-        } else if (type === 'victory') {
-          [523.25, 659.25, 783.99, 1046.50].forEach((freq, idx) => {
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            osc.type = 'triangle';
-            const s = now + idx * 0.08;
-            osc.frequency.setValueAtTime(freq, s);
-            gain.gain.setValueAtTime(0.1, s);
-            gain.gain.exponentialRampToValueAtTime(0.001, s + (idx === 3 ? 0.35 : 0.08));
-            osc.connect(gain); gain.connect(audioCtx.destination);
-            osc.start(s); osc.stop(s + (idx === 3 ? 0.35 : 0.08));
-          });
-        }
-      } catch (err) {}
-    }
-
-    function renderStoryScene(idx, triggerSound = true) {
-      currentStoryIdx = idx;
-      storyProgress = 0;
-      const data = STORY_SCENES[idx];
-
-      const videoEl = document.getElementById('reelVideoPlayer');
-      const imgEl = document.getElementById('reelMainImage');
-      const badgeEl = document.getElementById('reelCutBadge');
-      const avatarEl = document.getElementById('reelAvatar');
-      const nameEl = document.getElementById('reelCharacterName');
-      const dialogueEl = document.getElementById('reelDialogue');
-      const subEl = document.getElementById('reelSubtitleBar');
-
-      if (videoEl && data.video) {
-        const fullSrc = data.video;
-        if (!videoEl.src.endsWith(fullSrc)) {
-          videoEl.src = fullSrc;
-          videoEl.load();
-        }
-        videoEl.poster = data.image;
-        videoEl.muted = !isStoryAudioOn;
-        if (isStoryPlaying) {
-          const playPromise = videoEl.play();
-          if (playPromise !== undefined) {
-            playPromise.catch(() => {
-              videoEl.muted = true;
-              videoEl.play().catch(() => {});
-            });
-          }
-        } else {
-          videoEl.pause();
-        }
-      }
-      if (imgEl) {
-        imgEl.src = data.image;
-      }
-      if (badgeEl) badgeEl.innerText = data.cut;
-      if (avatarEl) avatarEl.innerText = data.avatar;
-      if (nameEl) nameEl.innerText = data.character;
-      if (dialogueEl) dialogueEl.innerText = data.dialogue;
-      if (subEl) {
-        subEl.innerHTML = `<span class="text-emerald-300 font-bold mr-1.5">${data.avatar} ${data.character}:</span> ${data.dialogue}`;
-      }
-
-      // Update Quick Dots
-      document.querySelectorAll('.scene-dot').forEach((dot, dIdx) => {
-        dot.className = dIdx === idx ? 'scene-dot w-3 h-3 rounded-full bg-emerald-400 transition-all' : 'scene-dot w-2 h-2 rounded-full bg-slate-600 transition-all';
-      });
-
-      // Update 4 Progress Bars
-      for (let i = 0; i < 4; i++) {
-        const bar = document.getElementById('storyBar' + i);
-        if (bar) {
-          if (i < idx) bar.style.width = '100%';
-          else if (i > idx) bar.style.width = '0%';
-          else bar.style.width = '0%';
-        }
-      }
-
-      if (triggerSound && isStoryAudioOn) {
-        playStorySound(data.sound);
-        speakSceneDialogue(idx);
-      }
-    }
-
-    function tickStory() {
-      if (!isStoryPlaying) return;
-      const videoEl = document.getElementById('reelVideoPlayer');
-      if (videoEl && !videoEl.paused && videoEl.duration) {
-        storyProgress = (videoEl.currentTime / videoEl.duration) * 100;
-      } else {
-        storyProgress += (TICK_INTERVAL_MS / SCENE_DURATION_MS) * 100;
-      }
-      const currentBar = document.getElementById('storyBar' + currentStoryIdx);
-      if (currentBar) {
-        currentBar.style.width = Math.min(100, storyProgress) + '%';
-      }
-
-      if (storyProgress >= 100) {
-        currentStoryIdx = (currentStoryIdx + 1) % STORY_SCENES.length;
-        renderStoryScene(currentStoryIdx, true);
-      }
-    }
-
-    function toggleStoryPlay() {
-      isStoryPlaying = !isStoryPlaying;
-      const icon = document.getElementById('playBtnIcon');
-      const text = document.getElementById('playBtnText');
-      const videoEl = document.getElementById('reelVideoPlayer');
-      if (isStoryPlaying) {
-        if (icon) icon.innerText = '⏸';
-        if (text) text.innerText = '일시정지';
-        if (videoEl) videoEl.play().catch(() => {});
-      } else {
-        if (icon) icon.innerText = '▶';
-        if (text) text.innerText = '재생';
-        if (videoEl) videoEl.pause();
-      }
-    }
-
-    function nextStoryScene() {
-      currentStoryIdx = (currentStoryIdx + 1) % STORY_SCENES.length;
-      renderStoryScene(currentStoryIdx, true);
-    }
-
-    function prevStoryScene() {
-      currentStoryIdx = (currentStoryIdx - 1 + STORY_SCENES.length) % STORY_SCENES.length;
-      renderStoryScene(currentStoryIdx, true);
-    }
-
-    function jumpStoryScene(idx) {
-      renderStoryScene(idx, true);
-    }
-
-    function speakSceneDialogue(idx) {
-      if (!isStoryAudioOn || !window.speechSynthesis) return;
-      try {
-        window.speechSynthesis.cancel();
-        const data = STORY_SCENES[idx];
-        const rawText = data.dialogue.replace(/["'”]/g, '');
-        const utter = new SpeechSynthesisUtterance(rawText);
-        utter.lang = 'ko-KR';
-        utter.rate = 1.05;
-        if (idx === 0) {
-          utter.pitch = 1.35;
-        } else if (idx === 1) {
-          utter.pitch = 1.25;
-          utter.rate = 1.15;
-        } else if (idx === 2) {
-          utter.pitch = 0.9;
-          utter.rate = 1.0;
-        } else {
-          utter.pitch = 1.2;
-          utter.rate = 1.1;
-        }
-        window.speechSynthesis.speak(utter);
-      } catch (e) {}
-    }
-
-        function toggleVrewAudio() {
+    function toggleVrewAudio() {
       const v = document.getElementById('vrewVideoPlayer');
       const icon = document.getElementById('vrewAudioIcon');
       const text = document.getElementById('vrewAudioText');
@@ -1352,27 +1160,13 @@
       }
     }
 
-    function toggleStoryAudio() {
-      isStoryAudioOn = !isStoryAudioOn;
-      const icon = document.getElementById('audioIcon');
-      const text = document.getElementById('audioText');
-      const videoEl = document.getElementById('reelVideoPlayer');
-      if (isStoryAudioOn) {
-        if (icon) icon.innerText = '🔊';
-        if (text) text.innerText = '소리 끄기';
-        if (videoEl) {
-          videoEl.muted = false;
-          videoEl.volume = 1.0;
-        }
-        playStorySound('blip');
-        speakSceneDialogue(currentStoryIdx);
+    function toggleVrewPlay() {
+      const v = document.getElementById('vrewVideoPlayer');
+      if (!v) return;
+      if (v.paused) {
+        v.play().catch(() => {});
       } else {
-        if (icon) icon.innerText = '🔇';
-        if (text) text.innerText = '소리 켜기';
-        if (videoEl) {
-          videoEl.muted = true;
-        }
-        if (window.speechSynthesis) window.speechSynthesis.cancel();
+        v.pause();
       }
     }
 
@@ -1381,19 +1175,20 @@
       const gridBox = document.getElementById('storyGridContainer');
       const reelBtn = document.getElementById('viewModeReelBtn');
       const gridBtn = document.getElementById('viewModeGridBtn');
+      const v = document.getElementById('vrewVideoPlayer');
 
       if (mode === 'reel') {
         if (reelBox) reelBox.classList.remove('hidden');
         if (gridBox) gridBox.classList.add('hidden');
         if (reelBtn) reelBtn.className = 'px-3.5 py-1.5 rounded-lg bg-emerald-600 text-white font-bold transition-all shadow-sm flex items-center gap-1.5';
         if (gridBtn) gridBtn.className = 'px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition-all flex items-center gap-1.5';
-        isStoryPlaying = true;
+        if (v) v.play().catch(() => {});
       } else {
         if (reelBox) reelBox.classList.add('hidden');
         if (gridBox) gridBox.classList.remove('hidden');
         if (gridBtn) gridBtn.className = 'px-3.5 py-1.5 rounded-lg bg-emerald-600 text-white font-bold transition-all shadow-sm flex items-center gap-1.5';
         if (reelBtn) reelBtn.className = 'px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition-all flex items-center gap-1.5';
-        isStoryPlaying = false;
+        if (v) v.pause();
       }
     }
 
@@ -1462,15 +1257,10 @@
       }
     }
 
-    // Auto-start reel on page load
-    let storyStarted = false;
-    function initStoryPlayer() {
-      if (storyStarted) return;
-      storyStarted = true;
-      renderStoryScene(0, false);
-      setInterval(tickStory, TICK_INTERVAL_MS);
-    }
-    window.addEventListener('DOMContentLoaded', initStoryPlayer);
-    setTimeout(initStoryPlayer, 250);
+    // Auto-play Vrew shorts muted on load
+    window.addEventListener('DOMContentLoaded', () => {
+      const v = document.getElementById('vrewVideoPlayer');
+      if (v) v.play().catch(() => {});
+    });
   </script>
 </body></html>
