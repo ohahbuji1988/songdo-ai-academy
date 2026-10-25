@@ -1400,10 +1400,10 @@
         const canvasHtml = document.getElementById('tour-canvas').outerHTML;
         const fullCurriculumHtml = buildCurriculumHtmlFromCanvas(canvasHtml);
 
-        const respHtml = await fetch('/api/save-curriculum', {
+        const respHtml = await fetch('/api/save-page', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ html: fullCurriculumHtml })
+          body: JSON.stringify({ page: 'curriculum.html', html: fullCurriculumHtml })
         });
 
         if (respJson.ok && respHtml.ok) {
@@ -1602,10 +1602,10 @@
     async function saveToFile() {
       const fullHtml = '<!DOCTYPE html>\\n' + document.documentElement.outerHTML;
       try {
-        const resp = await fetch('/api/save-curriculum', {
+        const resp = await fetch('/api/save-page', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ html: fullHtml })
+          body: JSON.stringify({ page: 'curriculum.html', html: fullHtml })
         });
         if (resp.ok) {
           alert('✅ curriculum.html 파일에 즉시 영구 저장되었습니다!');

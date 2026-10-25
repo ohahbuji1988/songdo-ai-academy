@@ -171,20 +171,20 @@
       <!-- Tab 1: 모집 랜딩페이지 (landing.html) -->
       <iframe id="iframe-landing" src="landing.html" class="tab-iframe w-full h-full border-0 absolute inset-0 bg-slate-950"></iframe>
 
-      <!-- Tab 2: 발표용 슬라이드 덱 (presentation.html) -->
-      <iframe id="iframe-presentation" src="presentation.html" class="tab-iframe w-full h-full border-0 absolute inset-0 bg-slate-950 hidden"></iframe>
+      <!-- Tab 2: 발표용 슬라이드 덱 (presentation.html) - Lazy loaded -->
+      <iframe id="iframe-presentation" data-src="presentation.html" class="tab-iframe w-full h-full border-0 absolute inset-0 bg-slate-950 hidden"></iframe>
 
-      <!-- Tab 3: 커리큘럼 편집 스튜디오 (creator.html) -->
-      <iframe id="iframe-studio" src="creator.html" class="tab-iframe w-full h-full border-0 absolute inset-0 bg-slate-950 hidden"></iframe>
+      <!-- Tab 3: 커리큘럼 편집 스튜디오 (creator.html) - Lazy loaded -->
+      <iframe id="iframe-studio" data-src="creator.html" class="tab-iframe w-full h-full border-0 absolute inset-0 bg-slate-950 hidden"></iframe>
 
-      <!-- Tab 4: 수강생 코스웨어 & 실습실 (courseware/index.html) -->
-      <iframe id="iframe-courseware" src="courseware/lessons.html" class="tab-iframe w-full h-full border-0 absolute inset-0 bg-slate-950 hidden"></iframe>
+      <!-- Tab 4: 수강생 코스웨어 & 실습실 (courseware/lessons.html) - Lazy loaded -->
+      <iframe id="iframe-courseware" data-src="courseware/lessons.html" class="tab-iframe w-full h-full border-0 absolute inset-0 bg-slate-950 hidden"></iframe>
 
-      <!-- Tab 5: 공정 맵 (process.html) -->
-      <iframe id="iframe-process" src="process.html" class="tab-iframe w-full h-full border-0 absolute inset-0 bg-slate-950 hidden"></iframe>
+      <!-- Tab 5: 공정 맵 (process.html) - Lazy loaded -->
+      <iframe id="iframe-process" data-src="process.html" class="tab-iframe w-full h-full border-0 absolute inset-0 bg-slate-950 hidden"></iframe>
 
-      <!-- Tab 6: AI 레벨 측정기 (diagnostic.html) -->
-      <iframe id="iframe-diagnostic" src="diagnostic.html" class="tab-iframe w-full h-full border-0 absolute inset-0 bg-slate-950 hidden"></iframe>
+      <!-- Tab 6: 12문항 정밀 진단 (diagnostic.html) - Lazy loaded -->
+      <iframe id="iframe-diagnostic" data-src="diagnostic.html" class="tab-iframe w-full h-full border-0 absolute inset-0 bg-slate-950 hidden"></iframe>
 
     </div>
 
@@ -273,11 +273,15 @@
         history.replaceState(null, '', '#' + tabKey);
       }
 
-      // Hide all iframes, show target iframe
+      // Hide all iframes, show target iframe with LazyFrameAdapter hydration
       Object.keys(TAB_MAP).forEach(key => {
         const frame = document.getElementById(TAB_MAP[key].id);
         if (frame) {
           if (key === tabKey) {
+            // LazyFrameAdapter: Hydrate iframe src on first demand
+            if (!frame.getAttribute('src') && frame.getAttribute('data-src')) {
+              frame.setAttribute('src', frame.getAttribute('data-src'));
+            }
             frame.classList.remove('hidden');
           } else {
             frame.classList.add('hidden');

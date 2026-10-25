@@ -804,10 +804,10 @@
 
       // 4. Send to server
       try {
-        const res = await fetch('/api/save-presentation', {
+        const res = await fetch('/api/save-page', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ html: fullHtml })
+          body: JSON.stringify({ page: 'presentation.html', html: fullHtml })
         });
         const json = await res.json();
         if (res.ok && json.success) {

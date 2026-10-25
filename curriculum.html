@@ -684,10 +684,10 @@
       const fullHtml = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
 
       try {
-        const resp = await fetch('/api/save-curriculum', {
+        const resp = await fetch('/api/save-page', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ html: fullHtml })
+          body: JSON.stringify({ page: 'curriculum.html', html: fullHtml })
         });
         const data = await resp.json();
         if (resp.ok) {
