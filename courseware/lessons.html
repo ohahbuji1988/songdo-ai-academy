@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>송도 AI 아카데미 1~6주차 실전 온라인 강의실 (Lesson Walkthrough) — ohahbuji</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            miriGreen: '#00c471',
+            miriGreenDark: '#00b064',
+            miriGreenLight: '#e6f9f0',
+            brand: '#0f766e',
+            brandDark: '#115e59',
+            brandLight: '#f0fdfa',
+            ink: '#0f172a',
+            inkBody: '#334155',
+            inkMuted: '#64748b'
+          }
+        }
+      }
+    }
+  </script>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.1/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+      -webkit-font-smoothing: antialiased;
+      font-family: 'Wanted Sans Variable', 'Wanted Sans', -apple-system, sans-serif;
+    }
+    body {
+      background-color: #f8fafc;
+      color: #334155;
+      font-size: 15px;
+      line-height: 1.8;
+      letter-spacing: -0.015em;
+    }
+    .font-signature {
+      font-family: 'Caveat', cursive !important;
+    }
+    
+    /* In-Place WYSIWYG Editor */
+    .editable-lesson-element:hover {
+      outline: 2px dashed #00c471 !important;
+      cursor: text !important;
+      background-color: rgba(0, 196, 113, 0.08) !important;
+      border-radius: 4px;
+    }
+    .editable-lesson-element:focus {
+      outline: 2px solid #00c471 !important;
+      background-color: rgba(0, 196, 113, 0.14) !important;
+      border-radius: 4px;
+    }
+
+    .lesson-content {
+      display: none;
+    }
+    .lesson-content.active {
+      display: flex;
+    }
+  </style>
+</head>
+<body class="selection:bg-miriGreen selection:text-white bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between">
+
+  <!-- FLOATING EDIT BANNER -->
+  <div id="lesson-edit-banner" class="hidden fixed top-0 left-0 right-0 z-50 bg-emerald-950/95 border-b border-emerald-700/80 px-6 py-2.5 flex items-center justify-between text-xs text-emerald-200 backdrop-blur shadow-xl">
+    <div class="flex items-center gap-2">
+      <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+      <strong class="text-white">✏️ 강의 교안 직접 수정 켜짐:</strong>
+      <span>원하는 설명, 프롬프트, 팁 글자를 클릭하고 바로 타이핑하세요!</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <button onclick="saveLessonToServer()" class="px-3.5 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center gap-1.5 shadow-md cursor-pointer">
+        <span>💾</span> <span>지금 저장하기 (Ctrl+S)</span>
+      </button>
+      <button onclick="toggleLessonEditMode()" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs cursor-pointer">
+        편집 종료 (E)
+      </button>
+    </div>
+  </div>
+
+  <!-- FLOATING TOAST -->
+  <div id="lesson-toast" class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-slate-900 border border-emerald-500 text-white text-xs px-4 py-2.5 rounded-xl shadow-2xl transition-all">
+    알림 내용
+  </div>
+
+  <!-- TOP HEADER -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-slate-200 px-6 sm:px-10 h-16 flex items-center justify-between shadow-xs">
+    <div class="flex items-center gap-3">
+      <a href="/courseware/index.html" class="w-8 h-8 rounded-xl bg-miriGreen hover:bg-miriGreenDark transition-all flex items-center justify-center text-white font-extrabold text-base shadow-xs" title="코스웨어 허브로 돌아가기">
+        ←
+      </a>
+      <div class="flex flex-col">
+        <div class="flex items-center gap-2">
+          <span class="font-extrabold text-sm sm:text-base text-slate-900 tracking-tight">송도 AI 아카데미 온라인 실전 강의실</span>
+          <span class="px-2 py-0.5 rounded text-[11px] font-serif italic text-emerald-700 bg-emerald-50 border border-emerald-200">by ohahbuji ✍️</span>
+        </div>
+        <span class="text-[11px] text-slate-500">1주차~6주차 스텝-바이-스텝 인터랙티브 교안 & 프롬프트</span>
+      </div>
+    </div>
+
+    <!-- Right Controls -->
+    <div class="flex items-center gap-2">
+      <button onclick="toggleLessonEditMode()" title="교안 내용 직접 수정 (단축키 E)" class="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold border border-slate-300 flex items-center gap-1.5 transition-all cursor-pointer">
+        <span>✏️</span> <span id="edit-btn-text">교안 수정 (E)</span>
+      </button>
+      <a href="/courseware/index.html" class="px-3 py-1.5 rounded-lg bg-teal-50 hover:bg-teal-100 text-teal-800 text-xs font-bold border border-teal-200 transition-all">
+        교구 허브
+      </a>
+    </div>
+  </header>
+
+  <!-- MAIN CLASSROOM LAYOUT -->
+  <div class="max-w-6xl w-full mx-auto px-4 sm:px-6 py-8 flex flex-col md:flex-row gap-8 items-start">
+    
+    <!-- LEFT STICKY WEEK NAVIGATOR -->
+    <aside class="w-full md:w-64 bg-white border border-slate-200 rounded-3xl p-4 shadow-sm md:sticky md:top-24 flex flex-col gap-2 shrink-0">
+      <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider px-2 pt-1">
+        6주 실전 코스 목차
+      </span>
+
+      <nav class="flex flex-col gap-1 text-xs">
+        <button onclick="switchWeek(1)" id="tab-w1" class="week-tab-btn w-full p-3 rounded-2xl text-left font-bold transition-all flex items-center justify-between bg-teal-50 text-teal-800 border border-teal-200 shadow-xs">
+          <div class="flex items-center gap-2">
+            <span class="w-6 h-6 rounded-lg bg-teal-600 text-white flex items-center justify-center text-[11px] font-black">1</span>
+            <span>1주차: 30분 첫 웹 배포</span>
+          </div>
+          <span class="text-[10px] text-teal-600 font-mono">30min</span>
+        </button>
+
+        <button onclick="switchWeek(2)" id="tab-w2" class="week-tab-btn w-full p-3 rounded-2xl text-left font-bold transition-all flex items-center justify-between text-slate-600 hover:bg-slate-50 border border-transparent">
+          <div class="flex items-center gap-2">
+            <span class="w-6 h-6 rounded-lg bg-slate-200 text-slate-700 flex items-center justify-center text-[11px] font-black">2</span>
+            <span>2주차: 문서 가두기 & 출처</span>
+          </div>
+          <span class="text-[10px] text-slate-400 font-mono">RAG</span>
+        </button>
+
+        <button onclick="switchWeek(3)" id="tab-w3" class="week-tab-btn w-full p-3 rounded-2xl text-left font-bold transition-all flex items-center justify-between text-slate-600 hover:bg-slate-50 border border-transparent">
+          <div class="flex items-center gap-2">
+            <span class="w-6 h-6 rounded-lg bg-slate-200 text-slate-700 flex items-center justify-center text-[11px] font-black">3</span>
+            <span>3주차: 안티-슬롭 2색 디자인</span>
+          </div>
+          <span class="text-[10px] text-slate-400 font-mono">UI</span>
+        </button>
+
+        <button onclick="switchWeek(4)" id="tab-w4" class="week-tab-btn w-full p-3 rounded-2xl text-left font-bold transition-all flex items-center justify-between text-slate-600 hover:bg-slate-50 border border-transparent">
+          <div class="flex items-center gap-2">
+            <span class="w-6 h-6 rounded-lg bg-slate-200 text-slate-700 flex items-center justify-center text-[11px] font-black">4</span>
+            <span>4주차: 실시간 계산기 장착</span>
+          </div>
+          <span class="text-[10px] text-slate-400 font-mono">Calc</span>
+        </button>
+
+        <button onclick="switchWeek(5)" id="tab-w5" class="week-tab-btn w-full p-3 rounded-2xl text-left font-bold transition-all flex items-center justify-between text-slate-600 hover:bg-slate-50 border border-transparent">
+          <div class="flex items-center gap-2">
+            <span class="w-6 h-6 rounded-lg bg-rose-100 text-rose-700 flex items-center justify-center text-[11px] font-black">5</span>
+            <span>5주차: 3초 타임머신 복구</span>
+          </div>
+          <span class="text-[10px] text-rose-600 font-mono">Rollback</span>
+        </button>
+
+        <button onclick="switchWeek(6)" id="tab-w6" class="week-tab-btn w-full p-3 rounded-2xl text-left font-bold transition-all flex items-center justify-between text-slate-600 hover:bg-slate-50 border border-transparent">
+          <div class="flex items-center gap-2">
+            <span class="w-6 h-6 rounded-lg bg-emerald-600 text-white flex items-center justify-center text-[11px] font-black">6</span>
+            <span>6주차: 4대 Eval 검증 & 수료</span>
+          </div>
+          <span class="text-[10px] text-emerald-600 font-mono">Launch</span>
+        </button>
+      </nav>
+
+      <div class="pt-3 border-t border-slate-100 text-[11px] text-slate-400 flex flex-col gap-1">
+        <span>💡 단축키: 숫자 <strong>1 ~ 6</strong>번</span>
+        <span>✏️ 직접 수정: 키보드 <strong>E</strong></span>
+      </div>
+    </aside>
+
+    <!-- RIGHT LESSON MAIN STAGE -->
+    <main class="flex-1 w-full flex flex-col gap-8">
+
+      <!-- ========================================================
+           WEEK 01 LESSON
+           ======================================================== -->
+      <article id="lesson-w1" class="lesson-content active flex-col gap-8">
+        
+        <!-- Header -->
+        <div class="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200 shadow-sm flex flex-col gap-3">
+          <div class="flex items-center justify-between text-xs">
+            <span class="px-3 py-1 rounded-full bg-teal-100/70 text-teal-800 font-extrabold">WEEK 01 · 1일차 조기 성공</span>
+            <span class="text-slate-400">⏱️ 실습 소요 시간: 약 30분</span>
+          </div>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight leading-tight">
+            첫날 30분 만에 내 스마트폰으로 열리는 첫 웹사이트 띄우기
+          </h1>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            코딩 문법을 단 하나도 외우지 않습니다. AI에게 착한 모범 예시 3개를 쥐어주고 내 정보로 바꾼 뒤, 무료 인터넷에 올려 가족 단톡방에 링크를 자랑하는 첫날의 기적을 체험합니다.
+          </p>
+        </div>
+
+        <!-- 1. 원장님의 3분 이야기 -->
+        <section class="p-6 sm:p-8 rounded-3xl bg-slate-900 text-white flex flex-col gap-4 shadow-sm">
+          <div class="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase tracking-wider">
+            <span>💡</span> <span>원장님의 3분 이야기 · 멘탈 모델</span>
+          </div>
+          <h2 class="text-xl font-bold">"AI는 손발이 없는 천재 신입 인턴입니다"</h2>
+          <div class="text-xs sm:text-sm text-slate-300 space-y-2.5 leading-relaxed">
+            <p>
+              ChatGPT는 전 세계 백과사전을 다 외운 천재 인턴이지만, 손과 발이 없고 내 생각을 정확히 읽지 못합니다. "알아서 멋지게 해줘"라고 말하면 AI는 주사위를 굴리듯 아무렇게나 상상해서 글을 씁니다.
+            </p>
+            <p>
+              하지만 <strong>"이 양식에 맞춰서, 내 이름과 설명만 쏙 바꿔줘!"</strong>라고 모범 예시(Few-Shot)를 딱 쥐어주면 1초 만에 천재적인 코드를 뱉어냅니다. 오늘 우리는 AI를 지혜롭게 부리는 사장님의 태도를 배웁니다.
+            </p>
+          </div>
+        </section>
+
+        <!-- 2. 스텝-바이-스텝 따라하기 -->
+        <section class="flex flex-col gap-6">
+          <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-teal-600"></span>
+            <span>따라하기 실습: 4단계 완성 로드맵</span>
+          </h2>
+
+          <!-- Step 1 -->
+          <div class="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm flex flex-col gap-3">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-teal-600 text-white font-bold text-xs flex items-center justify-center">1</span>
+              <h3 class="font-bold text-base text-slate-900">3초 타임머신 보험 들기 (안전 백업본 만들기)</h3>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              작업을 시작하기 전, 컴퓨터 폴더의 <code class="px-2 py-0.5 rounded bg-slate-100 font-mono text-teal-700">index.html</code> 파일을 복사해서 <code class="px-2 py-0.5 rounded bg-slate-100 font-mono text-teal-700">index_backup.html</code>로 하나 복사해 둡니다. 나중에 화면이 멈추거나 마음에 안 들면 언제든 이 파일을 열어 1초 만에 원래대로 되돌릴 수 있습니다.
+            </p>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm flex flex-col gap-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-6 h-6 rounded-full bg-teal-600 text-white font-bold text-xs flex items-center justify-center">2</span>
+                <h3 class="font-bold text-base text-slate-900">검증된 모범 프롬프트 복사하기</h3>
+              </div>
+              <button onclick="copyPrompt('prompt-1')" class="px-3 py-1.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold transition-all shadow-xs flex items-center gap-1 cursor-pointer">
+                <span>📋</span> <span>프롬프트 원클릭 복사</span>
+              </button>
+            </div>
+            <p class="text-xs text-slate-600">아래 박스의 프롬프트를 복사하여 ChatGPT나 Claude 대화창에 그대로 붙여넣으세요. 대괄호 <code class="text-teal-700 font-bold">[ ]</code> 부분만 내 정보로 바꿔주시면 됩니다.</p>
+            
+            <div id="prompt-1" class="p-4 rounded-2xl bg-slate-900 text-slate-200 font-mono text-xs leading-relaxed overflow-x-auto border border-slate-800">
+너는 시니어 웹 퍼블리셔이자 초보자를 돕는 코딩 디렉터야.
+내가 아래 제공하는 [HTML 원본 코드]의 디자인과 틀은 그대로 유지하면서, 내 내용만 정확하게 바꿔줘.
+
+[엄격한 출력 규칙]
+1. `/* 생략 */`이나 `<!-- 이전과 동일 -->` 같은 축약은 절대 금지한다. `&lt;!DOCTYPE html&gt;`부터 `&lt;/html&gt;`까지 전체 코드를 한 글자도 빠짐없이 출력해 줘.
+2. 기존의 Tailwind CSS 클래스, Wanted Sans 웹폰트, `word-break: keep-all;` 속성은 절대 삭제하거나 변경하지 마.
+3. 아래의 [수정 항목]만 찾아서 바꿔줘:
+   - 프로젝트 제목: [내 프로젝트 이름, 예: 나만의 업무 도우미]
+   - 슬로건: [내 웹 한 줄 소개]
+   - 제작자 정보: [내 이름 / 이니셜]
+   - 개요 본문: [이 도구가 왜 필요한지 2~3문장]
+
+[HTML 원본 코드]
+(여기에 starter-kit/index.html 코드 붙여넣기)
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm flex flex-col gap-3">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-teal-600 text-white font-bold text-xs flex items-center justify-center">3</span>
+              <h3 class="font-bold text-base text-slate-900">AI가 뱉은 코드를 내 파일에 넣고 브라우저로 열기</h3>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              AI가 출력한 코드 블록 오른쪽 위의 <code class="px-2 py-0.5 rounded bg-slate-100 font-mono">Copy Code</code>를 누른 뒤, 메모장이나 VS Code에서 내 <code class="px-2 py-0.5 rounded bg-slate-100 font-mono text-teal-700">index.html</code> 파일을 열고 전체 선택(Ctrl+A) 후 붙여넣기(Ctrl+V)하고 저장(Ctrl+S)합니다. 크롬 브라우저를 새로고침(F5)하면 내 이름이 적힌 화면이 짠! 나타납니다.
+            </p>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm flex flex-col gap-3">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-teal-600 text-white font-bold text-xs flex items-center justify-center">4</span>
+              <h3 class="font-bold text-base text-slate-900">전 세계 인터넷에 무료 배포 & 스마트폰 확인!</h3>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              무료 호스팅 서비스(Netlify Drop: <code class="text-teal-700">app.netlify.com/drop</code>)에 내 폴더를 마우스로 휙 끌어다 놓기만 하면, 5초 만에 나만의 실제 인터넷 주소(<code class="font-mono text-teal-700">https://내이름.netlify.app</code>)가 탄생합니다. 내 스마트폰으로 열어보고 가족 단톡방에 링크를 공유하세요!
+            </p>
+          </div>
+        </section>
+
+        <!-- 3. 체크리스트 & 샌드박스 바로가기 -->
+        <section class="p-6 sm:p-8 rounded-3xl bg-emerald-50/60 border-2 border-emerald-500/80 flex flex-col gap-4">
+          <div class="flex items-center justify-between">
+            <h2 class="text-base font-bold text-slate-900 flex items-center gap-2">
+              <span>✅</span> <span>1주차 미션 완료 자가진단</span>
+            </h2>
+            <span class="text-xs text-emerald-700 font-bold">전부 체크되면 1주차 통과!</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-700">
+            <label class="flex items-center gap-2 p-3 rounded-xl bg-white border border-emerald-200 cursor-pointer">
+              <input type="checkbox" class="w-4 h-4 accent-emerald-600 rounded">
+              <span>`index_backup.html` 백업본을 만들었다</span>
+            </label>
+            <label class="flex items-center gap-2 p-3 rounded-xl bg-white border border-emerald-200 cursor-pointer">
+              <input type="checkbox" class="w-4 h-4 accent-emerald-600 rounded">
+              <span>프롬프트 1-1로 내 소개가 들어간 화면을 만들었다</span>
+            </label>
+            <label class="flex items-center gap-2 p-3 rounded-xl bg-white border border-emerald-200 cursor-pointer">
+              <input type="checkbox" class="w-4 h-4 accent-emerald-600 rounded">
+              <span>인터넷 주소(URL)를 받아 스마트폰으로 접속했다</span>
+            </label>
+            <label class="flex items-center gap-2 p-3 rounded-xl bg-white border border-emerald-200 cursor-pointer">
+              <input type="checkbox" class="w-4 h-4 accent-emerald-600 rounded">
+              <span>지인이나 가족에게 링크를 자랑했다</span>
+            </label>
+          </div>
+
+          <div class="pt-2 flex items-center justify-between">
+            <span class="text-xs text-slate-500">완성된 1주차 스타터킷 코드 모양이 궁금하신가요?</span>
+            <a href="/courseware/starter-kit/index.html" target="_blank" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition-all shadow-xs flex items-center gap-1.5">
+              <span>👉 1주차 완성 화면 새 창으로 보기</span>
+              <span>↗</span>
+            </a>
+          </div>
+        </section>
+
+      </article>
+
+      <!-- ========================================================
+           WEEK 02 LESSON
+           ======================================================== -->
+      <article id="lesson-w2" class="lesson-content flex-col gap-8">
+        <div class="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200 shadow-sm flex flex-col gap-3">
+          <div class="flex items-center justify-between text-xs">
+            <span class="px-3 py-1 rounded-full bg-teal-100/70 text-teal-800 font-extrabold">WEEK 02 · 문맥 통제</span>
+            <span class="text-slate-400">⏱️ 실습 소요 시간: 약 35분</span>
+          </div>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight leading-tight">
+            거짓말쟁이 AI를 똑똑한 비서로 길들이기 (내 문서 가두기 & 출처 카드)
+          </h1>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            AI에게 내 메모나 회사 안내문을 건네주고 "없는 이야기는 절대 지어내지 마!" 하고 안전한 울타리를 칩니다. 요약된 문장마다 [출처: 제N조]를 인용하는 3단 정보 카드를 내 웹페이지에 결합합니다.
+          </p>
+        </div>
+
+        <section class="p-6 sm:p-8 rounded-3xl bg-slate-900 text-white flex flex-col gap-4 shadow-sm">
+          <div class="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase tracking-wider">
+            <span>💡</span> <span>원장님의 3분 이야기 · 문맥 울타리 치기</span>
+          </div>
+          <h2 class="text-xl font-bold">"문서에 없으면 '모릅니다'라고 말하게 만들기"</h2>
+          <div class="text-xs sm:text-sm text-slate-300 space-y-2.5 leading-relaxed">
+            <p>
+              AI는 모르는 질문을 받으면 부끄러워서 그럴듯한 거짓말(환각)을 지어냅니다. 
+            </p>
+            <p>
+              해결책은 간단합니다! <strong>"내가 준 이 종이 안에서만 찾아보고, 여기에 안 적혀 있으면 '제공된 문서에 없습니다'라고 정직하게 말해!"</strong>라고 규칙을 거는 것입니다. 이것이 기업들이 수억 원을 들여 구축하는 RAG(검색 증강 생성)의 가장 기초적이고 완벽한 시작입니다.
+            </p>
+          </div>
+        </section>
+
+        <!-- Prompt 2-1 -->
+        <section class="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm flex flex-col gap-3">
+          <div class="flex items-center justify-between">
+            <h3 class="font-bold text-base text-slate-900">📌 프롬프트 2-1: 원문 가두기 & 3단 요약 카드 추출</h3>
+            <button onclick="copyPrompt('prompt-2')" class="px-3 py-1.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold transition-all shadow-xs flex items-center gap-1 cursor-pointer">
+              <span>📋</span> <span>프롬프트 복사</span>
+            </button>
+          </div>
+          <div id="prompt-2" class="p-4 rounded-2xl bg-slate-900 text-slate-200 font-mono text-xs leading-relaxed overflow-x-auto border border-slate-800">
+너는 팩트 기반 정보 검증 전문 에디터야.
+내가 아래 제공하는 [참고 원문 문서]만을 근거로 삼아 정보를 요약해 줘.
+
+[엄격한 신뢰성 규칙]
+1. 문서에 명시되지 않은 사실은 절대 추측하거나 상상해서 지어내지 마라.
+2. 문서에서 찾을 수 없는 질문이 있다면 "제공된 문서에 해당 내용이 없습니다"라고 솔직하게 답변해.
+3. 모든 요약 문장 끝에는 반드시 원문의 출처(단락 제목이나 조항)를 [출처: ...] 형태로 명기해.
+
+[요약 형식: 3단 카드 규격]
+다음 3가지 카드로 딱 떨어지게 정리해 줘:
+- CARD 01 [핵심 배경과 목적]: 2문장 요약 + [출처]
+- CARD 02 [해결책 및 주요 데이터]: 2문장 요약 + [출처]
+- CARD 03 [주의사항 및 실행 팁]: 2문장 요약 + [출처]
+
+[참고 원문 문서]
+(여기에 내 안내문, 메모, 기획서 텍스트 500자 붙여넣기)
+          </div>
+        </section>
+
+        <section class="p-6 sm:p-8 rounded-3xl bg-emerald-50/60 border-2 border-emerald-500/80 flex flex-col gap-4">
+          <div class="flex items-center justify-between">
+            <h2 class="text-base font-bold text-slate-900 flex items-center gap-2">
+              <span>✅</span> <span>2주차 미션 완료 자가진단</span>
+            </h2>
+            <a href="/courseware/weekly-kits/week02-context-cards/index.html" target="_blank" class="px-4 py-2 rounded-xl bg-teal-700 hover:bg-teal-800 text-white font-bold text-xs transition-all shadow-xs flex items-center gap-1">
+              <span>👉 2주차 완성 키트 보기</span> <span>↗</span>
+            </a>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-700">
+            <label class="flex items-center gap-2 p-3 rounded-xl bg-white border border-emerald-200 cursor-pointer">
+              <input type="checkbox" class="w-4 h-4 accent-emerald-600 rounded">
+              <span>내 원문 문서에서만 뽑아낸 3단 카드를 만들었다</span>
+            </label>
+            <label class="flex items-center gap-2 p-3 rounded-xl bg-white border border-emerald-200 cursor-pointer">
+              <input type="checkbox" class="w-4 h-4 accent-emerald-600 rounded">
+              <span>각 카드마다 [출처] 배지가 정확히 달려있는지 대조했다</span>
+            </label>
+          </div>
+        </section>
+      </article>
+
+      <!-- ========================================================
+           WEEK 03 LESSON
+           ======================================================== -->
+      <article id="lesson-w3" class="lesson-content flex-col gap-8">
+        <div class="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200 shadow-sm flex flex-col gap-3">
+          <div class="flex items-center justify-between text-xs">
+            <span class="px-3 py-1 rounded-full bg-teal-100/70 text-teal-800 font-extrabold">WEEK 03 · 디자인 감도</span>
+            <span class="text-slate-400">⏱️ 실습 소요 시간: 약 30분</span>
+          </div>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight leading-tight">
+            어지러운 색 싹 빼고, 전문가처럼 2색 디자인하기 (DESIGN.md 지침서)
+          </h1>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            AI에게 그냥 만들어달라고 하면 촌스러운 보라색 네온 그라데이션을 칠해옵니다. 딱 2가지 세련된 색상과 한글 오와열을 맞추는 `DESIGN.md` 지침서를 챗봇에 등록하여 프로페셔널한 화면으로 탈바꿈시킵니다.
+          </p>
+        </div>
+
+        <section class="p-6 sm:p-8 rounded-3xl bg-slate-900 text-white flex flex-col gap-4 shadow-sm">
+          <div class="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase tracking-wider">
+            <span>💡</span> <span>원장님의 3분 이야기 · 스킬의 정체</span>
+          </div>
+          <h2 class="text-xl font-bold">"스킬(Skill)은 마법이 아니라 '업무 매뉴얼'입니다"</h2>
+          <div class="text-xs sm:text-sm text-slate-300 space-y-2.5 leading-relaxed">
+            <p>
+              사람들이 'AI 에이전트 스킬'이라고 하면 엄청난 컴퓨터 소스코드를 생각합니다. 하지만 실제로는 <strong>"우리 회사는 이 글꼴만 쓰고, 이 2가지 색만 써!"</strong>라고 꼼꼼하게 적어둔 마크다운 지침서 문서에 불과합니다.
+            </p>
+            <p>
+              ChatGPT의 맞춤 설정(Custom Instructions)에 이 지침서를 1번만 복사해 두면, 앞으로 어떤 화면을 만들어달라고 해도 자동으로 전문가 디자이너처럼 정갈하게 뽑아줍니다.
+            </p>
+          </div>
+        </section>
+
+        <!-- Prompt 3-1 -->
+        <section class="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm flex flex-col gap-3">
+          <div class="flex items-center justify-between">
+            <h3 class="font-bold text-base text-slate-900">📌 프롬프트 3-1: 챗봇 맞춤설정에 넣을 안티-슬롭 DESIGN.md</h3>
+            <button onclick="copyPrompt('prompt-3')" class="px-3 py-1.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold transition-all shadow-xs flex items-center gap-1 cursor-pointer">
+              <span>📋</span> <span>지침서 복사</span>
+            </button>
+          </div>
+          <div id="prompt-3" class="p-4 rounded-2xl bg-slate-900 text-slate-200 font-mono text-xs leading-relaxed overflow-x-auto border border-slate-800">
+# [송도 AI 아카데미 안티-슬롭 2색 디자인 원칙]
+너는 엔지니어링 냄새가 나지 않는 정갈한 디지털 프로덕트 디자이너다. 나에게 웹 UI 코드를 작성해 줄 때는 아래의 원칙을 반드시 준수한다.
+
+1. 컬러 제한:
+   - 촌스러운 보라색(#7c3aed), 핑크, 형광 네온 컬러를 절대 메인으로 사용하지 않는다.
+   - 단 2가지 색상만 사용한다: 메인 잉크색(Slate-900 / #0f172a), 포인트 강조색(Teal-700 / #0f766e).
+   - 배경은 눈이 편안한 오프화이트(#f8fafc)와 순백색 카드(#ffffff)를 중첩한다.
+
+2. 타이포그래피 (한글 최적화):
+   - 모든 텍스트 컨테이너에 `word-break: keep-all;`을 필수로 적용하여 단어가 어색하게 쪼개지지 않도록 한다.
+   - 제목 태그(h1, h2, h3)에는 `text-wrap: balance;`를 적용하여 양쪽 균형을 맞춘다.
+
+3. 레이아웃:
+   - 불필요하고 요란한 3D 회전 애니메이션은 배제하고, 마우스 호버 시 부드러운 1~2px 상승 효과만 절제되게 허용한다.
+          </div>
+        </section>
+
+        <section class="p-6 sm:p-8 rounded-3xl bg-emerald-50/60 border-2 border-emerald-500/80 flex flex-col gap-4">
+          <div class="flex items-center justify-between">
+            <h2 class="text-base font-bold text-slate-900 flex items-center gap-2">
+              <span>✅</span> <span>3주차 미션 완료 자가진단</span>
+            </h2>
+            <a href="/courseware/weekly-kits/week03-antislop-design/index.html" target="_blank" class="px-4 py-2 rounded-xl bg-teal-700 hover:bg-teal-800 text-white font-bold text-xs transition-all shadow-xs flex items-center gap-1">
+              <span>👉 3주차 완성 키트 보기</span> <span>↗</span>
+            </a>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-700">
+            <label class="flex items-center gap-2 p-3 rounded-xl bg-white border border-emerald-200 cursor-pointer">
+              <input type="checkbox" class="w-4 h-4 accent-emerald-600 rounded">
+              <span>ChatGPT 맞춤설정에 DESIGN.md 규칙을 등록했다</span>
+            </label>
+            <label class="flex items-center gap-2 p-3 rounded-xl bg-white border border-emerald-200 cursor-pointer">
+              <input type="checkbox" class="w-4 h-4 accent-emerald-600 rounded">
+              <span>스마트폰 화면에서 글자 오와열과 줄바꿈이 깔끔해진 것을 확인했다</span>
+            </label>
+          </div>
+        </section>
+      </article>
+
+      <!-- ========================================================
+           WEEK 04 LESSON
+           ======================================================== -->
+      <article id="lesson-w4" class="lesson-content flex-col gap-8">
+        <div class="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200 shadow-sm flex flex-col gap-3">
+          <div class="flex items-center justify-between text-xs">
+            <span class="px-3 py-1 rounded-full bg-teal-100/70 text-teal-800 font-extrabold">WEEK 04 · 동적 인터랙션</span>
+            <span class="text-slate-400">⏱️ 실습 소요 시간: 약 35분</span>
+          </div>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight leading-tight">
+            버튼 딸깍! 새로고침 없이 1초 만에 척척 계산되는 실시간 계산기 장착
+          </h1>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            글자만 읽는 심심한 웹페이지는 이제 그만! 방문자가 옵션 버튼이나 수량을 조작하면 1초 만에 최종 금액이나 견적이 재계산되는 진짜 동작형 계산기 유틸리티를 붙입니다.
+          </p>
+        </div>
+
+        <section class="p-6 sm:p-8 rounded-3xl bg-slate-900 text-white flex flex-col gap-4 shadow-sm">
+          <div class="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase tracking-wider">
+            <span>💡</span> <span>원장님의 3분 이야기 · 살아있는 웹 도구</span>
+          </div>
+          <h2 class="text-xl font-bold">"자바스크립트 몰라도 덧셈 곱셈 규칙만 알려주면 됩니다"</h2>
+          <div class="text-xs sm:text-sm text-slate-300 space-y-2.5 leading-relaxed">
+            <p>
+              웹 프로그래밍의 꽃은 '동작(인터랙션)'입니다. 
+            </p>
+            <p>
+              어려운 자바스크립트 함수 문법을 몰라도 괜찮습니다! AI에게 <strong>"기본 요금은 10만 원이고, 인원수 버튼을 누를 때마다 2만 원씩 곱해서 실시간 총액에 찍어줘!"</strong>라고 일상의 언어로 규칙을 주면, AI가 알아서 안전한 계산 스크립트를 조립해 줍니다.
+            </p>
+          </div>
+        </section>
+
+        <!-- Prompt 4-1 -->
+        <section class="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm flex flex-col gap-3">
+          <div class="flex items-center justify-between">
+            <h3 class="font-bold text-base text-slate-900">📌 프롬프트 4-1: 기존 화면 안 깨먹고 계산기만 쏙 붙이기</h3>
+            <button onclick="copyPrompt('prompt-4')" class="px-3 py-1.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold transition-all shadow-xs flex items-center gap-1 cursor-pointer">
+              <span>📋</span> <span>프롬프트 복사</span>
+            </button>
+          </div>
+          <div id="prompt-4" class="p-4 rounded-2xl bg-slate-900 text-slate-200 font-mono text-xs leading-relaxed overflow-x-auto border border-slate-800">
+너는 인터랙티브 프론트엔드 엔지니어다.
+내 기존 웹페이지의 1~3주차 헤더, 프로필, 3단 요약 카드는 절대 삭제하거나 위치를 바꾸지 말고, `WEEK 04 SLOT` 자리에 [실시간 비용/견적 계산기] 섹션을 추가해 줘.
+
+[계산기 요구사항]
+1. 입력 항목:
+   - 기본 옵션 선택 (라디오 버튼 또는 클릭 카드 형태)
+   - 수량 증가/감소 (+, - 버튼)
+   - 추가 할인 체크박스
+2. 동작 원칙:
+   - 버튼을 누를 때마다 브라우저 새로고침 없이 즉각 하단 [예상 합계 금액] 숫자가 콤마(,)와 함께 재계산되어야 한다.
+   - 0 이하의 음수 입력은 방어해야 한다.
+3. 코드는 생략 없이 완성형 전체 HTML로 출력해 줘.
+          </div>
+        </section>
+
+        <section class="p-6 sm:p-8 rounded-3xl bg-emerald-50/60 border-2 border-emerald-500/80 flex flex-col gap-4">
+          <div class="flex items-center justify-between">
+            <h2 class="text-base font-bold text-slate-900 flex items-center gap-2">
+              <span>✅</span> <span>4주차 미션 완료 자가진단</span>
+            </h2>
+            <a href="/courseware/weekly-kits/week04-interactive-calc/index.html" target="_blank" class="px-4 py-2 rounded-xl bg-teal-700 hover:bg-teal-800 text-white font-bold text-xs transition-all shadow-xs flex items-center gap-1">
+              <span>👉 4주차 완성 키트 보기</span> <span>↗</span>
+            </a>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-700">
+            <label class="flex items-center gap-2 p-3 rounded-xl bg-white border border-emerald-200 cursor-pointer">
+              <input type="checkbox" class="w-4 h-4 accent-emerald-600 rounded">
+              <span>버튼을 클릭했을 때 실시간으로 합계 금액이 바뀐다</span>
+            </label>
+            <label class="flex items-center gap-2 p-3 rounded-xl bg-white border border-emerald-200 cursor-pointer">
+              <input type="checkbox" class="w-4 h-4 accent-emerald-600 rounded">
+              <span>계산기를 붙인 후에도 상단 1~3주차 카드들이 깨지지 않았다</span>
+            </label>
+          </div>
+        </section>
+      </article>
+
+      <!-- ========================================================
+           WEEK 05 LESSON
+           ======================================================== -->
+      <article id="lesson-w5" class="lesson-content flex-col gap-8">
+        <div class="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200 shadow-sm flex flex-col gap-3">
+          <div class="flex items-center justify-between text-xs">
+            <span class="px-3 py-1 rounded-full bg-rose-100 text-rose-800 font-extrabold">WEEK 05 · 안심 회복</span>
+            <span class="text-slate-400">⏱️ 실습 소요 시간: 약 35분</span>
+          </div>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight leading-tight">
+            화면이 멈춰도 3초 만에 살려내는 타임머신 복구 & 디버깅 대화법
+          </h1>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            원장님이 일부러 고장 낸 코드를 적용해 화면이 멈추는 상황을 직접 겪어봅니다. 당황하지 않고 3초 만에 백업본으로 되돌리는 안심 습관과, AI에게 증상을 정확히 일러바치는 4단 디버깅 대화법을 완성합니다.
+          </p>
+        </div>
+
+        <section class="p-6 sm:p-8 rounded-3xl bg-slate-900 text-white flex flex-col gap-4 shadow-sm">
+          <div class="flex items-center gap-2 text-rose-400 text-xs font-bold uppercase tracking-wider">
+            <span>💡</span> <span>원장님의 3분 이야기 · 실패 두려움 없애기</span>
+          </div>
+          <h2 class="text-xl font-bold">"멈춰도 괜찮아! 우리에겐 3초 타임머신이 있잖아"</h2>
+          <div class="text-xs sm:text-sm text-slate-300 space-y-2.5 leading-relaxed">
+            <p>
+              비전공자가 코딩을 포기하는 가장 큰 이유는 "내가 뭘 잘못 건드려서 망가지면 어떡하지?"라는 공포 때문입니다.
+            </p>
+            <p>
+              하지만 <strong>"언제든 버튼 한 번으로 과거로 돌아갈 수 있는 백업 타임머신"</strong>이 내 손에 쥐어져 있다면 어떨까요? 아무리 컴퓨터를 고장 내도 1초 만에 살려낼 수 있으니, 두려움 없이 마음껏 실험하고 고칠 수 있습니다!
+            </p>
+          </div>
+        </section>
+
+        <!-- Prompt 5-1 -->
+        <section class="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm flex flex-col gap-3">
+          <div class="flex items-center justify-between">
+            <h3 class="font-bold text-base text-slate-900">📌 프롬프트 5-1: 4단 에러 리포트 & 안전 수정 지시</h3>
+            <button onclick="copyPrompt('prompt-5')" class="px-3 py-1.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold transition-all shadow-xs flex items-center gap-1 cursor-pointer">
+              <span>📋</span> <span>프롬프트 복사</span>
+            </button>
+          </div>
+          <div id="prompt-5" class="p-4 rounded-2xl bg-slate-900 text-slate-200 font-mono text-xs leading-relaxed overflow-x-auto border border-slate-800">
+내 웹페이지에서 문제가 발생했어. 아래 4가지 상황을 보고 원인을 찾아 안전하게 수정해 줘.
+
+1. [현재 겪고 있는 증상]: 
+   - [예: 계산기에서 플러스(+) 버튼을 눌러도 숫자가 올라가지 않고 그대로 멈춰 있음]
+
+2. [원래 기대했던 동작]:
+   - [예: 버튼을 누르면 숫자가 1씩 올라가고 총금액에 반영되어야 함]
+
+3. [의심되는 에러 문구 (F12 콘솔에 보이는 글자)]:
+   - [예: Uncaught TypeError: Cannot read properties of null]
+
+4. [수정 원칙]:
+   - 다른 정상 작동 영역(헤더, 요약 카드 등)은 절대 건드리지 마.
+   - 문제 원인이 무엇이었는지 초등학생도 이해할 수 있게 2줄로 설명하고, 수정된 전체 코드를 출력해 줘.
+          </div>
+        </section>
+
+        <section class="p-6 sm:p-8 rounded-3xl bg-emerald-50/60 border-2 border-emerald-500/80 flex flex-col gap-4">
+          <div class="flex items-center justify-between">
+            <h2 class="text-base font-bold text-slate-900 flex items-center gap-2">
+              <span>✅</span> <span>5주차 미션 완료 자가진단</span>
+            </h2>
+            <a href="/courseware/weekly-kits/week05-debug-lab/index.html" target="_blank" class="px-4 py-2 rounded-xl bg-rose-700 hover:bg-rose-800 text-white font-bold text-xs transition-all shadow-xs flex items-center gap-1">
+              <span>👉 5주차 고의 에러 랩 열기</span> <span>↗</span>
+            </a>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-700">
+            <label class="flex items-center gap-2 p-3 rounded-xl bg-white border border-emerald-200 cursor-pointer">
+              <input type="checkbox" class="w-4 h-4 accent-emerald-600 rounded">
+              <span>화면이 멈췄을 때 백업본으로 3초 만에 롤백 복구했다</span>
+            </label>
+            <label class="flex items-center gap-2 p-3 rounded-xl bg-white border border-emerald-200 cursor-pointer">
+              <input type="checkbox" class="w-4 h-4 accent-emerald-600 rounded">
+              <span>4단 디버깅 프롬프트를 통해 AI에게 문제를 고치라고 시켰다</span>
+            </label>
+          </div>
+        </section>
+      </article>
+
+      <!-- ========================================================
+           WEEK 06 LESSON
+           ======================================================== -->
+      <article id="lesson-w6" class="lesson-content flex-col gap-8">
+        <div class="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200 shadow-sm flex flex-col gap-3">
+          <div class="flex items-center justify-between text-xs">
+            <span class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 font-extrabold">WEEK 06 · 당당한 졸업</span>
+            <span class="text-slate-400">⏱️ 실습 소요 시간: 약 40분</span>
+          </div>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight leading-tight">
+            4가지 합격 도장(Eval) 통과 & 내 작품 전 세계 런칭 (수료식)
+          </h1>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            강사의 도움 없이 혼자 힘으로 새로운 기능 1개를 스스로 추가하고, 4대 합격 도장 검증을 통과하여 진정한 '자립형 바이브 빌더'로 수료합니다. 수료증 발급과 함께 전 세계에 내 작품을 라이브로 배포합니다.
+          </p>
+        </div>
+
+        <section class="p-6 sm:p-8 rounded-3xl bg-slate-900 text-white flex flex-col gap-4 shadow-sm">
+          <div class="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase tracking-wider">
+            <span>🎓</span> <span>원장님의 수료사 · 진정한 자립</span>
+          </div>
+          <h2 class="text-xl font-bold">"이제 당신은 남에게 부탁하지 않는 독립된 빌더입니다"</h2>
+          <div class="text-xs sm:text-sm text-slate-300 space-y-2.5 leading-relaxed">
+            <p>
+              6주 동안 여러분은 단순히 코드를 구경한 것이 아닙니다. 
+            </p>
+            <p>
+              1일차에 웹을 배포했고, 문맥을 통제했으며, 디자인 규칙을 세웠고, 계산기를 결합했으며, 오류가 나도 스스로 살려내는 회복력까지 몸에 익혔습니다. 앞으로 어떤 아이디어가 떠올라도, 여러분은 단 하나의 AI와 함께 그 아이디어를 세상에 직접 선보일 수 있습니다!
+            </p>
+          </div>
+        </section>
+
+        <!-- 4 Eval Checkpoints -->
+        <section class="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm flex flex-col gap-4">
+          <h3 class="font-bold text-base text-slate-900 flex items-center gap-2">
+            <span>🛡️</span> <span>최종 수료를 위한 4대 기능 검증 도장 (Eval)</span>
+          </h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col gap-1.5">
+              <span class="font-bold text-emerald-700">도장 01. 정상값 검증</span>
+              <p class="text-slate-600">모든 옵션 버튼과 수량 증감이 오류 없이 정상 계산되는가?</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col gap-1.5">
+              <span class="font-bold text-emerald-700">도장 02. 이상 입력 방어</span>
+              <p class="text-slate-600">0이나 음수 등 엉뚱한 값을 넣어도 화면이 터지지 않는가?</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col gap-1.5">
+              <span class="font-bold text-emerald-700">도장 03. 디자인 비손상</span>
+              <p class="text-slate-600">기능을 추가한 뒤에도 기존 제목이나 카드 배치가 틀어지지 않았는가?</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col gap-1.5">
+              <span class="font-bold text-emerald-700">도장 04. 모바일 반응형</span>
+              <p class="text-slate-600">스마트폰 폭(375px)에서 가로로 삐져나가지 않고 예쁘게 보이는가?</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="p-6 sm:p-8 rounded-3xl bg-emerald-50/60 border-2 border-emerald-500/80 flex flex-col gap-4">
+          <div class="flex items-center justify-between">
+            <h2 class="text-base font-bold text-slate-900 flex items-center gap-2">
+              <span>🏆</span> <span>최종 수료증 & 런칭 번들</span>
+            </h2>
+            <a href="/courseware/weekly-kits/week06-final-launch/index.html" target="_blank" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition-all shadow-xs flex items-center gap-1">
+              <span>👉 6주차 수료 번들 열기</span> <span>↗</span>
+            </a>
+          </div>
+          <p class="text-xs text-slate-600">
+            6주차 실습 키트에서 4대 Eval 검증 테스트를 완료하고 [수료증 발급]을 누르면 원장님의 공식 서명이 담긴 수료증을 획득하실 수 있습니다!
+          </p>
+        </section>
+      </article>
+
+    </main>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-200 py-8 px-6 bg-white text-xs text-slate-400 mt-12">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span>송도 AI 아카데미 (Songdo AI Academy) · 1~6주차 실전 온라인 교안</span>
+      <div class="flex items-center gap-2">
+        <span>Authored by</span>
+        <span class="font-signature text-2xl text-slate-800 font-bold">ohahbuji</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    let currentWeek = 1;
+    let isLessonEdit = false;
+
+    function switchWeek(weekNum) {
+      currentWeek = weekNum;
+
+      // Update Tabs
+      for (let i = 1; i <= 6; i++) {
+        const tab = document.getElementById(`tab-w${i}`);
+        const content = document.getElementById(`lesson-w${i}`);
+        if (i === weekNum) {
+          tab.className = "week-tab-btn w-full p-3 rounded-2xl text-left font-bold transition-all flex items-center justify-between bg-teal-50 text-teal-800 border border-teal-200 shadow-xs";
+          content.classList.add('active');
+        } else {
+          tab.className = "week-tab-btn w-full p-3 rounded-2xl text-left font-bold transition-all flex items-center justify-between text-slate-600 hover:bg-slate-50 border border-transparent";
+          content.classList.remove('active');
+        }
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      if (isLessonEdit) {
+        enableLessonEditing();
+      }
+    }
+
+    function copyPrompt(elementId) {
+      const el = document.getElementById(elementId);
+      if (!el) return;
+      const text = el.innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        showToast("📋 프롬프트가 클립보드에 1초 만에 복사되었습니다! ChatGPT나 Claude에 붙여넣으세요.");
+      }).catch(err => {
+        alert("복사 실패: 수동으로 드래그해 복사해 주세요.");
+      });
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('lesson-toast');
+      if (toast) {
+        toast.innerText = msg;
+        toast.classList.remove('hidden');
+        setTimeout(() => toast.classList.add('hidden'), 3500);
+      }
+    }
+
+    // In-Place Editor for Lessons
+    function enableLessonEditing() {
+      const targets = document.querySelectorAll('main h1, main h2, main h3, main p, main span, main div.font-mono');
+      targets.forEach(el => {
+        if (el.closest('button') || el.closest('a') || el.closest('#lesson-edit-banner') || el.closest('aside')) return;
+        el.setAttribute('contenteditable', 'true');
+        el.classList.add('editable-lesson-element');
+      });
+    }
+
+    function disableLessonEditing() {
+      const targets = document.querySelectorAll('.editable-lesson-element');
+      targets.forEach(el => {
+        el.removeAttribute('contenteditable');
+        el.classList.remove('editable-lesson-element');
+      });
+    }
+
+    function toggleLessonEditMode() {
+      isLessonEdit = !isLessonEdit;
+      const banner = document.getElementById('lesson-edit-banner');
+      const btnText = document.getElementById('edit-btn-text');
+
+      if (isLessonEdit) {
+        if (banner) banner.classList.remove('hidden');
+        if (btnText) btnText.innerText = "수정 켜짐 (E)";
+        enableLessonEditing();
+        showToast("✏️ 교안 직접 수정 켜짐: 글자를 클릭해 바로 고치고 [저장하기]를 누르세요!");
+      } else {
+        if (banner) banner.classList.add('hidden');
+        if (btnText) btnText.innerText = "교안 수정 (E)";
+        disableLessonEditing();
+        showToast("👀 수정 모드가 꺼졌습니다.");
+      }
+    }
+
+    async function saveLessonToServer() {
+      const banner = document.getElementById('lesson-edit-banner');
+      disableLessonEditing();
+      if (banner) banner.classList.add('hidden');
+
+      const fullHtml = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+
+      if (isLessonEdit) {
+        if (banner) banner.classList.remove('hidden');
+        enableLessonEditing();
+      }
+
+      try {
+        const res = await fetch('/api/save-page', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ page: 'courseware/lessons.html', html: fullHtml })
+        });
+        const json = await res.json();
+        if (res.ok && json.success) {
+          alert('✅ 강의 교안(lessons.html) 파일에 즉시 영구 저장되었습니다!');
+        } else {
+          alert('저장 실패: ' + (json.error || '알 수 없는 오류'));
+        }
+      } catch (err) {
+        alert('서버 통신 오류: ' + err.message);
+      }
+    }
+
+    // Keyboard Listeners
+    window.addEventListener('keydown', (e) => {
+      if (e.target && e.target.isContentEditable) {
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
+          e.preventDefault();
+          saveLessonToServer();
+        }
+        return;
+      }
+
+      if (['1', '2', '3', '4', '5', '6'].includes(e.key)) {
+        switchWeek(parseInt(e.key));
+      } else if (e.key.toLowerCase() === 'e') {
+        e.preventDefault();
+        toggleLessonEditMode();
+      } else if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
+        e.preventDefault();
+        saveLessonToServer();
+      }
+    });
+  </script>
+
+</body>
+</html>

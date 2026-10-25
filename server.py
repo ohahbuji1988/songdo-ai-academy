@@ -122,7 +122,7 @@ class DevilServerHandler(SimpleHTTPRequestHandler):
                 data = json.loads(body)
                 page = data.get('page', '').strip()
                 html_content = data.get('html', '')
-                allowed_pages = ['landing.html', 'presentation.html', 'curriculum.html', 'creator.html', 'process.html']
+                allowed_pages = ['landing.html', 'presentation.html', 'curriculum.html', 'creator.html', 'process.html', 'courseware/lessons.html', 'courseware/index.html']
                 if page not in allowed_pages:
                     self.send_error_json(400, f"저장 권한이 없는 페이지입니다: {page}")
                     return
