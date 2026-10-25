@@ -100,6 +100,21 @@ class DevilServerHandler(SimpleHTTPRequestHandler):
                 self.send_json_response(200, {"success": True, "message": "curriculum_data.json 저장 성공!"})
             except Exception as e:
                 self.send_error_json(500, f"저장 실패: {str(e)}")
+        elif self.path == '/api/save-presentation':
+            content_length = int(self.headers.get('Content-Length', 0))
+            body = self.rfile.read(content_length).decode('utf-8')
+            try:
+                data = json.loads(body)
+                html_content = data.get('html', '')
+                if html_content:
+                    file_path = os.path.join(DIRECTORY, 'presentation.html')
+                    with open(file_path, 'w', encoding='utf-8') as f:
+                        f.write(html_content)
+                    self.send_json_response(200, {"success": True, "message": "presentation.html 파일에 즉시 영구 저장되었습니다!"})
+                else:
+                    self.send_error_json(400, "내용이 비어 있습니다.")
+            except Exception as e:
+                self.send_error_json(500, f"저장 실패: {str(e)}")
         elif self.path == '/api/open-browser':
             content_length = int(self.headers.get('Content-Length', 0))
             body = self.rfile.read(content_length).decode('utf-8')

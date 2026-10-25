@@ -315,10 +315,17 @@
 
     // Toggle Director Edit Mode
     function toggleDirectorEditMode() {
-      switchTab('studio');
-      const studioFrame = document.getElementById('iframe-studio');
-      if (studioFrame && studioFrame.contentWindow) {
-        studioFrame.contentWindow.postMessage({ type: 'FOCUS_EDITOR' }, '*');
+      if (currentTab === 'presentation') {
+        const presFrame = document.getElementById('iframe-presentation');
+        if (presFrame && presFrame.contentWindow) {
+          presFrame.contentWindow.postMessage({ type: 'TOGGLE_EDIT_MODE' }, '*');
+        }
+      } else {
+        switchTab('studio');
+        const studioFrame = document.getElementById('iframe-studio');
+        if (studioFrame && studioFrame.contentWindow) {
+          studioFrame.contentWindow.postMessage({ type: 'FOCUS_EDITOR' }, '*');
+        }
       }
     }
 
