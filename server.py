@@ -23,7 +23,8 @@ class DevilServerHandler(SimpleHTTPRequestHandler):
         super().__init__(*args, directory=DIRECTORY, **kwargs)
 
     def do_GET(self):
-        if self.path == '/api/curriculum-data':
+        clean_path = self.path.split('?')[0]
+        if clean_path == '/api/curriculum-data':
             json_path = os.path.join(DIRECTORY, 'curriculum_data.json')
             if os.path.exists(json_path):
                 with open(json_path, 'r', encoding='utf-8') as f:
@@ -31,8 +32,59 @@ class DevilServerHandler(SimpleHTTPRequestHandler):
                 self.send_json_response(200, data)
             else:
                 self.send_error_json(404, "curriculum_data.json not found")
+        elif clean_path.endswith('.mp4') or 'Range' in self.headers:
+            self.handle_range_request()
         else:
             super().do_GET()
+
+    def handle_range_request(self):
+        path = self.translate_path(self.path)
+        if not os.path.exists(path) or os.path.isdir(path):
+            self.send_error(404, "File not found")
+            return
+
+        file_size = os.path.getsize(path)
+        range_header = self.headers.get('Range')
+        content_type = 'video/mp4' if path.endswith('.mp4') else 'application/octet-stream'
+
+        if not range_header:
+            self.send_response(200)
+            self.send_header('Content-Type', content_type)
+            self.send_header('Content-Length', str(file_size))
+            self.send_header('Accept-Ranges', 'bytes')
+            self.end_headers()
+            with open(path, 'rb') as f:
+                self.copyfile(f, self.wfile)
+            return
+
+        try:
+            range_val = range_header.strip().split('=')[1]
+            start_str, end_str = range_val.split('-')
+            start = int(start_str) if start_str else 0
+            end = int(end_str) if end_str else file_size - 1
+            if end >= file_size:
+                end = file_size - 1
+            content_length = end - start + 1
+
+            self.send_response(206, "Partial Content")
+            self.send_header('Content-Type', content_type)
+            self.send_header('Content-Range', f'bytes {start}-{end}/{file_size}')
+            self.send_header('Content-Length', str(content_length))
+            self.send_header('Accept-Ranges', 'bytes')
+            self.end_headers()
+
+            with open(path, 'rb') as f:
+                f.seek(start)
+                bytes_left = content_length
+                while bytes_left > 0:
+                    chunk_size = min(64 * 1024, bytes_left)
+                    chunk = f.read(chunk_size)
+                    if not chunk:
+                        break
+                    self.wfile.write(chunk)
+                    bytes_left -= len(chunk)
+        except Exception:
+            pass
 
     def do_OPTIONS(self):
         self.send_response(200)

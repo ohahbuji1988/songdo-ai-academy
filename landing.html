@@ -1220,14 +1220,21 @@
       const subEl = document.getElementById('reelSubtitleBar');
 
       if (videoEl && data.video) {
-        if (!videoEl.src.endsWith(data.video)) {
-          videoEl.src = data.video;
+        const fullSrc = data.video;
+        if (!videoEl.src.endsWith(fullSrc)) {
+          videoEl.src = fullSrc;
+          videoEl.load();
         }
         videoEl.poster = data.image;
         videoEl.muted = !isStoryAudioOn;
-        videoEl.currentTime = 0;
         if (isStoryPlaying) {
-          videoEl.play().catch(() => {});
+          const playPromise = videoEl.play();
+          if (playPromise !== undefined) {
+            playPromise.catch(() => {
+              videoEl.muted = true;
+              videoEl.play().catch(() => {});
+            });
+          }
         } else {
           videoEl.pause();
         }
@@ -1449,14 +1456,14 @@
     }
 
     // Auto-start reel on page load
-    window.addEventListener('DOMContentLoaded', () => {
+    let storyStarted = false;
+    function initStoryPlayer() {
+      if (storyStarted) return;
+      storyStarted = true;
       renderStoryScene(0, false);
       setInterval(tickStory, TICK_INTERVAL_MS);
-    });
-    // Fallback immediate invoke
-    setTimeout(() => {
-      renderStoryScene(0, false);
-      setInterval(tickStory, TICK_INTERVAL_MS);
-    }, 200);
+    }
+    window.addEventListener('DOMContentLoaded', initStoryPlayer);
+    setTimeout(initStoryPlayer, 250);
   </script>
 </body></html>
