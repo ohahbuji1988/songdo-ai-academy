@@ -184,29 +184,17 @@
   <section class="py-12 px-6 sm:px-10 max-w-5xl mx-auto">
     <div class="p-6 sm:p-10 rounded-3xl bg-slate-900 text-white shadow-2xl border border-slate-800 flex flex-col gap-6">
       
-      <!-- Section Header & Mode Toggle -->
-      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-slate-800 pb-5">
-        <div class="flex flex-col gap-1 text-center sm:text-left">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xs uppercase tracking-wider border border-emerald-500/30 w-fit mx-auto sm:mx-0">
-            <span>🎬</span> <span>실전 숏폼 영상 & 4컷 스토리</span>
-          </div>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-            "코딩 학원 6개월 다닌 민우(12세)의 진짜 실전 AI 탈출기"
-          </h2>
-          <p class="text-xs sm:text-sm text-slate-400">
-            장난감 블록 맞추기에서 벗어나, 아빠 매장 실전 계산기를 만드는 감동의 스토리
-          </p>
+      <!-- Section Header (Centered Clean) -->
+      <div class="flex flex-col items-center text-center gap-2 border-b border-slate-800 pb-5">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xs uppercase tracking-wider border border-emerald-500/30">
+          <span>🎬</span> <span>37초 실전 스토리 영상</span>
         </div>
-
-        <!-- Mode Switcher Buttons -->
-        <div class="flex items-center bg-slate-950 p-1 rounded-xl border border-slate-800 shrink-0 text-xs">
-          <button id="viewModeReelBtn" onclick="switchStoryMode('reel')" class="px-3.5 py-1.5 rounded-lg bg-emerald-600 text-white font-bold transition-all shadow-sm flex items-center gap-1.5">
-            <span>🎬</span> <span>실전 영상 재생</span>
-          </button>
-          <button id="viewModeGridBtn" onclick="switchStoryMode('grid')" class="px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition-all flex items-center gap-1.5">
-            <span>📖</span> <span>4컷 전체보기</span>
-          </button>
-        </div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+          "코딩 학원 6개월 다닌 민우(12세)의 진짜 실전 AI 탈출기"
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-400 max-w-xl">
+          장난감 블록 맞추기에서 벗어나, 아빠 매장 실전 계산기를 만드는 감동의 스토리
+        </p>
       </div>
 
       <!-- MODE A: VREW 9:16 SHORTS SMARTPHONE SHOWCASE -->
@@ -279,87 +267,6 @@
               <span>✨ 1기 수강 신청하기</span>
               <span>→</span>
             </button>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- MODE B: 4-CUT WEBTOON GRID (Card View) -->
-      <div id="storyGridContainer" class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
-        
-        <!-- Cut 1 -->
-        <div class="rounded-2xl bg-slate-800/90 border border-slate-700 flex flex-col overflow-hidden shadow-md">
-          <div class="w-full aspect-video overflow-hidden relative">
-            <img src="/assets/story/scene1.jpg" alt="Scene 1" class="w-full h-full object-cover">
-            <span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/70 text-slate-200 font-mono font-bold text-[10px]">CUT 01</span>
-          </div>
-          <div class="p-4 flex flex-col justify-between gap-2.5 flex-1">
-            <div class="p-2.5 rounded-xl bg-slate-900/80 border border-slate-800 text-slate-200 italic leading-snug">
-              "엄마! 나 코딩 학원에서 고양이가 점프하는 게임 만들었어!"
-            </div>
-            <div class="flex flex-col gap-0.5">
-              <strong class="text-slate-100 font-bold text-sm">6개월의 씁쓸한 현실</strong>
-              <p class="text-slate-400 text-[11px] leading-relaxed">
-                학원비 300만 원을 썼지만, 학교 밖 현실에선 아무 데도 쓸모없는 블록 장난감...
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Cut 2 -->
-        <div class="rounded-2xl bg-slate-800/90 border border-slate-700 flex flex-col overflow-hidden shadow-md">
-          <div class="w-full aspect-video overflow-hidden relative">
-            <img src="/assets/story/scene2.jpg" alt="Scene 2" class="w-full h-full object-cover">
-            <span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-rose-900/80 text-rose-200 font-mono font-bold text-[10px]">CUT 02</span>
-          </div>
-          <div class="p-4 flex flex-col justify-between gap-2.5 flex-1">
-            <div class="p-2.5 rounded-xl bg-rose-950/40 border border-rose-800/60 text-rose-200 italic leading-snug">
-              "아빠 가게 도와주려 코드 고쳤더니 화면이 하얗게 멈췄어요 ㅠㅠ"
-            </div>
-            <div class="flex flex-col gap-0.5">
-              <strong class="text-rose-400 font-bold text-sm">글자 하나에 터지는 공포</strong>
-              <p class="text-slate-400 text-[11px] leading-relaxed">
-                컴퓨터가 고장 난 줄 알고 울먹이며 '난 코딩 체질이 아닌가 봐' 지레 포기해 버리는 아이들.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Cut 3 -->
-        <div class="rounded-2xl bg-slate-800/90 border border-slate-700 flex flex-col overflow-hidden shadow-md">
-          <div class="w-full aspect-video overflow-hidden relative">
-            <img src="/assets/story/scene3.jpg" alt="Scene 3" class="w-full h-full object-cover">
-            <span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-teal-900/80 text-teal-200 font-mono font-bold text-[10px]">CUT 03</span>
-          </div>
-          <div class="p-4 flex flex-col justify-between gap-2.5 flex-1">
-            <div class="p-2.5 rounded-xl bg-teal-950/40 border border-teal-800/60 text-teal-200 italic leading-snug">
-              "당황하지 마! AI는 우리 인턴이고, 3초 타임머신이 있잖아!"
-            </div>
-            <div class="flex flex-col gap-0.5">
-              <strong class="text-teal-400 font-bold text-sm">ohahbuji 원장님의 비법</strong>
-              <p class="text-slate-400 text-[11px] leading-relaxed">
-                망가져도 3초 만에 백업본으로 원복! 두려움 제로의 상태에서 AI에게 일시키는 안목을 전수.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Cut 4 -->
-        <div class="rounded-2xl bg-gradient-to-b from-emerald-950/50 to-slate-800/90 border-2 border-emerald-500 flex flex-col overflow-hidden shadow-lg">
-          <div class="w-full aspect-video overflow-hidden relative">
-            <img src="/assets/story/scene4.jpg" alt="Scene 4" class="w-full h-full object-cover">
-            <span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-emerald-500 text-slate-950 font-mono font-bold text-[10px]">CUT 04</span>
-          </div>
-          <div class="p-4 flex flex-col justify-between gap-2.5 flex-1">
-            <div class="p-2.5 rounded-xl bg-emerald-900/50 border border-emerald-600/60 text-emerald-200 italic leading-snug">
-              "아빠 매장 태블릿에 배포 완료! 오늘 주문 싹 다 받았다!"
-            </div>
-            <div class="flex flex-col gap-0.5">
-              <strong class="text-emerald-400 font-bold text-sm">가족 모두가 감동하는 순간</strong>
-              <p class="text-slate-300 text-[11px] leading-relaxed">
-                12살 아이가 만든 실제 URL 주소가 아빠 가게의 실전 주문 계산기로 살아 숨 쉬는 기적!
-              </p>
-            </div>
           </div>
         </div>
 
@@ -1170,26 +1077,6 @@
       }
     }
 
-    function switchStoryMode(mode) {
-      const reelBox = document.getElementById('storyReelContainer');
-      const gridBox = document.getElementById('storyGridContainer');
-      const reelBtn = document.getElementById('viewModeReelBtn');
-      const gridBtn = document.getElementById('viewModeGridBtn');
-      const v = document.getElementById('vrewVideoPlayer');
-
-      if (mode === 'reel') {
-        if (reelBox) reelBox.classList.remove('hidden');
-        if (gridBox) gridBox.classList.add('hidden');
-        if (reelBtn) reelBtn.className = 'px-3.5 py-1.5 rounded-lg bg-emerald-600 text-white font-bold transition-all shadow-sm flex items-center gap-1.5';
-        if (gridBtn) gridBtn.className = 'px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition-all flex items-center gap-1.5';
-        if (v) v.play().catch(() => {});
-      } else {
-        if (reelBox) reelBox.classList.add('hidden');
-        if (gridBox) gridBox.classList.remove('hidden');
-        if (gridBtn) gridBtn.className = 'px-3.5 py-1.5 rounded-lg bg-emerald-600 text-white font-bold transition-all shadow-sm flex items-center gap-1.5';
-        if (reelBtn) reelBtn.className = 'px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition-all flex items-center gap-1.5';
-        if (v) v.pause();
-      }
     }
 
     // ========================================================
