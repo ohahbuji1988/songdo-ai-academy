@@ -67,33 +67,17 @@
  
     /* Smooth Scroll Reveal & Fold Transition */
     .scroll-reveal {
-      opacity: 0;
-      transform: translateY(24px) scale(0.98);
-      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-      will-change: opacity, transform;
-    }
-    .scroll-reveal.revealed {
       opacity: 1;
-      transform: translateY(0) scale(1);
+      transform: translateY(0);
+      transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .nav-spy-link {
-      transition: all 0.2s ease;
-      position: relative;
+    .scroll-reveal.has-motion {
+      opacity: 0;
+      transform: translateY(24px);
     }
-    .nav-spy-link.active {
-      color: #047857 !important;
-      font-weight: 800 !important;
-      transform: scale(1.08);
-    }
-    .nav-spy-link.active::after {
-      content: '';
-      position: absolute;
-      bottom: -6px;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background-color: #059669;
-      border-radius: 2px;
+    .scroll-reveal.has-motion.revealed {
+      opacity: 1;
+      transform: translateY(0);
     }
 
 </style>
@@ -137,12 +121,12 @@
  </div>
  </div>
 
- <nav class="hidden md:flex items-center gap-6 text-xs font-bold text-slate-600">
- <a href="#section-hero" class="hover:text-slate-900 transition-colors">소개</a>
- <a href="#section-day1" class="hover:text-slate-900 transition-colors">Day-1 배포</a>
- <a href="#section-roadmap" class="hover:text-slate-900 transition-colors">6주 로드맵</a>
- <a href="#section-tuition" class="hover:text-slate-900 transition-colors">수강료 &amp; 혜택</a>
- <a href="#section-faq" class="hover:text-slate-900 transition-colors">자주 묻는 질문</a>
+ <nav id="landing-spy-nav" class="flex items-center gap-1 sm:gap-2 text-xs font-bold text-slate-600 overflow-x-auto py-1">
+ <a href="#section-hero" data-section="section-hero" class="nav-spy-link px-3 py-1.5 rounded-full text-slate-600 hover:text-slate-900 hover:bg-slate-100 font-semibold transition-all text-xs border border-transparent whitespace-nowrap">소개</a>
+ <a href="#section-day1" data-section="section-day1" class="nav-spy-link px-3 py-1.5 rounded-full text-slate-600 hover:text-slate-900 hover:bg-slate-100 font-semibold transition-all text-xs border border-transparent whitespace-nowrap">Day-1 배포</a>
+ <a href="#section-roadmap" data-section="section-roadmap" class="nav-spy-link px-3 py-1.5 rounded-full text-slate-600 hover:text-slate-900 hover:bg-slate-100 font-semibold transition-all text-xs border border-transparent whitespace-nowrap">6주 로드맵</a>
+ <a href="#section-tuition" data-section="section-tuition" class="nav-spy-link px-3 py-1.5 rounded-full text-slate-600 hover:text-slate-900 hover:bg-slate-100 font-semibold transition-all text-xs border border-transparent whitespace-nowrap">수강료 &amp; 신청</a>
+ <a href="#section-faq" data-section="section-faq" class="nav-spy-link px-3 py-1.5 rounded-full text-slate-600 hover:text-slate-900 hover:bg-slate-100 font-semibold transition-all text-xs border border-transparent whitespace-nowrap">자주 묻는 질문</a>
  </nav>
 
  <div class="flex items-center gap-2">
@@ -213,7 +197,7 @@
  <!-- ========================================================
  1.5. ANIMATED SHORTS & 4-CUT WEBTOON (High-Converting Video & Comic)
  ======================================================== -->
- <section class="py-12 px-6 sm:px-10 max-w-5xl mx-auto scroll-reveal">
+ <section id="section-story-video" class="py-12 px-6 sm:px-10 max-w-5xl mx-auto scroll-reveal">
  <div class="p-6 sm:p-10 rounded-3xl bg-white text-slate-900 shadow-sm border border-slate-200 flex flex-col gap-6">
  
  <!-- Section Header (Centered Clean) -->
@@ -258,41 +242,41 @@
  <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xs border border-emerald-500/40 w-fit">
  <span class="">⚡</span> <span class="">12살 민우의 37초 실전 쇼츠 스토리</span>
  </div>
- <h3 class="text-2xl sm:text-3xl font-extrabold text-white leading-tight">
+ <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-tight">
  12살 아이가 아빠 가게 계산기를 만드는 37초의 기적
  </h3>
- <p class="text-sm text-slate-300 leading-relaxed">
+ <p class="text-sm text-slate-600 leading-relaxed">
  중국어 워터마크나 어색한 AI 생성 흔적 없이, 깔끔한 한국어 음성과 자막·음악으로 완성된 37초 실전 스토리 영상입니다.
  </p>
  </div>
 
  <!-- 4 Story Milestones -->
  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
- <div class="p-3.5 rounded-2xl bg-slate-800/80 border border-slate-700/80 flex flex-col gap-1 shadow-sm">
- <span class="text-emerald-400 font-mono font-bold text-[10px]">01 · 씁쓸한 현실</span>
- <strong class="text-white font-bold text-sm">300만원 쓰고 고양이 점프만?</strong>
- <p class="text-slate-400 text-[11px] leading-snug">학교 밖에서는 쓸모없는 장난감 코딩의 씁쓸한 한계</p>
+ <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col gap-1">
+ <span class="text-emerald-700 font-bold text-[10px]">01 · 씁쓸한 현실</span>
+ <strong class="text-slate-900 font-bold text-sm">300만원 쓰고 고양이 점프만?</strong>
+ <p class="text-slate-600 text-[11px] leading-snug">학교 밖에서는 쓸모없는 장난감 코딩의 씁쓸한 한계</p>
  </div>
- <div class="p-3.5 rounded-2xl bg-slate-800/80 border border-rose-900/40 flex flex-col gap-1 shadow-sm">
- <span class="text-rose-400 font-mono font-bold text-[10px]">02 · 멘붕의 순간</span>
- <strong class="text-rose-200 font-bold text-sm">글자 하나에 화면 백지화</strong>
- <p class="text-slate-400 text-[11px] leading-snug">코드 한 줄 수정에 컴퓨터 망가진 줄 알고 우는 아이들</p>
+ <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col gap-1">
+ <span class="text-emerald-700 font-bold text-[10px]">02 · 멘붕의 순간</span>
+ <strong class="text-slate-900 font-bold text-sm">글자 하나에 화면 백지화</strong>
+ <p class="text-slate-600 text-[11px] leading-snug">코드 한 줄 수정에 컴퓨터 망가진 줄 알고 우는 아이들</p>
  </div>
- <div class="p-3.5 rounded-2xl bg-slate-800/80 border border-teal-900/40 flex flex-col gap-1 shadow-sm">
- <span class="text-teal-400 font-mono font-bold text-[10px]">03 · 원장님의 구원</span>
- <strong class="text-teal-200 font-bold text-sm">3초 타임머신 백업 비법</strong>
- <p class="text-slate-400 text-[11px] leading-snug">언제든 3초 만에 원복하는 안심 실전 습관 전수</p>
+ <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col gap-1">
+ <span class="text-emerald-700 font-bold text-[10px]">03 · 원장님의 구원</span>
+ <strong class="text-slate-900 font-bold text-sm">3초 타임머신 백업 비법</strong>
+ <p class="text-slate-600 text-[11px] leading-snug">언제든 3초 만에 원복하는 안심 실전 습관 전수</p>
  </div>
- <div class="p-3.5 rounded-2xl bg-emerald-950/50 border border-emerald-500/70 flex flex-col gap-1 shadow-md">
- <span class="text-emerald-300 font-mono font-bold text-[10px]">04 · 가족 감동 성공</span>
- <strong class="text-emerald-300 font-bold text-sm">아빠 매장 계산기 당일 배포!</strong>
- <p class="text-slate-300 text-[11px] leading-snug">12살 아이가 만든 살아 숨 쉬는 웹 계산기</p>
+ <div class="p-3.5 rounded-2xl bg-emerald-50/60 border border-emerald-200 flex flex-col gap-1">
+ <span class="text-emerald-800 font-bold text-[10px]">04 · 가족 감동 성공</span>
+ <strong class="text-emerald-900 font-bold text-sm">아빠 매장 계산기 당일 배포!</strong>
+ <p class="text-emerald-800 text-[11px] leading-snug">12살 아이가 만든 살아 숨 쉬는 웹 계산기</p>
  </div>
  </div>
 
  <!-- Action CTAs -->
  <div class="flex flex-wrap items-center gap-3 pt-2">
- <button onclick="toggleVrewAudio()" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-emerald-300 font-bold text-xs flex items-center gap-2 border border-emerald-500/40 transition-all cursor-pointer shadow-sm">
+ <button onclick="toggleVrewAudio()" class="px-4 py-2.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 font-bold text-xs flex items-center gap-2 border border-slate-300 transition-all cursor-pointer shadow-sm">
  <span>🔊</span> <span>소리 켜기 / 끄기</span>
  </button>
  <button onclick="openApplyModal()" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-400 hover:brightness-110 text-slate-950 font-black text-xs shadow-lg transition-all flex items-center gap-1.5 cursor-pointer">
@@ -304,7 +288,7 @@
 
  </div>
 
- <div class="text-center text-xs text-slate-400 pt-2 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-center gap-2">
+ <div class="text-center text-xs text-slate-400 pt-2 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-center gap-2">
  <span class=""><strong class="">송도 AI 아카데미의 약속:</strong></span>
  <span class="">장난감 블록 코딩은 그만! 첫날 30분 만에 우리 가족을 위한 진짜 살아있는 웹 도구를 만듭니다.</span>
  </div>
@@ -1369,54 +1353,62 @@
  });
  </script>
 <script>
-    // Scroll Reveal & Scroll Spy Controller
+    // Robust Scroll Reveal & Scroll Spy Controller
     document.addEventListener('DOMContentLoaded', () => {
-      // 1. Scroll Reveal Observer
-      const revealElements = document.querySelectorAll('.scroll-reveal');
+      // 1. Scroll Reveal with Class Observer
+      const reveals = document.querySelectorAll('.scroll-reveal');
+      reveals.forEach(el => el.classList.add('has-motion'));
+
       const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('revealed');
           }
         });
-      }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+      }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
 
-      revealElements.forEach(el => revealObserver.observe(el));
+      reveals.forEach(el => revealObserver.observe(el));
 
-      // 2. Scroll Spy for Nav Header
-      const sections = [
-        document.getElementById('section-hero'),
-        document.getElementById('section-day1'),
-        document.getElementById('section-roadmap'),
-        document.getElementById('section-tuition'),
-        document.getElementById('section-faq')
-      ].filter(Boolean);
-
+      // 2. High-Accuracy Scroll Spy for Navigation
       const navLinks = document.querySelectorAll('.nav-spy-link');
+      const sectionIds = ['section-hero', 'section-story-video', 'section-day1', 'section-roadmap', 'section-tuition', 'section-faq'];
+      const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
 
       function updateActiveNav() {
-        const scrollPosition = window.scrollY + 140; // Offset for header height
-        let currentSectionId = '';
+        const headerOffset = 100;
+        let activeSecId = '';
 
-        sections.forEach(sec => {
-          const top = sec.offsetTop;
-          const height = sec.offsetHeight;
-          if (scrollPosition >= top && scrollPosition < top + height) {
-            currentSectionId = sec.getAttribute('id');
+        for (let i = 0; i < sections.length; i++) {
+          const sec = sections[i];
+          const rect = sec.getBoundingClientRect();
+          // Check if top is near top of viewport or bottom is still visible
+          if (rect.top <= headerOffset + 80 && rect.bottom >= headerOffset) {
+            activeSecId = sec.getAttribute('id');
           }
-        });
+        }
+
+        if (!activeSecId && sections.length > 0) {
+          activeSecId = sections[0].getAttribute('id');
+        }
+
+        // Map section-story-video to day1 or hero if needed
+        let targetNavKey = activeSecId;
+        if (targetNavKey === 'section-story-video') targetNavKey = 'section-day1';
 
         navLinks.forEach(link => {
-          if (link.getAttribute('data-section') === currentSectionId) {
-            link.classList.add('active');
+          const secAttr = link.getAttribute('data-section');
+          if (secAttr === targetNavKey) {
+            link.className = "nav-spy-link px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-800 font-extrabold border border-emerald-300 shadow-xs transition-all text-xs";
           } else {
-            link.classList.remove('active');
+            link.className = "nav-spy-link px-3 py-1.5 rounded-full text-slate-600 hover:text-slate-900 hover:bg-slate-100 font-semibold transition-all text-xs border border-transparent";
           }
         });
       }
 
       window.addEventListener('scroll', updateActiveNav, { passive: true });
+      document.addEventListener('scroll', updateActiveNav, { passive: true });
       updateActiveNav();
+      setTimeout(updateActiveNav, 300);
     });
 </script>
 </body></html>

@@ -92,6 +92,33 @@
     알림 내용
   </div>
 
+  
+  <!-- INLINE STORY VIDEO MODAL (Watch directly inside lesson) -->
+  <div id="story-video-modal" class="hidden fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="w-full max-w-sm sm:max-w-md bg-white rounded-3xl p-5 shadow-2xl border border-slate-200 flex flex-col gap-4">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-600"></span>
+          <strong class="text-sm font-bold text-slate-900">민우(12세)의 37초 실전 스토리</strong>
+        </div>
+        <button onclick="closeStoryVideoModal()" class="w-7 h-7 rounded-lg hover:bg-slate-100 text-slate-500 font-bold flex items-center justify-center text-sm cursor-pointer">
+          &times;
+        </button>
+      </div>
+
+      <div class="w-full aspect-[9/16] max-h-[500px] rounded-2xl overflow-hidden bg-black flex items-center justify-center">
+        <video id="modalStoryVideo" src="/assets/story/vrew_story.mp4" poster="/assets/story/vrew_poster.jpg" controls playsinline class="w-full h-full object-cover"></video>
+      </div>
+
+      <div class="flex items-center justify-between text-xs text-slate-500 pt-1">
+        <span>6개월 장난감 코딩 &rarr; 30분 실전 계산기 배포</span>
+        <button onclick="closeStoryVideoModal()" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs">
+          닫기
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- TOP HEADER -->
   <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-slate-200 px-6 sm:px-10 h-14 flex items-center justify-between">
     <div class="flex items-center gap-3">
@@ -239,18 +266,25 @@
               <p class="text-xs text-slate-500">6개월 장난감 코딩에서 벗어나 실전 계산기를 만든 감동 스토리</p>
             </div>
           </div>
-          <a href="/landing.html#section-day1" target="_blank" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shrink-0 flex items-center gap-1.5 transition-all shadow-xs">
-            <span>영상 시청하기 &rarr;</span>
-          </a>
+          <div class="flex items-center gap-2 shrink-0">
+            <button onclick="openStoryVideoModal()" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center gap-1.5 transition-all shadow-xs cursor-pointer">
+              <span>▶ 37초 영상 재생</span>
+            </button>
+            <a href="/landing.html#section-story-video" target="_blank" class="px-3 py-2 rounded-xl border border-slate-200 hover:bg-slate-100 text-slate-600 text-xs font-semibold">
+              새 창
+            </a>
+          </div>
         </div>
 
         <!-- 1단계: 목표 (3분) -->
         <section class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col gap-3">
-          <div class="flex items-center justify-between text-xs font-bold">
-            <span class="text-emerald-700">1단계 [0~3분] · 학습 목표 & 멘탈 모델</span>
-            <span class="text-slate-400">3분</span>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="w-5 h-5 rounded bg-emerald-600 text-white font-bold text-xs flex items-center justify-center shrink-0">1</span>
+              <h2 class="font-bold text-sm sm:text-base text-slate-900">1단계 [0~3분] 학습 목표: "AI는 손발이 없는 천재 신입 인턴입니다"</h2>
+            </div>
+            <span class="text-xs text-slate-400">3분</span>
           </div>
-          <h2 class="text-base font-bold text-slate-900">"AI는 손발이 없는 천재 신입 인턴입니다"</h2>
           <div class="text-xs sm:text-sm text-slate-600 space-y-1.5 leading-relaxed">
             <p>
               "알아서 멋지게 해줘"라고 말하면 AI는 주사위를 굴리듯 아무렇게나 만듭니다.
@@ -405,11 +439,13 @@
 
         <!-- 1단계: 목표 (3분) -->
         <section class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col gap-3">
-          <div class="flex items-center justify-between text-xs font-bold">
-            <span class="text-emerald-700">1단계 [0~3분] · 학습 목표 & 멘탈 모델</span>
-            <span class="text-slate-400">3분</span>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="w-5 h-5 rounded bg-emerald-600 text-white font-bold text-xs flex items-center justify-center shrink-0">1</span>
+              <h2 class="font-bold text-sm sm:text-base text-slate-900">1단계 [0~3분] 학습 목표: "문서에 없으면 '모릅니다'라고 말하게 만들기"</h2>
+            </div>
+            <span class="text-xs text-slate-400">3분</span>
           </div>
-          <h2 class="text-base font-bold text-slate-900">"문서에 없으면 '모릅니다'라고 말하게 만들기"</h2>
           <div class="text-xs sm:text-sm text-slate-600 space-y-1.5 leading-relaxed">
             <p>
               AI는 모르는 질문을 받으면 그럴듯한 거짓말(환각)을 지어냅니다.
@@ -552,11 +588,13 @@
 
         <!-- 1단계: 목표 (3분) -->
         <section class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col gap-3">
-          <div class="flex items-center justify-between text-xs font-bold">
-            <span class="text-emerald-700">1단계 [0~3분] · 학습 목표 & 멘탈 모델</span>
-            <span class="text-slate-400">3분</span>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="w-5 h-5 rounded bg-emerald-600 text-white font-bold text-xs flex items-center justify-center shrink-0">1</span>
+              <h2 class="font-bold text-sm sm:text-base text-slate-900">1단계 [0~3분] 학습 목표: "색은 2개까지만 써라. 더 쓰면 지저분해진다"</h2>
+            </div>
+            <span class="text-xs text-slate-400">3분</span>
           </div>
-          <h2 class="text-base font-bold text-slate-900">"색은 2개까지만 써라. 더 쓰면 지저분해진다"</h2>
           <div class="text-xs sm:text-sm text-slate-600 space-y-1.5 leading-relaxed">
             <p>
               전문가와 초보자의 차이는 '더하는 것'이 아니라 <strong>'과감하게 빼는 것'</strong>에 있습니다.
@@ -698,11 +736,13 @@
 
         <!-- 1단계: 목표 (3분) -->
         <section class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col gap-3">
-          <div class="flex items-center justify-between text-xs font-bold">
-            <span class="text-emerald-700">1단계 [0~3분] · 학습 목표 & 멘탈 모델</span>
-            <span class="text-slate-400">3분</span>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="w-5 h-5 rounded bg-emerald-600 text-white font-bold text-xs flex items-center justify-center shrink-0">1</span>
+              <h2 class="font-bold text-sm sm:text-base text-slate-900">1단계 [0~3분] 학습 목표: "문서에서 '작동하는 기계'로의 진화"</h2>
+            </div>
+            <span class="text-xs text-slate-400">3분</span>
           </div>
-          <h2 class="text-base font-bold text-slate-900">"문서에서 '작동하는 기계'로의 진화"</h2>
           <div class="text-xs sm:text-sm text-slate-600 space-y-1.5 leading-relaxed">
             <p>
               읽기만 하는 웹페이지는 잊혀집니다. 내가 직접 숫자를 조작하고 결과를 확인하는 순간 '진짜 도구'가 됩니다.
@@ -842,11 +882,13 @@
 
         <!-- 1단계: 목표 (3분) -->
         <section class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col gap-3">
-          <div class="flex items-center justify-between text-xs font-bold">
-            <span class="text-emerald-700">1단계 [0~3분] · 학습 목표 & 멘탈 모델</span>
-            <span class="text-slate-400">3분</span>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="w-5 h-5 rounded bg-emerald-600 text-white font-bold text-xs flex items-center justify-center shrink-0">1</span>
+              <h2 class="font-bold text-sm sm:text-base text-slate-900">1단계 [0~3분] 학습 목표: "에러는 실패가 아니라, AI가 길을 잃었다는 신호입니다"</h2>
+            </div>
+            <span class="text-xs text-slate-400">3분</span>
           </div>
-          <h2 class="text-base font-bold text-slate-900">"에러는 실패가 아니라, AI가 길을 잃었다는 신호입니다"</h2>
           <div class="text-xs sm:text-sm text-slate-600 space-y-1.5 leading-relaxed">
             <p>
               "갑자기 안 돼요 고쳐줘"라고 울부짖으면 AI는 멀쩡한 코드까지 뒤엎어 더 망가뜨립니다.
@@ -988,11 +1030,13 @@
 
         <!-- 1단계: 목표 (3분) -->
         <section class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col gap-3">
-          <div class="flex items-center justify-between text-xs font-bold">
-            <span class="text-emerald-700">1단계 [0~3분] · 학습 목표 & 멘탈 모델</span>
-            <span class="text-slate-400">3분</span>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="w-5 h-5 rounded bg-emerald-600 text-white font-bold text-xs flex items-center justify-center shrink-0">1</span>
+              <h2 class="font-bold text-sm sm:text-base text-slate-900">1단계 [0~3분] 학습 목표: "남의 코드를 흉내 내는 사람에서, 내 프로덕트를 지닌 디렉터로"</h2>
+            </div>
+            <span class="text-xs text-slate-400">3분</span>
           </div>
-          <h2 class="text-base font-bold text-slate-900">"남의 코드를 흉내 내는 사람에서, 내 프로덕트를 지닌 디렉터로"</h2>
           <div class="text-xs sm:text-sm text-slate-600 space-y-1.5 leading-relaxed">
             <p>
               단순히 강의를 끝까지 들은 것이 중요한 것이 아닙니다.
@@ -1103,6 +1147,25 @@
   </div>
 
   <script>
+    
+    function openStoryVideoModal() {
+      const modal = document.getElementById('story-video-modal');
+      const video = document.getElementById('modalStoryVideo');
+      if (modal) {
+        modal.classList.remove('hidden');
+        if (video) video.play().catch(() => {});
+      }
+    }
+
+    function closeStoryVideoModal() {
+      const modal = document.getElementById('story-video-modal');
+      const video = document.getElementById('modalStoryVideo');
+      if (modal) {
+        modal.classList.add('hidden');
+        if (video) video.pause();
+      }
+    }
+
     // Week Switcher
     function switchWeek(weekNum) {
       document.querySelectorAll('.lesson-content').forEach(el => el.classList.remove('active'));

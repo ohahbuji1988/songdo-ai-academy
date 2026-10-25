@@ -78,12 +78,15 @@
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between select-none">
   <!-- STICKY TOP CONTROLS & RETURN BAR -->
   <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-slate-200 px-6 sm:px-10 h-14 flex items-center justify-between shadow-xs mb-8">
-    <div class="flex items-center gap-3">
-      <button onclick="goBackToPortal()" class="px-3 py-1.5 rounded-lg border border-slate-200 hover:bg-slate-100 text-slate-700 text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer">
-        <span>&larr;</span> <span>포털 홈으로 돌아가기</span>
+    <div class="flex items-center gap-2">
+      <button onclick="goBackToPortal()" class="px-3.5 py-1.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-300 font-black text-xs flex items-center gap-1.5 transition-all cursor-pointer shadow-xs">
+        <span>&larr;</span> <span>모집 안내(홈)로 이동</span>
       </button>
-      <span class="text-slate-300">|</span>
-      <span class="text-xs font-bold text-slate-700">4. 공정 로드맵 & 의사결정 계통도</span>
+      <button onclick="window.history.back()" class="px-3 py-1.5 rounded-xl border border-slate-300 hover:bg-slate-100 text-slate-700 font-bold text-xs flex items-center gap-1.5 transition-all cursor-pointer">
+        <span>&larr; 뒤로가기</span>
+      </button>
+      <span class="text-slate-300 mx-1">|</span>
+      <span class="text-xs font-bold text-slate-800 hidden sm:inline">4. 공정 로드맵</span>
     </div>
 
     <div class="flex items-center gap-2">
@@ -141,8 +144,8 @@
       </div>
 
       <div class="flex flex-wrap items-center gap-2 pt-2 text-xs">
-        <a href="/curriculum.html" class="px-3 py-1.5 rounded-lg bg-slate-900 text-white font-medium hover:bg-slate-800 transition-all">
-          📑 공식 커리큘럼 (직접 편집 가능)
+        <a href="/courseware/lessons.html" onclick="switchToTab(event, 'courseware')" class="px-3 py-1.5 rounded-lg bg-emerald-600 text-white font-bold hover:bg-emerald-700 transition-all">
+          3. 실전 강의실로 이동
         </a>
         <a href="/courseware/index.html" class="px-3 py-1.5 rounded-lg bg-teal-700 text-white font-medium hover:bg-teal-800 transition-all">
           📦 코스웨어 통합 대시보드
