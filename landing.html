@@ -206,87 +206,77 @@
         </div>
       </div>
 
-      <!-- MODE A: ANIMATED SHORTS CINEMA PLAYER -->
-      <div id="storyReelContainer" class="flex flex-col items-center gap-4">
+      <!-- MODE A: VREW 9:16 SHORTS SMARTPHONE SHOWCASE -->
+      <div id="storyReelContainer" class="flex flex-col lg:flex-row items-center justify-center gap-8 sm:gap-10 py-4">
         
-        <!-- Video Screen Frame (16:9 Cinema Aspect) -->
-        <div class="w-full max-w-3xl aspect-[16/9] rounded-2xl bg-black border-2 border-emerald-500/60 shadow-2xl relative overflow-hidden flex flex-col justify-between group">
+        <!-- Smartphone Mockup Frame -->
+        <div class="relative w-full max-w-[310px] sm:max-w-[340px] aspect-[9/16] rounded-[42px] bg-slate-950 p-3 shadow-[0_0_60px_rgba(16,185,129,0.3)] border-[6px] border-slate-800 ring-1 ring-white/10 flex flex-col overflow-hidden shrink-0 group">
           
-          <!-- Top Story Segment Progress Bars (4 Bars) -->
-          <div class="absolute top-0 left-0 right-0 z-30 p-3 bg-gradient-to-b from-black/80 to-transparent flex items-center gap-1.5">
-            <div class="flex-1 h-1 bg-white/20 rounded-full overflow-hidden">
-              <div id="storyBar0" class="h-full bg-emerald-400 w-0 transition-all duration-100"></div>
-            </div>
-            <div class="flex-1 h-1 bg-white/20 rounded-full overflow-hidden">
-              <div id="storyBar1" class="h-full bg-emerald-400 w-0 transition-all duration-100"></div>
-            </div>
-            <div class="flex-1 h-1 bg-white/20 rounded-full overflow-hidden">
-              <div id="storyBar2" class="h-full bg-emerald-400 w-0 transition-all duration-100"></div>
-            </div>
-            <div class="flex-1 h-1 bg-white/20 rounded-full overflow-hidden">
-              <div id="storyBar3" class="h-full bg-emerald-400 w-0 transition-all duration-100"></div>
-            </div>
+          <!-- Phone Speaker Notch -->
+          <div class="absolute top-4 left-1/2 -translate-x-1/2 z-30 w-24 h-4 bg-slate-900 rounded-full flex items-center justify-center gap-2 border border-slate-700/50">
+            <div class="w-10 h-1 bg-slate-700 rounded-full"></div>
+            <div class="w-2.5 h-2.5 rounded-full bg-slate-800 border border-slate-700"></div>
           </div>
 
-          <!-- Top Audio Controls (Clean & Unobstructed) -->
-          <div class="absolute top-4 right-4 z-30 flex items-center justify-end text-xs">
-            <button onclick="toggleStoryAudio()" id="audioToggleBtn" class="px-3 py-1.5 rounded-full bg-black/75 hover:bg-black/90 border border-emerald-500/50 text-white text-[11px] font-bold backdrop-blur flex items-center gap-1.5 transition-all shadow-lg hover:scale-105 active:scale-95 cursor-pointer">
-              <span id="audioIcon">🔇</span> <span id="audioText">소리 켜기</span>
+          <!-- Video Element (9:16 Full Screen Inside Phone) -->
+          <div class="relative w-full h-full rounded-[32px] overflow-hidden bg-black flex items-center justify-center">
+            <video id="vrewVideoPlayer" src="/assets/story/vrew_story.mp4" poster="/assets/story/vrew_poster.jpg" autoplay muted playsinline loop controls class="w-full h-full object-cover"></video>
+            
+            <!-- Quick Floating Unmute Button on Video -->
+            <button onclick="toggleVrewAudio()" id="vrewAudioBtn" class="absolute top-10 right-3 z-30 px-3 py-1.5 rounded-full bg-black/80 hover:bg-black border border-emerald-400/80 text-white text-[11px] font-bold backdrop-blur flex items-center gap-1.5 shadow-2xl transition-all cursor-pointer hover:scale-105 active:scale-95">
+              <span id="vrewAudioIcon">🔇</span> <span id="vrewAudioText">소리 켜기</span>
             </button>
           </div>
-
-          <!-- Scene Video / Poster Image with Ken-Burns Motion -->
-          <div class="absolute inset-0 z-10 overflow-hidden bg-black flex items-center justify-center">
-            <video id="reelVideoPlayer" src="/assets/story/scene1.mp4" poster="/assets/story/scene1.jpg" autoplay muted playsinline class="w-full h-full object-cover transition-opacity duration-500"></video>
-            <img id="reelMainImage" src="/assets/story/scene1.jpg" alt="Songdo AI Story Scene" class="hidden w-full h-full object-cover transition-all duration-700">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/30 pointer-events-none"></div>
-          </div>
-
-
-
-          <!-- Bottom Subtitle Bar (Clean Shorts/Movie Subtitle) -->
-          <div class="absolute bottom-3 left-4 right-4 z-20 flex flex-col gap-1 text-center pointer-events-none">
-            <div id="reelSubtitleBar" class="inline-block mx-auto max-w-xl px-4 py-2 rounded-xl bg-black/85 border border-white/20 text-xs sm:text-sm font-medium text-white backdrop-blur shadow-2xl">
-              <span class="text-emerald-300 font-bold">👦 민우 (12세):</span> "엄마! 나 코딩 학원에서 고양이가 점프하는 게임 만들었어!"
-            </div>
-          </div>
-
-          <!-- Click Overlay: Tap Left for Prev, Tap Right for Next -->
-          <div class="absolute inset-0 z-20 flex">
-            <div onclick="prevStoryScene()" class="w-1/3 h-full cursor-pointer" title="이전 장면 (클릭)"></div>
-            <div onclick="toggleStoryPlay()" class="w-1/3 h-full cursor-pointer" title="재생/일시정지 (클릭)"></div>
-            <div onclick="nextStoryScene()" class="w-1/3 h-full cursor-pointer" title="다음 장면 (클릭)"></div>
-          </div>
-
         </div>
 
-        <!-- Video Player Bottom Controls -->
-        <div class="w-full max-w-3xl flex flex-wrap items-center justify-between gap-3 text-xs px-2">
-          
-          <div class="flex items-center gap-2">
-            <button onclick="prevStoryScene()" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold transition-all flex items-center gap-1">
-              <span>◀</span> <span>이전</span>
-            </button>
-            <button id="storyPlayBtn" onclick="toggleStoryPlay()" class="px-4 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-extrabold transition-all shadow-md flex items-center gap-1.5">
-              <span id="playBtnIcon">⏸</span> <span id="playBtnText">일시정지</span>
-            </button>
-            <button onclick="nextStoryScene()" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold transition-all flex items-center gap-1">
-              <span>다음</span> <span>▶</span>
-            </button>
+        <!-- Accompanying Highlights & Story Breakdown -->
+        <div class="flex flex-col gap-5 max-w-lg text-left">
+          <div class="flex flex-col gap-2">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xs border border-emerald-500/40 w-fit">
+              <span>⚡</span> <span>Vrew로 제작된 37초 실전 쇼츠 릴스</span>
+            </div>
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-white leading-tight">
+              12살 아이가 아빠 가게 계산기를 만드는 37초의 기적
+            </h3>
+            <p class="text-sm text-slate-300 leading-relaxed">
+              중국어 워터마크나 어색한 AI 생성 흔적 없이, 깔끔한 한국어 음성과 자막·음악으로 완성된 37초 실전 스토리 영상입니다.
+            </p>
           </div>
 
-          <!-- Scene Quick Dots -->
-          <div class="flex items-center gap-2">
-            <button onclick="jumpStoryScene(0)" class="scene-dot w-2.5 h-2.5 rounded-full bg-emerald-400 transition-all" title="Scene 1"></button>
-            <button onclick="jumpStoryScene(1)" class="scene-dot w-2.5 h-2.5 rounded-full bg-slate-600 transition-all" title="Scene 2"></button>
-            <button onclick="jumpStoryScene(2)" class="scene-dot w-2.5 h-2.5 rounded-full bg-slate-600 transition-all" title="Scene 3"></button>
-            <button onclick="jumpStoryScene(3)" class="scene-dot w-2.5 h-2.5 rounded-full bg-slate-600 transition-all" title="Scene 4"></button>
+          <!-- 4 Story Milestones -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+            <div class="p-3.5 rounded-2xl bg-slate-800/80 border border-slate-700/80 flex flex-col gap-1 shadow-sm">
+              <span class="text-emerald-400 font-mono font-bold text-[10px]">01 · 씁쓸한 현실</span>
+              <strong class="text-white font-bold text-sm">300만원 쓰고 고양이 점프만?</strong>
+              <p class="text-slate-400 text-[11px] leading-snug">학교 밖에서는 쓸모없는 장난감 코딩의 씁쓸한 한계</p>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-slate-800/80 border border-rose-900/40 flex flex-col gap-1 shadow-sm">
+              <span class="text-rose-400 font-mono font-bold text-[10px]">02 · 멘붕의 순간</span>
+              <strong class="text-rose-200 font-bold text-sm">글자 하나에 화면 백지화</strong>
+              <p class="text-slate-400 text-[11px] leading-snug">코드 한 줄 수정에 컴퓨터 망가진 줄 알고 우는 아이들</p>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-slate-800/80 border border-teal-900/40 flex flex-col gap-1 shadow-sm">
+              <span class="text-teal-400 font-mono font-bold text-[10px]">03 · 원장님의 구원</span>
+              <strong class="text-teal-200 font-bold text-sm">3초 타임머신 백업 비법</strong>
+              <p class="text-slate-400 text-[11px] leading-snug">언제든 3초 만에 원복하는 안심 실전 습관 전수</p>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-emerald-950/50 border border-emerald-500/70 flex flex-col gap-1 shadow-md">
+              <span class="text-emerald-300 font-mono font-bold text-[10px]">04 · 가족 감동 성공</span>
+              <strong class="text-emerald-300 font-bold text-sm">아빠 매장 계산기 당일 배포!</strong>
+              <p class="text-slate-300 text-[11px] leading-snug">12살 아이가 만든 살아 숨 쉬는 웹 계산기</p>
+            </div>
           </div>
 
-          <button onclick="openApplyModal()" class="px-4 py-1.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-400 hover:brightness-110 text-slate-950 font-black transition-all shadow-md flex items-center gap-1">
-            <span>✨ 1기 수강 신청하기</span>
-            <span>→</span>
-          </button>
+          <!-- Action CTAs -->
+          <div class="flex flex-wrap items-center gap-3 pt-2">
+            <button onclick="toggleVrewAudio()" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-emerald-300 font-bold text-xs flex items-center gap-2 border border-emerald-500/40 transition-all cursor-pointer shadow-sm">
+              <span>🔊</span> <span>소리 켜기 / 끄기</span>
+            </button>
+            <button onclick="openApplyModal()" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-400 hover:brightness-110 text-slate-950 font-black text-xs shadow-lg transition-all flex items-center gap-1.5 cursor-pointer">
+              <span>✨ 1기 수강 신청하기</span>
+              <span>→</span>
+            </button>
+          </div>
         </div>
 
       </div>
@@ -1343,6 +1333,23 @@
         }
         window.speechSynthesis.speak(utter);
       } catch (e) {}
+    }
+
+        function toggleVrewAudio() {
+      const v = document.getElementById('vrewVideoPlayer');
+      const icon = document.getElementById('vrewAudioIcon');
+      const text = document.getElementById('vrewAudioText');
+      if (!v) return;
+      v.muted = !v.muted;
+      if (!v.muted) {
+        if (icon) icon.innerText = '🔊';
+        if (text) text.innerText = '소리 끄기';
+        v.volume = 1.0;
+        v.play().catch(() => {});
+      } else {
+        if (icon) icon.innerText = '🔇';
+        if (text) text.innerText = '소리 켜기';
+      }
     }
 
     function toggleStoryAudio() {
