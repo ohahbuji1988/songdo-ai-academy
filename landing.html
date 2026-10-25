@@ -532,33 +532,95 @@
        2.8. 30-SECOND SELF-DIAGNOSTIC (Friction Remover)
        ======================================================== -->
   <section class="py-12 px-6 sm:px-10 max-w-4xl mx-auto">
-    <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200 flex flex-col gap-6 shadow-xs">
-      <div class="flex items-center justify-between border-b border-slate-200 pb-4">
+    <!-- 30-SECOND INTERACTIVE AI LEVEL QUICK DIAGNOSTIC -->
+    <div id="quickDiagContainer" class="p-6 sm:p-10 rounded-3xl bg-gradient-to-b from-slate-900 to-slate-950 text-white border-2 border-emerald-500/60 shadow-2xl flex flex-col gap-6">
+      
+      <!-- Widget Header -->
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-slate-800 pb-5">
         <div class="flex flex-col gap-1">
-          <span class="text-xs font-bold text-miriGreen uppercase tracking-wider">SELF-CHECK</span>
-          <h3 class="text-xl font-bold text-slate-900">"코딩 문법을 1도 모르는데, 나도 진짜 수강할 수 있을까?"</h3>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xs uppercase tracking-wider border border-emerald-500/30 w-fit">
+            <span>🎯</span> <span>30초 인터랙티브 자가진단</span>
+          </div>
+          <h3 class="text-xl sm:text-2xl font-black text-white">"나의 현재 실전 AI 자립 레벨은 몇 단계일까?"</h3>
         </div>
-        <span class="px-3 py-1 rounded-full bg-slate-200 text-slate-700 text-xs font-bold">
-          30초 자가진단
-        </span>
+        <a href="/diagnostic.html" target="_blank" class="px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-emerald-300 text-xs font-bold border border-emerald-500/40 transition-all flex items-center gap-1.5 shadow-sm">
+          <span>🧭</span> <span>정밀 측정기 전체화면</span>
+          <span>↗</span>
+        </a>
       </div>
 
-      <div class="flex flex-col gap-3 text-xs sm:text-sm">
-        <label class="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 cursor-pointer hover:border-miriGreen transition-all select-none">
-          <input type="checkbox" onchange="checkDiagnostic()" class="diag-chk w-4 h-4 text-miriGreen rounded" checked="">
-          <span class="text-slate-700">인터넷 브라우저(크롬, 엣지)를 켜고 검색이나 유튜브를 볼 수 있다.</span>
-        </label>
-        <label class="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 cursor-pointer hover:border-miriGreen transition-all select-none">
-          <input type="checkbox" onchange="checkDiagnostic()" class="diag-chk w-4 h-4 text-miriGreen rounded" checked="">
-          <span class="text-slate-700">ChatGPT 등 대화형 AI에게 질문을 한 번이라도 던져본 적이 있다.</span>
-        </label>
-        <label class="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 cursor-pointer hover:border-miriGreen transition-all select-none">
-          <input type="checkbox" onchange="checkDiagnostic()" class="diag-chk w-4 h-4 text-miriGreen rounded">
-          <span class="text-slate-700">일상이나 업무에서 '이런 안내 화면이나 계산기 하나 있으면 편하겠는데' 생각해 본 적이 있다.</span>
-        </label>
+      <!-- Quick Interactive Questions Container -->
+      <div id="quickQFlow" class="flex flex-col gap-4">
+        <div class="flex items-center justify-between text-xs font-mono font-bold text-slate-400">
+          <span id="qStepIndicator" class="text-emerald-400">STEP 1 / 4</span>
+          <span id="qScoreBadge" class="text-slate-300">내 수준 선택하기</span>
+        </div>
+
+        <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+          <div id="quickProgressBar" class="h-full bg-gradient-to-r from-emerald-500 to-teal-400 w-1/4 transition-all duration-300"></div>
+        </div>
+
+        <h4 id="quickQuestionTitle" class="text-base sm:text-lg font-bold text-white pt-1">
+          1. 평소 생성형 AI(ChatGPT 등)를 어떤 방식으로 사용하시나요?
+        </h4>
+
+        <div id="quickChoicesGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs pt-1">
+          <button onclick="answerQuickQ(1)" class="p-3.5 rounded-2xl bg-slate-850 hover:bg-slate-800 border border-slate-700 hover:border-emerald-500/70 text-left transition-all flex items-start gap-3 group cursor-pointer">
+            <span class="w-6 h-6 rounded-lg bg-slate-900 border border-slate-700 text-slate-400 group-hover:bg-emerald-500 group-hover:text-slate-950 flex items-center justify-center font-bold shrink-0">A</span>
+            <span class="text-slate-300 group-hover:text-white leading-relaxed">거의 안 써봤거나 가끔 대화창에 한두 마디 해본 수준이다.</span>
+          </button>
+          <button onclick="answerQuickQ(2)" class="p-3.5 rounded-2xl bg-slate-850 hover:bg-slate-800 border border-slate-700 hover:border-emerald-500/70 text-left transition-all flex items-start gap-3 group cursor-pointer">
+            <span class="w-6 h-6 rounded-lg bg-slate-900 border border-slate-700 text-slate-400 group-hover:bg-emerald-500 group-hover:text-slate-950 flex items-center justify-center font-bold shrink-0">B</span>
+            <span class="text-slate-300 group-hover:text-white leading-relaxed">이메일 초안 작성, 긴 글 요약, 번역 등 텍스트 작업 위주로 쓴다.</span>
+          </button>
+          <button onclick="answerQuickQ(3)" class="p-3.5 rounded-2xl bg-slate-850 hover:bg-slate-800 border border-slate-700 hover:border-emerald-500/70 text-left transition-all flex items-start gap-3 group cursor-pointer">
+            <span class="w-6 h-6 rounded-lg bg-slate-900 border border-slate-700 text-slate-400 group-hover:bg-emerald-500 group-hover:text-slate-950 flex items-center justify-center font-bold shrink-0">C</span>
+            <span class="text-slate-300 group-hover:text-white leading-relaxed">코딩 템플릿 복붙을 시도해 봤지만 에러가 나면 멈춘다.</span>
+          </button>
+          <button onclick="answerQuickQ(4)" class="p-3.5 rounded-2xl bg-slate-850 hover:bg-slate-800 border border-slate-700 hover:border-emerald-500/70 text-left transition-all flex items-start gap-3 group cursor-pointer">
+            <span class="w-6 h-6 rounded-lg bg-slate-900 border border-slate-700 text-slate-400 group-hover:bg-emerald-500 group-hover:text-slate-950 flex items-center justify-center font-bold shrink-0">D</span>
+            <span class="text-slate-300 group-hover:text-white leading-relaxed">AI에게 명확한 역할을 부여해 가족/매장용 웹 링크를 직접 만들어봤다.</span>
+          </button>
+        </div>
       </div>
 
-      <div id="diag-result" class="p-4 rounded-2xl bg-emerald-100/70 border border-emerald-300 text-emerald-950 text-xs font-bold flex items-center justify-between gap-3"><span>🎉 진단 결과: 수강 준비 100% 완료! 복잡한 코딩 문법 없이도 1주차 30분 만에 첫 웹페이지를 배포할 수 있습니다.</span><button onclick="openApplyModal()" class="px-3 py-1.5 rounded-lg bg-miriGreen hover:bg-miriGreenDark text-white font-extrabold whitespace-nowrap">1기 신청하기</button></div>
+      <!-- Quick Result Card (Revealed on Completion) -->
+      <div id="quickResultBox" class="hidden p-6 rounded-2xl bg-slate-850 border border-emerald-500/60 flex flex-col gap-4">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-700 pb-4">
+          <div class="flex items-center gap-4">
+            <div id="quickResultBadge" class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-400 text-slate-950 font-black text-2xl flex items-center justify-center shadow-lg">
+              3
+            </div>
+            <div class="flex flex-col">
+              <span class="text-[11px] font-mono font-bold text-slate-400">진단된 나의 AI 등급</span>
+              <strong id="quickResultTitle" class="text-xl font-extrabold text-white">LEVEL 3 · 블록 조립자 (Toy Builder)</strong>
+              <span id="quickResultSub" class="text-xs text-emerald-400">장난감 코딩에서 진짜 30분 실전 배포로 넘어갈 최적의 적기!</span>
+            </div>
+          </div>
+          <span class="font-signature text-3xl text-emerald-400 font-bold select-none">ohahbuji</span>
+        </div>
+
+        <p id="quickResultDesc" class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+          코딩을 시도해 본 열정이 훌륭하지만 에러 공포 때문에 멈춰 계십니다. 3초 타임머신 습관을 배우면 첫날 30분 만에 아빠 가게 계산기 같은 실전 웹을 당당히 배포하실 수 있습니다!
+        </p>
+
+        <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
+          <button onclick="resetQuickQ()" class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white text-xs font-bold transition-all">
+            다시 진단하기
+          </button>
+          <div class="flex items-center gap-2">
+            <a href="/diagnostic.html" target="_blank" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-emerald-300 text-xs font-bold border border-emerald-500/30 transition-all flex items-center gap-1">
+              <span>📋 5대 역량 정밀 리포트 보기</span>
+              <span>↗</span>
+            </a>
+            <button onclick="openApplyModal()" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-400 hover:brightness-110 text-slate-950 font-black text-xs shadow-lg transition-all flex items-center gap-1.5 cursor-pointer">
+              <span>✨ 1기 수강 신청하기 (얼리버드 10%)</span>
+              <span>→</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -868,6 +930,129 @@
   </footer>
 
   <script>
+    
+    // ========================================================
+    // 30-SECOND INTERACTIVE QUICK AI LEVEL DIAGNOSTIC ENGINE
+    // ========================================================
+    const QUICK_QUESTIONS = [
+      {
+        title: "1. 평소 생성형 AI(ChatGPT 등)를 어떤 방식으로 사용하시나요?",
+        choices: [
+          { score: 1, text: "거의 안 써봤거나 가끔 대화창에 한두 마디 해본 수준이다." },
+          { score: 2, text: "이메일 초안 작성, 긴 글 요약, 번역 등 텍스트 작업 위주로 쓴다." },
+          { score: 3, text: "코딩 템플릿 복붙을 시도해 봤지만 에러가 나면 멈춘다." },
+          { score: 4, text: "AI에게 명확한 역할을 부여해 가족/매장용 웹 링크를 직접 만들어봤다." }
+        ]
+      },
+      {
+        title: "2. 컴퓨터 화면이 백지화되거나 에러가 떴을 때 나의 즉각적인 반응은?",
+        choices: [
+          { score: 1, text: "컴퓨터가 망가진 줄 알고 창을 즉시 닫고 포기한다." },
+          { score: 2, text: "챗봇에 '왜 안 되냐'며 같은 말을 막연히 반복해서 묻는다." },
+          { score: 3, text: "구글링을 뒤지다가 피로감이 몰려와 중단한다." },
+          { score: 4, text: "3초 만에 안전 백업본으로 롤백하고 AI에게 디버깅을 지시한다." }
+        ]
+      },
+      {
+        title: "3. 내가 AI와 함께 만든 결과물을 지인이나 고객에게 링크로 보내본 경험은?",
+        choices: [
+          { score: 1, text: "전혀 없다 (대화창 안에서 나 혼자 보고 끝낸다)." },
+          { score: 2, text: "텍스트 답변을 복사해서 카톡이나 이메일로 보내봤다." },
+          { score: 3, text: "내 PC에서만 열리는 파일은 만들어봤지만 링크 배포는 못 해봤다." },
+          { score: 4, text: "실제 웹 URL 주소로 만들어 가족 단톡방이나 고객에게 실사용하게 했다." }
+        ]
+      },
+      {
+        title: "4. 내가 AI를 배워서 나와 우리 가족을 위해 진짜 이루고 싶은 최종 모습은?",
+        choices: [
+          { score: 1, text: "AI 시대에 뒤처지지 않는 최소한의 기본 소양을 갖추고 싶다." },
+          { score: 2, text: "매일 반복되는 업무·과제 시간을 절반 이하로 줄이고 싶다." },
+          { score: 3, text: "아이에게 장난감 코딩 대신 평생 써먹는 디지털 자립심을 주고 싶다." },
+          { score: 4, text: "아빠 가게 계산기처럼 실제 작동하는 웹 도구를 당일 배포하는 실전 빌더가 되고 싶다." }
+        ]
+      }
+    ];
+
+    let quickStep = 0;
+    let quickScores = [];
+
+    function answerQuickQ(score) {
+      quickScores.push(score);
+      if (quickStep < QUICK_QUESTIONS.length - 1) {
+        quickStep++;
+        renderQuickQ();
+      } else {
+        renderQuickResult();
+      }
+    }
+
+    function renderQuickQ() {
+      const q = QUICK_QUESTIONS[quickStep];
+      document.getElementById('qStepIndicator').innerText = `STEP ${quickStep + 1} / 4`;
+      document.getElementById('quickProgressBar').style.width = `${((quickStep + 1) / 4) * 100}%`;
+      document.getElementById('quickQuestionTitle').innerText = q.title;
+
+      const grid = document.getElementById('quickChoicesGrid');
+      grid.innerHTML = '';
+      q.choices.forEach((c, idx) => {
+        const btn = document.createElement('button');
+        btn.className = "p-3.5 rounded-2xl bg-slate-850 hover:bg-slate-800 border border-slate-700 hover:border-emerald-500/70 text-left transition-all flex items-start gap-3 group cursor-pointer";
+        btn.onclick = () => answerQuickQ(c.score);
+        btn.innerHTML = `
+          <span class="w-6 h-6 rounded-lg bg-slate-900 border border-slate-700 text-slate-400 group-hover:bg-emerald-500 group-hover:text-slate-950 flex items-center justify-center font-bold shrink-0">
+            ${String.fromCharCode(65 + idx)}
+          </span>
+          <span class="text-slate-300 group-hover:text-white leading-relaxed">
+            ${c.text}
+          </span>
+        `;
+        grid.appendChild(btn);
+      });
+    }
+
+    function renderQuickResult() {
+      document.getElementById('quickQFlow').classList.add('hidden');
+      document.getElementById('quickResultBox').classList.remove('hidden');
+
+      const sum = quickScores.reduce((a, b) => a + b, 0);
+      let lv = 1;
+      if (sum >= 13) lv = 4;
+      else if (sum >= 10) lv = 3;
+      else if (sum >= 7) lv = 2;
+      else lv = 1;
+
+      document.getElementById('quickResultBadge').innerText = lv;
+      const t = document.getElementById('quickResultTitle');
+      const s = document.getElementById('quickResultSub');
+      const d = document.getElementById('quickResultDesc');
+
+      if (lv === 4) {
+        t.innerText = "LEVEL 4 · 실전 디렉터 (Builder)";
+        s.innerText = "상위 5% 실전 역량 · 가족과 매장을 위한 진짜 실전 빌더";
+        d.innerText = "이미 대화창을 벗어나 실전 도구를 직접 빌딩할 준비가 되셨습니다! 장난감 코딩 대신 30분 만에 아빠 가게 계산기를 완성하고 세상에 배포하는 6주 마스터 코스를 강력 권장합니다.";
+      } else if (lv === 3) {
+        t.innerText = "LEVEL 3 · 블록 조립자 (Toy Builder)";
+        s.innerText = "에러 공포와 장난감 코딩의 한계를 깨고 도약할 타이밍!";
+        d.innerText = "글자 하나 고쳤다가 화면이 멈추면 컴퓨터가 고장 난 줄 알고 울먹이던 아이들처럼, 에러 공포가 발목을 잡고 있습니다. '3초 타임머신 습관'을 익히면 첫날 30분 만에 안심하고 웹을 배포할 수 있습니다.";
+      } else if (lv === 2) {
+        t.innerText = "LEVEL 2 · 단순 대화자 (Chatter)";
+        s.innerText = "대화창을 벗어나 스마트폰 홈 화면 링크 1개로 승격할 단계!";
+        d.innerText = "ChatGPT를 이미 훌륭하게 쓰고 계십니다! 매번 똑같은 질문을 치지 않아도 가족과 고객이 스마트폰에서 바로 열어보는 '나만의 실전 웹 계산기'로 업그레이드할 최적의 타이밍입니다.";
+      } else {
+        t.innerText = "LEVEL 1 · AI 관망자 (Spectator)";
+        s.innerText = "복잡한 코딩 지식 0분! 30분 만의 성공 경험이 필요한 단계";
+        d.innerText = "어려운 컴퓨터 공학이나 코딩 문법은 1초도 몰라도 괜찮습니다! AI를 천재 신입 인턴으로 부려 첫날 30분 만에 가족 단톡방에 진짜 링크를 띄우는 순간, AI에 대한 시각이 완전히 달라집니다.";
+      }
+    }
+
+    function resetQuickQ() {
+      quickStep = 0;
+      quickScores = [];
+      document.getElementById('quickResultBox').classList.add('hidden');
+      document.getElementById('quickQFlow').classList.remove('hidden');
+      renderQuickQ();
+    }
+
     function checkDiagnostic() {
       const checks = document.querySelectorAll('.diag-chk:checked');
       const res = document.getElementById('diag-result');

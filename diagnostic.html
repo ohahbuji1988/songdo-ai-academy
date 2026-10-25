@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 레벨 측정기 | 송도 국제 AI 아카데미</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            miriGreen: '#00c471',
+            miriGreenDark: '#00a860',
+            space: {
+              950: '#070a13',
+              900: '#0d1322',
+              850: '#11192e',
+              800: '#17223b',
+              700: '#233354'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.1/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+      font-family: 'Wanted Sans Variable', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    }
+    .font-signature {
+      font-family: 'Caveat', cursive !important;
+    }
+  </style>
+</head>
+<body class="bg-space-950 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-emerald-500 selection:text-black">
+
+  <!-- TOP HEADER -->
+  <header class="h-16 border-b border-space-800 bg-space-900/80 backdrop-blur sticky top-0 z-40 px-6 sm:px-10 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center font-black text-slate-950 text-sm shadow-md shadow-emerald-500/20">
+        AI
+      </div>
+      <div class="flex items-center gap-2">
+        <div class="flex flex-col">
+          <span class="text-xs font-black tracking-tight text-white leading-none">SONGDO AI ACADEMY</span>
+          <span class="text-[10px] font-bold text-emerald-400 tracking-wider">실전 AI 레벨 정밀 측정기</span>
+        </div>
+        <span class="font-signature text-2xl sm:text-3xl text-emerald-400 font-bold select-none ml-2 tracking-wide leading-none">ohahbuji</span>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <a href="/landing.html" class="px-3 py-1.5 rounded-xl border border-space-700 hover:bg-space-800 text-slate-300 hover:text-white text-xs font-bold transition-all flex items-center gap-1.5">
+        <span>🌐</span> <span>랜딩페이지</span>
+      </a>
+      <a href="/courseware/lessons.html" class="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-slate-950 text-xs font-black transition-all shadow-sm flex items-center gap-1">
+        <span>🎓</span> <span>실전 강의실</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="flex-1 max-w-4xl w-full mx-auto px-6 py-10 sm:py-14 flex flex-col justify-center">
+
+    <!-- STAGE 1: INTRO SCREEN -->
+    <div id="introCard" class="p-8 sm:p-12 rounded-3xl bg-space-900 border border-space-800 shadow-2xl flex flex-col items-center text-center gap-6">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold">
+        <span>🧭</span> <span>송도 학부모 & 직장인을 위한 30초 정밀 자가진단</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
+        "당신은 AI의 단순 관망자입니까,<br>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">진짜 실전 디렉터입니까?</span>"
+      </h1>
+
+      <p class="text-slate-300 text-sm sm:text-base max-w-xl leading-relaxed">
+        어려운 코딩 지식 시험이 아닙니다. 일상에서 내가 AI를 대하는 <strong>진짜 행동 습관과 대처 방식 5문항</strong>을 통해 현재 나의 AI 자립 레벨과 최적의 6주 로드맵을 즉시 진단해 드립니다.
+      </p>
+
+      <!-- 4 Levels Preview Badges -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full max-w-2xl text-left text-xs pt-2">
+        <div class="p-3.5 rounded-2xl bg-space-850 border border-space-700/60 flex flex-col gap-1">
+          <span class="text-slate-400 font-mono font-bold text-[10px]">LEVEL 1</span>
+          <strong class="text-white font-bold text-xs">AI 관망자</strong>
+          <span class="text-slate-500 text-[11px]">단순 대화 / 막연한 호기심</span>
+        </div>
+        <div class="p-3.5 rounded-2xl bg-space-850 border border-space-700/60 flex flex-col gap-1">
+          <span class="text-slate-400 font-mono font-bold text-[10px]">LEVEL 2</span>
+          <strong class="text-sky-300 font-bold text-xs">단순 대화자</strong>
+          <span class="text-slate-500 text-[11px]">메일 요약 / 텍스트 프롬프트</span>
+        </div>
+        <div class="p-3.5 rounded-2xl bg-space-850 border border-space-700/60 flex flex-col gap-1">
+          <span class="text-slate-400 font-mono font-bold text-[10px]">LEVEL 3</span>
+          <strong class="text-teal-300 font-bold text-xs">블록 조립자</strong>
+          <span class="text-slate-500 text-[11px]">문법 외우기 / 에러 시 멘붕</span>
+        </div>
+        <div class="p-3.5 rounded-2xl bg-emerald-950/40 border border-emerald-500/60 flex flex-col gap-1">
+          <span class="text-emerald-400 font-mono font-bold text-[10px]">LEVEL 4</span>
+          <strong class="text-emerald-300 font-bold text-xs">실전 디렉터</strong>
+          <span class="text-emerald-400/80 text-[11px]">웹 링크 당일 배포 & 가족 감동</span>
+        </div>
+      </div>
+
+      <button onclick="startDiagnostic()" class="mt-4 px-8 py-4 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-400 hover:brightness-110 text-slate-950 font-black text-sm sm:text-base shadow-xl transition-all cursor-pointer flex items-center gap-2 hover:scale-105 active:scale-95">
+        <span>⚡ 30초 내 레벨 측정 시작하기</span>
+        <span>→</span>
+      </button>
+    </div>
+
+    <!-- STAGE 2: QUESTION CARD FLOW -->
+    <div id="quizCard" class="hidden p-6 sm:p-10 rounded-3xl bg-space-900 border border-space-800 shadow-2xl flex flex-col gap-6">
+      
+      <!-- Progress Bar & Indicator -->
+      <div class="flex flex-col gap-2 border-b border-space-800 pb-4">
+        <div class="flex items-center justify-between text-xs font-bold text-slate-400">
+          <span id="questionCounter" class="text-emerald-400 font-mono">QUESTION 01 / 05</span>
+          <span id="progressPercent" class="font-mono">20%</span>
+        </div>
+        <div class="w-full h-2 bg-space-800 rounded-full overflow-hidden">
+          <div id="quizProgressBar" class="h-full bg-gradient-to-r from-emerald-500 to-teal-400 w-1/5 transition-all duration-300"></div>
+        </div>
+      </div>
+
+      <!-- Question Title -->
+      <div class="flex flex-col gap-2">
+        <span id="questionCategory" class="text-xs font-bold text-emerald-400 uppercase tracking-wider">01. 평소 AI 도구 활용도</span>
+        <h2 id="questionText" class="text-xl sm:text-2xl font-extrabold text-white leading-snug">
+          평소 ChatGPT나 생성형 AI를 어떤 방식으로 다루고 계신가요?
+        </h2>
+      </div>
+
+      <!-- 4 Choices -->
+      <div id="optionsContainer" class="flex flex-col gap-3">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+
+    <!-- STAGE 3: RESULT REPORT & CERTIFICATE -->
+    <div id="resultCard" class="hidden flex flex-col gap-8">
+      
+      <!-- Official Certificate Box -->
+      <div class="p-8 sm:p-12 rounded-3xl bg-gradient-to-b from-space-900 via-space-900 to-space-950 border-2 border-emerald-500 shadow-[0_0_60px_rgba(16,185,129,0.25)] flex flex-col gap-8 relative overflow-hidden">
+        
+        <!-- Background watermark logo -->
+        <div class="absolute -right-12 -bottom-12 w-64 h-64 rounded-full bg-emerald-500/5 blur-3xl pointer-events-none"></div>
+
+        <!-- Top Certificate Header -->
+        <div class="flex items-start justify-between border-b border-space-800 pb-6">
+          <div class="flex flex-col gap-1">
+            <span class="text-[11px] font-mono font-bold text-emerald-400 tracking-widest uppercase">SONGDO AI ACADEMY · OFFICIAL DIAGNOSTIC REPORT</span>
+            <h2 class="text-2xl sm:text-3xl font-black text-white">실전 AI 자립 역량 진단 결과서</h2>
+          </div>
+          <span class="font-signature text-3xl sm:text-4xl text-emerald-400 font-bold select-none">ohahbuji</span>
+        </div>
+
+        <!-- Main Score & Level Badge -->
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-6 bg-space-850/80 p-6 rounded-2xl border border-space-700/80">
+          <div class="flex items-center gap-5">
+            <div id="resultLevelIcon" class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-400 text-slate-950 flex items-center justify-center text-3xl sm:text-4xl font-black shadow-lg">
+              4
+            </div>
+            <div class="flex flex-col">
+              <span class="text-xs font-mono font-bold text-slate-400">당신의 현재 수준</span>
+              <strong id="resultLevelTitle" class="text-2xl sm:text-3xl font-black text-white">LEVEL 4 · 실전 디렉터 (Builder)</strong>
+              <p id="resultLevelSubtitle" class="text-xs text-emerald-400 font-medium">상위 5% 실전 역량 · 가족과 매장을 위한 웹 빌더</p>
+            </div>
+          </div>
+
+          <div class="flex flex-col items-center sm:items-end border-t sm:border-t-0 sm:border-l border-space-700 pt-4 sm:pt-0 sm:pl-6">
+            <span class="text-xs font-bold text-slate-400">종합 역량 점수</span>
+            <div class="flex items-baseline gap-1">
+              <span id="resultScore" class="text-4xl font-black text-emerald-400 font-mono">92</span>
+              <span class="text-slate-500 text-sm font-mono">/ 100점</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 Competency Bars -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+          <div class="p-4 rounded-xl bg-space-850 border border-space-800 flex flex-col gap-2">
+            <div class="flex justify-between font-bold">
+              <span class="text-slate-300">1. AI 디렉팅 & 프롬프트 지시력</span>
+              <span id="barScore1" class="text-emerald-400 font-mono">90%</span>
+            </div>
+            <div class="w-full h-2 bg-space-950 rounded-full overflow-hidden">
+              <div id="barFill1" class="h-full bg-emerald-400 rounded-full w-[90%]"></div>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-space-850 border border-space-800 flex flex-col gap-2">
+            <div class="flex justify-between font-bold">
+              <span class="text-slate-300">2. 에러 면역 & 3초 롤백 복구력</span>
+              <span id="barScore2" class="text-emerald-400 font-mono">85%</span>
+            </div>
+            <div class="w-full h-2 bg-space-950 rounded-full overflow-hidden">
+              <div id="barFill2" class="h-full bg-emerald-400 rounded-full w-[85%]"></div>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-space-850 border border-space-800 flex flex-col gap-2">
+            <div class="flex justify-between font-bold">
+              <span class="text-slate-300">3. 가족/매장 실전 배포 자립력</span>
+              <span id="barScore3" class="text-emerald-400 font-mono">95%</span>
+            </div>
+            <div class="w-full h-2 bg-space-950 rounded-full overflow-hidden">
+              <div id="barFill3" class="h-full bg-emerald-400 rounded-full w-[95%]"></div>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-space-850 border border-space-800 flex flex-col gap-2">
+            <div class="flex justify-between font-bold">
+              <span class="text-slate-300">4. 종량제 0원 비용 경제성</span>
+              <span id="barScore4" class="text-emerald-400 font-mono">100%</span>
+            </div>
+            <div class="w-full h-2 bg-space-950 rounded-full overflow-hidden">
+              <div id="barFill4" class="h-full bg-emerald-400 rounded-full w-[100%]"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Personalized Prescription & Recommendation -->
+        <div class="p-6 rounded-2xl bg-emerald-950/30 border border-emerald-500/40 flex flex-col gap-3">
+          <div class="flex items-center gap-2">
+            <span class="text-lg">💡</span>
+            <strong class="text-white text-sm font-extrabold">ohahbuji 원장님의 1:1 맞춤 학습 처방</strong>
+          </div>
+          <p id="resultPrescription" class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            이미 단순 대화창 수준을 넘어 나만의 실전 도구를 만들 준비가 완벽히 되셨습니다! 장난감 블록 코딩으로 시간을 낭비하지 마시고, 첫날 30분 만에 아빠 매장 계산기 같은 실전 웹을 세상에 배포하는 6주 실전 코스를 권장합니다.
+          </p>
+        </div>
+
+        <!-- Action CTAs -->
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
+          <button onclick="copyResultSummary()" id="copyResultBtn" class="w-full sm:w-auto px-5 py-3 rounded-xl bg-space-800 hover:bg-space-700 text-slate-200 text-xs font-bold transition-all border border-space-700 flex items-center justify-center gap-2">
+            <span>📋</span> <span>진단 결과 복사하기</span>
+          </button>
+
+          <div class="flex items-center gap-3 w-full sm:w-auto">
+            <button onclick="restartQuiz()" class="w-1/3 sm:w-auto px-4 py-3 rounded-xl bg-space-850 hover:bg-space-800 text-slate-400 hover:text-white text-xs font-bold transition-all">
+              다시 측정
+            </button>
+            <a href="/landing.html" class="w-2/3 sm:w-auto px-6 py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-400 hover:brightness-110 text-slate-950 font-black text-xs sm:text-sm shadow-xl transition-all flex items-center justify-center gap-2">
+              <span>✨ 맞춤 1기 수강 신청하기</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-space-800 py-6 px-6 text-center text-xs text-slate-500">
+    <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+      <span>송도 국제 AI 아카데미 · 실전 AI 레벨 정밀 측정 시스템</span>
+      <div class="flex items-center gap-2">
+        <span>Authored by</span>
+        <span class="font-signature text-2xl text-slate-400 font-bold">ohahbuji</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    const QUIZ_QUESTIONS = [
+      {
+        category: "01. 평소 AI 도구 활용도",
+        question: "평소 ChatGPT나 생성형 AI를 어떤 방식으로 다루고 계신가요?",
+        options: [
+          { score: 10, label: "거의 써본 적 없거나, 신기해서 가끔 대화창에 끄적여본 수준이다." },
+          { score: 20, label: "이메일 초안, 영문 번역, 긴 글 요약 등 텍스트 작업 위주로 쓴다." },
+          { score: 30, label: "파이썬이나 코딩 템플릿을 복붙해 봤지만, 조금만 복잡해지면 막힌다." },
+          { score: 40, label: "AI에게 명확한 역할과 제약을 부여해 나만의 웹이나 도구를 직접 만들어본다." }
+        ]
+      },
+      {
+        category: "02. 에러 및 문제 해결력",
+        question: "화면이 백지화되거나 코드에 빨간 에러가 떴을 때 나의 첫 번째 반응은?",
+        options: [
+          { score: 10, label: "컴퓨터가 고장 난 줄 알고 울컥하거나 창을 바로 닫고 포기한다." },
+          { score: 20, label: "챗봇에 '왜 안 되냐'며 같은 질문을 무작정 반복해서 다시 물어본다." },
+          { score: 30, label: "인터넷 검색이나 커뮤니티를 뒤지다가 피로감이 몰려와 중단한다." },
+          { score: 40, label: "당황하지 않고 3초 만에 안전 백업본으로 롤백한 뒤 차분히 AI에게 디버깅을 지시한다." }
+        ]
+      },
+      {
+        category: "03. 결과물 공유 및 배포 경험",
+        question: "내가 AI와 함께 만든 무언가를 세상에 공개하거나 지인에게 전송해본 적이 있나요?",
+        options: [
+          { score: 10, label: "전혀 없다 (대화창 안에서 나 혼자 읽고 닫는 것으로 끝난다)." },
+          { score: 20, label: "챗봇이 써준 글을 복사해서 카톡이나 메일로 전달해 본 적은 있다." },
+          { score: 30, label: "내 컴퓨터에서만 열리는 파일(HTML 등)을 만들어봤지만 링크 배포는 못 해봤다." },
+          { score: 40, label: "실제 살아있는 인터넷 URL 주소로 만들어 가족 단톡방이나 고객에게 직접 공유해봤다." }
+        ]
+      },
+      {
+        category: "04. 비용 및 도구 경제성",
+        question: "AI 유료 구독료나 클라우드 서버 요금에 대한 나의 상태는?",
+        options: [
+          { score: 10, label: "무료 버전만 쓰며, 혹시 나도 모르게 돈이 결제될까 봐 카드 등록이 두렵다." },
+          { score: 20, label: "유료 챗봇을 구독 중이지만, 돈값만큼 충분히 뽑아내고 있는지 모르겠다." },
+          { score: 30, label: "개발자용 API 키를 연동했다가 종량제 요금 폭탄을 맞을까 봐 불안해서 껐다." },
+          { score: 40, label: "단 1개의 고정 구독으로 추가 API 종량제 과금 0원 원칙을 지키며 경제적으로 운영한다." }
+        ]
+      },
+      {
+        category: "05. 나의 최종 자립 목표",
+        question: "이번에 AI를 배워서 나와 우리 가족을 위해 진짜 이루고 싶은 것은?",
+        options: [
+          { score: 10, label: "AI 시대에 뒤처지지 않는 최소한의 기본 소양과 감을 잡고 싶다." },
+          { score: 20, label: "매일 반복되는 업무나 과제 시간을 절반 이상 단축하고 싶다." },
+          { score: 30, label: "아이에게 장난감 코딩 대신 평생 써먹는 진짜 디지털 자립심을 심어주고 싶다." },
+          { score: 40, label: "아빠 가게 주문 계산기나 포트폴리오처럼 실제 동작하는 도구를 당일 배포하는 실전 빌더가 되고 싶다." }
+        ]
+      }
+    ];
+
+    let currentQuestionIdx = 0;
+    let totalScore = 0;
+    let userAnswers = [];
+
+    function startDiagnostic() {
+      document.getElementById('introCard').classList.add('hidden');
+      document.getElementById('quizCard').classList.remove('hidden');
+      currentQuestionIdx = 0;
+      totalScore = 0;
+      userAnswers = [];
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      const q = QUIZ_QUESTIONS[currentQuestionIdx];
+      const countEl = document.getElementById('questionCounter');
+      const pctEl = document.getElementById('progressPercent');
+      const barEl = document.getElementById('quizProgressBar');
+      const catEl = document.getElementById('questionCategory');
+      const textEl = document.getElementById('questionText');
+      const optEl = document.getElementById('optionsContainer');
+
+      const pct = Math.round(((currentQuestionIdx + 1) / QUIZ_QUESTIONS.length) * 100);
+      countEl.innerText = `QUESTION 0${currentQuestionIdx + 1} / 05`;
+      pctEl.innerText = `${pct}%`;
+      barEl.style.width = `${pct}%`;
+      catEl.innerText = q.category;
+      textEl.innerText = q.question;
+
+      optEl.innerHTML = '';
+      q.options.forEach((opt, idx) => {
+        const btn = document.createElement('button');
+        btn.className = "p-4 sm:p-5 rounded-2xl bg-space-850 hover:bg-space-800 border border-space-700 hover:border-emerald-500/80 text-left transition-all flex items-start gap-3.5 group cursor-pointer text-xs sm:text-sm";
+        btn.onclick = () => selectOption(opt.score);
+        btn.innerHTML = `
+          <span class="w-6 h-6 rounded-lg bg-space-900 border border-space-700 text-slate-400 group-hover:bg-emerald-500 group-hover:text-slate-950 group-hover:border-emerald-400 flex items-center justify-center font-mono font-bold text-xs shrink-0 transition-all">
+            ${String.fromCharCode(65 + idx)}
+          </span>
+          <span class="text-slate-200 group-hover:text-white font-medium leading-relaxed">
+            ${opt.label}
+          </span>
+        `;
+        optEl.appendChild(btn);
+      });
+    }
+
+    function selectOption(score) {
+      totalScore += score;
+      userAnswers.push(score);
+
+      if (currentQuestionIdx < QUIZ_QUESTIONS.length - 1) {
+        currentQuestionIdx++;
+        renderQuestion();
+      } else {
+        showResults();
+      }
+    }
+
+    function showResults() {
+      document.getElementById('quizCard').classList.add('hidden');
+      document.getElementById('resultCard').classList.remove('hidden');
+
+      // Score normalisation: max 200 -> scaled to 100
+      const finalScore = Math.min(100, Math.round((totalScore / 200) * 100));
+      document.getElementById('resultScore').innerText = finalScore;
+
+      const iconEl = document.getElementById('resultLevelIcon');
+      const titleEl = document.getElementById('resultLevelTitle');
+      const subEl = document.getElementById('resultLevelSubtitle');
+      const presEl = document.getElementById('resultPrescription');
+
+      let lv = 1;
+      if (finalScore >= 80) lv = 4;
+      else if (finalScore >= 60) lv = 3;
+      else if (finalScore >= 40) lv = 2;
+      else lv = 1;
+
+      iconEl.innerText = lv;
+
+      if (lv === 4) {
+        titleEl.innerText = "LEVEL 4 · 실전 디렉터 (Builder)";
+        subEl.innerText = "상위 5% 실전 역량 · 가족과 매장을 위한 진짜 실전 빌더";
+        presEl.innerText = "이미 단순 대화창 수준을 넘어 나만의 실전 도구를 만들 준비가 완벽히 되셨습니다! 장난감 블록 코딩으로 시간을 낭비하지 마시고, 첫날 30분 만에 아빠 매장 계산기 같은 실전 웹을 세상에 배포하는 6주 마스터 코스를 권장합니다.";
+        document.getElementById('barScore1').innerText = "95%"; document.getElementById('barFill1').style.width = "95%";
+        document.getElementById('barScore2').innerText = "90%"; document.getElementById('barFill2').style.width = "90%";
+        document.getElementById('barScore3').innerText = "95%"; document.getElementById('barFill3').style.width = "95%";
+        document.getElementById('barScore4').innerText = "100%"; document.getElementById('barFill4').style.width = "100%";
+      } else if (lv === 3) {
+        titleEl.innerText = "LEVEL 3 · 블록 조립자 (Toy Builder)";
+        subEl.innerText = "코딩 시도 경험 보유 · 에러 공포와 장난감 한계 돌파 직전";
+        presEl.innerText = "코딩을 시도해 본 열정이 대단하지만, 글자 하나 바꿨을 때 화면이 멈추는 에러 공포 때문에 멈춰 계십니다. '3초 타임머신 습관'을 장착하면 두려움 제로의 상태에서 30분 만에 당당히 실전 배포에 도달하실 수 있습니다.";
+        document.getElementById('barScore1').innerText = "75%"; document.getElementById('barFill1').style.width = "75%";
+        document.getElementById('barScore2').innerText = "45%"; document.getElementById('barFill2').style.width = "45%";
+        document.getElementById('barScore3').innerText = "60%"; document.getElementById('barFill3').style.width = "60%";
+        document.getElementById('barScore4').innerText = "70%"; document.getElementById('barFill4').style.width = "70%";
+      } else if (lv === 2) {
+        titleEl.innerText = "LEVEL 2 · 단순 대화자 (Chatter)";
+        subEl.innerText = "AI 텍스트 활용 능숙 · 대화창 밖으로 나만의 웹 링크를 만들 단계";
+        presEl.innerText = "ChatGPT를 이미 실무나 일상에서 요약·번역 용도로 훌륭히 쓰고 계십니다! 이제 매번 똑같은 질문을 치지 않아도, 스마트폰 홈 화면에서 링크 1개로 누구나 열 수 있는 '나만의 실전 웹 계산기'로 점프할 최적의 타이밍입니다.";
+        document.getElementById('barScore1').innerText = "60%"; document.getElementById('barFill1').style.width = "60%";
+        document.getElementById('barScore2').innerText = "35%"; document.getElementById('barFill2').style.width = "35%";
+        document.getElementById('barScore3').innerText = "20%"; document.getElementById('barFill3').style.width = "20%";
+        document.getElementById('barScore4').innerText = "50%"; document.getElementById('barFill4').style.width = "50%";
+      } else {
+        titleEl.innerText = "LEVEL 1 · AI 관망자 (Spectator)";
+        subEl.innerText = "새로운 가능성 탐색 단계 · 첫날 30분 성공 경험이 가장 강력한 자극";
+        presEl.innerText = "어려운 컴퓨터 공학이나 코딩 문법은 1초도 몰라도 괜찮습니다! AI는 손발이 없는 천재 신입 인턴일 뿐입니다. Day-1 30분 만에 우리 가족을 위한 진짜 웹을 단톡방에 링크로 띄우는 순간, AI에 대한 시각이 180도 바뀝니다.";
+        document.getElementById('barScore1').innerText = "30%"; document.getElementById('barFill1').style.width = "30%";
+        document.getElementById('barScore2').innerText = "15%"; document.getElementById('barFill2').style.width = "15%";
+        document.getElementById('barScore3').innerText = "10%"; document.getElementById('barFill3').style.width = "10%";
+        document.getElementById('barScore4').innerText = "40%"; document.getElementById('barFill4').style.width = "40%";
+      }
+    }
+
+    function restartQuiz() {
+      document.getElementById('resultCard').classList.add('hidden');
+      document.getElementById('introCard').classList.remove('hidden');
+    }
+
+    function copyResultSummary() {
+      const score = document.getElementById('resultScore').innerText;
+      const title = document.getElementById('resultLevelTitle').innerText;
+      const text = `[송도 AI 아카데미 레벨 측정 결과]\n나의 AI 수준: ${title} (${score}점 / 100점)\n측정 링크: ${window.location.origin}/diagnostic.html`;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById('copyResultBtn');
+        btn.innerText = "✅ 진단 결과가 복사되었습니다!";
+        setTimeout(() => {
+          btn.innerHTML = '<span>📋</span> <span>진단 결과 복사하기</span>';
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>

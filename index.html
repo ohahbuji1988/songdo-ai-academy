@@ -114,6 +114,12 @@
         <span>공정 맵</span>
         <span class="text-[10px] text-slate-500 font-mono hidden md:inline">5</span>
       </button>
+
+      <button data-tab="diagnostic" onclick="switchTab('diagnostic')" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all text-slate-400 hover:text-slate-200">
+        <span>🎯</span>
+        <span>AI 레벨 측정</span>
+        <span class="text-[10px] text-slate-500 font-mono hidden md:inline">6</span>
+      </button>
     </nav>
 
     <!-- Right: Viewport & Utility Controls -->
@@ -176,6 +182,9 @@
 
       <!-- Tab 5: 공정 맵 (process.html) -->
       <iframe id="iframe-process" src="process.html" class="tab-iframe w-full h-full border-0 absolute inset-0 bg-slate-950 hidden"></iframe>
+
+      <!-- Tab 6: AI 레벨 측정기 (diagnostic.html) -->
+      <iframe id="iframe-diagnostic" src="diagnostic.html" class="tab-iframe w-full h-full border-0 absolute inset-0 bg-slate-950 hidden"></iframe>
 
     </div>
 
@@ -246,7 +255,8 @@
       presentation: { id: 'iframe-presentation', url: 'presentation.html', title: '송도 AI 아카데미 | 공식 발표 덱' },
       studio: { id: 'iframe-studio', url: 'creator.html', title: '송도 AI 아카데미 | 커리큘럼 스튜디오' },
       courseware: { id: 'iframe-courseware', url: 'courseware/lessons.html', title: '송도 AI 아카데미 | 27분 실전 온라인 강의실' },
-      process: { id: 'iframe-process', url: 'process.html', title: '송도 AI 아카데미 | 공정 맵' }
+      process: { id: 'iframe-process', url: 'process.html', title: '송도 AI 아카데미 | 공정 맵' },
+      diagnostic: { id: 'iframe-diagnostic', url: 'diagnostic.html', title: '송도 AI 아카데미 | AI 레벨 측정기' }
     };
 
     let currentTab = 'landing';
@@ -386,6 +396,7 @@
       else if (e.key === '3') switchTab('studio');
       else if (e.key === '4') switchTab('courseware');
       else if (e.key === '5') switchTab('process');
+      else if (e.key === '6') switchTab('diagnostic');
       else if (e.key === 'e' || e.key === 'E') toggleDirectorEditMode();
       else if (e.key === 'f' || e.key === 'F') toggleZenMode();
       else if (e.key === 'o' || e.key === 'O') openStandalone();
