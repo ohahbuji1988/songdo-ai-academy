@@ -115,12 +115,7 @@
     <!-- Right: Viewport & Utility Controls -->
     <div class="flex items-center gap-2">
       <!-- Director Edit Mode Switch -->
-      <!-- Story Video Reel Quick Modal Button -->
-      <button onclick="openStoryReelModal()" title="12세 민우의 실전 AI 4컷 릴스 영상 보기 (단축키 V)" class="px-2.5 py-1.5 rounded-lg bg-gradient-to-r from-emerald-500 to-teal-400 hover:brightness-110 text-slate-950 text-xs font-black flex items-center gap-1.5 transition-all shadow-md cursor-pointer">
-        <span>🎬</span>
-        <span class="hidden md:inline">스토리 릴스</span>
-        <span class="text-[10px] bg-black/20 text-slate-950 px-1 py-0.5 rounded font-mono font-bold">V</span>
-      </button>
+
 
       <button id="directorEditBtn" onclick="toggleDirectorEditMode()" title="원장 전용 직접 수정 스튜디오로 즉시 전환 (단축키 E)" class="px-2.5 py-1.5 rounded-lg bg-emerald-950/80 hover:bg-emerald-900 text-emerald-300 text-xs border border-emerald-700/80 flex items-center gap-1.5 transition-all shadow-sm">
         <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -187,82 +182,7 @@
     </button>
   </main>
 
-  <!-- Story Reel Video Cinema Modal -->
-  <div id="storyReelModal" class="hidden fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
-    <div class="bg-space-900 border-2 border-emerald-500/80 rounded-3xl max-w-3xl w-full p-6 shadow-2xl relative flex flex-col gap-4">
-      
-      <!-- Modal Header -->
-      <div class="flex items-center justify-between pb-3 border-b border-space-800">
-        <div class="flex items-center gap-2">
-          <span class="text-xl">🎬</span>
-          <div class="flex flex-col">
-            <span class="font-extrabold text-sm sm:text-base text-white">송도 AI 아카데미 4컷 애니메이션 릴스 극장</span>
-            <span class="text-[11px] text-emerald-400">학원 6개월 다닌 민우(12세)의 진짜 실전 AI 탈출기</span>
-          </div>
-        </div>
-        <button onclick="closeStoryReelModal()" class="w-8 h-8 rounded-xl bg-space-800 hover:bg-space-700 text-slate-400 hover:text-white flex items-center justify-center text-lg font-bold transition-all">&times;</button>
-      </div>
 
-      <!-- 16:9 Reel Screen -->
-      <div class="w-full aspect-[16/9] rounded-2xl bg-black border border-slate-800 relative overflow-hidden flex flex-col justify-between shadow-inner">
-        
-        <!-- Progress Bars -->
-        <div class="absolute top-0 left-0 right-0 z-30 p-2.5 bg-gradient-to-b from-black/80 to-transparent flex items-center gap-1.5">
-          <div class="flex-1 h-1 bg-white/20 rounded-full overflow-hidden"><div id="portalBar0" class="h-full bg-emerald-400 w-0 transition-all duration-100"></div></div>
-          <div class="flex-1 h-1 bg-white/20 rounded-full overflow-hidden"><div id="portalBar1" class="h-full bg-emerald-400 w-0 transition-all duration-100"></div></div>
-          <div class="flex-1 h-1 bg-white/20 rounded-full overflow-hidden"><div id="portalBar2" class="h-full bg-emerald-400 w-0 transition-all duration-100"></div></div>
-          <div class="flex-1 h-1 bg-white/20 rounded-full overflow-hidden"><div id="portalBar3" class="h-full bg-emerald-400 w-0 transition-all duration-100"></div></div>
-        </div>
-
-        <!-- Top Audio Control -->
-        <div class="absolute top-4 right-3 z-30 flex items-center justify-end text-xs">
-          <button onclick="togglePortalAudio()" id="portalAudioBtn" class="px-2.5 py-1 rounded-full bg-black/75 hover:bg-black/90 border border-emerald-500/50 text-white text-[10px] font-bold backdrop-blur flex items-center gap-1 cursor-pointer">
-            <span id="portalAudioIcon">🔇</span> <span id="portalAudioText">소리 켜기</span>
-          </button>
-        </div>
-
-        <!-- Main Video / Image -->
-        <div class="absolute inset-0 z-10 overflow-hidden bg-black flex items-center justify-center">
-          <video id="portalVideoPlayer" src="/assets/story/vrew_story.mp4" poster="/assets/story/vrew_poster.jpg" autoplay muted playsinline controls loop class="w-full h-full object-contain"></video>
-          <img id="portalMainImage" src="/assets/story/scene1.jpg" alt="Portal Story Scene" class="hidden w-full h-full object-cover transition-all duration-700">
-          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/30 pointer-events-none"></div>
-        </div>
-
-
-
-        <!-- Subtitle Bar -->
-        <div class="absolute bottom-2.5 left-3 right-3 z-20 pointer-events-none text-center">
-          <div id="portalSubtitleBar" class="inline-block mx-auto px-3 py-1.5 rounded-xl bg-black/85 border border-white/20 text-xs font-medium text-white backdrop-blur shadow-xl">
-            <span class="text-emerald-300 font-bold">👦 민우 (12세):</span> "엄마! 나 코딩 학원에서 고양이가 점프하는 게임 만들었어!"
-          </div>
-        </div>
-
-        <!-- Tap Controls -->
-        <div class="absolute inset-0 z-20 flex">
-          <div onclick="prevPortalScene(event)" class="w-1/3 h-full cursor-pointer" title="이전 장면"></div>
-          <div onclick="togglePortalPlay(event)" class="w-1/3 h-full cursor-pointer" title="재생/일시정지"></div>
-          <div onclick="nextPortalScene(event)" class="w-1/3 h-full cursor-pointer" title="다음 장면"></div>
-        </div>
-
-      </div>
-
-      <!-- Controls & CTA -->
-      <div class="flex items-center justify-between text-xs pt-1">
-        <div class="flex items-center gap-2">
-          <button onclick="prevPortalScene(event)" class="px-3 py-1.5 rounded-xl bg-space-800 hover:bg-space-700 text-white font-bold transition-all">◀ 이전</button>
-          <button id="portalPlayBtn" onclick="togglePortalPlay(event)" class="px-4 py-1.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold transition-all">⏸ 일시정지</button>
-          <button onclick="nextPortalScene(event)" class="px-3 py-1.5 rounded-xl bg-space-800 hover:bg-space-700 text-white font-bold transition-all">다음 ▶</button>
-        </div>
-
-        <div class="flex items-center gap-2">
-          <button onclick="closeStoryReelModal(); switchTab('landing');" class="px-4 py-1.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-400 text-slate-950 font-extrabold shadow-md hover:brightness-110 transition-all">
-            랜딩페이지에서 신청하기 →
-          </button>
-        </div>
-      </div>
-
-    </div>
-  </div>
 
   <!-- Keyboard Shortcuts & Guide Modal -->
   <div id="helpModal" class="hidden fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
