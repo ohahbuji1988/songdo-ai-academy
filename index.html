@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>송도 AI 아카데미 | 통합 플랫폼 (Songdo AI Academy Suite)</title>
+  <title>송도 AI 아카데미 | 통합 플랫폼</title>
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#090d16">
   
   <!-- Font -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.3/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -19,16 +20,11 @@
           },
           colors: {
             space: {
-              950: '#06090e',
-              900: '#0a0f18',
-              800: '#111827',
-              700: '#1f2937',
-              600: '#374151'
-            },
-            accent: {
-              blue: '#0ea5e9',
-              teal: '#14b8a6',
-              indigo: '#6366f1'
+              950: '#070a13',
+              900: '#0c111c',
+              850: '#111726',
+              800: '#172033',
+              700: '#23304a'
             }
           }
         }
@@ -37,17 +33,21 @@
   </script>
 
   <style>
-    body {
-      font-family: "Wanted Sans Variable", system-ui, -apple-system, sans-serif;
+    * {
+      box-sizing: border-box;
       word-break: keep-all;
     }
-    /* Custom Scrollbar */
+    body {
+      font-family: "Wanted Sans Variable", system-ui, -apple-system, sans-serif;
+    }
+    .font-signature {
+      font-family: 'Caveat', cursive !important;
+    }
     ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: #0a0f18; }
-    ::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 9999px; }
+    ::-webkit-scrollbar-track { background: #0c111c; }
+    ::-webkit-scrollbar-thumb { background: #23304a; border-radius: 9999px; }
     ::-webkit-scrollbar-thumb:hover { background: #374151; }
 
-    /* Viewport Simulator Frame */
     .viewport-container {
       transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), max-width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
@@ -55,106 +55,81 @@
       box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.08);
     }
   </style>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap">
-  <style>
-    .font-signature { font-family: 'Caveat', cursive !important; }
-  </style>
 </head>
 <body class="bg-space-950 text-slate-100 h-full flex flex-col overflow-hidden select-none">
 
-  <!-- Top Navigation & App Bar -->
-  <header id="appHeader" class="h-14 bg-space-900/90 backdrop-blur-md border-b border-space-800 flex items-center justify-between px-4 z-50 transition-transform duration-300">
+  <!-- Top Navigation Bar -->
+  <header id="appHeader" class="h-14 bg-space-900/95 backdrop-blur-md border-b border-space-800 flex items-center justify-between px-4 z-50 transition-transform duration-300">
     <!-- Left: App Identity -->
     <div class="flex items-center gap-3">
       <div class="flex items-center gap-2">
-        <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-sky-500 to-teal-400 flex items-center justify-center font-black text-space-950 text-sm shadow-md shadow-sky-500/20">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center font-black text-space-950 text-sm shadow-md shadow-emerald-500/20">
           AI
         </div>
         <div class="flex flex-col">
-          <div class="flex items-center gap-1.5">
+          <div class="flex items-center gap-2">
             <span class="font-bold text-sm tracking-tight text-white">송도 AI 아카데미</span>
-            <span class="font-signature text-2xl sm:text-3xl text-emerald-400 font-bold select-none ml-2 tracking-wide leading-none">
+            <span class="font-signature text-2xl sm:text-3xl text-emerald-400 font-bold select-none tracking-wide leading-none">
               ohahbuji
             </span>
-            <span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-sky-950 text-sky-400 border border-sky-800/60 hidden md:inline">통합 포털</span>
           </div>
-          <span class="text-[10px] text-slate-400 hidden sm:inline">Songdo AI Academy All-in-One Suite</span>
+          <span class="text-[10px] text-slate-400 hidden sm:inline">Songdo AI Academy Suite</span>
         </div>
       </div>
     </div>
 
-    <!-- Center: Main App Tabs -->
-    <nav class="flex items-center bg-space-950 p-1 rounded-xl border border-space-800/80 gap-1 shadow-inner">
+    <!-- Center: Main App Tabs (Clean, Emojiless, Segmented Control) -->
+    <nav class="flex items-center bg-space-950 p-1 rounded-xl border border-space-800 gap-1 shadow-inner">
       <button data-tab="landing" onclick="switchTab('landing')" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all text-white bg-space-800 shadow-sm border border-slate-700/60">
-        <span>🌐</span>
-        <span>모집 랜딩</span>
+        <span>모집 안내</span>
         <span class="text-[10px] text-slate-400 font-mono hidden md:inline">1</span>
       </button>
 
       <button data-tab="presentation" onclick="switchTab('presentation')" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all text-slate-400 hover:text-slate-200">
-        <span>📊</span>
-        <span>발표 덱</span>
+        <span>발표 슬라이드</span>
         <span class="text-[10px] text-slate-500 font-mono hidden md:inline">2</span>
       </button>
 
-      <button data-tab="studio" onclick="switchTab('studio')" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all text-slate-400 hover:text-slate-200">
-        <span>✍️</span>
-        <span>커리큘럼 스튜디오</span>
+      <button data-tab="courseware" onclick="switchTab('courseware')" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all text-slate-400 hover:text-slate-200">
+        <span>실전 강의실</span>
         <span class="text-[10px] text-slate-500 font-mono hidden md:inline">3</span>
       </button>
 
-      <button data-tab="courseware" onclick="switchTab('courseware')" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all text-slate-400 hover:text-slate-200">
-        <span>🎓</span>
-        <span>온라인 강의실</span>
+      <button data-tab="process" onclick="switchTab('process')" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all text-slate-400 hover:text-slate-200">
+        <span>공정 로드맵</span>
         <span class="text-[10px] text-slate-500 font-mono hidden md:inline">4</span>
       </button>
 
-      <button data-tab="process" onclick="switchTab('process')" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all text-slate-400 hover:text-slate-200">
-        <span>🧭</span>
-        <span>공정 맵</span>
-        <span class="text-[10px] text-slate-500 font-mono hidden md:inline">5</span>
-      </button>
-
       <button data-tab="diagnostic" onclick="switchTab('diagnostic')" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all text-slate-400 hover:text-slate-200">
-        <span>🎯</span>
-        <span>12문항 정밀 진단</span>
-        <span class="text-[10px] text-slate-500 font-mono hidden md:inline">6</span>
+        <span>12문항 AI 진단</span>
+        <span class="text-[10px] text-slate-500 font-mono hidden md:inline">5</span>
       </button>
     </nav>
 
-    <!-- Right: Viewport & Utility Controls -->
+    <!-- Right: Viewport Controls -->
     <div class="flex items-center gap-2">
-      <!-- Director Edit Mode Switch -->
-
-
-      <button id="directorEditBtn" onclick="toggleDirectorEditMode()" title="원장 전용 직접 수정 스튜디오로 즉시 전환 (단축키 E)" class="px-2.5 py-1.5 rounded-lg bg-emerald-950/80 hover:bg-emerald-900 text-emerald-300 text-xs border border-emerald-700/80 flex items-center gap-1.5 transition-all shadow-sm">
-        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-        <span class="font-bold">👑 수정 모드</span>
-        <span class="text-[10px] text-emerald-400/80 font-mono hidden md:inline">E</span>
-      </button>
-
       <!-- Device Viewport Toggle (Desktop / Tablet / Mobile) -->
       <div class="hidden xl:flex items-center bg-space-950 p-0.5 rounded-lg border border-space-800 text-xs">
-        <button id="devPc" onclick="setDeviceMode('desktop')" title="PC 뷰 (100%)" class="dev-btn px-2 py-1 rounded text-sky-400 bg-space-800 font-semibold transition-all">
-          🖥️ PC
+        <button id="devPc" onclick="setDeviceMode('desktop')" title="PC 뷰 (100%)" class="dev-btn px-2.5 py-1 rounded text-emerald-400 bg-space-800 font-semibold transition-all">
+          PC
         </button>
-        <button id="devTablet" onclick="setDeviceMode('tablet')" title="태블릿 뷰 (768px)" class="dev-btn px-2 py-1 rounded text-slate-400 hover:text-white transition-all">
-          📱 태블릿
+        <button id="devTablet" onclick="setDeviceMode('tablet')" title="태블릿 뷰 (768px)" class="dev-btn px-2.5 py-1 rounded text-slate-400 hover:text-white transition-all">
+          Tablet
         </button>
-        <button id="devMobile" onclick="setDeviceMode('mobile')" title="모바일 뷰 (390px)" class="dev-btn px-2 py-1 rounded text-slate-400 hover:text-white transition-all">
-          📱 폰
+        <button id="devMobile" onclick="setDeviceMode('mobile')" title="모바일 뷰 (390px)" class="dev-btn px-2.5 py-1 rounded text-slate-400 hover:text-white transition-all">
+          Mobile
         </button>
       </div>
 
       <!-- Quick Action Buttons -->
       <button onclick="openStandalone()" title="현재 탭을 별도 새 창으로 열기 (단축키 O)" class="p-2 rounded-lg bg-space-800/80 hover:bg-space-700 text-slate-300 hover:text-white text-xs border border-space-700 flex items-center gap-1 transition-all">
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-        <span class="hidden lg:inline">새 탭</span>
+        <span class="hidden lg:inline text-[11px]">새 탭</span>
       </button>
 
       <button onclick="toggleZenMode()" title="몰입/전체화면 모드 (단축키 F)" class="p-2 rounded-lg bg-space-800/80 hover:bg-space-700 text-slate-300 hover:text-white text-xs border border-space-700 flex items-center gap-1 transition-all">
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
-        <span class="hidden lg:inline">전체화면</span>
+        <span class="hidden lg:inline text-[11px]">전체화면</span>
       </button>
 
       <button onclick="toggleHelpModal()" title="단축키 안내 (단축키 ?)" class="p-2 rounded-lg bg-space-800/80 hover:bg-space-700 text-slate-400 hover:text-white text-xs border border-space-700 transition-all font-mono font-bold">
@@ -165,83 +140,70 @@
 
   <!-- Main Viewport Workspace -->
   <main class="flex-1 relative bg-space-950 flex items-center justify-center overflow-hidden">
-    <!-- Viewport Container with dynamic device mode scaling -->
     <div id="viewportContainer" class="viewport-container w-full h-full relative transition-all duration-300 flex flex-col">
       
       <!-- Tab 1: 모집 랜딩페이지 (landing.html) -->
-      <iframe id="iframe-landing" src="landing.html" class="tab-iframe w-full h-full border-0 absolute inset-0 bg-slate-950"></iframe>
+      <iframe id="iframe-landing" src="landing.html" class="tab-iframe w-full h-full border-0 absolute inset-0 bg-white"></iframe>
 
-      <!-- Tab 2: 발표용 슬라이드 덱 (presentation.html) - Lazy loaded -->
-      <iframe id="iframe-presentation" data-src="presentation.html" class="tab-iframe w-full h-full border-0 absolute inset-0 bg-slate-950 hidden"></iframe>
+      <!-- Tab 2: 발표용 슬라이드 덱 (presentation.html) -->
+      <iframe id="iframe-presentation" src="presentation.html" class="tab-iframe w-full h-full border-0 absolute inset-0 bg-white hidden"></iframe>
 
-      <!-- Tab 3: 커리큘럼 편집 스튜디오 (creator.html) - Lazy loaded -->
-      <iframe id="iframe-studio" data-src="creator.html" class="tab-iframe w-full h-full border-0 absolute inset-0 bg-slate-950 hidden"></iframe>
+      <!-- Tab 3: 수강생 코스웨어 & 실습실 (courseware/lessons.html) -->
+      <iframe id="iframe-courseware" src="courseware/lessons.html" class="tab-iframe w-full h-full border-0 absolute inset-0 bg-white hidden"></iframe>
 
-      <!-- Tab 4: 수강생 코스웨어 & 실습실 (courseware/lessons.html) - Lazy loaded -->
-      <iframe id="iframe-courseware" data-src="courseware/lessons.html" class="tab-iframe w-full h-full border-0 absolute inset-0 bg-slate-950 hidden"></iframe>
+      <!-- Tab 4: 공정 맵 (process.html) -->
+      <iframe id="iframe-process" src="process.html" class="tab-iframe w-full h-full border-0 absolute inset-0 bg-white hidden"></iframe>
 
-      <!-- Tab 5: 공정 맵 (process.html) - Lazy loaded -->
-      <iframe id="iframe-process" data-src="process.html" class="tab-iframe w-full h-full border-0 absolute inset-0 bg-slate-950 hidden"></iframe>
-
-      <!-- Tab 6: 12문항 정밀 진단 (diagnostic.html) - Lazy loaded -->
-      <iframe id="iframe-diagnostic" data-src="diagnostic.html" class="tab-iframe w-full h-full border-0 absolute inset-0 bg-slate-950 hidden"></iframe>
+      <!-- Tab 5: 12문항 정밀 진단 (diagnostic.html) -->
+      <iframe id="iframe-diagnostic" src="diagnostic.html" class="tab-iframe w-full h-full border-0 absolute inset-0 bg-space-950 hidden"></iframe>
 
     </div>
 
-    <!-- Floating Zen Mode Exit Button (visible only in Zen Mode) -->
+    <!-- Floating Zen Mode Exit Button -->
     <button id="zenExitBtn" onclick="toggleZenMode()" class="hidden fixed top-3 right-3 z-50 bg-slate-900/90 hover:bg-slate-800 text-white text-xs px-3 py-1.5 rounded-full border border-slate-700 backdrop-blur shadow-xl flex items-center gap-1.5 transition-all">
       <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
       <span>상단바 복원 (ESC / F)</span>
     </button>
   </main>
 
-
-
   <!-- Keyboard Shortcuts & Guide Modal -->
   <div id="helpModal" class="hidden fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
     <div class="bg-space-900 border border-space-700 rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
       <div class="flex items-center justify-between pb-4 border-b border-space-800">
-        <h3 class="font-bold text-base text-white flex items-center gap-2">
-          <span>⌨️</span> 송도 AI 아카데미 플랫폼 단축키
-        </h3>
+        <h3 class="font-bold text-sm text-white">플랫폼 단축키 안내</h3>
         <button onclick="toggleHelpModal()" class="text-slate-400 hover:text-white text-lg">&times;</button>
       </div>
 
-      <div class="mt-4 space-y-3 text-sm">
+      <div class="mt-4 space-y-3 text-xs">
         <div class="flex items-center justify-between py-1.5 border-b border-space-800/60">
           <span class="text-slate-300">화면 탭 즉시 전환</span>
           <div class="flex gap-1">
-            <kbd class="px-2 py-0.5 rounded bg-space-950 border border-space-700 text-xs font-mono text-sky-400">1</kbd>
-            <kbd class="px-2 py-0.5 rounded bg-space-950 border border-space-700 text-xs font-mono text-sky-400">2</kbd>
-            <kbd class="px-2 py-0.5 rounded bg-space-950 border border-space-700 text-xs font-mono text-sky-400">3</kbd>
-            <kbd class="px-2 py-0.5 rounded bg-space-950 border border-space-700 text-xs font-mono text-sky-400">4</kbd>
-            <kbd class="px-2 py-0.5 rounded bg-space-950 border border-space-700 text-xs font-mono text-sky-400">5</kbd>
+            <kbd class="px-2 py-0.5 rounded bg-space-950 border border-space-700 font-mono text-emerald-400">1</kbd>
+            <kbd class="px-2 py-0.5 rounded bg-space-950 border border-space-700 font-mono text-emerald-400">2</kbd>
+            <kbd class="px-2 py-0.5 rounded bg-space-950 border border-space-700 font-mono text-emerald-400">3</kbd>
+            <kbd class="px-2 py-0.5 rounded bg-space-950 border border-space-700 font-mono text-emerald-400">4</kbd>
+            <kbd class="px-2 py-0.5 rounded bg-space-950 border border-space-700 font-mono text-emerald-400">5</kbd>
           </div>
         </div>
 
         <div class="flex items-center justify-between py-1.5 border-b border-space-800/60">
-          <span class="text-slate-300">전체 화면 / 몰입 모드 토글</span>
-          <kbd class="px-2 py-0.5 rounded bg-space-950 border border-space-700 text-xs font-mono text-sky-400">F</kbd>
+          <span class="text-slate-300">전체 화면 토글</span>
+          <kbd class="px-2 py-0.5 rounded bg-space-950 border border-space-700 font-mono text-emerald-400">F</kbd>
         </div>
 
         <div class="flex items-center justify-between py-1.5 border-b border-space-800/60">
           <span class="text-slate-300">현재 화면 독립 새 탭으로 열기</span>
-          <kbd class="px-2 py-0.5 rounded bg-space-950 border border-space-700 text-xs font-mono text-sky-400">O</kbd>
-        </div>
-
-        <div class="flex items-center justify-between py-1.5 border-b border-space-800/60">
-          <span class="text-slate-300">디바이스 뷰 전환 (PC ↔ 태블릿 ↔ 모바일)</span>
-          <kbd class="px-2 py-0.5 rounded bg-space-950 border border-space-700 text-xs font-mono text-sky-400">D</kbd>
+          <kbd class="px-2 py-0.5 rounded bg-space-950 border border-space-700 font-mono text-emerald-400">O</kbd>
         </div>
 
         <div class="flex items-center justify-between py-1.5">
-          <span class="text-slate-300">단축키 가이드 열기 / 닫기</span>
-          <kbd class="px-2 py-0.5 rounded bg-space-950 border border-space-700 text-xs font-mono text-sky-400">?</kbd>
+          <span class="text-slate-300">디바이스 뷰 전환</span>
+          <kbd class="px-2 py-0.5 rounded bg-space-950 border border-space-700 font-mono text-emerald-400">D</kbd>
         </div>
       </div>
 
-      <div class="mt-6 pt-4 border-t border-space-800 flex justify-end">
-        <button onclick="toggleHelpModal()" class="px-4 py-2 rounded-lg bg-sky-500 hover:bg-sky-400 text-space-950 font-bold text-xs">
+      <div class="mt-5 pt-3 border-t border-space-800 flex justify-end">
+        <button onclick="toggleHelpModal()" class="px-4 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-space-950 font-bold text-xs">
           확인
         </button>
       </div>
@@ -249,14 +211,13 @@
   </div>
 
   <script>
-    // Tab Map Configuration
+    // Tab Configuration (5 Canonical Subsystems)
     const TAB_MAP = {
       landing: { id: 'iframe-landing', url: 'landing.html', title: '송도 AI 아카데미 | 수강생 모집' },
-      presentation: { id: 'iframe-presentation', url: 'presentation.html', title: '송도 AI 아카데미 | 공식 발표 덱' },
-      studio: { id: 'iframe-studio', url: 'creator.html', title: '송도 AI 아카데미 | 커리큘럼 스튜디오' },
-      courseware: { id: 'iframe-courseware', url: 'courseware/lessons.html', title: '송도 AI 아카데미 | 27분 실전 온라인 강의실' },
-      process: { id: 'iframe-process', url: 'process.html', title: '송도 AI 아카데미 | 공정 맵' },
-      diagnostic: { id: 'iframe-diagnostic', url: 'diagnostic.html', title: '송도 AI 아카데미 | AI 레벨 측정기' }
+      presentation: { id: 'iframe-presentation', url: 'presentation.html', title: '송도 AI 아카데미 | 발표 슬라이드' },
+      courseware: { id: 'iframe-courseware', url: 'courseware/lessons.html', title: '송도 AI 아카데미 | 27분 실전 강의실' },
+      process: { id: 'iframe-process', url: 'process.html', title: '송도 AI 아카데미 | 공정 로드맵' },
+      diagnostic: { id: 'iframe-diagnostic', url: 'diagnostic.html', title: '송도 AI 아카데미 | 12문항 AI 진단' }
     };
 
     let currentTab = 'landing';
@@ -268,20 +229,15 @@
       if (!TAB_MAP[tabKey]) return;
       currentTab = tabKey;
 
-      // Update URL Hash without page refresh
       if (window.location.hash !== '#' + tabKey) {
         history.replaceState(null, '', '#' + tabKey);
       }
 
-      // Hide all iframes, show target iframe with LazyFrameAdapter hydration
+      // Show target iframe, hide others
       Object.keys(TAB_MAP).forEach(key => {
         const frame = document.getElementById(TAB_MAP[key].id);
         if (frame) {
           if (key === tabKey) {
-            // LazyFrameAdapter: Hydrate iframe src on first demand
-            if (!frame.getAttribute('src') && frame.getAttribute('data-src')) {
-              frame.setAttribute('src', frame.getAttribute('data-src'));
-            }
             frame.classList.remove('hidden');
           } else {
             frame.classList.add('hidden');
@@ -309,9 +265,8 @@
       const devTablet = document.getElementById('devTablet');
       const devMobile = document.getElementById('devMobile');
 
-      // Reset active styles
       [devPc, devTablet, devMobile].forEach(el => {
-        el.className = "dev-btn px-2 py-1 rounded text-slate-400 hover:text-white transition-all";
+        el.className = "dev-btn px-2.5 py-1 rounded text-slate-400 hover:text-white transition-all";
       });
 
       if (mode === 'desktop') {
@@ -319,121 +274,75 @@
         container.style.maxWidth = '100%';
         container.style.height = '100%';
         container.classList.remove('device-shadow', 'my-4', 'rounded-2xl', 'overflow-hidden');
-        devPc.className = "dev-btn px-2 py-1 rounded text-sky-400 bg-space-800 font-semibold transition-all";
+        devPc.className = "dev-btn px-2.5 py-1 rounded text-emerald-400 bg-space-800 font-semibold transition-all";
       } else if (mode === 'tablet') {
         container.style.width = '768px';
         container.style.maxWidth = '90vw';
         container.style.height = 'calc(100% - 32px)';
         container.classList.add('device-shadow', 'my-4', 'rounded-2xl', 'overflow-hidden');
-        devTablet.className = "dev-btn px-2 py-1 rounded text-sky-400 bg-space-800 font-semibold transition-all";
+        devTablet.className = "dev-btn px-2.5 py-1 rounded text-emerald-400 bg-space-800 font-semibold transition-all";
       } else if (mode === 'mobile') {
         container.style.width = '390px';
         container.style.maxWidth = '90vw';
         container.style.height = 'calc(100% - 32px)';
         container.classList.add('device-shadow', 'my-4', 'rounded-2xl', 'overflow-hidden');
-        devMobile.className = "dev-btn px-2 py-1 rounded text-sky-400 bg-space-800 font-semibold transition-all";
+        devMobile.className = "dev-btn px-2.5 py-1 rounded text-emerald-400 bg-space-800 font-semibold transition-all";
       }
     }
 
-    // Toggle Director Edit Mode
-    function toggleDirectorEditMode() {
-      if (currentTab === 'presentation') {
-        const presFrame = document.getElementById('iframe-presentation');
-        if (presFrame && presFrame.contentWindow) {
-          presFrame.contentWindow.postMessage({ type: 'TOGGLE_EDIT_MODE' }, '*');
-        }
-      } else if (currentTab === 'landing') {
-        const landFrame = document.getElementById('iframe-landing');
-        if (landFrame && landFrame.contentWindow) {
-          landFrame.contentWindow.postMessage({ type: 'TOGGLE_EDIT_MODE' }, '*');
-        }
-      } else if (currentTab === 'studio') {
-        const studioFrame = document.getElementById('iframe-studio');
-        if (studioFrame && studioFrame.contentWindow) {
-          studioFrame.contentWindow.postMessage({ type: 'FOCUS_EDITOR' }, '*');
-        }
-      } else {
-        const activeFrame = document.getElementById(TAB_MAP[currentTab].id);
-        if (activeFrame && activeFrame.contentWindow) {
-          activeFrame.contentWindow.postMessage({ type: 'TOGGLE_EDIT_MODE' }, '*');
-        }
-      }
-    }
-
-    // Toggle Zen Mode (Immersive Fullscreen)
+    // Toggle Zen Mode
     function toggleZenMode() {
       isZenMode = !isZenMode;
       const header = document.getElementById('appHeader');
-      const zenBtn = document.getElementById('zenExitBtn');
+      const exitBtn = document.getElementById('zenExitBtn');
 
       if (isZenMode) {
-        header.classList.add('-translate-y-full', 'hidden');
-        zenBtn.classList.remove('hidden');
-        if (currentDevice !== 'desktop') setDeviceMode('desktop');
+        header.classList.add('-translate-y-full');
+        exitBtn.classList.remove('hidden');
       } else {
-        header.classList.remove('-translate-y-full', 'hidden');
-        zenBtn.classList.add('hidden');
+        header.classList.remove('-translate-y-full');
+        exitBtn.classList.add('hidden');
       }
     }
 
-    // Open Active Tab in Standalone New Window
-    function openStandalone() {
-      const activeObj = TAB_MAP[currentTab];
-      if (activeObj) {
-        window.open(activeObj.url, '_blank');
-      }
-    }
-
-    // Toggle Help Modal
     function toggleHelpModal() {
       const modal = document.getElementById('helpModal');
       modal.classList.toggle('hidden');
     }
 
+    function openStandalone() {
+      if (TAB_MAP[currentTab]) {
+        window.open(TAB_MAP[currentTab].url, '_blank');
+      }
+    }
+
     // Keyboard Shortcuts Listener
     window.addEventListener('keydown', (e) => {
-      // Don't trigger if user is focused inside an input in an active iframe (though iframe events won't bubble up directly)
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
 
       if (e.key === '1') switchTab('landing');
       else if (e.key === '2') switchTab('presentation');
-      else if (e.key === '3') switchTab('studio');
-      else if (e.key === '4') switchTab('courseware');
-      else if (e.key === '5') switchTab('process');
-      else if (e.key === '6') switchTab('diagnostic');
-      else if (e.key === 'e' || e.key === 'E') toggleDirectorEditMode();
+      else if (e.key === '3') switchTab('courseware');
+      else if (e.key === '4') switchTab('process');
+      else if (e.key === '5') switchTab('diagnostic');
       else if (e.key === 'f' || e.key === 'F') toggleZenMode();
+      else if (e.key === 'Escape' && isZenMode) toggleZenMode();
       else if (e.key === 'o' || e.key === 'O') openStandalone();
       else if (e.key === 'd' || e.key === 'D') {
-        const modes = ['desktop', 'tablet', 'mobile'];
-        const nextIdx = (modes.indexOf(currentDevice) + 1) % modes.length;
-        setDeviceMode(modes[nextIdx]);
-      } else if (e.key === '?' || (e.key === '/' && e.shiftKey)) {
-        toggleHelpModal();
-      } else if (e.key === 'Escape') {
-        if (isZenMode) toggleZenMode();
-        const modal = document.getElementById('helpModal');
-        if (!modal.classList.contains('hidden')) modal.classList.add('hidden');
+        if (currentDevice === 'desktop') setDeviceMode('tablet');
+        else if (currentDevice === 'tablet') setDeviceMode('mobile');
+        else setDeviceMode('desktop');
       }
+      else if (e.key === '?') toggleHelpModal();
     });
 
-    // Listen for child iframe messages (e.g. from internal buttons)
-    window.addEventListener('message', (e) => {
-      if (e.data && e.data.type === 'SWITCH_TAB' && TAB_MAP[e.data.tab]) {
-        switchTab(e.data.tab);
-      }
-    });
-
-    // Hash-based Initial Route
+    // Hash-based Tab Routing on initial load
     window.addEventListener('DOMContentLoaded', () => {
       const hash = window.location.hash.replace('#', '');
       if (hash && TAB_MAP[hash]) {
         switchTab(hash);
-      } else {
-        switchTab('landing');
       }
     });
   </script>
-
 </body>
 </html>

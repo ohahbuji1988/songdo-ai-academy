@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>송도 AI 아카데미 온라인 클래스 발표 덱 (12살도 이해하는 실전 AI) — ohahbuji</title>
+  <title>송도 AI 아카데미 공식 발표 슬라이드 | Light Mode</title>
   
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -11,14 +11,13 @@
       theme: {
         extend: {
           colors: {
-            miriGreen: '#00c471',
-            miriGreenDark: '#00b064',
-            brand: '#0f766e',
-            brandDark: '#115e59',
-            brandLight: '#f0fdfa',
-            ink: '#0f172a',
-            inkBody: '#334155',
-            inkMuted: '#64748b'
+            brand: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857'
+            }
           }
         }
       }
@@ -31,14 +30,13 @@
     * {
       box-sizing: border-box;
       word-break: keep-all;
-      overflow-wrap: break-word;
       -webkit-font-smoothing: antialiased;
-      font-family: 'Wanted Sans Variable', 'Wanted Sans', sans-serif;
+      font-family: 'Wanted Sans Variable', 'Wanted Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     }
     body {
-      background-color: #0b0f19;
-      color: #f1f5f9;
-      font-size: 16px;
+      background-color: #f8fafc;
+      color: #0f172a;
+      font-size: 15px;
       line-height: 1.6;
       letter-spacing: -0.015em;
     }
@@ -47,833 +45,610 @@
     }
     .slide {
       display: none;
-      min-height: 100vh;
-      width: 100vw;
-      animation: fadeIn 220ms cubic-bezier(0.16, 1, 0.3, 1);
+      min-height: calc(100vh - 120px);
+      width: 100%;
+      animation: slideIn 220ms cubic-bezier(0.16, 1, 0.3, 1);
     }
     .slide.active {
       display: flex;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.99); }
-      to { opacity: 1; transform: scale(1); }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-
-    /* In-Place Slide Editor Styles */
-    .editable-slide-element:hover {
-      outline: 2px dashed #00c471 !important;
-      cursor: text !important;
-      background-color: rgba(0, 196, 113, 0.08) !important;
-      border-radius: 4px;
+    .slide-canvas {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.03);
     }
-    .editable-slide-element:focus {
-      outline: 2px solid #00c471 !important;
-      background-color: rgba(0, 196, 113, 0.15) !important;
-      border-radius: 4px;
+    .card-light {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      transition: all 0.2s ease;
     }
-
-    /* Print Layout for Exporting to PDF */
+    .card-light:hover {
+      background: #ffffff;
+      border-color: #cbd5e1;
+      box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.05);
+    }
     @media print {
       body { background: white !important; color: black !important; }
-      #deck-controls, #presenter-notes-box, #deck-footer, #edit-banner, #edit-toast { display: none !important; }
+      #deck-controls, #deck-footer, #presenter-notes-box { display: none !important; }
       .slide {
         display: flex !important;
         page-break-after: always;
-        height: 100vh !important;
+        min-height: 100vh !important;
         width: 100vw !important;
         padding: 40px !important;
-        background: white !important;
-        color: #0f172a !important;
       }
-      .text-white { color: #0f172a !important; }
-      .text-slate-300, .text-slate-400 { color: #475569 !important; }
-      .bg-slate-900, .bg-slate-950, .bg-black { background-color: #f8fafc !important; border: 1px solid #cbd5e1 !important; color: #0f172a !important; }
     }
   </style>
 </head>
-<body class="selection:bg-miriGreen selection:text-white h-screen w-screen overflow-hidden flex flex-col justify-between">
+<body class="min-h-screen w-screen overflow-hidden flex flex-col justify-between select-none">
 
-  <!-- TOP DECK HUD (Progress & Utilities) -->
-  <header id="deck-controls" class="fixed top-0 left-0 right-0 z-50 h-14 bg-slate-950/80 backdrop-blur border-b border-slate-800/80 px-6 flex items-center justify-between text-xs">
+  <!-- TOP DECK HUD (Clean Light Navigation) -->
+  <header id="deck-controls" class="fixed top-0 left-0 right-0 z-50 h-14 bg-white/90 backdrop-blur-md border-b border-slate-200 px-6 flex items-center justify-between text-xs">
     
-    <!-- Left: Brand -->
+    <!-- Left: Brand & Identity -->
     <div class="flex items-center gap-3">
-      <div class="w-7 h-7 rounded-lg bg-miriGreen flex items-center justify-center text-white font-bold text-sm">
-        S
+      <div class="w-7 h-7 rounded-lg bg-emerald-600 flex items-center justify-center text-white font-bold text-xs shadow-sm">
+        AI
       </div>
       <div class="flex items-center gap-2">
-        <span class="font-bold text-white tracking-tight">송도 AI 아카데미</span>
-        <span class="font-signature text-2xl sm:text-3xl text-emerald-400 font-bold select-none ml-2 tracking-wide leading-none">ohahbuji</span>
-        <span class="text-slate-400 hidden sm:inline">· 100% 온라인 클래스</span>
+        <span class="font-bold text-slate-900 tracking-tight text-sm">송도 AI 아카데미</span>
+        <span class="text-slate-300">|</span>
+        <span class="text-slate-500 font-medium">공식 발표 덱 (Light)</span>
+        <span class="font-signature text-2xl text-emerald-600 font-bold ml-1.5 leading-none">ohahbuji</span>
       </div>
     </div>
 
-    <!-- Center: Slide Number & Quick Progress Bar -->
-    <div class="flex items-center gap-3">
-      <span id="slide-indicator" class="font-mono font-bold text-emerald-400 text-xs">
-        01 / 14
-      </span>
-      <div class="w-32 sm:w-48 h-1.5 bg-slate-800 rounded-full overflow-hidden">
-        <div id="slide-progress-bar" class="h-full bg-miriGreen transition-all duration-300" style="width: 7%;"></div>
-      </div>
-    </div>
-
-    <!-- Right: Presentation Controls -->
+    <!-- Center: Slide Progress Pill -->
     <div class="flex items-center gap-2">
-      <!-- Edit Mode Toggle -->
-      <button id="btn-toggle-edit" onclick="toggleEditMode()" title="슬라이드 직접 편집 모드 (단축키 E)" class="px-3 py-1.5 rounded-lg bg-emerald-950 hover:bg-emerald-900 text-emerald-300 text-xs border border-emerald-700/80 flex items-center gap-1.5 transition-all cursor-pointer font-bold">
-        <span>✏️</span> <span id="edit-mode-label">편집 모드 (E)</span>
+      <button onclick="prevSlide()" class="p-1.5 rounded-lg border border-slate-200 hover:bg-slate-100 text-slate-700 transition-all active:scale-95" title="이전 (←)">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
       </button>
 
-      <!-- Save Slides Button -->
-      <button id="btn-save-slides" onclick="saveSlidesToServer()" style="display: none;" title="수정한 슬라이드 영구 저장 (단축키 Ctrl+S)" class="px-3 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer animate-pulse shadow-md">
-        <span>💾</span> <span>저장하기 (Ctrl+S)</span>
-      </button>
+      <div class="px-3 py-1 rounded-full bg-slate-100 border border-slate-200 font-mono text-xs font-semibold text-slate-800 flex items-center gap-1.5">
+        <span id="current-slide-num" class="text-emerald-700 font-bold">01</span>
+        <span class="text-slate-400">/</span>
+        <span id="total-slides-num" class="text-slate-500">14</span>
+      </div>
 
-      <button onclick="toggleNotes()" title="발표자 대본 보기 (단축키 N)" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs border border-slate-700 flex items-center gap-1.5 transition-all cursor-pointer">
-        <span>🎤</span> <span class="hidden md:inline">대본 (N)</span>
+      <button onclick="nextSlide()" class="p-1.5 rounded-lg border border-slate-200 hover:bg-slate-100 text-slate-700 transition-all active:scale-95" title="다음 (→)">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
       </button>
+    </div>
 
-      <button onclick="toggleFullscreen()" title="전체화면 모드 (단축키 F)" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs border border-slate-700 flex items-center gap-1.5 transition-all cursor-pointer">
-        <span>⛶</span> <span class="hidden md:inline">전체화면 (F)</span>
+    <!-- Right: Utility Buttons -->
+    <div class="flex items-center gap-2">
+      <button onclick="toggleNotes()" title="발표 대본 토글 (N)" class="px-2.5 py-1.5 rounded-lg border border-slate-200 hover:bg-slate-100 text-slate-700 font-medium text-xs transition-all">
+        대본 (N)
       </button>
-
-      <button onclick="window.print()" title="PDF로 인쇄/내보내기" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs border border-slate-700 flex items-center gap-1.5 transition-all cursor-pointer">
-        <span>🖨️</span> <span>PDF 인쇄</span>
+      <button onclick="toggleFullscreen()" title="전체화면 (F)" class="px-2.5 py-1.5 rounded-lg border border-slate-200 hover:bg-slate-100 text-slate-700 font-medium text-xs transition-all">
+        전체화면 (F)
+      </button>
+      <button onclick="window.print()" title="PDF 인쇄" class="px-2.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition-all shadow-sm">
+        PDF 인쇄
       </button>
     </div>
   </header>
 
-  <!-- FLOATING EDIT BANNER -->
-  <div id="edit-banner" class="hidden fixed top-14 left-0 right-0 z-40 bg-emerald-950/95 border-b border-emerald-700/80 px-6 py-2 flex items-center justify-between text-xs text-emerald-200 backdrop-blur shadow-lg">
-    <div class="flex items-center gap-2">
-      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-      <span class="font-bold">✏️ 슬라이드 직접 편집 켜짐:</span>
-      <span>수정하고 싶은 글자를 마우스로 클릭하고 바로 입력하세요. 오와열과 [Enter] 줄바꿈도 자유롭게 수정됩니다!</span>
-    </div>
-    <div class="flex items-center gap-2">
-      <button onclick="saveSlidesToServer()" class="px-3 py-1 rounded bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center gap-1 shadow cursor-pointer">
-        <span>💾</span> <span>지금 저장하기 (Ctrl+S)</span>
-      </button>
-      <button onclick="toggleEditMode()" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs cursor-pointer">
-        편집 종료 (E)
-      </button>
-    </div>
-  </div>
-
-  <!-- FLOATING TOAST -->
-  <div id="edit-toast" class="hidden fixed bottom-18 left-1/2 -translate-x-1/2 z-50 bg-slate-900 border border-emerald-500 text-white text-xs px-4 py-2 rounded-xl shadow-2xl transition-all">
-    알림 내용
-  </div>
-
   <!-- ========================================================
-       SLIDES CONTAINER (14 Slides: 100% Online & 12yo Friendly)
+       SLIDES CONTAINER (14 Clean Slides, Emojiless, Light Theme)
        ======================================================== -->
-  <div id="slides-wrapper" class="flex-1 flex items-center justify-center pt-14 pb-16 overflow-y-auto">
+  <main id="slides-wrapper" class="flex-1 flex items-center justify-center pt-16 pb-14 px-4 sm:px-8 overflow-y-auto">
 
-    <!-- SLIDE 1: Title & Hero Cover -->
-    <div class="slide active flex-col items-center justify-center p-8 sm:p-16 text-center max-w-5xl mx-auto gap-6" data-title="오리엔테이션 표지" data-note="안녕하세요! 송도 AI 아카데미 원장 ohahbuji입니다. 오늘 설명회는 학원 6개월 다녀도 장난감만 만지다 끝나는 주입식 코딩 대신, 12살 아이가 아빠 가게 실전 주문 계산기를 직접 만들어 가족 단톡방에 링크로 자랑하는 진짜 실전 AI 이야기를 들려드리겠습니다.">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-wider">
-        송도 학부모 & 자녀를 위한 차세대 실전 AI 자립 프로젝트
+    <!-- SLIDE 1: Title -->
+    <div class="slide active flex-col items-center justify-center p-8 sm:p-14 text-center max-w-4xl w-full mx-auto gap-6 slide-canvas rounded-3xl" data-title="오리엔테이션 표지" data-note="송도 학부모와 직장인을 위한 실전자립 교육 과정입니다. 코딩 문법 암기 없이, 30분 만에 웹을 배포하고 에러를 스스로 복구하는 6주 실전 여정을 안내합니다.">
+      <div class="inline-flex items-center px-3.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold tracking-wide">
+        송도 학부모 & 직장인을 위한 실전 AI 자립 과정
       </div>
-      <h1 class="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-tight">
-        학원 6개월 다녀도 장난감만 만지는 코딩 대신,<br>
-        <span class="text-miriGreen">12살 아이가 아빠 가게 계산기를 만드는 '진짜 실전 AI'</span>
+      <h1 class="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight">
+        문법 암기 0분,<br>
+        <span class="text-emerald-700">12살 아이도 직접 만드는 '실전 AI 프로덕트'</span>
       </h1>
-      <p class="text-slate-300 text-base sm:text-xl max-w-2xl leading-relaxed">
-        외우는 코딩 공부는 0분! AI를 똑똑한 천재 인턴으로 부려 주말 30분 만에 웹을 띄웁니다.<br>
-        망가져도 3초 만에 타임머신으로 되살리는 우리 가족만의 6주 실전 여정.
+      <p class="text-slate-600 text-base sm:text-lg max-w-xl leading-relaxed">
+        장난감 블록 코딩 대신, AI를 직속 인턴으로 지휘하여 첫날 30분 만에 라이브 웹 링크를 배포합니다.<br>
+        화면이 멈춰도 3초 만에 복구하는 평생 자립 역량을 완성합니다.
       </p>
-      <div class="flex items-center gap-6 pt-6 text-xs text-slate-400 border-t border-slate-800/80">
-        <span>🌐 100% 온라인 자습 & 인터랙티브 클래스</span>
-        <span>⏱️ 6주 완성 (주 1회 내 페이스대로)</span>
-        <span class="flex items-center gap-2 text-sm text-slate-300">Authored by <span class="font-signature text-3xl sm:text-4xl text-emerald-400 font-bold">ohahbuji</span></span>
+      <div class="flex flex-wrap items-center justify-center gap-6 pt-4 text-xs text-slate-500 border-t border-slate-100 w-full">
+        <span>100% 온라인 자습 & 인터랙티브 클래스</span>
+        <span>•</span>
+        <span>6주 완성 (주 1회 자율 진도)</span>
+        <span>•</span>
+        <span class="flex items-center gap-1.5 text-slate-700">
+          <span>디렉터</span>
+          <span class="font-signature text-2xl text-emerald-700 font-bold">ohahbuji</span>
+        </span>
       </div>
     </div>
 
-    <!-- SLIDE 2: Step-Up Vision (A Natural Bridge from Chat to My Own Tool) -->
-    <div class="slide flex-col justify-center p-8 sm:p-16 max-w-5xl mx-auto gap-8" data-title="AI를 더 재미있게 쓰는 법" data-note="지금 ChatGPT나 클로드로 글을 쓰고 과제 초안을 잡는 것만으로도 이미 너무 잘하고 계신 겁니다! 복사해서 메일에 쓰는 것도 훌륭해요. 다만 매번 똑같은 질문을 대화창에 치지 않아도, 스마트폰 홈 화면에서 링크 하나만 누르면 바로 열리는 '나만의 비밀 계산기나 안내 페이지'가 있으면 얼마나 신날까요? 오늘은 코딩을 전혀 몰라도 그 다음 단계로 훌쩍 건너가는 법을 편안하게 이야기해 드리겠습니다.">
-      <div class="flex flex-col gap-2">
-        <span class="text-xs font-bold text-sky-400 uppercase tracking-wider">AI 한 걸음 더 나아가기 · 기분 좋은 발견</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
-          AI와 대화하기, 이미 잘하고 계십니다!<br>
-          <span class="text-miriGreen">여기에 '나만의 작품' 하나가 더 생기면 어떨까요?</span>
+    <!-- SLIDE 2: Step-Up Vision -->
+    <div class="slide flex-col justify-center p-8 sm:p-14 max-w-4xl w-full mx-auto gap-6 slide-canvas rounded-3xl" data-title="AI 활용의 다음 단계" data-note="단순 챗봇 질의응답을 넘어, 스마트폰에서 링크 하나로 즉시 열리는 나만의 웹 도구를 갖는 것이 진짜 자립입니다.">
+      <div class="flex flex-col gap-1.5">
+        <span class="text-xs font-bold text-emerald-700 uppercase tracking-wider">AI 활용의 다음 단계</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-snug">
+          대화창 속 텍스트를 넘어,<br>
+          스마트폰에서 열리는 '나만의 실전 웹 도구'로
         </h2>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-sm">
-        <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col gap-3">
-          <span class="text-3xl">📝</span>
-          <strong class="text-slate-100 font-bold text-base">복붙도 OK! 내 작품도 OK!</strong>
-          <p class="text-slate-400 text-xs leading-relaxed">
-            AI가 써준 글을 복사해서 메일이나 과제에 쓰는 것도 똑똑한 활용입니다. 여기에 더해, 언제든 스마트폰에서 1초 만에 열리는 <strong>'나만의 웹 작품'</strong>까지 생기면 훨씬 편리하고 멋져집니다!
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm pt-2">
+        <div class="p-5 rounded-2xl card-light flex flex-col gap-2">
+          <span class="text-xs font-mono font-bold text-emerald-700">01. 소장용 웹 링크</span>
+          <strong class="text-slate-900 text-sm">복붙 대신 URL 생성</strong>
+          <p class="text-slate-600 text-xs leading-relaxed">
+            매번 챗봇에 같은 질문을 치지 않아도, 링크 하나로 온 가족이 바로 쓰는 계산기와 안내 페이지를 배포합니다.
           </p>
         </div>
-        <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col gap-3">
-          <span class="text-3xl">🛡️</span>
-          <strong class="text-slate-100 font-bold text-base">뜻대로 안 되거나 멈춰도 걱정 제로!</strong>
-          <p class="text-slate-400 text-xs leading-relaxed">
-            내가 생각한 모습과 다르게 나오거나 화면이 멈춰도 전혀 당황할 필요 없습니다. 마우스 클릭 한 번으로 이전 상태로 짠! 되돌리는 <strong>'3초 타임머신 비법'</strong>을 배우면 누구나 안심하고 만듭니다.
+        <div class="p-5 rounded-2xl card-light flex flex-col gap-2">
+          <span class="text-xs font-mono font-bold text-emerald-700">02. 3초 롤백 복구</span>
+          <strong class="text-slate-900 text-sm">에러 공포의 원천 소멸</strong>
+          <p class="text-slate-600 text-xs leading-relaxed">
+            화면이 하얗게 멈추거나 코드가 꼬여도 당황하지 않고 3초 만에 직전 상태로 복원하는 타임머신 습관을 배웁니다.
           </p>
         </div>
-        <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col gap-3">
-          <span class="text-3xl">💸</span>
-          <strong class="text-slate-100 font-bold text-base">추가 요금 0원, 안심 시작!</strong>
-          <p class="text-slate-400 text-xs leading-relaxed">
-            어려운 개발자용 프로그램이나 몰래 결제되는 비싼 서버비가 100원도 없습니다. 이미 쓰고 계신 챗봇 1개로 누구나 안전하게 모든 과정을 즐길 수 있습니다.
+        <div class="p-5 rounded-2xl card-light flex flex-col gap-2">
+          <span class="text-xs font-mono font-bold text-emerald-700">03. 고정비 0원 원칙</span>
+          <strong class="text-slate-900 text-sm">투명한 도구 경제성</strong>
+          <p class="text-slate-600 text-xs leading-relaxed">
+            예상치 못한 클라우드 서버 종량제 과금 없이, 이미 보유한 도구와 무료 배포 인프라만으로 완성합니다.
           </p>
         </div>
       </div>
     </div>
 
-    <!-- SLIDE 3: The Vision (Karpathy Hierarchy in 12yo Terms) -->
-    <div class="slide flex-col justify-center p-8 sm:p-16 max-w-5xl mx-auto gap-8" data-title="우리가 되는 사람" data-note="세계 최고의 AI 전문가 안드레이 카파시가 말한 3단계입니다. 어려운 인공지능 수학 공식이나 코딩 언어를 밤새 외울 필요 전혀 없습니다. 우리는 요리사에게 맛있는 음식을 주문하듯, AI를 부려 나만의 멋진 도구를 뚝딱 완성하는 '진짜 빌더'가 되는 것이 목표입니다.">
-      <div class="flex flex-col gap-2">
-        <span class="text-xs font-bold text-miriGreen uppercase tracking-wider">우리의 목표 · 세상이 원하는 사람</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
-          우리의 목표: 레고 블록으로 진짜 성을 짓는 멋진 빌더!
+    <!-- SLIDE 3: The Hierarchy -->
+    <div class="slide flex-col justify-center p-8 sm:p-14 max-w-4xl w-full mx-auto gap-6 slide-canvas rounded-3xl" data-title="자립의 3단계 위계" data-note="기술 문법에 얽매이지 않고 문제를 해결하는 디렉터로 성장하는 것이 핵심입니다.">
+      <div class="flex flex-col gap-1.5">
+        <span class="text-xs font-bold text-emerald-700 uppercase tracking-wider">디지털 자립의 위계</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-snug">
+          단순 조립자를 넘어, 문제를 해결하는 '실전 디렉터'로
         </h2>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-        <div class="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 flex flex-col gap-2 opacity-60">
-          <span class="text-slate-400 font-bold">1단계 · 장난감 블록 코딩</span>
-          <strong class="text-slate-200 text-base font-bold">스크래치/엔트리 고양이 게임</strong>
-          <p class="text-slate-400 leading-relaxed">
-            학원에서 6개월 배워도 학교 밖에서는 쓸모없는 장난감 맞추기. (이제는 졸업해야 할 과거의 방식!)
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs pt-2">
+        <div class="p-5 rounded-2xl card-light flex flex-col gap-2 opacity-60">
+          <span class="text-slate-400 font-mono font-bold">LEVEL 1</span>
+          <strong class="text-slate-700 text-sm">단순 관망자</strong>
+          <p class="text-slate-500 leading-relaxed">
+            AI 챗봇에 몇 문장 던져보고 신기해하지만, 대화창 밖으로 나만의 결과물을 꺼내지 못하는 단계.
           </p>
         </div>
-
-        <div class="p-6 rounded-2xl bg-emerald-950/40 border-2 border-emerald-500 flex flex-col gap-2 shadow-lg">
-          <span class="text-emerald-400 font-bold">2단계 · ⭐️ 이번 과정의 목표!</span>
-          <strong class="text-white text-lg font-extrabold">자립형 실전 바이브 빌더 (Builder)</strong>
-          <p class="text-emerald-200 leading-relaxed text-xs">
-            12살 아이가 아빠 가게 주문 계산기를 만들고, 화면이 멈춰도 3초 만에 살려내는 진짜 디지털 자립가!
+        <div class="p-5 rounded-2xl card-light flex flex-col gap-2 opacity-80">
+          <span class="text-slate-500 font-mono font-bold">LEVEL 2</span>
+          <strong class="text-slate-800 text-sm">블록 조립자</strong>
+          <p class="text-slate-600 leading-relaxed">
+            남들이 만든 코딩 템플릿을 복붙해 보지만, 에러가 나면 원인을 찾지 못해 포기하는 단계.
           </p>
         </div>
-
-        <div class="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 flex flex-col gap-2 opacity-60">
-          <span class="text-slate-400 font-bold">3단계 · 전문 연구원</span>
-          <strong class="text-slate-300 text-base font-bold">슈퍼컴퓨터 과학자</strong>
-          <p class="text-slate-400 leading-relaxed">
-            복잡한 수학 공식으로 AI 뇌 자체를 연구하는 영역. (우리가 굳이 시간 낭비하며 배울 필요 없음!)
+        <div class="p-5 rounded-2xl bg-emerald-50/70 border border-emerald-300 flex flex-col gap-2">
+          <span class="text-emerald-700 font-mono font-bold">LEVEL 3</span>
+          <strong class="text-emerald-900 text-sm">실전 디렉터 (우리의 목표)</strong>
+          <p class="text-emerald-800 leading-relaxed">
+            문법 암기 없이 AI에게 명확한 제약을 지시하고, 당일 배포와 복구를 스스로 완결하는 자립 단계.
           </p>
         </div>
       </div>
     </div>
 
     <!-- SLIDE 4: 3 Honest Promises -->
-    <div class="slide flex-col justify-center p-8 sm:p-16 max-w-5xl mx-auto gap-8" data-title="3가지 정직한 약속" data-note="우리 아카데미가 약속하는 3가지입니다. 첫째, 부모님 몰래 추가 요금 나갈 일 절대 없음. 둘째, 마지막 날까지 지루하게 이론만 듣지 않고 첫날부터 물건을 만듦. 셋째, 눈 아픈 촌스러운 색 다 빼고 아주 세련되게 디자인함.">
-      <div class="flex flex-col gap-2">
-        <span class="text-xs font-bold text-miriGreen uppercase tracking-wider">정직한 원칙 · 송도 아카데미의 3대 약속</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
-          수강생과 학부모님께 드리는 3가지 안심 약속
+    <div class="slide flex-col justify-center p-8 sm:p-14 max-w-4xl w-full mx-auto gap-6 slide-canvas rounded-3xl" data-title="3대 안심 약속" data-note="수강생에게 허황된 마케팅을 하지 않고, 실질적인 결과물과 안전한 환경을 보장합니다.">
+      <div class="flex flex-col gap-1.5">
+        <span class="text-xs font-bold text-emerald-700 uppercase tracking-wider">정직한 원칙</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-snug">
+          수강생과 학부모께 드리는 3대 안심 약속
         </h2>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-sm">
-        <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col gap-3">
-          <span class="text-emerald-400 font-mono font-bold text-lg">01</span>
-          <strong class="text-white font-bold text-base">추가 요금 0원 서약</strong>
-          <p class="text-slate-400 text-xs leading-relaxed">
-            몰래 결제되는 비싼 개발자용 서버비가 100원도 없습니다. 이미 쓰는 유료 챗봇 1개와 100% 무료 호스팅으로 모든 과정을 끝냅니다.
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm pt-2">
+        <div class="p-5 rounded-2xl card-light flex flex-col gap-2">
+          <span class="text-xs font-mono font-bold text-emerald-700">약속 01</span>
+          <strong class="text-slate-900 text-sm">숨은 종량제 0원 원칙</strong>
+          <p class="text-slate-600 text-xs leading-relaxed">
+            강의 결제 후 추가 API 비용이나 서버 유지비가 들지 않는 로컬/무료 호스팅 스택을 전수합니다.
           </p>
         </div>
-
-        <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col gap-3">
-          <span class="text-emerald-400 font-mono font-bold text-lg">02</span>
-          <strong class="text-white font-bold text-base">첫날부터 진짜 물건 배포</strong>
-          <p class="text-slate-400 text-xs leading-relaxed">
-            지루한 문법만 몇 주 동안 외우다 지치지 않습니다. 첫 수업 30분 만에 내 진짜 인터넷 주소를 띄우고 매주 살을 붙여 나갑니다.
+        <div class="p-5 rounded-2xl card-light flex flex-col gap-2">
+          <span class="text-xs font-mono font-bold text-emerald-700">약속 02</span>
+          <strong class="text-slate-900 text-sm">Day-1 첫날 즉시 배포</strong>
+          <p class="text-slate-600 text-xs leading-relaxed">
+            이론만 4주 듣다 지치지 않습니다. 수업 첫날 30분 만에 내 이름이 걸린 실제 웹페이지를 배포합니다.
           </p>
         </div>
-
-        <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col gap-3">
-          <span class="text-emerald-400 font-mono font-bold text-lg">03</span>
-          <strong class="text-white font-bold text-base">전문가처럼 세련된 디자인</strong>
-          <p class="text-slate-400 text-xs leading-relaxed">
-            촌스러운 무지개색은 싹 뺍니다. 눈이 편안한 딱 2가지 세련된 색상과 한글 오와열 맞추기로 누가 봐도 '프로가 만들었네' 감탄하게 만듭니다.
+        <div class="p-5 rounded-2xl card-light flex flex-col gap-2">
+          <span class="text-xs font-mono font-bold text-emerald-700">약속 03</span>
+          <strong class="text-slate-900 text-sm">안티슬롭 정제된 디자인</strong>
+          <p class="text-slate-600 text-xs leading-relaxed">
+            어색한 번역투 문구와 촌스러운 보라색 AI 템플릿을 배제하고, 애플 감성의 미니멀 UI를 체화합니다.
           </p>
         </div>
       </div>
     </div>
 
-    <!-- SLIDE 5: Day-1 Win (The First 30-Minute Breakthrough) -->
-    <div class="slide flex-col justify-center p-8 sm:p-16 max-w-5xl mx-auto gap-8" data-title="첫날 30분의 마법" data-note="수강생들의 코딩 두려움을 첫날 30분 만에 완전히 날려버립니다. 집에서 마우스 몇 번 딸깍하면, 30분 뒤에 전 세계 인터넷에 내 이름이 걸린 진짜 사이트가 뜹니다. 스마트폰으로 열어보고 가족 단톡방에 자랑하는 순간 끝입니다.">
-      <div class="flex flex-col gap-2">
-        <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">첫날의 기적 · 30분 만의 성공 경험</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
-          첫날 30분 만에, 내 이름이 적힌 인터넷 사이트가 열립니다!
+    <!-- SLIDE 5: Day-1 Win -->
+    <div class="slide flex-col justify-center p-8 sm:p-14 max-w-4xl w-full mx-auto gap-6 slide-canvas rounded-3xl" data-title="첫날 30분 성공 경험" data-note="첫날의 빠른 성공 경험이 6주 완주의 가장 강력한 동력이 됩니다.">
+      <div class="flex flex-col gap-1.5">
+        <span class="text-xs font-bold text-emerald-700 uppercase tracking-wider">조기 성공 경험</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-snug">
+          첫날 30분 만에, 전 세계 인터넷에 내 사이트가 열립니다
         </h2>
       </div>
 
-      <div class="p-8 rounded-3xl bg-slate-900 border border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6">
-        <div class="flex flex-col gap-3 max-w-lg">
-          <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-bold w-fit">
-            ⏱️ 단 30분 만의 마법
-          </span>
-          <h3 class="text-xl font-bold text-white">"이론만 듣다 하품 나오는 강의는 이제 그만!"</h3>
-          <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
-            원장님이 미리 준비해 둔 레고 조각(스타터 킷)에 내 이름과 소개를 쏙 넣으면 끝! 무료 인터넷 서버에 올려 내 스마트폰으로 접속하는 순간, '나도 진짜 컴퓨터 프로그래머가 될 수 있구나!' 가슴이 쿵쾅거립니다.
+      <div class="p-6 rounded-2xl card-light flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div class="flex flex-col gap-2 max-w-md">
+          <span class="px-2.5 py-0.5 rounded bg-emerald-100 text-emerald-800 text-xs font-bold w-fit">Day-1 실시간 검증</span>
+          <strong class="text-base font-bold text-slate-900">클라우드 서버 가입 없는 1분 배포</strong>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            복잡한 터미널 명령어 없이, 마우스 드래그 한 번으로 스마트폰과 PC 어디서나 열리는 진짜 URL 링크를 발급받습니다.
           </p>
         </div>
-        <div class="w-full md:w-72 p-5 bg-slate-950 border border-slate-800 rounded-2xl flex flex-col gap-2 font-mono text-xs shadow-inner">
-          <span class="text-slate-500">// 1일차 30분 배포 결과물 주소</span>
-          <span class="text-emerald-400 font-bold">https://내이름.netlify.app</span>
-          <div class="h-20 bg-slate-900 rounded-lg border border-slate-800 flex items-center justify-center text-emerald-400 text-[11px] font-sans font-semibold">
-            ✨ 전 세계 스마트폰에서 접속 성공!
-          </div>
+        <div class="flex flex-col items-center justify-center p-5 bg-white border border-slate-200 rounded-xl shadow-sm w-full sm:w-48 text-center shrink-0">
+          <span class="text-3xl font-black text-emerald-700 font-mono">30분</span>
+          <span class="text-[11px] font-semibold text-slate-500 mt-1">소요 시간</span>
         </div>
       </div>
     </div>
 
-    <!-- SLIDE 6: 6-Week Master Roadmap Overview -->
-    <div class="slide flex-col justify-center p-8 sm:p-16 max-w-5xl mx-auto gap-8" data-title="6주 마법 지도" data-note="6주 동안 잡다한 걸 이것저것 건드리지 않습니다. 나만의 비밀 웹 계산기라는 단 하나의 소중한 작품을 6주 동안 매주 벽돌 쌓듯 키워나갑니다.">
-      <div class="flex flex-col gap-2">
-        <span class="text-xs font-bold text-miriGreen uppercase tracking-wider">6주 탐험 지도 · 나만의 보물 만들기</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
-          단 하나의 작품을 완성해 나가는 6주 보물 지도
+    <!-- SLIDE 6: 6-Week Spiral Curriculum -->
+    <div class="slide flex-col justify-center p-8 sm:p-14 max-w-4xl w-full mx-auto gap-6 slide-canvas rounded-3xl" data-title="6주 나선형 로드맵" data-note="매주 잡다한 예제를 건드리지 않고, 단 하나의 실전 프로덕트를 6주 동안 점진적으로 고도화합니다.">
+      <div class="flex flex-col gap-1.5">
+        <span class="text-xs font-bold text-emerald-700 uppercase tracking-wider">커리큘럼 설계</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-snug">
+          단 하나의 프로덕트를 점진적으로 완성하는 6주 로드맵
         </h2>
       </div>
 
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 text-xs">
-        <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 flex flex-col gap-1.5">
-          <span class="font-bold text-emerald-400">1주차</span>
-          <strong class="text-white">첫 탄생</strong>
-          <span class="text-slate-400 text-[11px]">30분 만에 웹 띄우고 스마트폰 확인</span>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2.5 text-xs pt-1">
+        <div class="p-3.5 rounded-xl card-light flex flex-col gap-1">
+          <span class="font-bold text-emerald-700 font-mono">01주</span>
+          <strong class="text-slate-900">조기 배포</strong>
+          <span class="text-[11px] text-slate-500">Day-1 라이브 링크</span>
         </div>
-        <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 flex flex-col gap-1.5">
-          <span class="font-bold text-emerald-400">2주차</span>
-          <strong class="text-white">비밀 노트</strong>
-          <span class="text-slate-400 text-[11px]">내 문서 주고 '여기서만 답해!' 울타리</span>
+        <div class="p-3.5 rounded-xl card-light flex flex-col gap-1">
+          <span class="font-bold text-emerald-700 font-mono">02주</span>
+          <strong class="text-slate-900">맥락 주입</strong>
+          <span class="text-[11px] text-slate-500">컨텍스트 카드</span>
         </div>
-        <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 flex flex-col gap-1.5">
-          <span class="font-bold text-emerald-400">3주차</span>
-          <strong class="text-white">예쁜 옷 입히기</strong>
-          <span class="text-slate-400 text-[11px]">전문가처럼 세련된 2가지 색 디자인</span>
+        <div class="p-3.5 rounded-xl card-light flex flex-col gap-1">
+          <span class="font-bold text-emerald-700 font-mono">03주</span>
+          <strong class="text-slate-900">UI 디자인</strong>
+          <span class="text-[11px] text-slate-500">안티슬롭 원칙</span>
         </div>
-        <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 flex flex-col gap-1.5">
-          <span class="font-bold text-emerald-400">4주차</span>
-          <strong class="text-white">마법 계산기</strong>
-          <span class="text-slate-400 text-[11px]">버튼 딸깍 누르면 숫자가 척척 계산</span>
+        <div class="p-3.5 rounded-xl card-light flex flex-col gap-1">
+          <span class="font-bold text-emerald-700 font-mono">04주</span>
+          <strong class="text-slate-900">인터랙션</strong>
+          <span class="text-[11px] text-slate-500">실시간 계산 로직</span>
         </div>
-        <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 flex flex-col gap-1.5">
-          <span class="font-bold text-rose-400">5주차</span>
-          <strong class="text-white">타임머신 수리</strong>
-          <span class="text-slate-400 text-[11px]">화면이 멈춰도 3초 만에 살려내기</span>
+        <div class="p-3.5 rounded-xl card-light flex flex-col gap-1">
+          <span class="font-bold text-emerald-700 font-mono">05주</span>
+          <strong class="text-slate-900">에러 복구</strong>
+          <span class="text-[11px] text-slate-500">3초 롤백 타임머신</span>
         </div>
-        <div class="p-4 rounded-xl bg-slate-900 border-2 border-emerald-500 flex flex-col gap-1.5">
-          <span class="font-bold text-emerald-400">6주차</span>
-          <strong class="text-white">최종 졸업식</strong>
-          <span class="text-slate-400 text-[11px]">4가지 합격 도장 받고 전 세계 자랑!</span>
+        <div class="p-3.5 rounded-xl bg-emerald-50/80 border border-emerald-300 flex flex-col gap-1">
+          <span class="font-bold text-emerald-800 font-mono">06주</span>
+          <strong class="text-emerald-950">공식 런칭</strong>
+          <span class="text-[11px] text-emerald-700">모바일 설치 & 공유</span>
         </div>
       </div>
     </div>
 
-    <!-- SLIDE 7: Weeks 1-2 Deep Dive -->
-    <div class="slide flex-col justify-center p-8 sm:p-16 max-w-5xl mx-auto gap-8" data-title="1~2주차: AI 길들이기" data-note="1주차에는 AI가 왜 거짓말을 하는지 원리를 배우고 모범 답안을 3개 보여줘서 길들입니다. 2주차에는 학교 교칙이나 회사 사규를 주고 '다른 소리 하지 말고 여기서만 찾아 답해!'라고 안전한 울타리를 칩니다.">
-      <div class="flex flex-col gap-2">
-        <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">1~2주차 탐험 · AI 조수 길들이기</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
-          1~2주차: 거짓말쟁이 AI를 똑똑한 비서로 길들이기
+    <!-- SLIDE 7: Weeks 1-2 -->
+    <div class="slide flex-col justify-center p-8 sm:p-14 max-w-4xl w-full mx-auto gap-6 slide-canvas rounded-3xl" data-title="1~2주차 상세" data-note="AI의 동작 원리를 이해하고 작업 맥락을 문서로 주입하여 할루시네이션을 방어합니다.">
+      <div class="flex flex-col gap-1.5">
+        <span class="text-xs font-bold text-emerald-700 uppercase tracking-wider">1~2주차 상세</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-snug">
+          프롬프트 제어와 업무 맥락 주입
         </h2>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-sm">
-        <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col gap-3">
-          <span class="px-2.5 py-0.5 rounded bg-slate-800 text-emerald-400 text-xs font-bold w-fit">1주차 수업</span>
-          <strong class="text-white text-base">착한 모범 예시 3개 보여주기 (퓨샷 기술)</strong>
-          <p class="text-slate-400 text-xs leading-relaxed">
-            AI는 주사위를 굴리듯 다음 글자를 찍기 때문에 가끔 엉뚱한 뻥을 칩니다. "이렇게 대답해!" 하고 착한 예시 3개를 딱 보여주면 거짓말을 뚝 그칩니다.
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm pt-2">
+        <div class="p-5 rounded-2xl card-light flex flex-col gap-2">
+          <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-xs font-bold w-fit">1주차</span>
+          <strong class="text-slate-900 text-sm">AI 멘탈 모델 & 조기 배포</strong>
+          <p class="text-slate-600 text-xs leading-relaxed">
+            AI의 컨텍스트 윈도우와 토큰 처리 메커니즘을 파악하고, 단 30분 만에 첫 HTML 페이지를 세상에 배포합니다.
           </p>
         </div>
-        <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col gap-3">
-          <span class="px-2.5 py-0.5 rounded bg-slate-800 text-emerald-400 text-xs font-bold w-fit">2주차 수업</span>
-          <strong class="text-white text-base">비밀 노트 건네주고 안전한 울타리 치기</strong>
-          <p class="text-slate-400 text-xs leading-relaxed">
-            내 숙제, 학교 규칙, 회사 안내문을 AI에게 먹여주고 "없는 말 지어내지 말고 모르면 모른다고 해!"라고 울타리를 쳐서 정확한 답변 카드를 만듭니다.
+        <div class="p-5 rounded-2xl card-light flex flex-col gap-2">
+          <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-xs font-bold w-fit">2주차</span>
+          <strong class="text-slate-900 text-sm">컨텍스트 카드 & 할루시네이션 방어</strong>
+          <p class="text-slate-600 text-xs leading-relaxed">
+            매장 규정이나 업무 데이터를 담은 '컨텍스트 카드'를 작성하여, AI가 임의로 거짓말하지 못하도록 제약합니다.
           </p>
         </div>
       </div>
     </div>
 
-    <!-- SLIDE 8: Weeks 3-4 Deep Dive -->
-    <div class="slide flex-col justify-center p-8 sm:p-16 max-w-5xl mx-auto gap-8" data-title="3~4주차: 예쁜 옷 & 계산기" data-note="3주차에는 눈이 편안한 멋진 디자인 규칙을 입혀주고, 4주차에는 버튼을 누르면 실시간으로 숫자가 척척 계산되는 손맛을 넣습니다.">
-      <div class="flex flex-col gap-2">
-        <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">3~4주차 탐험 · 세련된 옷과 마법 계산기</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
-          3~4주차: 전문가처럼 멋진 디자인 & 스스로 일하는 계산기
+    <!-- SLIDE 8: Weeks 3-4 -->
+    <div class="slide flex-col justify-center p-8 sm:p-14 max-w-4xl w-full mx-auto gap-6 slide-canvas rounded-3xl" data-title="3~4주차 상세" data-note="사용자 중심의 깔끔한 디자인 시스템과 실시간 입력 계산 로직을 결합합니다.">
+      <div class="flex flex-col gap-1.5">
+        <span class="text-xs font-bold text-emerald-700 uppercase tracking-wider">3~4주차 상세</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-snug">
+          안티슬롭 디자인과 실시간 인터랙션 구축
         </h2>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-sm">
-        <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col gap-3">
-          <span class="px-2.5 py-0.5 rounded bg-slate-800 text-emerald-400 text-xs font-bold w-fit">3주차 수업</span>
-          <strong class="text-white text-base">어지러운 색 다 빼기 (안티-슬롭 2색 디자인)</strong>
-          <p class="text-slate-400 text-xs leading-relaxed">
-            무지개색이나 촌스러운 네온 보라색을 싹 뺍니다. 눈이 편안한 딱 2가지 세련된 색상과 한글 오와열 맞추기로 감탄 나오는 화면을 완성합니다.
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm pt-2">
+        <div class="p-5 rounded-2xl card-light flex flex-col gap-2">
+          <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-xs font-bold w-fit">3주차</span>
+          <strong class="text-slate-900 text-sm">안티슬롭 반응형 UI 디자인</strong>
+          <p class="text-slate-600 text-xs leading-relaxed">
+            흔한 AI 템플릿의 보라색 그라데이션을 걷어내고, 여백과 타이포그래피 중심의 가독성 높은 모바일 UI를 구현합니다.
           </p>
         </div>
-        <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col gap-3">
-          <span class="px-2.5 py-0.5 rounded bg-slate-800 text-emerald-400 text-xs font-bold w-fit">4주차 수업</span>
-          <strong class="text-white text-base">딸깍 누르면 척척 계산되는 살아있는 웹</strong>
-          <p class="text-slate-400 text-xs leading-relaxed">
-            글자만 적혀 있는 심심한 사이트는 그만! 방문자가 원하는 옵션을 클릭하면 새로고침 없이 1초 만에 최종 금액이나 점수가 계산되는 진짜 기능을 붙입니다.
+        <div class="p-5 rounded-2xl card-light flex flex-col gap-2">
+          <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-xs font-bold w-fit">4주차</span>
+          <strong class="text-slate-900 text-sm">실시간 인터랙티브 계산 엔진</strong>
+          <p class="text-slate-600 text-xs leading-relaxed">
+            단순 정적 화면을 넘어, 사용자가 수량을 누르면 즉시 합계와 할인율이 산출되는 실전 계산 로직을 연결합니다.
           </p>
         </div>
       </div>
     </div>
 
-    <!-- SLIDE 9: Weeks 5-6 Deep Dive -->
-    <div class="slide flex-col justify-center p-8 sm:p-16 max-w-5xl mx-auto gap-8" data-title="5~6주차: 안심 회복 & 자립" data-note="5주차에는 화면이 멈추거나 뜻대로 안 나올 때 당황하지 않고 3초 만에 타임머신으로 되돌리는 마법을 배웁니다. 6주차에는 4가지 합격 도장을 쾅쾅 찍고 전 세계 친구들에게 내 웹사이트를 자랑스럽게 선물합니다.">
-      <div class="flex flex-col gap-2">
-        <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">5~6주차 탐험 · 뜻대로 안 될 때 살려내는 타임머신과 졸업</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
-          5~6주차: 화면이 멈춰도 3초 만에 살려내는 타임머신 마법
+    <!-- SLIDE 9: Weeks 5-6 -->
+    <div class="slide flex-col justify-center p-8 sm:p-14 max-w-4xl w-full mx-auto gap-6 slide-canvas rounded-3xl" data-title="5~6주차 상세" data-note="실전에서 필연적으로 마주치는 오류를 3초 만에 복구하고 공식 런칭합니다.">
+      <div class="flex flex-col gap-1.5">
+        <span class="text-xs font-bold text-emerald-700 uppercase tracking-wider">5~6주차 상세</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-snug">
+          3초 타임머신 롤백과 실전 런칭
         </h2>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-sm">
-        <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col gap-3">
-          <span class="px-2.5 py-0.5 rounded bg-slate-800 text-rose-400 text-xs font-bold w-fit">5주차 수업</span>
-          <strong class="text-white text-base">화면이 멈출 때 스스로 살려내는 안심 실습</strong>
-          <p class="text-slate-400 text-xs leading-relaxed">
-            원장님이 화면을 살짝 멈춰봅니다! 당황하지 않고 클릭 한 번으로 안전하게 3초 전으로 되돌린 뒤, AI에게 "여기를 이렇게 바꿔줘"라고 똑똑하게 말하는 법을 배웁니다.
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm pt-2">
+        <div class="p-5 rounded-2xl card-light flex flex-col gap-2">
+          <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-xs font-bold w-fit">5주차</span>
+          <strong class="text-slate-900 text-sm">3초 타임머신 & 격리 디버깅</strong>
+          <p class="text-slate-600 text-xs leading-relaxed">
+            코드가 꼬였을 때 직전 정상 시점으로 3초 만에 되돌리는 스냅샷 습관과 에러 로그 분리 지시법을 마스터합니다.
           </p>
         </div>
-        <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col gap-3">
-          <span class="px-2.5 py-0.5 rounded bg-slate-800 text-emerald-400 text-xs font-bold w-fit">6주차 수업</span>
-          <strong class="text-white text-base">4가지 합격 도장 쾅! 당당한 자립 졸업식</strong>
-          <p class="text-slate-400 text-xs leading-relaxed">
-            ① 정상 작동 ② 엉뚱한 입력 방어 ③ 딴 데 안 망가짐 ④ 거짓말 없음! 4가지 도장을 스스로 확인하고 전 세계 친구와 고객에게 자랑합니다.
+        <div class="p-5 rounded-2xl card-light flex flex-col gap-2">
+          <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-xs font-bold w-fit">6주차</span>
+          <strong class="text-slate-900 text-sm">모바일 바로가기 설치 & 실전 배포</strong>
+          <p class="text-slate-600 text-xs leading-relaxed">
+            스마트폰 홈 화면에 앱 아이콘처럼 설치되는 PWA 웹 링크를 완성하여, 가족과 고객에게 당당히 전달합니다.
           </p>
         </div>
       </div>
     </div>
 
     <!-- SLIDE 10: Courseware Packages -->
-    <div class="slide flex-col justify-center p-8 sm:p-16 max-w-5xl mx-auto gap-8" data-title="완비된 4가지 선물팩" data-note="몸만 오시면 됩니다! 스타터킷, 프롬프트 핸드북, 수강생 워크북, 온라인 인터랙티브 교구까지 모든 학습 자료가 완벽하게 준비되어 있습니다.">
-      <div class="flex flex-col gap-2">
-        <span class="text-xs font-bold text-miriGreen uppercase tracking-wider">준비 완료 · 클릭 한 번으로 즉시 실습!</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
-          온라인 접속 즉시 쥐어드리는 4가지 마법 선물팩
+    <div class="slide flex-col justify-center p-8 sm:p-14 max-w-4xl w-full mx-auto gap-6 slide-canvas rounded-3xl" data-title="온라인 교구 팩" data-note="수강생이 막힘없이 실습할 수 있도록 4가지 패키지가 완비되어 있습니다.">
+      <div class="flex flex-col gap-1.5">
+        <span class="text-xs font-bold text-emerald-700 uppercase tracking-wider">학습 자원</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-snug">
+          온라인 접속 즉시 제공되는 4대 실습 패키지
         </h2>
       </div>
 
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
-        <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col gap-2">
-          <span class="text-emerald-400 font-bold text-sm">선물 01</span>
-          <strong class="text-white text-sm">첫날 스타터 킷</strong>
-          <p class="text-slate-400 text-[11px] leading-relaxed">30분 만에 웹을 뚝딱 여는 레고 블록 조각들</p>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs pt-2">
+        <div class="p-4 rounded-2xl card-light flex flex-col gap-1.5">
+          <span class="text-emerald-700 font-mono font-bold">팩 01</span>
+          <strong class="text-slate-900 text-xs">Day-1 스타터킷</strong>
+          <p class="text-slate-500 text-[11px] leading-relaxed">클릭 한 번으로 즉시 열리는 1주차 기본 템플릿</p>
         </div>
-        <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col gap-2">
-          <span class="text-emerald-400 font-bold text-sm">선물 02</span>
-          <strong class="text-white text-sm">마법 주문서 책</strong>
-          <p class="text-slate-400 text-[11px] leading-relaxed">AI한테 그대로 말하면 찰떡같이 알아듣는 프롬프트 모음</p>
+        <div class="p-4 rounded-2xl card-light flex flex-col gap-1.5">
+          <span class="text-emerald-700 font-mono font-bold">팩 02</span>
+          <strong class="text-slate-900 text-xs">프롬프트 핸드북</strong>
+          <p class="text-slate-500 text-[11px] leading-relaxed">상황별 검증된 지시문 24선 수록</p>
         </div>
-        <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col gap-2">
-          <span class="text-emerald-400 font-bold text-sm">선물 03</span>
-          <strong class="text-white text-sm">나만의 탐험 일지</strong>
-          <p class="text-slate-400 text-[11px] leading-relaxed">매주 미션 스티커 붙이고 오답을 적는 수강생 워크북</p>
+        <div class="p-4 rounded-2xl card-light flex flex-col gap-1.5">
+          <span class="text-emerald-700 font-mono font-bold">팩 03</span>
+          <strong class="text-slate-900 text-xs">학생 워크북</strong>
+          <p class="text-slate-500 text-[11px] leading-relaxed">매주 실습 과제 체크리스트와 핵심 요약</p>
         </div>
-        <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col gap-2">
-          <span class="text-emerald-400 font-bold text-sm">선물 04</span>
-          <strong class="text-white text-sm">온라인 인터랙티브 교구</strong>
-          <p class="text-slate-400 text-[11px] leading-relaxed">혼자서도 막힘없이 따라 하는 인터랙티브 샌드박스</p>
+        <div class="p-4 rounded-2xl card-light flex flex-col gap-1.5">
+          <span class="text-emerald-700 font-mono font-bold">팩 04</span>
+          <strong class="text-slate-900 text-xs">인터랙티브 강의실</strong>
+          <p class="text-slate-500 text-[11px] leading-relaxed">웹 브라우저 안에서 실시간 작동하는 27분 교구</p>
         </div>
       </div>
     </div>
 
-    <!-- SLIDE 11: Feature Comparison Matrix -->
-    <div class="slide flex-col justify-center p-8 sm:p-16 max-w-5xl mx-auto gap-6" data-title="일반 인강 vs 송도 온라인 코스" data-note="일반 영상 인강과의 결정적 차이입니다. 멍하니 영상만 보다 끝나는 인강과 달리, 우리는 첫날 30분 만에 사이트를 띄우고 영구 소장할 수 있는 진짜 내 물건을 남겨드립니다.">
-      <div class="flex flex-col gap-2">
-        <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">솔직한 비교 · 왜 송도 온라인 클래스인가?</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
-          일반 영상 인강 vs 송도 AI 아카데미 1:1 비교
+    <!-- SLIDE 11: Comparison Matrix -->
+    <div class="slide flex-col justify-center p-8 sm:p-14 max-w-4xl w-full mx-auto gap-6 slide-canvas rounded-3xl" data-title="일반 인강과의 차이" data-note="강의 시청으로 끝나지 않고 실제 작동하는 도구를 남겨드립니다.">
+      <div class="flex flex-col gap-1.5">
+        <span class="text-xs font-bold text-emerald-700 uppercase tracking-wider">비교 분석</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-snug">
+          일반 동영상 인강 vs 송도 AI 아카데미
         </h2>
       </div>
 
-      <div class="overflow-x-auto border border-slate-800 rounded-2xl bg-slate-900/90 shadow-xl">
-        <table class="w-full text-left text-xs sm:text-sm">
-          <thead class="bg-slate-950 border-b border-slate-800 text-slate-400 font-semibold">
-            <tr>
-              <th class="py-3 px-4">비교 항목</th>
-              <th class="py-3 px-4 text-rose-400">일반 주입식 동영상 인강</th>
-              <th class="py-3 px-4 text-emerald-400">송도 AI 아카데미 온라인 클래스</th>
+      <div class="overflow-x-auto pt-1">
+        <table class="w-full text-xs text-left border-collapse">
+          <thead>
+            <tr class="border-b border-slate-200 text-slate-500 font-semibold">
+              <th class="py-2.5 px-3">비교 항목</th>
+              <th class="py-2.5 px-3">일반 동영상 코딩 인강</th>
+              <th class="py-2.5 px-3 text-emerald-800 bg-emerald-50/50">송도 AI 아카데미</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-slate-800 text-slate-300">
+          <tbody class="divide-y divide-slate-100 text-slate-700">
             <tr>
-              <td class="py-3 px-4 font-bold text-white">첫 작품 나오는 날</td>
-              <td class="py-3 px-4 text-slate-500">마지막 강까지 눈으로만 보다 포기</td>
-              <td class="py-3 px-4 font-bold text-emerald-400">첫날 30분 만에 전 세계 라이브 웹 배포 완료!</td>
+              <td class="py-3 px-3 font-semibold text-slate-900">학습 방식</td>
+              <td class="py-3 px-3 text-slate-500">강사의 코딩 화면을 수동적으로 시청</td>
+              <td class="py-3 px-3 font-semibold text-emerald-800 bg-emerald-50/30">브라우저에서 직접 조작하는 실전 27분 실습</td>
             </tr>
             <tr>
-              <td class="py-3 px-4 font-bold text-white">추가로 드는 돈</td>
-              <td class="py-3 px-4 text-slate-500">서버비, API 비용 수십만 원 청구</td>
-              <td class="py-3 px-4 font-bold text-emerald-400">추가 API 요금 0원 서약 (완전 무료 호스팅)</td>
+              <td class="py-3 px-3 font-semibold text-slate-900">첫 결과물</td>
+              <td class="py-3 px-3 text-slate-500">완강할 때까지 내 컴퓨터에 갇혀 있음</td>
+              <td class="py-3 px-3 font-semibold text-emerald-800 bg-emerald-50/30">Day-1 30분 만에 전 세계 라이브 링크 배포</td>
             </tr>
             <tr>
-              <td class="py-3 px-4 font-bold text-white">화면이 멈추거나 뜻대로 안 될 때</td>
-              <td class="py-3 px-4 text-slate-500">댓글 창에 질문 남기고 며칠씩 대기</td>
-              <td class="py-3 px-4 font-bold text-emerald-400">3초 만에 타임머신으로 스스로 살려내는 법 훈련</td>
+              <td class="py-3 px-3 font-semibold text-slate-900">오류 발생 시</td>
+              <td class="py-3 px-3 text-slate-500">게시판 질문 후 답변 대기 (중도 포기 다수)</td>
+              <td class="py-3 px-3 font-semibold text-emerald-800 bg-emerald-50/30">3초 타임머신 롤백과 AI 격리 디버깅 체화</td>
             </tr>
             <tr>
-              <td class="py-3 px-4 font-bold text-white">수업 끝나고 남는 것</td>
-              <td class="py-3 px-4 text-slate-500">다 못 본 VOD 수강권 만료</td>
-              <td class="py-3 px-4 font-bold text-emerald-400">내 스마트폰에서 평생 열리는 진짜 나만의 웹사이트</td>
+              <td class="py-3 px-3 font-semibold text-slate-900">최종 산출물</td>
+              <td class="py-3 px-3 text-slate-500">남들과 똑같은 튜토리얼 예제 파일</td>
+              <td class="py-3 px-3 font-semibold text-emerald-800 bg-emerald-50/30">우리 가족·매장에 실사용되는 독자 프로덕트</td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
 
-    <!-- SLIDE 12: Data Security & Safety -->
-    <div class="slide flex-col justify-center p-8 sm:p-16 max-w-5xl mx-auto gap-6" data-title="철통 보안과 안전 약속" data-note="학부모님과 기업 담당자분들이 가장 안심하시는 부분입니다. 우리 가족 주민번호나 회사 비밀은 AI에게 절대 함부로 알려주지 않도록, 철통같은 안전 보안 습관을 첫날부터 몸에 익힙니다.">
-      <div class="flex flex-col gap-2">
-        <span class="text-xs font-bold text-indigo-400 uppercase tracking-wider">철통 보안 · 부모님과 기업도 안심!</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
-          우리 집 비밀과 회사 정보는 절대 지켜요! (철통 보안 가이드)
+    <!-- SLIDE 12: The Philosophy -->
+    <div class="slide flex-col justify-center p-8 sm:p-14 max-w-4xl w-full mx-auto gap-6 slide-canvas rounded-3xl" data-title="교육 철학" data-note="평생 남는 자립심을 심어주는 교육입니다.">
+      <div class="flex flex-col gap-1.5">
+        <span class="text-xs font-bold text-emerald-700 uppercase tracking-wider">핵심 가치</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-snug">
+          "기술을 암기하는 사람 대신, 도구를 부리는 사람이 됩니다"
         </h2>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-        <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col gap-2">
-          <strong class="text-emerald-400 font-bold text-sm">1. 비밀 정보 가리기 (마스킹)</strong>
-          <p class="text-slate-400 leading-relaxed">
-            가족 주민번호나 회사 대외비 문서는 AI에게 절대 입력하지 않고, 안전하게 가명으로 가려 넣는 바른 습관을 배웁니다.
+      <div class="p-6 rounded-2xl bg-emerald-50/50 border border-emerald-200 flex flex-col gap-3">
+        <p class="text-slate-700 text-xs sm:text-sm leading-relaxed">
+          언어와 라이브러리는 매년 바뀝니다. 파이썬 문법을 외우는 것보다 중요한 것은, <strong>낯선 도구를 두려워하지 않고 AI를 지휘하여 내 손으로 실용적인 가치를 만들어내는 감각</strong>입니다. 6주의 여정이 끝나면 어떤 새로운 AI가 등장해도 당황하지 않고 자유자재로 다루게 됩니다.
+        </p>
+        <span class="font-signature text-2xl text-emerald-700 font-bold self-end">ohahbuji</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 13: Operation Mode -->
+    <div class="slide flex-col justify-center p-8 sm:p-14 max-w-4xl w-full mx-auto gap-6 slide-canvas rounded-3xl" data-title="클래스 운영 방식" data-note="시공간 제약 없이 편안하게 완주할 수 있는 구조입니다.">
+      <div class="flex flex-col gap-1.5">
+        <span class="text-xs font-bold text-emerald-700 uppercase tracking-wider">운영 안내</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-snug">
+          100% 비대면 온라인 자율 진도 시스템
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs pt-1">
+        <div class="p-5 rounded-2xl card-light flex flex-col gap-2">
+          <strong class="text-slate-900 text-sm">무제한 반복 수강</strong>
+          <p class="text-slate-600 leading-relaxed">
+            시간과 장소 구애 없이, 언제든 접속하여 내 페이스대로 편안하게 실습을 진행합니다.
           </p>
         </div>
-        <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col gap-2">
-          <strong class="text-emerald-400 font-bold text-sm">2. 4가지 합격 도장 성적표</strong>
-          <p class="text-slate-400 leading-relaxed">
-            단순히 출석만 체크하지 않고, 학생이 만든 웹사이트가 실제로 잘 굴러가는지 4가지 검증 통과 성적표를 투명하게 드립니다.
+        <div class="p-5 rounded-2xl card-light flex flex-col gap-2">
+          <strong class="text-slate-900 text-sm">인터랙티브 브라우저 교구</strong>
+          <p class="text-slate-600 leading-relaxed">
+            무거운 프로그램 설치 없이, 크롬 브라우저 하나만으로 전 과정이 매끄럽게 작동합니다.
           </p>
         </div>
-        <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col gap-2">
-          <strong class="text-emerald-400 font-bold text-sm">3. 나에게 꼭 필요한 실용 도구</strong>
-          <p class="text-slate-400 leading-relaxed">
-            숙제 안내판, 엄마 가게 주문 계산기, 회사 매뉴얼 검색기 등 나에게 진짜 쓸모 있는 생활 밀착형 도구로 만듭니다.
+        <div class="p-5 rounded-2xl card-light flex flex-col gap-2">
+          <strong class="text-slate-900 text-sm">1기 수료증 & 포트폴리오</strong>
+          <p class="text-slate-600 leading-relaxed">
+            6주 프로젝트 완성 시 공식 자립 인증서와 라이브 웹 포트폴리오를 영구 소장합니다.
           </p>
         </div>
       </div>
     </div>
 
-    <!-- SLIDE 13: Online Self-Paced & Interactive Class Advantage -->
-    <div class="slide flex-col justify-center p-8 sm:p-16 max-w-5xl mx-auto gap-8" data-title="왜 온라인 클래스인가?" data-note="우리 수업은 학원에 찾아오는 번거로움 없이, 집에서 가장 편안한 시간에 혼자서도 척척 따라 할 수 있는 100% 온라인 인터랙티브 클래스입니다. 지루하게 영상만 보는 인강과 달리, 웹에서 직접 만지며 체화하는 샌드박스 교구를 드립니다.">
-      <div class="flex flex-col gap-2">
-        <span class="text-xs font-bold text-miriGreen uppercase tracking-wider">언제 어디서나 · 100% 온라인 클래스</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
-          학원에 갈 필요 없이, 집에서 가장 편안하게 완성하는 실전 AI
-        </h2>
+    <!-- SLIDE 14: Closing & Action -->
+    <div class="slide flex-col items-center justify-center p-8 sm:p-14 text-center max-w-4xl w-full mx-auto gap-6 slide-canvas rounded-3xl" data-title="신청 안내" data-note="설명회를 들어주셔서 감사합니다. 질문이 있으시거나 수강을 원하시면 랜딩페이지에서 신청해 주시기 바랍니다.">
+      <div class="inline-flex items-center px-3.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold">
+        1기 공식 모집 마감 임박
       </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-sm">
-        <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col gap-3">
-          <span class="text-2xl">🏠</span>
-          <strong class="text-emerald-400 font-bold text-base">내 방에서 내 페이스대로</strong>
-          <p class="text-slate-400 text-xs leading-relaxed">
-            길에서 시간 낭비할 필요 전혀 없습니다! 평일 밤이든 주말이든, 침대나 책상에서 노트북 하나로 내가 편한 시간에 자유롭게 수강합니다.
-          </p>
-        </div>
-        <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col gap-3">
-          <span class="text-2xl">💻</span>
-          <strong class="text-emerald-400 font-bold text-base">혼자서도 척척 따라 하는 교구</strong>
-          <p class="text-slate-400 text-xs leading-relaxed">
-            지루하게 영상만 쳐다보는 인강이 아닙니다! 브라우저에서 버튼을 누르고 바로 실행해 보는 인터랙티브 실습 키트로 혼자서도 신나게 완성합니다.
-          </p>
-        </div>
-        <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col gap-3">
-          <span class="text-2xl">🛡️</span>
-          <strong class="text-emerald-400 font-bold text-base">1일차 100% 안심 전액 환불</strong>
-          <p class="text-slate-400 text-xs leading-relaxed">
-            온라인 강의라고 불안해하지 마세요! 첫 수업을 시작해 보고 '나랑 안 맞네' 느끼시면 1일차에 조건 없이 100% 전액 환불해 드립니다.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <!-- SLIDE 14: Next Step & Enrollment CTA -->
-    <div class="slide flex-col items-center justify-center p-8 sm:p-16 text-center max-w-5xl mx-auto gap-6" data-title="모집 및 제안 안내" data-note="이상으로 송도 AI 아카데미 6주 마스터 온라인 클래스 발표를 마칩니다. 1기 온라인 모집이 오픈되어 있으며, 기업이나 학교 단체 맞춤 과정도 함께 지원합니다. 질문 편하게 주세요! 감사합니다.">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold uppercase tracking-wider">
-        온라인 1기 모집 · 지금 시작하세요
-      </div>
-      <h2 class="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
-        자, 이제 나만의 멋진 웹사이트를<br>
-        <span class="text-miriGreen">직접 만들러 가볼까요?</span>
+      <h2 class="text-3xl sm:text-4xl font-black text-slate-900 leading-tight">
+        지금, 우리 가족의 첫 번째 실전 AI 프로젝트를 시작하세요
       </h2>
-      <p class="text-slate-300 text-sm sm:text-base max-w-xl leading-relaxed">
-        온라인 1기 수강 신청 (얼리버드 혜택) 및 기업·학교 단체 맞춤 과정 상담을 진행 중입니다.
+      <p class="text-slate-600 text-sm sm:text-base max-w-lg leading-relaxed">
+        망설임으로 흘려보내는 6개월보다, 내 손으로 직접 배포하는 주말 30분이 인생의 전환점이 됩니다.
       </p>
 
-      <div class="flex flex-wrap items-center justify-center gap-4 pt-4">
-        <a href="/landing.html" class="px-6 py-3 rounded-xl bg-miriGreen hover:bg-miriGreenDark text-white font-extrabold text-sm transition-all shadow-lg flex items-center gap-2">
-          <span>📢 수강 신청 랜딩페이지 구경하기</span>
-          <span>→</span>
+      <div class="flex items-center gap-3 pt-2">
+        <a href="/landing.html" target="_blank" class="px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm shadow-md transition-all active:scale-95">
+          수강 신청 바로가기 &rarr;
         </a>
-        <a href="/creator.html" class="px-5 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-sm transition-all border border-slate-700">
-          ✍️ 커리큘럼 직접 살펴보기
+        <a href="/diagnostic.html" target="_blank" class="px-5 py-3 rounded-xl border border-slate-300 hover:bg-slate-100 text-slate-800 font-semibold text-xs sm:text-sm transition-all">
+          12문항 AI 레벨 진단받기
         </a>
       </div>
 
-      <div class="pt-8 text-xs text-slate-500 flex items-center gap-2">
-        <span>Curated & Authored by</span>
-        <span class="font-signature text-4xl text-emerald-400 font-bold">ohahbuji</span>
-        <span>· Songdo International AI Academy</span>
+      <div class="pt-4 text-xs text-slate-400">
+        송도 AI 아카데미 • 디렉터 <span class="font-signature text-2xl text-emerald-700 font-bold ml-1">ohahbuji</span>
       </div>
     </div>
 
-  </div>
+  </main>
 
-  <!-- FLOATING PRESENTER NOTES BOX (Toggle with N key) -->
-  <aside id="presenter-notes-box" class="hidden fixed bottom-16 left-6 right-6 sm:left-auto sm:right-6 sm:w-96 bg-slate-900/95 backdrop-blur border border-slate-700 rounded-2xl p-4 shadow-2xl text-xs z-50 flex flex-col gap-2">
-    <div class="flex items-center justify-between border-b border-slate-800 pb-2">
-      <span class="font-bold text-emerald-400 flex items-center gap-1.5">
-        <span>🎤</span> <span id="notes-slide-title">발표자 대본</span>
-      </span>
-      <button onclick="toggleNotes()" class="text-slate-400 hover:text-white cursor-pointer font-bold">✕</button>
-    </div>
-    <p id="notes-content" class="text-slate-300 leading-relaxed font-sans max-h-48 overflow-y-auto">
-      대본 로딩 중...
-    </p>
-  </aside>
-
-  <!-- BOTTOM NAVIGATION HUD -->
-  <footer id="deck-footer" class="fixed bottom-0 left-0 right-0 z-50 h-14 bg-slate-950/80 backdrop-blur border-t border-slate-800/80 px-6 flex items-center justify-between text-xs text-slate-400">
-    <div class="flex items-center gap-3">
-      <span class="hidden sm:inline">단축키: <strong>← / →</strong> (슬라이드 넘김), <strong>E</strong> (직접 편집 모드), <strong>F</strong> (전체화면), <strong>N</strong> (대본)</span>
-    </div>
-
+  <!-- BOTTOM DECK FOOTER (Slide Title & Help) -->
+  <footer id="deck-footer" class="fixed bottom-0 left-0 right-0 z-50 h-10 bg-white/90 backdrop-blur-md border-t border-slate-200 px-6 flex items-center justify-between text-xs text-slate-500">
     <div class="flex items-center gap-2">
-      <button onclick="prevSlide()" id="btn-prev" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold transition-all cursor-pointer flex items-center gap-1 shadow-xs">
-        <span>←</span> <span>이전</span>
-      </button>
-      <button onclick="nextSlide()" id="btn-next" class="px-4 py-2 rounded-xl bg-miriGreen hover:bg-miriGreenDark text-white font-bold transition-all cursor-pointer flex items-center gap-1 shadow-xs">
-        <span>다음</span> <span>→</span>
-      </button>
+      <span class="font-mono text-slate-400">SLIDE:</span>
+      <span id="slide-title-display" class="font-bold text-slate-800">오리엔테이션 표지</span>
+    </div>
+    <div class="flex items-center gap-4 text-[11px]">
+      <span class="hidden sm:inline">키보드 방향키(←, →), [Space]로 슬라이드 이동</span>
+      <span>•</span>
+      <span>[N] 대본 보기</span>
+      <span>•</span>
+      <span>[F] 전체화면</span>
     </div>
   </footer>
 
-  <!-- Interactive Slide Presentation Script -->
+  <!-- PRESENTER NOTES POPUP -->
+  <div id="presenter-notes-box" class="fixed bottom-14 right-6 z-50 w-80 max-h-48 p-4 rounded-2xl bg-white border border-slate-200 shadow-xl overflow-y-auto text-xs text-slate-700 hidden">
+    <div class="flex items-center justify-between pb-2 border-b border-slate-100 mb-2">
+      <span class="font-bold text-slate-900">발표자 대본</span>
+      <button onclick="toggleNotes()" class="text-slate-400 hover:text-slate-600 text-sm">&times;</button>
+    </div>
+    <p id="notes-content" class="leading-relaxed">대본 내용이 여기에 표시됩니다.</p>
+  </div>
+
   <script>
-    let currentSlide = 0;
     const slides = document.querySelectorAll('.slide');
     const totalSlides = slides.length;
-    let isNotesVisible = false;
-    let isEditMode = false;
+    let currentSlideIndex = 0;
 
-    function showSlide(index) {
-      if (index < 0) index = 0;
-      if (index >= totalSlides) index = totalSlides - 1;
-      
-      slides.forEach((s, idx) => {
-        s.classList.toggle('active', idx === index);
+    function updateSlide() {
+      slides.forEach((s, i) => {
+        if (i === currentSlideIndex) {
+          s.classList.add('active');
+          document.getElementById('current-slide-num').innerText = String(i + 1).padStart(2, '0');
+          document.getElementById('total-slides-num').innerText = String(totalSlides).padStart(2, '0');
+          const title = s.getAttribute('data-title') || `슬라이드 ${i + 1}`;
+          document.getElementById('slide-title-display').innerText = title;
+          document.title = `${title} | 송도 AI 아카데미 발표 덱`;
+          const note = s.getAttribute('data-note') || "작성된 대본이 없습니다.";
+          document.getElementById('notes-content').innerText = note;
+        } else {
+          s.classList.remove('active');
+        }
       });
-
-      currentSlide = index;
-
-      // Update HUD
-      const numStr = (index + 1).toString().padStart(2, '0');
-      const totalStr = totalSlides.toString().padStart(2, '0');
-      document.getElementById('slide-indicator').innerText = `${numStr} / ${totalStr}`;
-      
-      const percent = ((index + 1) / totalSlides) * 100;
-      document.getElementById('slide-progress-bar').style.width = `${percent}%`;
-
-      // Update Prev/Next button states
-      document.getElementById('btn-prev').disabled = (index === 0);
-      document.getElementById('btn-prev').style.opacity = (index === 0) ? '0.4' : '1';
-
-      if (index === totalSlides - 1) {
-        document.getElementById('btn-next').innerHTML = '<span>처음으로 ↺</span>';
-      } else {
-        document.getElementById('btn-next').innerHTML = '<span>다음</span> <span>→</span>';
-      }
-
-      // Update Presenter Notes
-      const curSlideEl = slides[index];
-      const title = curSlideEl.getAttribute('data-title') || '발표 슬라이드';
-      const note = curSlideEl.getAttribute('data-note') || '작성된 대본이 없습니다.';
-      document.getElementById('notes-slide-title').innerText = `슬라이드 ${numStr}: ${title}`;
-      document.getElementById('notes-content').innerText = note;
-
-      // Re-apply editable attributes if in edit mode
-      if (isEditMode) {
-        enableSlideEditing();
-      }
     }
 
     function nextSlide() {
-      if (currentSlide < totalSlides - 1) {
-        showSlide(currentSlide + 1);
-      } else {
-        showSlide(0);
+      if (currentSlideIndex < totalSlides - 1) {
+        currentSlideIndex++;
+        updateSlide();
       }
     }
 
     function prevSlide() {
-      if (currentSlide > 0) {
-        showSlide(currentSlide - 1);
+      if (currentSlideIndex > 0) {
+        currentSlideIndex--;
+        updateSlide();
       }
     }
 
     function toggleNotes() {
-      isNotesVisible = !isNotesVisible;
-      document.getElementById('presenter-notes-box').classList.toggle('hidden', !isNotesVisible);
+      document.getElementById('presenter-notes-box').classList.toggle('hidden');
     }
 
     function toggleFullscreen() {
       if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen().catch(err => console.log(err));
+        document.documentElement.requestFullscreen().catch(() => {});
       } else {
         if (document.exitFullscreen) document.exitFullscreen();
       }
     }
 
-    // Toast helper
-    function showToast(msg) {
-      const toast = document.getElementById('edit-toast');
-      if (toast) {
-        toast.innerText = msg;
-        toast.classList.remove('hidden');
-        setTimeout(() => toast.classList.add('hidden'), 3000);
-      }
-    }
-
-    // Enable/Disable In-Place Editing
-    function enableSlideEditing() {
-      const targets = document.querySelectorAll('#slides-wrapper h1, #slides-wrapper h2, #slides-wrapper h3, #slides-wrapper p, #slides-wrapper strong, #slides-wrapper span, #slides-wrapper td, #slides-wrapper th');
-      targets.forEach(el => {
-        if (el.closest('button') || el.closest('a')) return;
-        el.setAttribute('contenteditable', 'true');
-        el.classList.add('editable-slide-element');
-      });
-    }
-
-    function disableSlideEditing() {
-      const targets = document.querySelectorAll('.editable-slide-element');
-      targets.forEach(el => {
-        el.removeAttribute('contenteditable');
-        el.classList.remove('editable-slide-element');
-      });
-    }
-
-    function toggleEditMode() {
-      isEditMode = !isEditMode;
-      const editLabel = document.getElementById('edit-mode-label');
-      const saveBtn = document.getElementById('btn-save-slides');
-      const banner = document.getElementById('edit-banner');
-
-      if (isEditMode) {
-        if (editLabel) editLabel.innerText = "편집 켜짐 (E)";
-        if (saveBtn) saveBtn.style.display = "inline-flex";
-        if (banner) banner.classList.remove('hidden');
-        enableSlideEditing();
-        showToast("✏️ 슬라이드 직접 편집 켜짐: 원하는 글자를 클릭해 수정하고 [저장하기]를 누르세요!");
-      } else {
-        if (editLabel) editLabel.innerText = "편집 모드 (E)";
-        if (saveBtn) saveBtn.style.display = "none";
-        if (banner) banner.classList.add('hidden');
-        disableSlideEditing();
-        showToast("👀 편집 모드가 꺼졌습니다.");
-      }
-    }
-
-    async function saveSlidesToServer() {
-      const saveBtn = document.getElementById('btn-save-slides');
-      if (saveBtn) saveBtn.innerHTML = "<span>💾</span> <span>저장 중...</span>";
-
-      // 1. Clean editor attributes before saving
-      disableSlideEditing();
-      const banner = document.getElementById('edit-banner');
-      if (banner) banner.classList.add('hidden');
-      if (saveBtn) saveBtn.style.display = 'none';
-      const editLabel = document.getElementById('edit-mode-label');
-      if (editLabel) editLabel.innerText = "편집 모드 (E)";
-
-      // 2. Clone document HTML
-      const fullHtml = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
-
-      // 3. Restore UI state for user
-      if (isEditMode) {
-        if (saveBtn) saveBtn.style.display = 'inline-flex';
-        if (banner) banner.classList.remove('hidden');
-        if (editLabel) editLabel.innerText = "편집 켜짐 (E)";
-        enableSlideEditing();
-      }
-
-      // 4. Send to server
-      try {
-        const res = await fetch('/api/save-page', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ page: 'presentation.html', html: fullHtml })
-        });
-        const json = await res.json();
-        if (res.ok && json.success) {
-          if (saveBtn) saveBtn.innerHTML = "<span>💾</span> <span>저장 완료!</span>";
-          showToast("✅ presentation.html 파일에 즉시 영구 저장되었습니다!");
-          setTimeout(() => {
-            if (saveBtn) saveBtn.innerHTML = "<span>💾</span> <span>저장하기 (Ctrl+S)</span>";
-          }, 2000);
-        } else {
-          alert("저장 실패: " + (json.error || "알 수 없는 오류"));
-        }
-      } catch (err) {
-        alert("서버 통신 오류: " + err.message);
-      }
-    }
-
-    // Keyboard Shortcuts
     window.addEventListener('keydown', (e) => {
-      // If user is currently typing text inside an editable element
-      if (e.target && e.target.isContentEditable) {
-        // Allow Ctrl+S to save while typing
-        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
-          e.preventDefault();
-          saveSlidesToServer();
-        }
-        return; // Do NOT trigger slide change or mode switch while typing
-      }
-
-      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
-        e.preventDefault();
-        nextSlide();
-      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
-        e.preventDefault();
-        prevSlide();
-      } else if (e.key === 'Home') {
-        e.preventDefault();
-        showSlide(0);
-      } else if (e.key === 'End') {
-        e.preventDefault();
-        showSlide(totalSlides - 1);
-      } else if (e.key.toLowerCase() === 'n') {
-        toggleNotes();
-      } else if (e.key.toLowerCase() === 'f') {
-        toggleFullscreen();
-      } else if (e.key.toLowerCase() === 'e') {
-        e.preventDefault();
-        toggleEditMode();
-      } else if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
-        e.preventDefault();
-        saveSlidesToServer();
-      }
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') nextSlide();
+      else if (e.key === 'ArrowLeft' || e.key === 'PageUp') prevSlide();
+      else if (e.key === 'n' || e.key === 'N') toggleNotes();
+      else if (e.key === 'f' || e.key === 'F') toggleFullscreen();
+      else if (e.key === 'Home') { currentSlideIndex = 0; updateSlide(); }
+      else if (e.key === 'End') { currentSlideIndex = totalSlides - 1; updateSlide(); }
     });
 
-    // Parent iframe message bridge
-    window.addEventListener('message', (e) => {
-      if (e.data && e.data.type === 'TOGGLE_EDIT_MODE') {
-        toggleEditMode();
-      }
-    });
-
-    // Initialize
-    window.addEventListener('DOMContentLoaded', () => {
-      showSlide(0);
-    });
-
+    updateSlide();
   </script>
-
 </body>
 </html>
