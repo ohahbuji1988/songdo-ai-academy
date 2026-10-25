@@ -228,12 +228,9 @@
             </div>
           </div>
 
-          <!-- Top Badge & Scene Counter -->
-          <div class="absolute top-7 left-4 right-4 z-30 flex items-center justify-between text-xs">
-            <span id="reelCutBadge" class="px-2.5 py-0.5 rounded-full bg-emerald-950/80 border border-emerald-500/60 text-emerald-300 font-mono font-bold text-[11px] backdrop-blur">
-              SCENE 01 / 04
-            </span>
-            <button onclick="toggleStoryAudio()" id="audioToggleBtn" class="px-2.5 py-1 rounded-full bg-black/60 hover:bg-black/80 border border-white/20 text-white text-[11px] font-bold backdrop-blur flex items-center gap-1 transition-all">
+          <!-- Top Controls (Clean & Unobstructed) -->
+          <div class="absolute top-4 right-4 z-30 flex items-center justify-end text-xs">
+            <button onclick="toggleStoryAudio()" id="audioToggleBtn" class="px-2.5 py-1 rounded-full bg-black/60 hover:bg-black/80 border border-white/20 text-white text-[11px] font-bold backdrop-blur flex items-center gap-1 transition-all shadow-lg">
               <span id="audioIcon">🔊</span> <span id="audioText">효과음 ON</span>
             </button>
           </div>
@@ -245,23 +242,12 @@
             <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/30 pointer-events-none"></div>
           </div>
 
-          <!-- Floating Character Speech Bubble -->
-          <div class="absolute top-14 left-4 z-20 max-w-md animate-bounce-subtle">
-            <div id="reelSpeechBox" class="p-3 sm:p-4 rounded-2xl bg-slate-900/90 border border-emerald-500/80 text-white shadow-xl backdrop-blur flex items-start gap-3">
-              <span id="reelAvatar" class="text-2xl sm:text-3xl shrink-0">👦</span>
-              <div class="flex flex-col">
-                <span id="reelCharacterName" class="text-[11px] font-extrabold text-emerald-400">민우 (12세)</span>
-                <p id="reelDialogue" class="text-xs sm:text-sm font-bold text-slate-100 leading-snug">
-                  "엄마! 나 코딩 학원에서 고양이가 점프하는 게임 만들었어!"
-                </p>
-              </div>
-            </div>
-          </div>
 
-          <!-- Bottom Subtitle Bar & Story Narration -->
-          <div class="absolute bottom-3 left-4 right-4 z-20 flex flex-col gap-1 text-center">
-            <div id="reelSubtitleBar" class="px-4 py-2 rounded-xl bg-black/75 border border-white/10 text-xs sm:text-sm font-semibold text-emerald-200 backdrop-blur shadow-lg truncate">
-              학원비 300만 원을 썼지만, 학교 밖에서는 쓸모없는 장난감 코딩의 씁쓸한 현실...
+
+          <!-- Bottom Subtitle Bar (Clean Shorts/Movie Subtitle) -->
+          <div class="absolute bottom-3 left-4 right-4 z-20 flex flex-col gap-1 text-center pointer-events-none">
+            <div id="reelSubtitleBar" class="inline-block mx-auto max-w-xl px-4 py-2 rounded-xl bg-black/85 border border-white/20 text-xs sm:text-sm font-medium text-white backdrop-blur shadow-2xl">
+              <span class="text-emerald-300 font-bold">👦 민우 (12세):</span> "엄마! 나 코딩 학원에서 고양이가 점프하는 게임 만들었어!"
             </div>
           </div>
 
@@ -1252,7 +1238,9 @@
       if (avatarEl) avatarEl.innerText = data.avatar;
       if (nameEl) nameEl.innerText = data.character;
       if (dialogueEl) dialogueEl.innerText = data.dialogue;
-      if (subEl) subEl.innerText = data.subtitle;
+      if (subEl) {
+        subEl.innerHTML = `<span class="text-emerald-300 font-bold mr-1.5">${data.avatar} ${data.character}:</span> ${data.dialogue}`;
+      }
 
       // Update Quick Dots
       document.querySelectorAll('.scene-dot').forEach((dot, dIdx) => {

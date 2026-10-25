@@ -214,11 +214,8 @@
           <div class="flex-1 h-1 bg-white/20 rounded-full overflow-hidden"><div id="portalBar3" class="h-full bg-emerald-400 w-0 transition-all duration-100"></div></div>
         </div>
 
-        <!-- Cut Badge -->
-        <div class="absolute top-6 left-3 right-3 z-30 flex items-center justify-between text-xs">
-          <span id="portalCutBadge" class="px-2.5 py-0.5 rounded-full bg-emerald-950/80 border border-emerald-500/60 text-emerald-300 font-mono font-bold text-[11px] backdrop-blur">
-            SCENE 01 / 04 · 씁쓸한 현실
-          </span>
+        <!-- Top Audio Control -->
+        <div class="absolute top-4 right-3 z-30 flex items-center justify-end text-xs">
           <button onclick="togglePortalAudio()" id="portalAudioBtn" class="px-2 py-0.5 rounded-full bg-black/60 border border-white/20 text-white text-[10px] font-bold backdrop-blur">
             <span id="portalAudioIcon">🔊</span> <span>효과음 ON</span>
           </button>
@@ -231,23 +228,12 @@
           <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/30 pointer-events-none"></div>
         </div>
 
-        <!-- Floating Speech Bubble -->
-        <div class="absolute top-12 left-3 z-20 max-w-md">
-          <div class="p-3 rounded-2xl bg-slate-900/90 border border-emerald-500/80 text-white shadow-xl backdrop-blur flex items-start gap-2.5">
-            <span id="portalAvatar" class="text-2xl shrink-0">👦</span>
-            <div class="flex flex-col">
-              <span id="portalCharacterName" class="text-[10px] font-extrabold text-emerald-400">민우 (12세)</span>
-              <p id="portalDialogue" class="text-xs font-bold text-slate-100 leading-snug">
-                "엄마! 나 코딩 학원에서 고양이가 점프하는 게임 만들었어!"
-              </p>
-            </div>
-          </div>
-        </div>
+
 
         <!-- Subtitle Bar -->
-        <div class="absolute bottom-2.5 left-3 right-3 z-20">
-          <div id="portalSubtitleBar" class="px-3 py-1.5 rounded-xl bg-black/75 border border-white/10 text-xs font-semibold text-emerald-200 backdrop-blur shadow-lg truncate text-center">
-            학원비 300만 원을 썼지만, 학교 밖에서는 쓸모없는 장난감 코딩의 씁쓸한 현실...
+        <div class="absolute bottom-2.5 left-3 right-3 z-20 pointer-events-none text-center">
+          <div id="portalSubtitleBar" class="inline-block mx-auto px-3 py-1.5 rounded-xl bg-black/85 border border-white/20 text-xs font-medium text-white backdrop-blur shadow-xl">
+            <span class="text-emerald-300 font-bold">👦 민우 (12세):</span> "엄마! 나 코딩 학원에서 고양이가 점프하는 게임 만들었어!"
           </div>
         </div>
 
@@ -611,7 +597,9 @@
       if (avatarEl) avatarEl.innerText = data.avatar;
       if (nameEl) nameEl.innerText = data.character;
       if (dialogueEl) dialogueEl.innerText = data.dialogue;
-      if (subEl) subEl.innerText = data.subtitle;
+      if (subEl) {
+        subEl.innerHTML = `<span class="text-emerald-300 font-bold mr-1.5">${data.avatar} ${data.character}:</span> ${data.dialogue}`;
+      }
 
       for (let i = 0; i < 4; i++) {
         const bar = document.getElementById('portalBar' + i);
