@@ -228,10 +228,10 @@
             </div>
           </div>
 
-          <!-- Top Controls (Clean & Unobstructed) -->
+          <!-- Top Audio Controls (Clean & Unobstructed) -->
           <div class="absolute top-4 right-4 z-30 flex items-center justify-end text-xs">
-            <button onclick="toggleStoryAudio()" id="audioToggleBtn" class="px-2.5 py-1 rounded-full bg-black/60 hover:bg-black/80 border border-white/20 text-white text-[11px] font-bold backdrop-blur flex items-center gap-1 transition-all shadow-lg">
-              <span id="audioIcon">🔊</span> <span id="audioText">효과음 ON</span>
+            <button onclick="toggleStoryAudio()" id="audioToggleBtn" class="px-3 py-1.5 rounded-full bg-black/75 hover:bg-black/90 border border-emerald-500/50 text-white text-[11px] font-bold backdrop-blur flex items-center gap-1.5 transition-all shadow-lg hover:scale-105 active:scale-95 cursor-pointer">
+              <span id="audioIcon">🔇</span> <span id="audioText">소리 켜기</span>
             </button>
           </div>
 
@@ -1145,7 +1145,7 @@
 
     let currentStoryIdx = 0;
     let isStoryPlaying = true;
-    let isStoryAudioOn = true;
+    let isStoryAudioOn = false;
     let storyProgress = 0;
     const SCENE_DURATION_MS = 4000;
     const TICK_INTERVAL_MS = 50;
@@ -1224,6 +1224,7 @@
           videoEl.src = data.video;
         }
         videoEl.poster = data.image;
+        videoEl.muted = !isStoryAudioOn;
         videoEl.currentTime = 0;
         if (isStoryPlaying) {
           videoEl.play().catch(() => {});
@@ -1257,7 +1258,10 @@
         }
       }
 
-      if (triggerSound) playStorySound(data.sound);
+      if (triggerSound && isStoryAudioOn) {
+        playStorySound(data.sound);
+        speakSceneDialogue(idx);
+      }
     }
 
     function tickStory() {
@@ -1309,17 +1313,52 @@
       renderStoryScene(idx, true);
     }
 
+    function speakSceneDialogue(idx) {
+      if (!isStoryAudioOn || !window.speechSynthesis) return;
+      try {
+        window.speechSynthesis.cancel();
+        const data = STORY_SCENES[idx];
+        const rawText = data.dialogue.replace(/["'”]/g, '');
+        const utter = new SpeechSynthesisUtterance(rawText);
+        utter.lang = 'ko-KR';
+        utter.rate = 1.05;
+        if (idx === 0) {
+          utter.pitch = 1.35;
+        } else if (idx === 1) {
+          utter.pitch = 1.25;
+          utter.rate = 1.15;
+        } else if (idx === 2) {
+          utter.pitch = 0.9;
+          utter.rate = 1.0;
+        } else {
+          utter.pitch = 1.2;
+          utter.rate = 1.1;
+        }
+        window.speechSynthesis.speak(utter);
+      } catch (e) {}
+    }
+
     function toggleStoryAudio() {
       isStoryAudioOn = !isStoryAudioOn;
       const icon = document.getElementById('audioIcon');
       const text = document.getElementById('audioText');
+      const videoEl = document.getElementById('reelVideoPlayer');
       if (isStoryAudioOn) {
         if (icon) icon.innerText = '🔊';
-        if (text) text.innerText = '효과음 ON';
+        if (text) text.innerText = '소리 끄기';
+        if (videoEl) {
+          videoEl.muted = false;
+          videoEl.volume = 1.0;
+        }
         playStorySound('blip');
+        speakSceneDialogue(currentStoryIdx);
       } else {
         if (icon) icon.innerText = '🔇';
-        if (text) text.innerText = '효과음 OFF';
+        if (text) text.innerText = '소리 켜기';
+        if (videoEl) {
+          videoEl.muted = true;
+        }
+        if (window.speechSynthesis) window.speechSynthesis.cancel();
       }
     }
 
