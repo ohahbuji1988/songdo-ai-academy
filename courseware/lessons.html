@@ -233,7 +233,7 @@
       <!-- ========================================================
            WEEK 01 LESSON
            ======================================================== -->
-      <article id="lesson-w1" class="lesson-content active flex-col gap-6">
+            <article id="lesson-w1" class="lesson-content active flex-col gap-6">
         
         <!-- Header -->
         <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col gap-2">
@@ -276,6 +276,68 @@
           </div>
         </div>
 
+        <!-- 실습 준비 툴킷 & 파일 워크플로우 카드 -->
+        <section class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col gap-4">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="w-5 h-5 rounded bg-slate-800 text-white font-bold text-xs flex items-center justify-center">0</span>
+              <h2 class="font-bold text-sm sm:text-base text-slate-900">실습 준비: 오늘 사용할 3대 도구 & 파일 준비</h2>
+            </div>
+            <span class="text-xs text-slate-400">환경 세팅 2분</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-1.5">
+              <div class="flex items-center gap-1.5">
+                <span class="w-5 h-5 rounded-md bg-emerald-100 text-emerald-800 font-bold flex items-center justify-center text-[11px]">1</span>
+                <strong class="text-slate-900">웹 브라우저 (Chrome)</strong>
+              </div>
+              <p class="text-slate-600 leading-relaxed text-[11px]">결과 화면을 실시간으로 확인하는 창입니다. 화면 왼쪽에 띄워두세요.</p>
+            </div>
+            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-1.5">
+              <div class="flex items-center gap-1.5">
+                <span class="w-5 h-5 rounded-md bg-emerald-100 text-emerald-800 font-bold flex items-center justify-center text-[11px]">2</span>
+                <strong class="text-slate-900">메모장 (Notepad)</strong>
+              </div>
+              <p class="text-slate-600 leading-relaxed text-[11px]">코드를 붙여넣고 저장하는 창입니다. 화면 오른쪽에 띄워두세요.</p>
+            </div>
+            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-1.5">
+              <div class="flex items-center gap-1.5">
+                <span class="w-5 h-5 rounded-md bg-emerald-100 text-emerald-800 font-bold flex items-center justify-center text-[11px]">3</span>
+                <strong class="text-slate-900">생성형 AI (ChatGPT / Claude)</strong>
+              </div>
+              <p class="text-slate-600 leading-relaxed text-[11px]">내가 지시한 대로 완전한 코드를 작성해 주는 지능형 비서입니다.</p>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <div class="flex flex-col gap-1">
+              <strong class="text-xs text-slate-900">1주차 순정 스타터 키트 (index.html)</strong>
+              <p class="text-[11px] text-slate-500">실습을 시작할 깨끗한 모범 코드 원본 파일입니다.</p>
+            </div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <a href="/courseware/starter-kit/index.html" download="index.html" class="px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-all shadow-xs inline-flex items-center gap-1.5 cursor-pointer">
+                <span>⬇ 스타터 파일 다운로드</span>
+              </a>
+              <button onclick="copyStarterKitCode()" class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all shadow-xs flex items-center gap-1.5 cursor-pointer">
+                <span>📋 순정 코드 복사</span>
+              </button>
+              <a href="/courseware/starter-kit/index.html" target="_blank" class="px-3 py-2 rounded-xl border border-slate-200 hover:bg-white text-slate-600 text-xs font-semibold">
+                새 창 미리보기
+              </a>
+            </div>
+          </div>
+
+          <div class="p-3.5 rounded-xl bg-amber-50/60 border border-amber-200/70 text-xs text-amber-900 flex flex-col gap-1">
+            <strong class="font-bold flex items-center gap-1">
+              <span>⚠️ 메모장 저장 시 주의사항 (index.html.txt 방지)</span>
+            </strong>
+            <p class="text-[11px] text-amber-800 leading-relaxed">
+              메모장에서 <strong>[다른 이름으로 저장]</strong> 시 <strong>파일 형식</strong>을 <code class="px-1 py-0.5 rounded bg-white font-mono border border-amber-200">모든 파일 (*.*)</code>로 바꾸고 파일 이름을 <code class="px-1 py-0.5 rounded bg-white font-mono border border-amber-200 font-bold">index.html</code>로 지정해야 합니다. (인코딩: UTF-8)
+            </p>
+          </div>
+        </section>
+
         <!-- 1단계: 목표 (3분) -->
         <section class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col gap-3">
           <div class="flex items-center justify-between">
@@ -295,19 +357,52 @@
           </div>
         </section>
 
-        <!-- 2단계: 첫 성공 (5분) -->
-        <section class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col gap-3">
+        <!-- 2단계: 4단계 액션 루프로 첫 성공 (5분) -->
+        <section class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col gap-4">
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
               <span class="w-5 h-5 rounded bg-emerald-600 text-white font-bold text-xs flex items-center justify-center">2</span>
-              <h3 class="font-bold text-sm sm:text-base text-slate-900">2단계 [3~8분] 첫 성공: 기본 프롬프트로 5분 만에 화면 띄우기</h3>
+              <h3 class="font-bold text-sm sm:text-base text-slate-900">2단계 [3~8분] 4단계 초고속 액션 루프로 화면 띄우기</h3>
             </div>
             <button onclick="copyPrompt('prompt-1')" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all shadow-xs flex items-center gap-1 cursor-pointer">
               프롬프트 복사
             </button>
           </div>
+
+          <!-- 4-Step Action Flow -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-xs">
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-1">
+              <div class="flex items-center gap-1.5 font-bold text-slate-800">
+                <span class="w-4 h-4 rounded bg-emerald-600 text-white flex items-center justify-center text-[10px]">1</span>
+                <span>지시문 복사</span>
+              </div>
+              <p class="text-[11px] text-slate-500">아래 1번 프롬프트 복사 버튼 클릭</p>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-1">
+              <div class="flex items-center gap-1.5 font-bold text-slate-800">
+                <span class="w-4 h-4 rounded bg-emerald-600 text-white flex items-center justify-center text-[10px]">2</span>
+                <span>AI에 전송</span>
+              </div>
+              <p class="text-[11px] text-slate-500">ChatGPT 대화창에 붙여넣기 후 전송</p>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-1">
+              <div class="flex items-center gap-1.5 font-bold text-slate-800">
+                <span class="w-4 h-4 rounded bg-emerald-600 text-white flex items-center justify-center text-[10px]">3</span>
+                <span>메모장 저장</span>
+              </div>
+              <p class="text-[11px] text-slate-500">코드 복사 &rarr; 메모장에서 Ctrl+A &rarr; Ctrl+V &rarr; Ctrl+S</p>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-1">
+              <div class="flex items-center gap-1.5 font-bold text-slate-800">
+                <span class="w-4 h-4 rounded bg-emerald-600 text-white flex items-center justify-center text-[10px]">4</span>
+                <span>크롬 새로고침</span>
+              </div>
+              <p class="text-[11px] text-slate-500">크롬 브라우저에서 F5 눌러 즉시 확인</p>
+            </div>
+          </div>
+
           <p class="text-xs text-slate-600">
-            먼저 <code class="px-1.5 py-0.5 rounded bg-slate-100 font-mono text-slate-800">index.html</code>을 복사하여 <code class="px-1.5 py-0.5 rounded bg-slate-100 font-mono text-slate-800">index_backup.html</code>로 백업해 둡니다. 아래 지시문을 AI에 붙여넣으세요.
+            먼저 <code class="px-1.5 py-0.5 rounded bg-slate-100 font-mono text-slate-800">index.html</code>을 복사하여 <code class="px-1.5 py-0.5 rounded bg-slate-100 font-mono text-slate-800">index_backup.html</code>로 백업해 둔 뒤, 아래 기본 지시문을 AI에 전송하세요.
           </p>
           
           <div id="prompt-1" class="p-4 rounded-xl bg-slate-50 text-slate-800 font-mono text-xs leading-relaxed overflow-x-auto border border-slate-200">
@@ -328,48 +423,69 @@
           </div>
         </section>
 
-        <!-- 3단계: 내 선택으로 수정 (9분) -->
-        <section class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col gap-3">
+        <!-- 3단계: 내 선택으로 수정 - 인터랙티브 동적 프롬프트 조립기 (9분) -->
+        <section class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col gap-4">
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
               <span class="w-5 h-5 rounded bg-emerald-600 text-white font-bold text-xs flex items-center justify-center">3</span>
-              <h3 class="font-bold text-sm sm:text-base text-slate-900">3단계 [8~17분] 나만의 결정: 3가지 선택지 중 1개 골라 개조하기</h3>
+              <h3 class="font-bold text-sm sm:text-base text-slate-900">3단계 [8~17분] 나만의 결정: 실시간 프롬프트 조립기</h3>
             </div>
             <span class="text-xs text-slate-500 font-medium">9분 집중</span>
           </div>
           <p class="text-xs text-slate-600 leading-relaxed">
-            복붙만 하면 AI의 결과물이지만, <strong>누구를 위해 무엇을 바꿀지</strong> 내가 정하면 내 작품이 됩니다.
+            복붙만 하면 AI의 결과물이지만, <strong>누구를 위해 무엇을 바꿀지</strong> 내가 정하면 내 작품이 됩니다. 아래 추천 프리셋을 고르거나 내 내용을 직접 입력하면 지시문이 실시간으로 조립됩니다.
           </p>
 
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
-            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-1">
-              <strong class="text-slate-900">옵션 A. 친구를 위한 취향 프로필</strong>
-              <p class="text-slate-600 text-[11px]">좋아하는 음악, 카페, 취미 3가지를 소개하는 위트 있는 카드</p>
+          <!-- Preset Selector Buttons -->
+          <div class="flex items-center gap-2 flex-wrap text-xs">
+            <span class="text-slate-400 font-medium">추천 프리셋:</span>
+            <button type="button" onclick="applyW1Preset('bakery')" class="px-3 py-1.5 rounded-lg border border-slate-200 hover:border-emerald-500 hover:text-emerald-700 bg-slate-50 font-medium transition-all cursor-pointer">
+              🍞 동네 빵집 / 카페
+            </button>
+            <button type="button" onclick="applyW1Preset('profile')" class="px-3 py-1.5 rounded-lg border border-slate-200 hover:border-emerald-500 hover:text-emerald-700 bg-slate-50 font-medium transition-all cursor-pointer">
+              💼 1인 전문가 명함
+            </button>
+            <button type="button" onclick="applyW1Preset('community')" class="px-3 py-1.5 rounded-lg border border-slate-200 hover:border-emerald-500 hover:text-emerald-700 bg-slate-50 font-medium transition-all cursor-pointer">
+              🎯 소모임 / 스터디
+            </button>
+          </div>
+
+          <!-- Interactive Inputs -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+            <div class="flex flex-col gap-1">
+              <label class="font-bold text-slate-700">1. 사이트 제목 또는 상호명</label>
+              <input type="text" id="w1-input-title" value="송도 소금빵 연구소" oninput="updateW1CustomPrompt()" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-slate-900 focus:outline-none focus:border-emerald-500 text-xs">
             </div>
-            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-1">
-              <strong class="text-slate-900">옵션 B. 고객을 위한 1인 명함</strong>
-              <p class="text-slate-600 text-[11px]">전문성과 제공 서비스 3가지, 연락처를 담은 비즈니스 프로필</p>
+            <div class="flex flex-col gap-1">
+              <label class="font-bold text-slate-700">2. 한 줄 슬로건 또는 핵심 소개</label>
+              <input type="text" id="w1-input-slogan" value="매일 아침 갓 구운 천연 발효종 건강 소금빵" oninput="updateW1CustomPrompt()" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-slate-900 focus:outline-none focus:border-emerald-500 text-xs">
             </div>
-            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-1">
-              <strong class="text-slate-900">옵션 C. 소모임·스터디 안내장</strong>
-              <p class="text-slate-600 text-[11px]">모임 일시, 장소, 준비물 3가지를 담은 정갈한 안내 카드</p>
+            <div class="flex flex-col gap-1 sm:col-span-2">
+              <label class="font-bold text-slate-700">3. 3가지 핵심 안내 항목 (줄바꿈 구분)</label>
+              <textarea id="w1-input-items" rows="3" oninput="updateW1CustomPrompt()" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-slate-900 focus:outline-none focus:border-emerald-500 text-xs font-mono">1. 시그니처 소금빵 (프랑스 게랑드 소금 & 고메 버터, 3,200원)
+2. 명란 크림치즈 바게트 (국내산 저염 백명란 사용, 5,500원)
+3. 수제 유기농 르방 식빵 (소화가 잘되는 천연 발효, 6,000원)</textarea>
             </div>
           </div>
 
-          <div class="p-4 rounded-xl bg-slate-50 text-slate-800 font-mono text-xs leading-relaxed border border-slate-200">
-            <div class="text-emerald-700 font-bold mb-1">// AI에게 보낼 내 선택 프롬프트 예시:</div>
-            "이 웹페이지는 [선택한 대상: 예: 잠재 클라이언트]를 위한 프로필 카드야.<br>
-            제목을 '[내가 정한 제목]'으로 바꾸고, 본문에 [내가 제공하는 핵심 가치 2가지]를 정갈한 불릿 포인트로 넣어줘.<br>
-            수정 후 전체 HTML 코드를 출력해 줘."
+          <!-- Live Generated Prompt Box -->
+          <div class="flex flex-col gap-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-emerald-800">실시간 조립된 나만의 맞춤 프롬프트</span>
+              <button onclick="copyPrompt('custom-prompt-1')" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all shadow-xs flex items-center gap-1 cursor-pointer">
+                맞춤 프롬프트 복사
+              </button>
+            </div>
+            <div id="custom-prompt-1" class="p-4 rounded-xl bg-slate-50 text-slate-800 font-mono text-xs leading-relaxed border border-slate-200 whitespace-pre-wrap"></div>
           </div>
         </section>
 
-        <!-- 4단계: 한계 실험 & 복구 (7분) -->
-        <section class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col gap-3">
+        <!-- 4단계: 한계 실험 & 2단계 무결점 복구 (7분) -->
+        <section class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col gap-4">
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
               <span class="w-5 h-5 rounded bg-emerald-600 text-white font-bold text-xs flex items-center justify-center">4</span>
-              <h3 class="font-bold text-sm sm:text-base text-slate-900">4단계 [17~24분] 한계 실험 & 3초 복구</h3>
+              <h3 class="font-bold text-sm sm:text-base text-slate-900">4단계 [17~24분] 한계 실험 & 2단계 무결점 복구</h3>
             </div>
             <span class="text-xs text-slate-500 font-medium">7분 실험</span>
           </div>
@@ -380,39 +496,85 @@
               <span><strong>초장문 제목 넣기:</strong> 제목 글자를 100자 이상 길게 넣고, 브라우저 창을 모바일 폭(375px)으로 줄여 줄바꿈이 정상 유지되는지 확인합니다.</span>
             </div>
             <div class="flex items-start gap-2">
-              <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold shrink-0">복구 2</span>
-              <span><strong>3초 타임머신 복구:</strong> 화면이 깨지면, 미리 복사해 둔 <code class="px-1.5 py-0.5 rounded bg-white border border-slate-200 font-mono text-slate-800">index_backup.html</code> 내용을 그대로 붙여넣어 즉시 원래 상태로 되돌립니다.</span>
+              <span class="px-2 py-0.5 rounded bg-amber-100 text-amber-800 font-bold shrink-0">위기 상황</span>
+              <span><strong>화면 깨짐 경험하기:</strong> 태그의 닫는 괄호 하나를 지웠을 때 화면이 어떻게 망가지는지 확인합니다. 두려워할 필요가 전혀 없습니다!</span>
+            </div>
+          </div>
+
+          <!-- 2-Tier Recovery Lab -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-2">
+              <strong class="text-slate-900 font-bold flex items-center gap-1.5">
+                <span class="w-4 h-4 rounded bg-slate-700 text-white flex items-center justify-center text-[10px]">A</span>
+                <span>1차 백업 복구 (내 작업본 복원)</span>
+              </strong>
+              <p class="text-[11px] text-slate-600 leading-relaxed">
+                실습 시작 전 복사해 둔 <code class="px-1 py-0.5 rounded bg-white border border-slate-200 font-mono text-slate-800">index_backup.html</code> 파일을 열어 전체 내용을 복사한 뒤, 깨진 <code class="px-1 py-0.5 rounded bg-white border border-slate-200 font-mono text-slate-800">index.html</code>에 덮어쓰고 저장합니다.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-emerald-50/60 border border-emerald-200 flex flex-col gap-2">
+              <strong class="text-emerald-900 font-bold flex items-center gap-1.5">
+                <span class="w-4 h-4 rounded bg-emerald-600 text-white flex items-center justify-center text-[10px]">B</span>
+                <span>2차 긴급 리셋 (100% 안전 탈출구)</span>
+              </strong>
+              <p class="text-[11px] text-emerald-800 leading-relaxed">
+                백업 파일마저 실수로 잃어버렸다면, 아래 버튼으로 아카데미 공식 순정 원본 코드를 즉시 복사하여 붙여넣으세요.
+              </p>
+              <button onclick="copyStarterKitCode()" class="mt-1 px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition-all shadow-xs flex items-center justify-center gap-1 cursor-pointer">
+                <span>🛡 순정 스타터 원본 1초 복구</span>
+              </button>
             </div>
           </div>
         </section>
 
-        <!-- 5단계: 성취 증명 (3분) -->
-        <section class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col gap-3">
+        <!-- 5단계: 정량적 성취 증명 & 과제 인증 (3분) -->
+        <section class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col gap-4">
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
               <span class="w-5 h-5 rounded bg-emerald-600 text-white font-bold text-xs flex items-center justify-center">5</span>
-              <h2 class="text-sm sm:text-base font-bold text-slate-900">5단계 [24~30분] 성취 증명: 셀프 체크</h2>
+              <h2 class="text-sm sm:text-base font-bold text-slate-900">5단계 [24~30분] 정량적 성취 검증 & 과제 인증</h2>
             </div>
-            <span class="text-xs text-emerald-700 font-bold">완료 확인</span>
+            <span id="w1-status-badge" class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-slate-600 border border-slate-200">
+              진행 중
+            </span>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-700">
-            <label class="flex items-center gap-2 p-3 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer">
-              <input type="checkbox" class="w-4 h-4 accent-emerald-600 rounded">
-              <span>백업 파일(index_backup.html)을 생성했다</span>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs text-slate-700">
+            <label class="flex items-start gap-2 p-3 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer">
+              <input type="checkbox" id="w1-chk-1" onchange="checkW1Tasks()" class="w-4 h-4 mt-0.5 accent-emerald-600 rounded">
+              <div class="flex flex-col">
+                <strong class="text-slate-800">1. 고유 콘텐츠 반영</strong>
+                <span class="text-[11px] text-slate-500">내 상호/제목, 슬로건, 3가지 메뉴 반영 완료</span>
+              </div>
             </label>
-            <label class="flex items-center gap-2 p-3 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer">
-              <input type="checkbox" class="w-4 h-4 accent-emerald-600 rounded">
-              <span>내 선택(옵션 A/B/C)으로 내용을 변경했다</span>
+            <label class="flex items-start gap-2 p-3 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer">
+              <input type="checkbox" id="w1-chk-2" onchange="checkW1Tasks()" class="w-4 h-4 mt-0.5 accent-emerald-600 rounded">
+              <div class="flex flex-col">
+                <strong class="text-slate-800">2. 모바일 반응형 통과</strong>
+                <span class="text-[11px] text-slate-500">스마트폰 폭(375px)에서 글자 잘림 없음</span>
+              </div>
             </label>
-            <label class="flex items-center gap-2 p-3 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer">
-              <input type="checkbox" class="w-4 h-4 accent-emerald-600 rounded">
-              <span>스마트폰 화면 폭에서 깨짐 테스트를 통과했다</span>
+            <label class="flex items-start gap-2 p-3 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer">
+              <input type="checkbox" id="w1-chk-3" onchange="checkW1Tasks()" class="w-4 h-4 mt-0.5 accent-emerald-600 rounded">
+              <div class="flex flex-col">
+                <strong class="text-slate-800">3. 복구 프로토콜 이수</strong>
+                <span class="text-[11px] text-slate-500">백업 파일 또는 순정 복구 직접 테스트 완료</span>
+              </div>
             </label>
-            <label class="flex items-center gap-2 p-3 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer">
-              <input type="checkbox" class="w-4 h-4 accent-emerald-600 rounded">
-              <span>3초 롤백 복구를 직접 실행해 보았다</span>
-            </label>
+          </div>
+
+          <!-- Assignment Submission Input -->
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+            <div class="flex flex-col gap-0.5">
+              <strong class="text-xs text-slate-900">1주차 과제 결과물 URL 등록</strong>
+              <p class="text-[11px] text-slate-500">Netlify Drop 배포 주소 또는 로컬 파일 완료 상태를 등록하세요.</p>
+            </div>
+            <div class="flex items-center gap-2 flex-1 sm:max-w-md">
+              <input type="text" id="w1-hw-url" placeholder="예: https://my-bakery.netlify.app" class="flex-1 px-3 py-2 rounded-xl border border-slate-200 text-xs text-slate-900 focus:outline-none focus:border-emerald-500">
+              <button onclick="submitWeek1Assignment()" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs whitespace-nowrap transition-all shadow-xs cursor-pointer">
+                과제 인증 완료
+              </button>
+            </div>
           </div>
         </section>
 
@@ -1279,15 +1441,156 @@
       }
     }
 
-    // Keyboard Listeners
+        // ==========================================
+    // Week 1 Interactive Toolkit & Prompt Customizer
+    // ==========================================
+    const w1Presets = {
+      bakery: {
+        title: "송도 소금빵 연구소",
+        slogan: "매일 아침 갓 구운 천연 발효종 건강 소금빵",
+        items: "1. 시그니처 소금빵 (프랑스 게랑드 소금 & 고메 버터, 3,200원)\n2. 명란 크림치즈 바게트 (국내산 저염 백명란 사용, 5,500원)\n3. 수제 유기농 르방 식빵 (소화가 잘되는 천연 발효, 6,000원)"
+      },
+      profile: {
+        title: "데이터 컨설턴트 김송도",
+        slogan: "숫자 뒤에 숨은 실전 비즈니스 기회를 발굴합니다",
+        items: "1. AI 기반 실시간 매출 분석 대시보드 구축\n2. 노코드 자동화 파이프라인 설계 및 도입\n3. 스타트업 1:1 그로스 마케팅 컨설팅"
+      },
+      community: {
+        title: "송도 센트럴파크 러닝 크루 (SPRC)",
+        slogan: "바다 바람을 가르며 함께 달리는 건강한 주말 루틴",
+        items: "1. 매주 토요일 오전 7시 센트럴파크 잔디광장 집결\n2. 5km 초보자 페이스 / 10km 중급자 페이스 그룹 분리 운영\n3. 러닝 후 인근 브런치 카페 네트워킹 & 수다"
+      }
+    };
+
+    function applyW1Preset(type) {
+      const p = w1Presets[type];
+      if (!p) return;
+      const titleEl = document.getElementById('w1-input-title');
+      const sloganEl = document.getElementById('w1-input-slogan');
+      const itemsEl = document.getElementById('w1-input-items');
+      if (titleEl) titleEl.value = p.title;
+      if (sloganEl) sloganEl.value = p.slogan;
+      if (itemsEl) itemsEl.value = p.items;
+      updateW1CustomPrompt();
+      showToast(`${p.title} 프리셋이 적용되었습니다.`);
+    }
+
+    function updateW1CustomPrompt() {
+      const title = document.getElementById('w1-input-title')?.value.trim() || '내 프로젝트 이름';
+      const slogan = document.getElementById('w1-input-slogan')?.value.trim() || '내 프로젝트 슬로건';
+      const items = document.getElementById('w1-input-items')?.value.trim() || '1. 첫 번째 항목\n2. 두 번째 항목\n3. 세 번째 항목';
+      
+      const promptBox = document.getElementById('custom-prompt-1');
+      if (!promptBox) return;
+
+      const itemsFormatted = items.split('\n').map(line => '     * ' + line.trim()).join('\n');
+
+      const promptText = `너는 시니어 웹 퍼블리셔이자 초보자를 돕는 코딩 디렉터야.
+내가 아래 제공하는 [HTML 원본 코드]의 레이아웃과 감각적인 Tailwind CSS 스타일은 그대로 유지하면서, 내 내용으로 완벽히 교체해 줘.
+
+[엄격한 출력 규칙]
+1. \`/* 생략 */\`이나 \`<!-- 이전과 동일 -->\` 같은 축약은 절대 금지한다. <!DOCTYPE html>부터 </html>까지 전체 코드를 한 글자도 빠짐없이 완전하게 출력해 줘.
+2. 기존 Tailwind CSS 색상 팔레트와 Wanted Sans 폰트, 반응형 그리드 구조는 그대로 유지해.
+3. 아래 정보를 정확하게 반영해 줘:
+   - 메인 타이틀: ${title}
+   - 서브 슬로건: ${slogan}
+   - 핵심 소개 3가지:
+${itemsFormatted}
+
+[HTML 원본 코드]
+(여기에 starter-kit/index.html 코드 붙여넣기)`;
+
+      promptBox.innerText = promptText;
+    }
+
+    async function copyStarterKitCode() {
+      try {
+        const res = await fetch('/courseware/starter-kit/index.html');
+        if (!res.ok) throw new Error('파일 로드 실패');
+        const text = await res.text();
+        await navigator.clipboard.writeText(text);
+        showToast("순정 starter-kit/index.html 코드가 복사되었습니다!");
+      } catch (err) {
+        showToast("순정 스타터 코드를 브라우저 새 창에서 확인하세요.");
+        window.open('/courseware/starter-kit/index.html', '_blank');
+      }
+    }
+
+    function checkW1Tasks() {
+      const c1 = document.getElementById('w1-chk-1')?.checked;
+      const c2 = document.getElementById('w1-chk-2')?.checked;
+      const c3 = document.getElementById('w1-chk-3')?.checked;
+      const badge = document.getElementById('w1-status-badge');
+      if (!badge) return;
+
+      const checkedCount = [c1, c2, c3].filter(Boolean).length;
+      if (checkedCount === 3) {
+        badge.className = "px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300";
+        badge.innerText = "검증 완료 (과제 제출 가능)";
+      } else {
+        badge.className = "px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-slate-600 border border-slate-200";
+        badge.innerText = `진행 중 (${checkedCount}/3)`;
+      }
+    }
+
+    function submitWeek1Assignment() {
+      const input = document.getElementById('w1-hw-url');
+      if (!input) return;
+      const url = input.value.trim();
+      if (!url) {
+        alert('과제 결과물 URL 또는 완료 메모를 입력해 주세요.');
+        input.focus();
+        return;
+      }
+      localStorage.setItem('songdo_w1_submission', url);
+      const badge = document.getElementById('w1-status-badge');
+      if (badge) {
+        badge.className = "px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-600 text-white shadow-xs";
+        badge.innerText = "✅ 1주차 통과 완료";
+      }
+      showToast("1주차 과제 인증이 완료되었습니다!");
+    }
+
+    function initWeek1State() {
+      updateW1CustomPrompt();
+      const savedUrl = localStorage.getItem('songdo_w1_submission');
+      if (savedUrl) {
+        const input = document.getElementById('w1-hw-url');
+        if (input) input.value = savedUrl;
+        const badge = document.getElementById('w1-status-badge');
+        if (badge) {
+          badge.className = "px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-600 text-white shadow-xs";
+          badge.innerText = "✅ 1주차 통과 완료";
+        }
+        const c1 = document.getElementById('w1-chk-1');
+        const c2 = document.getElementById('w1-chk-2');
+        const c3 = document.getElementById('w1-chk-3');
+        if (c1) c1.checked = true;
+        if (c2) c2.checked = true;
+        if (c3) c3.checked = true;
+      }
+    }
+
+    // Call on load
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initWeek1State);
+    } else {
+      initWeek1State();
+    }
+
+    // Keyboard Listeners (P0 Collision-Safe)
     window.addEventListener('keydown', (e) => {
-      if (e.target && e.target.isContentEditable) {
+      // Ignore if typing inside form inputs, textareas, selects, or contenteditable
+      if (e.target && (e.target.isContentEditable || ['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName))) {
         if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
           e.preventDefault();
           saveLessonToServer();
         }
         return;
       }
+
+      // Ignore IME composition
+      if (e.isComposing) return;
 
       if (['1', '2', '3', '4', '5', '6'].includes(e.key)) {
         switchWeek(parseInt(e.key));
