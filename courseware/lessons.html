@@ -111,31 +111,7 @@
   </div>
 
   
-  <!-- INLINE STORY VIDEO MODAL (Watch directly inside lesson) -->
-  <div id="story-video-modal" class="hidden fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-xs flex items-center justify-center p-4">
-    <div class="w-full max-w-sm sm:max-w-md bg-white rounded-3xl p-5 shadow-2xl border border-slate-200 flex flex-col gap-4">
-      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-        <div class="flex items-center gap-2">
-          <span class="w-2.5 h-2.5 rounded-full bg-emerald-600"></span>
-          <strong class="text-sm font-bold text-slate-900">민우(12세)의 37초 실전 스토리</strong>
-        </div>
-        <button onclick="closeStoryVideoModal()" class="w-7 h-7 rounded-lg hover:bg-slate-100 text-slate-500 font-bold flex items-center justify-center text-sm cursor-pointer">
-          &times;
-        </button>
-      </div>
 
-      <div class="w-full aspect-[9/16] max-h-[500px] rounded-2xl overflow-hidden bg-black flex items-center justify-center">
-        <video id="modalStoryVideo" src="/assets/story/vrew_story.mp4" poster="/assets/story/vrew_poster.jpg" controls playsinline class="w-full h-full object-cover"></video>
-      </div>
-
-      <div class="flex items-center justify-between text-xs text-slate-500 pt-1">
-        <span>6개월 장난감 코딩 &rarr; 30분 실전 계산기 배포</span>
-        <button onclick="closeStoryVideoModal()" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs">
-          닫기
-        </button>
-      </div>
-    </div>
-  </div>
 
   <!-- TOP HEADER -->
   <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-slate-200 px-6 sm:px-10 h-14 flex items-center justify-between">
@@ -265,32 +241,7 @@
           </p>
         </div>
 
-        <!-- 1주차 동기부여 영상 카드 (Light Mode) -->
-        <div class="p-5 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-5">
-          <div class="flex items-center gap-4">
-            <div class="w-20 h-14 rounded-xl overflow-hidden bg-slate-100 shrink-0 border border-slate-200 relative">
-              <img src="/assets/story/vrew_poster.jpg" alt="민우 스토리 포스터" class="w-full h-full object-cover">
-              <div class="absolute inset-0 flex items-center justify-center bg-black/30">
-                <span class="w-6 h-6 rounded-full bg-white text-emerald-700 flex items-center justify-center text-xs font-black shadow-sm">▶</span>
-              </div>
-            </div>
-            <div class="flex flex-col gap-0.5">
-              <span class="px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 font-bold text-[10px] w-fit border border-emerald-200">
-                1주차 오리엔테이션 영상
-              </span>
-              <strong class="text-sm font-bold text-slate-900">"30분 만에 실전 웹 도구를 완성하고 배포하는 37초 시연"</strong>
-              <p class="text-xs text-slate-500">어려운 문법 암기 없이 자연어 지시와 안전 롤백으로 완성하는 실전 웹 배포</p>
-            </div>
-          </div>
-          <div class="flex items-center gap-2 shrink-0">
-            <button onclick="openStoryVideoModal()" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center gap-1.5 transition-all shadow-xs cursor-pointer">
-              <span>▶ 37초 영상 재생</span>
-            </button>
-            <a href="/landing.html#section-story-video" target="_blank" class="px-3 py-2 rounded-xl border border-slate-200 hover:bg-slate-100 text-slate-600 text-xs font-semibold">
-              새 창
-            </a>
-          </div>
-        </div>
+
 
         <!-- 실습 준비 툴킷 & 파일 워크플로우 카드 -->
         <section class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col gap-4">
@@ -359,7 +310,7 @@
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
               <span class="w-5 h-5 rounded bg-emerald-600 text-white font-bold text-xs flex items-center justify-center shrink-0">1</span>
-              <h2 class="font-bold text-sm sm:text-base text-slate-900">1단계 [0~3분] 학습 목표: "AI는 손발이 없는 천재 신입 인턴입니다"</h2>
+              <h2 class="font-bold text-sm sm:text-base text-slate-900">1단계 [0~3분] 학습 목표: "AI에게 코딩을 시키는 가장 쉬운 방법"</h2>
             </div>
             <span class="text-xs text-slate-400">3분</span>
           </div>
@@ -1580,7 +1531,7 @@
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
               <span class="w-5 h-5 rounded bg-emerald-600 text-white font-bold text-xs flex items-center justify-center shrink-0">1</span>
-              <h2 class="font-bold text-sm sm:text-base text-slate-900">1단계 [0~3분] 학습 목표: "남의 코드를 흉내 내는 사람에서, 내 프로덕트를 지닌 디렉터로"</h2>
+              <h2 class="font-bold text-sm sm:text-base text-slate-900">1단계 [0~3분] 학습 목표: "남의 강의만 구경하던 사람에서, 내 도구를 직접 완성하는 제작자로"</h2>
             </div>
             <span class="text-xs text-slate-400">3분</span>
           </div>
@@ -1619,7 +1570,7 @@
    - apple-mobile-web-app-capable: yes
    - apple-mobile-web-app-status-bar-style: default
    - theme-color: "#ffffff"
-3. 코드는 생략 없이 완성된 전체 index.html로 출력해 줘.
+3. [절대 원칙] 코드 중간을 생략하거나 부분 조각만 주지 마라. 초보자가 메모장에 통째로 덮어쓸 수 있도록 <!DOCTYPE html>부터 </html>까지 완전한 완성형 전체 index.html 코드를 한 번에 출력해 줘.
           </div>
         </section>
 
@@ -1734,7 +1685,7 @@
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
               <span class="w-5 h-5 rounded bg-emerald-600 text-white font-bold text-xs flex items-center justify-center">5</span>
-              <h2 class="text-sm sm:text-base font-bold text-slate-900">5단계 [24~30분] 4대 핵심 역량 검증 & 최종 수료</h2>
+              <h2 class="text-sm sm:text-base font-bold text-slate-900">5단계 [24~30분] 4대 최종 점검표 확인 & 수료증 발급</h2>
             </div>
             <span id="w6-status-badge" class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-slate-600 border border-slate-200">진행 중 (0/4)</span>
           </div>
@@ -1743,28 +1694,28 @@
             <label class="flex items-start gap-2.5 p-3.5 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer hover:bg-slate-100 transition-colors">
               <input type="checkbox" id="w6-chk-1" onchange="checkW6Tasks()" class="w-4 h-4 mt-0.5 accent-emerald-600 rounded">
               <div class="flex flex-col">
-                <strong class="font-bold text-slate-900">EVAL 1. 컨텍스트 제어력</strong>
+                <strong class="font-bold text-slate-900">1. 팩트 기반 문서 제어</strong>
                 <span class="text-slate-500 text-[11px]">내 문서 3단 카드 결합 및 AI 거짓말 방어 완료</span>
               </div>
             </label>
             <label class="flex items-start gap-2.5 p-3.5 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer hover:bg-slate-100 transition-colors">
               <input type="checkbox" id="w6-chk-2" onchange="checkW6Tasks()" class="w-4 h-4 mt-0.5 accent-emerald-600 rounded">
               <div class="flex flex-col">
-                <strong class="font-bold text-slate-900">EVAL 2. 안티슬롭 2색 준수</strong>
+                <strong class="font-bold text-slate-900">2. 단정한 2색 디자인</strong>
                 <span class="text-slate-500 text-[11px]">보라색 네온 퇴치 & 단 2색 정돈 완료</span>
               </div>
             </label>
             <label class="flex items-start gap-2.5 p-3.5 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer hover:bg-slate-100 transition-colors">
               <input type="checkbox" id="w6-chk-3" onchange="checkW6Tasks()" class="w-4 h-4 mt-0.5 accent-emerald-600 rounded">
               <div class="flex flex-col">
-                <strong class="font-bold text-slate-900">EVAL 3. 실시간 계산 인터랙션</strong>
+                <strong class="font-bold text-slate-900">3. 실시간 자동 계산 기능</strong>
                 <span class="text-slate-500 text-[11px]">수량 증감 및 합계 자동 연산 완료</span>
               </div>
             </label>
             <label class="flex items-start gap-2.5 p-3.5 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer hover:bg-slate-100 transition-colors">
               <input type="checkbox" id="w6-chk-4" onchange="checkW6Tasks()" class="w-4 h-4 mt-0.5 accent-emerald-600 rounded">
               <div class="flex flex-col">
-                <strong class="font-bold text-slate-900">EVAL 4. 영구 0원 배포 & PWA</strong>
+                <strong class="font-bold text-slate-900">4. 무료 배포 & 모바일 홈 설치</strong>
                 <span class="text-slate-500 text-[11px]">추가 서버비 0원으로 스마트폰 홈 화면 설치 완료</span>
               </div>
             </label>
@@ -1807,23 +1758,7 @@
 
   <script>
     
-    function openStoryVideoModal() {
-      const modal = document.getElementById('story-video-modal');
-      const video = document.getElementById('modalStoryVideo');
-      if (modal) {
-        modal.classList.remove('hidden');
-        if (video) video.play().catch(() => {});
-      }
-    }
 
-    function closeStoryVideoModal() {
-      const modal = document.getElementById('story-video-modal');
-      const video = document.getElementById('modalStoryVideo');
-      if (modal) {
-        modal.classList.add('hidden');
-        if (video) video.pause();
-      }
-    }
 
     // Week Switcher
     function switchWeek(weekNum) {
