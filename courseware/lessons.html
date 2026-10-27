@@ -67,6 +67,24 @@
       display: flex;
     }
   </style>
+
+<script>
+  // If embedded in index.html, hide duplicate header
+  if (window.self !== window.top) {
+    document.addEventListener('DOMContentLoaded', () => {
+      const h = document.querySelector('header');
+      if (h) h.style.display = 'none';
+    });
+  }
+  // Reveal edit button only when ?edit=1 is present
+  document.addEventListener('DOMContentLoaded', () => {
+    if (new URLSearchParams(window.location.search).get('edit') === '1') {
+      const btn = document.getElementById('lesson-edit-trigger-btn');
+      if (btn) btn.style.display = 'inline-flex';
+    }
+  });
+</script>
+
 </head>
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between">
 
@@ -134,7 +152,7 @@
 
     <!-- Right Controls -->
     <div class="flex items-center gap-2">
-      <button onclick="toggleLessonEditMode()" title="교안 내용 직접 수정 (단축키 E)" class="px-3 py-1.5 rounded-lg border border-slate-200 hover:bg-slate-100 text-slate-700 text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer">
+      <button id="lesson-edit-trigger-btn" style="display:none;" onclick="toggleLessonEditMode()" title="교안 내용 직접 수정 (단축키 E)" class="px-3 py-1.5 rounded-lg border border-slate-200 hover:bg-slate-100 text-slate-700 text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer">
         <span id="edit-btn-text">교안 수정 (E)</span>
       </button>
     </div>
@@ -221,9 +239,7 @@
       </nav>
 
       <div class="pt-2 border-t border-slate-100 text-[11px] text-slate-400 flex flex-col gap-1 px-1">
-        <span>단축키: 숫자 1 ~ 6번</span>
-        <span>직접 수정: E</span>
-        <span>저장: Ctrl + S</span>
+        <span>단축키: 숫자 1 ~ 6번 (주차 전환)</span>
       </div>
     </aside>
 
@@ -262,8 +278,8 @@
               <span class="px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 font-bold text-[10px] w-fit border border-emerald-200">
                 1주차 오리엔테이션 영상
               </span>
-              <strong class="text-sm font-bold text-slate-900">"12살 아이가 아빠 가게 계산기를 만드는 37초 실전 스토리"</strong>
-              <p class="text-xs text-slate-500">6개월 장난감 코딩에서 벗어나 실전 계산기를 만든 감동 스토리</p>
+              <strong class="text-sm font-bold text-slate-900">"30분 만에 실전 웹 도구를 완성하고 배포하는 37초 시연"</strong>
+              <p class="text-xs text-slate-500">어려운 문법 암기 없이 자연어 지시와 안전 롤백으로 완성하는 실전 웹 배포</p>
             </div>
           </div>
           <div class="flex items-center gap-2 shrink-0">
@@ -1594,7 +1610,7 @@ ${itemsFormatted}
 
       if (['1', '2', '3', '4', '5', '6'].includes(e.key)) {
         switchWeek(parseInt(e.key));
-      } else if (e.key.toLowerCase() === 'e') {
+      } else if (e.key.toLowerCase() === 'e' && new URLSearchParams(window.location.search).get('edit') === '1') {
         e.preventDefault();
         toggleLessonEditMode();
       } else if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
