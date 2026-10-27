@@ -11,7 +11,7 @@
 | 화면 / 파일명 | 용도 및 설명 | 라이브 링크 |
 |---|---|---|
 | **`index.html`** | **통합 대시보드 (대문)**: 모든 6개 화면을 카드로 보여주는 포털 | [열기](https://songdo-ai.pages.dev/) |
-| **`landing.html`** | **수강생 모집 랜딩페이지**: 30분 성공 루프, 37초 스토리 영상, 1초 신청 팝업 | [열기](https://songdo-ai.pages.dev/landing.html) |
+| **`landing.html`** | **수강생 모집 랜딩페이지**: 30분 성공 루프, 10초 실시간 계산기 시뮬레이터, 1초 무료 신청 팝업 | [열기](https://songdo-ai.pages.dev/landing.html) |
 | **`courseware/lessons.html`** | **6주 실전 강의실**: 30분 마이크로 루프 교안, 인터랙티브 프롬프트 조립기, 2단계 복구 실험실 | [열기](https://songdo-ai.pages.dev/courseware/lessons.html) |
 | **`process.html`** | **공정 로드맵 & 의사결정 계통도**: 기획부터 배포까지의 모든 연결 흐름 | [열기](https://songdo-ai.pages.dev/process.html) |
 | **`diagnostic.html`** | **12문항 AI 정밀 진단**: 수강 전 실전자립도 측정 및 즉시 인증서 발급 | [열기](https://songdo-ai.pages.dev/diagnostic.html) |
