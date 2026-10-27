@@ -188,89 +188,7 @@
  <!-- ========================================================
  2. DAY-1 WIN SIMULATION (Interactive Live Preview)
  ======================================================== -->
- <!-- ========================================================
- 1.5. ANIMATED SHORTS & 4-CUT WEBTOON (High-Converting Video & Comic)
- ======================================================== -->
- <section id="section-story-video" class="py-10 px-6 sm:px-10 max-w-5xl mx-auto scroll-reveal">
- <div class="p-6 sm:p-10 rounded-3xl bg-white text-slate-900 shadow-sm border border-slate-200 flex flex-col gap-6">
  
- <div class="flex flex-col items-center text-center gap-1.5 border-b border-slate-100 pb-4">
- <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 font-bold text-xs">
- <span>⚡</span> <span>37초 시연 영상</span>
- </div>
- <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
- "코딩 몰라도 30분 만에 웹사이트가 완성되는 법"
- </h2>
- <p class="text-xs sm:text-sm text-slate-500">
- 외주 맡기지 않고, AI를 똑똑한 비서로 쓰는 4단계 순서입니다.
- </p>
- </div>
-
- <div id="storyReelContainer" class="flex flex-col lg:flex-row items-center justify-center gap-8 py-2">
- 
- <!-- Smartphone Mockup Frame -->
- <div class="relative w-full max-w-[290px] sm:max-w-[310px] aspect-[9/16] rounded-[38px] bg-slate-950 p-2.5 shadow-xl border-[5px] border-slate-800 flex flex-col overflow-hidden shrink-0">
- <div class="absolute top-3 left-1/2 -translate-x-1/2 z-30 w-20 h-3.5 bg-slate-900 rounded-full flex items-center justify-center">
- <div class="w-8 h-1 bg-slate-700 rounded-full"></div>
- </div>
-
- <div class="relative w-full h-full rounded-[28px] overflow-hidden bg-black flex items-center justify-center">
- <video id="vrewVideoPlayer" src="/assets/story/vrew_story.mp4" poster="/assets/story/vrew_poster.jpg" autoplay="" muted="" playsinline="" loop="" controls="" class="w-full h-full object-cover"></video>
- <button onclick="toggleVrewAudio()" id="vrewAudioBtn" class="absolute top-8 right-3 z-30 px-3 py-1 rounded-full bg-black/80 hover:bg-black border border-emerald-400 text-white text-[11px] font-bold backdrop-blur flex items-center gap-1 cursor-pointer">
- <span id="vrewAudioIcon">🔇</span> <span id="vrewAudioText">소리 켜기</span>
- </button>
- </div>
- </div>
-
- <!-- 4 Simple Steps -->
- <div class="flex flex-col gap-4 max-w-lg text-left">
- <div class="flex flex-col gap-1">
- <span class="text-xs font-bold text-emerald-600">배우는 순서</span>
- <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 leading-snug">
- 한국어로 말하고 확인하는<br>가장 쉬운 4단계 방법
- </h3>
- <p class="text-xs text-slate-500">
- 영어나 코딩 기호는 몰라도 됩니다. 원하는 모양을 말하고 고치는 습관을 배웁니다.
- </p>
- </div>
-
- <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
- <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col gap-1">
- <span class="text-emerald-700 font-bold text-[10px]">1단계</span>
- <strong class="text-slate-900 font-bold text-sm">반복 업무 줄이기</strong>
- <p class="text-slate-500 text-[11px]">매번 엑셀과 카톡으로 하던 일 자동화</p>
- </div>
- <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col gap-1">
- <span class="text-emerald-700 font-bold text-[10px]">2단계</span>
- <strong class="text-slate-900 font-bold text-sm">오류 걱정 없애기</strong>
- <p class="text-slate-500 text-[11px]">화면이 멈춰도 AI에게 물어보면 즉시 해결</p>
- </div>
- <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col gap-1">
- <span class="text-emerald-700 font-bold text-[10px]">3단계</span>
- <strong class="text-slate-900 font-bold text-sm">3초 만에 되돌리기</strong>
- <p class="text-slate-500 text-[11px]">실수해도 이전 상태로 바로 원상복구</p>
- </div>
- <div class="p-3.5 rounded-2xl bg-emerald-50/60 border border-emerald-200 flex flex-col gap-1">
- <span class="text-emerald-800 font-bold text-[10px]">4단계</span>
- <strong class="text-emerald-900 font-bold text-sm">인터넷 주소 획득</strong>
- <p class="text-emerald-800 text-[11px]">스마트폰 링크로 가족과 고객에게 공유</p>
- </div>
- </div>
-
- <div class="flex items-center gap-2 pt-1">
- <button onclick="toggleVrewAudio()" class="px-3.5 py-2 rounded-xl bg-white hover:bg-slate-50 text-slate-700 font-medium text-xs border border-slate-300 cursor-pointer">
- 🔊 소리 켜기 / 끄기
- </button>
- <button onclick="openApplyModal()" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs cursor-pointer">
- 무료 수강 신청은 ohahbuji에게 연락하세요 &rarr;
- </button>
- </div>
- </div>
-
- </div>
-
- </div>
- </section>
 
  <!-- ========================================================
  2. DAY-1 WIN SIMULATION (Interactive 10-Second Live Preview)
@@ -810,86 +728,6 @@
  <!-- STORY REEL & 10-SEC SIMULATOR SCRIPT -->
  <script>
  // ========================================================
- // 1. ANIMATED SHORTS STORY REEL ENGINE
- // ========================================================
- const STORY_SCENES = [
- {
- cut: "SCENE 01 / 04 · 반복 수작업의 한계",
- image: "/assets/story/scene1.jpg",
- video: "/assets/story/scene1.mp4",
- avatar: "📊",
- character: "비전공자 직장인",
- dialogue: '"매번 엑셀과 카톡으로 반복하던 견적 안내를 내 손으로 자동화하고 싶었습니다"',
- subtitle: "비싼 외주 개발비 없이 내 업무에 꼭 맞는 전용 웹 도구가 절실했던 순간...",
- sound: "blip"
- },
- {
- cut: "SCENE 02 / 04 · 코드 수정 중 에러 직면",
- image: "/assets/story/scene2.jpg",
- video: "/assets/story/scene2.mp4",
- avatar: "⚠️",
- character: "실습 도전자",
- dialogue: '"코드 한 줄 고쳤더니 화면이 멈춰서 어떻게 해야 할지 막막했습니다"',
- subtitle: "원인을 몰라 헤매던 에러도 4단계 전달법을 알면 AI가 즉시 명쾌하게 진단합니다.",
- sound: "error"
- },
- {
- cut: "SCENE 03 / 04 · 3초 안전 롤백 원복",
- image: "/assets/story/scene3.jpg",
- video: "/assets/story/scene3.mp4",
- avatar: "🛡️",
- character: "디렉터 멘토",
- dialogue: '"당황하지 마세요. 3초 타임머신 백업으로 언제든 정상 복구가 가능합니다!"',
- subtitle: "실패에 대한 두려움 없이 과감하게 기능을 붙이고 실험하는 든든한 안전망.",
- sound: "magic"
- },
- {
- cut: "SCENE 04 / 04 · 실전 웹 도구 당일 런칭",
- image: "/assets/story/scene4.jpg",
- video: "/assets/story/scene4.mp4",
- avatar: "🚀",
- character: "자립 수료생",
- dialogue: '"스마트폰에서 링크로 바로 열리는 내 전용 계산기가 드디어 완성되었습니다!"',
- subtitle: "내 이름의 URL 주소로 고객과 동료에게 당당히 공유하는 진짜 실전 웹 도구 완성!",
- sound: "victory"
- }
- ];
-
- let currentStoryIdx = 0;
- let isStoryPlaying = true;
- let isStoryAudioOn = false;
- let storyProgress = 0;
- const SCENE_DURATION_MS = 4000;
- const TICK_INTERVAL_MS = 50;
-
- function toggleVrewAudio() {
- const v = document.getElementById('vrewVideoPlayer');
- const icon = document.getElementById('vrewAudioIcon');
- const text = document.getElementById('vrewAudioText');
- if (!v) return;
- v.muted = !v.muted;
- if (!v.muted) {
- if (icon) icon.innerText = '🔊';
- if (text) text.innerText = '소리 끄기';
- v.volume = 1.0;
- v.play().catch(() => {});
- } else {
- if (icon) icon.innerText = '🔇';
- if (text) text.innerText = '소리 켜기';
- }
- }
-
- function toggleVrewPlay() {
- const v = document.getElementById('vrewVideoPlayer');
- if (!v) return;
- if (v.paused) {
- v.play().catch(() => {});
- } else {
- v.pause();
- }
- }
-
-  // ========================================================
  // 2. INTERACTIVE 10-SECOND LIVE FAMILY SIMULATOR
  // ========================================================
  let demoCounts = { consult: 1, report: 1 };
@@ -990,7 +828,7 @@
 
       // 2. High-Accuracy Scroll Spy for Navigation
       const navLinks = document.querySelectorAll('.nav-spy-link');
-      const sectionIds = ['section-hero', 'section-story-video', 'section-day1', 'section-roadmap', 'section-tuition', 'section-faq'];
+      const sectionIds = ['section-hero', 'section-day1', 'section-roadmap', 'section-tuition', 'section-faq'];
       const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
 
       function updateActiveNav() {
@@ -1012,7 +850,7 @@
 
         // Map section-story-video to day1 or hero if needed
         let targetNavKey = activeSecId;
-        if (targetNavKey === 'section-story-video') targetNavKey = 'section-day1';
+        
 
         navLinks.forEach(link => {
           const secAttr = link.getAttribute('data-section');
