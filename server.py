@@ -23,6 +23,39 @@ def load_env():
                     key, val = line.split('=', 1)
                     os.environ[key.strip()] = val.strip().strip('"').strip("'")
 
+def send_telegram_notification(record):
+    """Send real-time Telegram push notification when a new application is submitted."""
+    bot_token = os.environ.get('TELEGRAM_BOT_TOKEN')
+    chat_id = os.environ.get('TELEGRAM_CHAT_ID')
+    if not bot_token or not chat_id:
+        return
+    try:
+        import urllib.request
+        import json
+        msg = (
+            f"🔔 <b>[송도 AI 아카데미] 무료 수강 신청 접수!</b>\n\n"
+            f"👤 <b>신청자 성함:</b> {record.get('name')}\n"
+            f"📞 <b>연락처:</b> {record.get('phone')}\n"
+            f"🎯 <b>신청 트랙:</b> {record.get('track')}\n"
+            f"📝 <b>희망 내용/질문:</b> {record.get('note') or '(없음)'}\n"
+            f"⏰ <b>신청 일시:</b> {record.get('created_at')}\n\n"
+            f"👉 확인 후 수강생에게 안내 연락을 진행해 주세요!"
+        )
+        data = json.dumps({
+            "chat_id": chat_id,
+            "text": msg,
+            "parse_mode": "HTML"
+        }).encode('utf-8')
+        req = urllib.request.Request(
+            f"https://api.telegram.org/bot{bot_token}/sendMessage",
+            data=data,
+            headers={"Content-Type": "application/json"}
+        )
+        urllib.request.urlopen(req, timeout=5)
+        print(f"[Telegram Notification Sent] To chat_id: {chat_id}")
+    except Exception as te:
+        print(f"[Telegram Notification Error] {te}")
+
 
 # ============================================================================
 # Deep Module 1: ContentStore
