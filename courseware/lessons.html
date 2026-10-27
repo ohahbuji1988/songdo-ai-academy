@@ -596,15 +596,15 @@
 
       </article>
 
-      <!-- ========================================================
-           WEEK 02 LESSON
+            <!-- ========================================================
+           WEEK 02 LESSON (Gold Standard Interactive Loop)
            ======================================================== -->
       <article id="lesson-w2" class="lesson-content flex-col gap-6">
         
         <!-- Header -->
         <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col gap-2">
           <div class="flex items-center justify-between text-xs">
-            <span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 font-bold border border-emerald-200">2주차 · 문맥 통제</span>
+            <span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 font-bold border border-emerald-200">2주차 · 문맥 통제 (Grounding)</span>
             <span class="text-slate-400 text-xs">총 실습 시간: 약 30분</span>
           </div>
           <h1 class="text-xl sm:text-2xl font-extrabold text-slate-900 leading-snug">
@@ -613,6 +613,22 @@
           <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
             AI에게 내 메모나 업무 규정을 건네주고 "없는 이야기는 절대 지어내지 마"라고 울타리를 칩니다. 요약 문장마다 [출처]를 인용하는 3단 카드를 웹에 결합합니다.
           </p>
+        </div>
+
+        <!-- 실습 준비 도구 안내 -->
+        <div class="p-5 rounded-2xl bg-emerald-50/40 border border-emerald-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <span class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-lg shrink-0">📋</span>
+            <div class="flex flex-col">
+              <strong class="text-slate-900 text-sm font-bold">2주차 준비물: 내 회사/가게 안내 메모 3줄</strong>
+              <p class="text-slate-600 text-xs">메모가 없어도 아래 3대 추천 프리셋(매장, 상담, 동호회)을 누르면 바로 실습할 수 있습니다.</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 text-xs">
+            <span class="px-3 py-1 rounded-full bg-white text-emerald-800 font-bold border border-emerald-300 shadow-2xs">
+              크롬 + 메모장
+            </span>
+          </div>
         </div>
 
         <!-- 1단계: 목표 (3분) -->
@@ -629,7 +645,7 @@
               AI는 모르는 질문을 받으면 그럴듯한 거짓말(환각)을 지어냅니다.
             </p>
             <p>
-              해결책은 명확합니다: <strong>"내가 준 문서 안에서만 찾아서 답하고, 없는 내용은 모른다고 답해"</strong>라는 제약을 걸어주는 것입니다.
+              해결책은 명확합니다: <strong>"내가 준 문서 안에서만 찾아서 답하고, 없는 내용은 모른다고 답해"</strong>라는 3대 제약을 걸어주는 것입니다.
             </p>
           </div>
         </section>
@@ -656,37 +672,85 @@
 3. 모든 요약 문장 끝에는 반드시 원문의 출처(단락 제목이나 조항)를 [출처: ...] 형태로 명기해.
 
 [요약 형식: 3단 카드 규격]
-- CARD 01 [핵심 배경과 목적]: 2문장 요약 + [출처]
-- CARD 02 [해결책 및 주요 데이터]: 2문장 요약 + [출처]
-- CARD 03 [주의사항 및 실행 팁]: 2문장 요약 + [출처]
+- CARD 01 [핵심 안내]: 2문장 요약 + [출처: 운영방침 1항]
+- CARD 02 [해결책 및 주요 데이터]: 2문장 요약 + [출처: 운영방침 2항]
+- CARD 03 [주의사항 및 환불]: 2문장 요약 + [출처: 운영방침 3항]
 
 [참고 원문 문서]
-(여기에 내 안내문, 메모, 기획서 텍스트 500자 붙여넣기)
+(아래 3단계 조립기에서 내 문서 3줄을 넣어 조합하세요)
           </div>
         </section>
 
-        <!-- 3단계: 내 선택으로 수정 (9분) -->
-        <section class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col gap-3">
+        <!-- 3단계: 내 선택으로 수정 (인터랙티브 동적 조립기) (9분) -->
+        <section class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col gap-4">
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
               <span class="w-5 h-5 rounded bg-emerald-600 text-white font-bold text-xs flex items-center justify-center">3</span>
-              <h3 class="font-bold text-sm sm:text-base text-slate-900">3단계 [8~17분] 나만의 결정: 내 문서로 3단 카드 만들기</h3>
+              <h3 class="font-bold text-sm sm:text-base text-slate-900">3단계 [8~17분] 나만의 결정: 실시간 규정 문서 조립기</h3>
             </div>
             <span class="text-xs text-slate-500 font-medium">9분 집중</span>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
-            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-1">
-              <strong class="text-slate-900">옵션 A. 매장·가게 이용 안내문</strong>
-              <p class="text-slate-600 text-[11px]">영업시간, 주차 방법, 환불 규정 3단 카드</p>
+          <!-- 추천 프리셋 3종 -->
+          <div class="flex flex-col gap-2">
+            <span class="text-xs font-bold text-slate-700">추천 프리셋 (1초 만에 불러오기):</span>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+              <button onclick="applyW2Preset('store')" class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-emerald-50 hover:border-emerald-300 text-left transition-all cursor-pointer">
+                <strong class="text-slate-900 block font-bold">🥖 매장·카페 안내</strong>
+                <span class="text-slate-500 text-[11px]">보관법, 당일 섭취, 주차 규정</span>
+              </button>
+              <button onclick="applyW2Preset('service')" class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-emerald-50 hover:border-emerald-300 text-left transition-all cursor-pointer">
+                <strong class="text-slate-900 block font-bold">💼 전문가 상담 규정</strong>
+                <span class="text-slate-500 text-[11px]">진행 방식, 수정 횟수, 취소 규정</span>
+              </button>
+              <button onclick="applyW2Preset('community')" class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-emerald-50 hover:border-emerald-300 text-left transition-all cursor-pointer">
+                <strong class="text-slate-900 block font-bold">👥 동호회·모임 회칙</strong>
+                <span class="text-slate-500 text-[11px]">정기 모임, 회비 사용, 불참 페널티</span>
+              </button>
             </div>
-            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-1">
-              <strong class="text-slate-900">옵션 B. 사내 업무 가이드 요약</strong>
-              <p class="text-slate-600 text-[11px]">비용 정산, 휴가 신청, 긴급 연락망 3단 카드</p>
+          </div>
+
+          <!-- 입력 폼 -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs pt-1">
+            <div class="flex flex-col gap-1">
+              <label class="font-bold text-slate-700">내 문서/규정 제목:</label>
+              <input type="text" id="w2-input-title" oninput="updateW2CustomPrompt()" value="송도 베이커리 매장 이용 수칙" class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-emerald-500 focus:outline-none">
             </div>
-            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-1">
-              <strong class="text-slate-900">옵션 C. 스터디·모임 규칙 카드</strong>
-              <p class="text-slate-600 text-[11px]">과제 마감일, 벌금 규칙, 회비 사용 내역 3단 카드</p>
+            <div class="flex flex-col gap-1">
+              <label class="font-bold text-slate-700">신뢰성 제약 강도:</label>
+              <select id="w2-input-strict" onchange="updateW2CustomPrompt()" class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-emerald-500 focus:outline-none font-bold">
+                <option value="strict">엄격 모드 (문서 외 질문 시 무조건 모릅니다 답변)</option>
+                <option value="moderate">표준 모드 (원문 출처 필수 표기 + 사실 요약)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-1 text-xs">
+            <label class="font-bold text-slate-700">내 실제 규정 문서 내용 (3개 단락):</label>
+            <textarea id="w2-input-doc" rows="4" oninput="updateW2CustomPrompt()" class="p-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-emerald-500 focus:outline-none font-mono text-xs resize-none">1. [보관 안내] 방부제가 들어있지 않아 당일 섭취를 권장하며, 남은 빵은 밀봉 후 냉동 보관(최대 14일)하세요.
+2. [주차 안내] 건물 지하 1~2층 주차장을 2시간 무료 이용하실 수 있으며 카운터에서 차량 등록이 필요합니다.
+3. [교환/환불] 개봉 후 단순 변심에 의한 환불은 불가하며, 제품 이상 시 구매 당일 영수증 지참 시 100% 교환해 드립니다.</textarea>
+          </div>
+
+          <!-- 조립된 실시간 프롬프트 프리뷰 & 복사 -->
+          <div class="flex flex-col gap-1.5 pt-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-emerald-700">✨ 내 규정으로 실시간 조합된 AI 전송 프롬프트:</span>
+              <button onclick="copyPrompt('custom-prompt-2')" class="px-3 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all shadow-2xs cursor-pointer flex items-center gap-1">
+                완성된 프롬프트 복사
+              </button>
+            </div>
+            <div id="custom-prompt-2" class="p-4 rounded-xl bg-slate-900 text-emerald-300 font-mono text-xs leading-relaxed overflow-x-auto whitespace-pre-wrap max-h-48 border border-slate-800"></div>
+          </div>
+
+          <!-- 4단계 액션 루프 안내 -->
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-2">
+            <strong class="text-slate-900 text-xs font-bold">💡 프롬프트 복사 후 실행 순서 (4단계 초고속 액션 루프):</strong>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+              <div class="p-2 rounded-lg bg-white border border-slate-200 text-center"><span class="font-bold text-emerald-600">1. 복사</span><p class="text-[11px] text-slate-500">위 프롬프트 클릭</p></div>
+              <div class="p-2 rounded-lg bg-white border border-slate-200 text-center"><span class="font-bold text-emerald-600">2. AI 전송</span><p class="text-[11px] text-slate-500">대화창에 붙여넣기</p></div>
+              <div class="p-2 rounded-lg bg-white border border-slate-200 text-center"><span class="font-bold text-emerald-600">3. 코드 교체</span><p class="text-[11px] text-slate-500">HTML에 3단 카드 추가</p></div>
+              <div class="p-2 rounded-lg bg-white border border-slate-200 text-center"><span class="font-bold text-emerald-600">4. 확인(F5)</span><p class="text-[11px] text-slate-500">출처 카드 확인</p></div>
             </div>
           </div>
         </section>
@@ -696,72 +760,107 @@
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
               <span class="w-5 h-5 rounded bg-emerald-600 text-white font-bold text-xs flex items-center justify-center">4</span>
-              <h3 class="font-bold text-sm sm:text-base text-slate-900">4단계 [17~24분] 거짓말 유도 실험 & 복구</h3>
+              <h3 class="font-bold text-sm sm:text-base text-slate-900">4단계 [17~24분] 한계 실험: 거짓말 유도 & 100% 방어 확인</h3>
             </div>
             <span class="text-xs text-slate-500 font-medium">7분 실험</span>
           </div>
 
-          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-2 text-xs text-slate-700">
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-3 text-xs text-slate-700">
             <div class="flex items-start gap-2">
-              <span class="px-2 py-0.5 rounded bg-slate-200 text-slate-800 font-bold shrink-0">실험 1</span>
-              <span><strong>없는 사실 유도 질문:</strong> 원문에 적히지 않은 내용을 질문했을 때, AI가 지어내지 않고 "문서에 내용이 없습니다"라고 올바르게 방어하는지 시험합니다.</span>
+              <span class="px-2 py-0.5 rounded bg-rose-100 text-rose-800 font-bold shrink-0">실험 1</span>
+              <span><strong>없는 질문 던지기:</strong> AI에게 "배달 요금은 얼마인가요?"나 "직원 채용은 언제 하나요?"처럼 문서에 없는 내용을 질문해 보세요. AI가 거짓말을 지어내지 않고 <em>"제공된 규정 문서에 해당 내용이 명시되어 있지 않습니다"</em>라고 답변하면 성공입니다.</span>
             </div>
             <div class="flex items-start gap-2">
-              <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold shrink-0">복구 2</span>
-              <span><strong>출처 누락 시 교정:</strong> [출처] 태그가 빠진 경우, "출처가 없는 문장은 삭제하고 다시 출력해"라고 지시하여 100% 신뢰도를 확보합니다.</span>
+              <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold shrink-0">안전망 2</span>
+              <span><strong>출처 누락 교정:</strong> 만약 출처가 빠졌다면 <em>"방금 만든 카드의 각 문장 끝에 반드시 [출처: 몇조]를 명기해서 다시 출력해 줘"</em>라고 짧게 입력하여 즉시 보정합니다.</span>
             </div>
           </div>
         </section>
 
-        <!-- 5단계: 성취 증명 (3분) -->
-        <section class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col gap-3">
+        <!-- 5단계: 정량 성취 검증 & 과제 인증 (3분) -->
+        <section class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col gap-4">
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
               <span class="w-5 h-5 rounded bg-emerald-600 text-white font-bold text-xs flex items-center justify-center">5</span>
-              <h2 class="text-sm sm:text-base font-bold text-slate-900">5단계 [24~30분] 성취 증명: 셀프 체크</h2>
+              <h2 class="text-sm sm:text-base font-bold text-slate-900">5단계 [24~30분] 정량적 성취 검증 & 과제 인증</h2>
             </div>
-            <span class="text-xs text-emerald-700 font-bold">완료 확인</span>
+            <span id="w2-status-badge" class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-slate-600 border border-slate-200">진행 중 (0/3)</span>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-700">
-            <label class="flex items-center gap-2 p-3 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer">
-              <input type="checkbox" class="w-4 h-4 accent-emerald-600 rounded">
-              <span>참고 원문 문서를 준비해 프롬프트에 넣었다</span>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs text-slate-700">
+            <label class="flex items-start gap-2.5 p-3.5 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer hover:bg-slate-100 transition-colors">
+              <input type="checkbox" id="w2-chk-1" onchange="checkW2Tasks()" class="w-4 h-4 mt-0.5 accent-emerald-600 rounded">
+              <div class="flex flex-col">
+                <strong class="font-bold text-slate-900">규정 문서 가두기</strong>
+                <span class="text-slate-500 text-[11px]">내 문서 3개 단락을 넣고 프롬프트 전송 완료</span>
+              </div>
             </label>
-            <label class="flex items-center gap-2 p-3 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer">
-              <input type="checkbox" class="w-4 h-4 accent-emerald-600 rounded">
-              <span>카드마다 [출처: ...] 명시를 확인했다</span>
+            <label class="flex items-start gap-2.5 p-3.5 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer hover:bg-slate-100 transition-colors">
+              <input type="checkbox" id="w2-chk-2" onchange="checkW2Tasks()" class="w-4 h-4 mt-0.5 accent-emerald-600 rounded">
+              <div class="flex flex-col">
+                <strong class="font-bold text-slate-900">출처 카드 3단 결합</strong>
+                <span class="text-slate-500 text-[11px]">각 문장 끝에 [출처: ...]가 달린 카드 확인</span>
+              </div>
             </label>
-            <label class="flex items-center gap-2 p-3 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer">
-              <input type="checkbox" class="w-4 h-4 accent-emerald-600 rounded">
-              <span>없는 사실을 질문해 환각 방어를 검증했다</span>
+            <label class="flex items-start gap-2.5 p-3.5 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer hover:bg-slate-100 transition-colors">
+              <input type="checkbox" id="w2-chk-3" onchange="checkW2Tasks()" class="w-4 h-4 mt-0.5 accent-emerald-600 rounded">
+              <div class="flex flex-col">
+                <strong class="font-bold text-slate-900">거짓말 방어 성공</strong>
+                <span class="text-slate-500 text-[11px]">없는 질문 시 "내용 없음" 올바른 거절 확인</span>
+              </div>
             </label>
-            <label class="flex items-center gap-2 p-3 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer">
-              <input type="checkbox" class="w-4 h-4 accent-emerald-600 rounded">
-              <span>3단 카드를 웹페이지 코드에 연결했다</span>
-            </label>
+          </div>
+
+          <!-- 과제 인증 영역 -->
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3 pt-3">
+            <div class="flex flex-col gap-0.5 w-full sm:w-auto">
+              <strong class="text-xs font-bold text-slate-900">2주차 과제 인증: 출처 카드 웹페이지 확인</strong>
+              <span class="text-[11px] text-slate-500">배포된 링크 또는 오늘 실습 완료 소감을 한 줄 남겨주세요.</span>
+            </div>
+            <div class="flex items-center gap-2 w-full sm:w-auto">
+              <input type="text" id="w2-hw-url" placeholder="https://내웹주소.netlify.app 또는 완료 메모" class="p-2 rounded-lg border border-slate-300 text-xs w-full sm:w-64 focus:outline-none focus:border-emerald-600 bg-white">
+              <button onclick="submitWeek2Assignment()" class="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs whitespace-nowrap shadow-xs cursor-pointer">
+                과제 인증
+              </button>
+            </div>
           </div>
         </section>
 
       </article>
 
-      <!-- ========================================================
-           WEEK 03 LESSON
+            <!-- ========================================================
+           WEEK 03 LESSON (Gold Standard Interactive Loop)
            ======================================================== -->
       <article id="lesson-w3" class="lesson-content flex-col gap-6">
         
         <!-- Header -->
         <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col gap-2">
           <div class="flex items-center justify-between text-xs">
-            <span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 font-bold border border-emerald-200">3주차 · 안티슬롭 디자인</span>
+            <span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 font-bold border border-emerald-200">3주차 · 안티슬롭 2색 디자인</span>
             <span class="text-slate-400 text-xs">총 실습 시간: 약 30분</span>
           </div>
           <h1 class="text-xl sm:text-2xl font-extrabold text-slate-900 leading-snug">
             어지러운 색 싹 빼고, 딱 2색으로 완성하는 정갈한 디자인
           </h1>
           <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            AI 특유의 촌스러운 보라색 네온 그라데이션을 걷어내고, 메인 잉크색 1개와 포인트 강조색 1개만으로 프로 수준의 UI를 완성합니다.
+            AI 특유의 촌스러운 보라색 네온 그라데이션과 이모지 스팸을 걷어내고, Slate 먹색 1개와 포인트 강조색 1개만으로 프로 수준의 UI를 완성합니다.
           </p>
+        </div>
+
+        <!-- 실습 준비 도구 안내 -->
+        <div class="p-5 rounded-2xl bg-emerald-50/40 border border-emerald-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <span class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-lg shrink-0">🎨</span>
+            <div class="flex flex-col">
+              <strong class="text-slate-900 text-sm font-bold">3주차 원칙: 2-Color Rule (바탕 먹색 + 1개 포인트 컬러)</strong>
+              <p class="text-slate-600 text-xs">아래 3대 추천 팔레트(에메랄드, 인디고, 테라코타)를 눌러 내 사이트에 어울리는 색을 1초 만에 입혀보세요.</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 text-xs">
+            <span class="px-3 py-1 rounded-full bg-white text-emerald-800 font-bold border border-emerald-300 shadow-2xs">
+              팔레트 원클릭 적용
+            </span>
+          </div>
         </div>
 
         <!-- 1단계: 목표 (3분) -->
@@ -769,16 +868,16 @@
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
               <span class="w-5 h-5 rounded bg-emerald-600 text-white font-bold text-xs flex items-center justify-center shrink-0">1</span>
-              <h2 class="font-bold text-sm sm:text-base text-slate-900">1단계 [0~3분] 학습 목표: "색은 2개까지만 써라. 더 쓰면 지저분해진다"</h2>
+              <h2 class="font-bold text-sm sm:text-base text-slate-900">1단계 [0~3분] 학습 목표: "색은 2개까지만 써라. 더 쓰면 촌스러워진다"</h2>
             </div>
             <span class="text-xs text-slate-400">3분</span>
           </div>
           <div class="text-xs sm:text-sm text-slate-600 space-y-1.5 leading-relaxed">
             <p>
-              전문가와 초보자의 차이는 '더하는 것'이 아니라 <strong>'과감하게 빼는 것'</strong>에 있습니다.
+              초보자와 전문가의 가장 큰 차이는 '더하는 것'이 아니라 <strong>'과감하게 빼는 것'</strong>에 있습니다.
             </p>
             <p>
-              먹색(Slate-900)과 포인트색 1개만 남기면 가독성과 신뢰감이 단번에 올라갑니다.
+              먹색(Slate-900)과 포인트 강조색 1개만 남기면 스마트폰에서도 가독성과 신뢰감이 즉시 극대화됩니다.
             </p>
           </div>
         </section>
@@ -791,7 +890,7 @@
               <h3 class="font-bold text-sm sm:text-base text-slate-900">2단계 [3~8분] 첫 성공: 안티슬롭 2색 디자인 가이드 프롬프트</h3>
             </div>
             <button onclick="copyPrompt('prompt-3')" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all shadow-xs flex items-center gap-1 cursor-pointer">
-              프롬프트 복사
+              기본 프롬프트 복사
             </button>
           </div>
           
@@ -808,33 +907,85 @@
    - 모든 텍스트 컨테이너에 `word-break: keep-all;`을 필수로 적용하여 단어가 어색하게 쪼개지지 않도록 한다.
    - 제목 태그(h1, h2, h3)에는 `text-wrap: balance;`를 적용하여 양쪽 균형을 맞춘다.
 
-3. 레이아웃:
-   - 불필요한 3D 회전 애니메이션은 배제하고, 마우스 호버 시 부드러운 1~2px 상승 효과만 절제되게 허용한다.
+3. 장식 배제:
+   - 과도한 이모지 스팸이나 무지개색 그라디언트를 일절 제거한다.
           </div>
         </section>
 
-        <!-- 3단계: 내 선택으로 수정 (9분) -->
-        <section class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col gap-3">
+        <!-- 3단계: 내 선택으로 수정 (인터랙티브 동적 컬러 조립기) (9분) -->
+        <section class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col gap-4">
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
               <span class="w-5 h-5 rounded bg-emerald-600 text-white font-bold text-xs flex items-center justify-center">3</span>
-              <h3 class="font-bold text-sm sm:text-base text-slate-900">3단계 [8~17분] 나만의 결정: 2색 포인트 컬러 고르기</h3>
+              <h3 class="font-bold text-sm sm:text-base text-slate-900">3단계 [8~17분] 나만의 결정: 실시간 포인트 컬러 조립기</h3>
             </div>
             <span class="text-xs text-slate-500 font-medium">9분 집중</span>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
-            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-1">
-              <strong class="text-slate-900">옵션 A. 에메랄드 그린</strong>
-              <p class="text-slate-600 text-[11px]">친환경, 교육, 신뢰감 주는 차분한 톤</p>
+          <!-- 추천 프리셋 3종 -->
+          <div class="flex flex-col gap-2">
+            <span class="text-xs font-bold text-slate-700">추천 2색 팔레트 (1초 만에 선택):</span>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+              <button onclick="applyW3Preset('emerald')" class="p-3 rounded-xl border border-slate-200 bg-slate-50 hover:bg-emerald-50 hover:border-emerald-400 text-left transition-all cursor-pointer flex items-center gap-3">
+                <span class="w-6 h-6 rounded-full bg-emerald-600 shrink-0 shadow-2xs"></span>
+                <div class="flex flex-col">
+                  <strong class="text-slate-900 font-bold">에메랄드 그린</strong>
+                  <span class="text-slate-500 text-[11px]">신뢰, 교육, 웰빙, F&B</span>
+                </div>
+              </button>
+              <button onclick="applyW3Preset('indigo')" class="p-3 rounded-xl border border-slate-200 bg-slate-50 hover:bg-indigo-50 hover:border-indigo-400 text-left transition-all cursor-pointer flex items-center gap-3">
+                <span class="w-6 h-6 rounded-full bg-indigo-600 shrink-0 shadow-2xs"></span>
+                <div class="flex flex-col">
+                  <strong class="text-slate-900 font-bold">딥 인디고</strong>
+                  <span class="text-slate-500 text-[11px]">전문직, IT, B2B 업무</span>
+                </div>
+              </button>
+              <button onclick="applyW3Preset('terracotta')" class="p-3 rounded-xl border border-slate-200 bg-slate-50 hover:bg-orange-50 hover:border-orange-400 text-left transition-all cursor-pointer flex items-center gap-3">
+                <span class="w-6 h-6 rounded-full bg-orange-600 shrink-0 shadow-2xs"></span>
+                <div class="flex flex-col">
+                  <strong class="text-slate-900 font-bold">웜 테라코타</strong>
+                  <span class="text-slate-500 text-[11px]">베이커리, 카페, 따뜻한 톤</span>
+                </div>
+              </button>
             </div>
-            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-1">
-              <strong class="text-slate-900">옵션 B. 클래식 네이비</strong>
-              <p class="text-slate-600 text-[11px]">전문직, 금융, B2B 업무용 정갈한 톤</p>
+          </div>
+
+          <!-- 실시간 라이브 컬러 프리뷰 카드 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50 flex flex-col gap-2">
+            <span class="text-xs font-bold text-slate-700">실시간 컬러 미리보기 (Live Preview):</span>
+            <div id="w3-preview-card" class="p-5 rounded-xl bg-white border border-slate-200 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 transition-colors">
+              <div class="flex flex-col gap-1">
+                <span id="w3-preview-badge" class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-200 w-fit">
+                  포인트 뱃지
+                </span>
+                <strong class="text-slate-900 text-sm font-bold">깔끔하게 정돈된 2-Color UI 헤드라인</strong>
+                <p class="text-slate-500 text-xs">어지러운 색을 배제하고 오직 1개의 포인트 컬러로 사용자의 시선을 이끕니다.</p>
+              </div>
+              <button id="w3-preview-btn" class="px-4 py-2 rounded-xl bg-emerald-600 text-white font-bold text-xs shadow-xs transition-colors shrink-0">
+                실행 버튼 →
+              </button>
             </div>
-            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-1">
-              <strong class="text-slate-900">옵션 C. 미니멀 모노크롬</strong>
-              <p class="text-slate-600 text-[11px]">흑백 농담만으로 깊이감을 주는 하이엔드 톤</p>
+          </div>
+
+          <!-- 조립된 실시간 프롬프트 프리뷰 & 복사 -->
+          <div class="flex flex-col gap-1.5 pt-1">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-emerald-700">✨ 내 컬러로 실시간 조합된 AI 디자인 리팩토링 프롬프트:</span>
+              <button onclick="copyPrompt('custom-prompt-3')" class="px-3 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all shadow-2xs cursor-pointer flex items-center gap-1">
+                완성된 프롬프트 복사
+              </button>
+            </div>
+            <div id="custom-prompt-3" class="p-4 rounded-xl bg-slate-900 text-emerald-300 font-mono text-xs leading-relaxed overflow-x-auto whitespace-pre-wrap max-h-48 border border-slate-800"></div>
+          </div>
+
+          <!-- 4단계 액션 루프 안내 -->
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-2">
+            <strong class="text-slate-900 text-xs font-bold">💡 프롬프트 복사 후 실행 순서 (4단계 초고속 액션 루프):</strong>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+              <div class="p-2 rounded-lg bg-white border border-slate-200 text-center"><span class="font-bold text-emerald-600">1. 복사</span><p class="text-[11px] text-slate-500">위 프롬프트 클릭</p></div>
+              <div class="p-2 rounded-lg bg-white border border-slate-200 text-center"><span class="font-bold text-emerald-600">2. AI 전송</span><p class="text-[11px] text-slate-500">대화창에 붙여넣기</p></div>
+              <div class="p-2 rounded-lg bg-white border border-slate-200 text-center"><span class="font-bold text-emerald-600">3. 코드 저장</span><p class="text-[11px] text-slate-500">메모장에 덮어쓰기</p></div>
+              <div class="p-2 rounded-lg bg-white border border-slate-200 text-center"><span class="font-bold text-emerald-600">4. 확인(F5)</span><p class="text-[11px] text-slate-500">2색 화면 확인</p></div>
             </div>
           </div>
         </section>
@@ -849,67 +1000,102 @@
             <span class="text-xs text-slate-500 font-medium">7분 실험</span>
           </div>
 
-          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-2 text-xs text-slate-700">
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-3 text-xs text-slate-700">
             <div class="flex items-start gap-2">
-              <span class="px-2 py-0.5 rounded bg-slate-200 text-slate-800 font-bold shrink-0">실험 1</span>
-              <span><strong>무지개색 오염 점검:</strong> 화면에 노랑, 빨강, 파랑 등 3개 이상의 색상이 섞여 있는지 눈으로 스캔합니다.</span>
+              <span class="px-2 py-0.5 rounded bg-rose-100 text-rose-800 font-bold shrink-0">오염 점검 1</span>
+              <span><strong>무지개색 및 이모지 오염 스캔:</strong> 화면에 노랑, 빨강, 파랑 등 3개 이상의 색상이 섞여 있거나 이모지가 문장마다 도배되어 있는지 눈으로 스캔합니다.</span>
             </div>
             <div class="flex items-start gap-2">
-              <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold shrink-0">복구 2</span>
-              <span><strong>2색 정제 지시:</strong> 잡다한 색이 발견되면 "포인트 컬러 1개만 남기고 나머지는 Slate 계열로 통일해"라고 지시해 3초 만에 정리합니다.</span>
+              <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold shrink-0">안전 복구 2</span>
+              <span><strong>2색 정제 지시:</strong> 잡다한 색이 발견되면 <em>"포인트 컬러 1개만 남기고 나머지는 Slate/White 베이스로 통일하고, 이모지 스팸을 걷어내 줘"</em>라고 지시해 3초 만에 정리합니다.</span>
             </div>
           </div>
         </section>
 
-        <!-- 5단계: 성취 증명 (3분) -->
-        <section class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col gap-3">
+        <!-- 5단계: 정량 성취 검증 & 과제 인증 (3분) -->
+        <section class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col gap-4">
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
               <span class="w-5 h-5 rounded bg-emerald-600 text-white font-bold text-xs flex items-center justify-center">5</span>
-              <h2 class="text-sm sm:text-base font-bold text-slate-900">5단계 [24~30분] 성취 증명: 셀프 체크</h2>
+              <h2 class="text-sm sm:text-base font-bold text-slate-900">5단계 [24~30분] 정량적 성취 검증 & 과제 인증</h2>
             </div>
-            <span class="text-xs text-emerald-700 font-bold">완료 확인</span>
+            <span id="w3-status-badge" class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-slate-600 border border-slate-200">진행 중 (0/3)</span>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-700">
-            <label class="flex items-center gap-2 p-3 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer">
-              <input type="checkbox" class="w-4 h-4 accent-emerald-600 rounded">
-              <span>화면에서 보라색 네온 그라데이션을 완전히 없앴다</span>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs text-slate-700">
+            <label class="flex items-start gap-2.5 p-3.5 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer hover:bg-slate-100 transition-colors">
+              <input type="checkbox" id="w3-chk-1" onchange="checkW3Tasks()" class="w-4 h-4 mt-0.5 accent-emerald-600 rounded">
+              <div class="flex flex-col">
+                <strong class="font-bold text-slate-900">보라색/네온 퇴치</strong>
+                <span class="text-slate-500 text-[11px]">인공지능 특유의 보라색 그라데이션 박멸</span>
+              </div>
             </label>
-            <label class="flex items-center gap-2 p-3 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer">
-              <input type="checkbox" class="w-4 h-4 accent-emerald-600 rounded">
-              <span>사용된 주요 색상이 2개 이하인지 확인했다</span>
+            <label class="flex items-start gap-2.5 p-3.5 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer hover:bg-slate-100 transition-colors">
+              <input type="checkbox" id="w3-chk-2" onchange="checkW3Tasks()" class="w-4 h-4 mt-0.5 accent-emerald-600 rounded">
+              <div class="flex flex-col">
+                <strong class="font-bold text-slate-900">단일 포인트 2색 정돈</strong>
+                <span class="text-slate-500 text-[11px]">Slate 먹색 + 1개 포인트 컬러 통일 확인</span>
+              </div>
             </label>
-            <label class="flex items-center gap-2 p-3 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer">
-              <input type="checkbox" class="w-4 h-4 accent-emerald-600 rounded">
-              <span>한글 단어가 어색하게 잘리지 않게 word-break를 걸었다</span>
+            <label class="flex items-start gap-2.5 p-3.5 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer hover:bg-slate-100 transition-colors">
+              <input type="checkbox" id="w3-chk-3" onchange="checkW3Tasks()" class="w-4 h-4 mt-0.5 accent-emerald-600 rounded">
+              <div class="flex flex-col">
+                <strong class="font-bold text-slate-900">한글 줄바꿈 안정화</strong>
+                <span class="text-slate-500 text-[11px]">word-break: keep-all로 어색한 단어 쪼개짐 방지</span>
+              </div>
             </label>
-            <label class="flex items-center gap-2 p-3 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer">
-              <input type="checkbox" class="w-4 h-4 accent-emerald-600 rounded">
-              <span>스마트폰 화면에서 가독성이 뛰어난지 확인했다</span>
-            </label>
+          </div>
+
+          <!-- 과제 인증 영역 -->
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3 pt-3">
+            <div class="flex flex-col gap-0.5 w-full sm:w-auto">
+              <strong class="text-xs font-bold text-slate-900">3주차 과제 인증: 2색 리팩토링 웹페이지 확인</strong>
+              <span class="text-[11px] text-slate-500">배포된 링크 또는 오늘 실습 완료 소감을 한 줄 남겨주세요.</span>
+            </div>
+            <div class="flex items-center gap-2 w-full sm:w-auto">
+              <input type="text" id="w3-hw-url" placeholder="https://내웹주소.netlify.app 또는 완료 메모" class="p-2 rounded-lg border border-slate-300 text-xs w-full sm:w-64 focus:outline-none focus:border-emerald-600 bg-white">
+              <button onclick="submitWeek3Assignment()" class="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs whitespace-nowrap shadow-xs cursor-pointer">
+                과제 인증
+              </button>
+            </div>
           </div>
         </section>
 
       </article>
 
-      <!-- ========================================================
-           WEEK 04 LESSON
+            <!-- ========================================================
+           WEEK 04 LESSON (Gold Standard Interactive Loop)
            ======================================================== -->
       <article id="lesson-w4" class="lesson-content flex-col gap-6">
         
         <!-- Header -->
         <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col gap-2">
           <div class="flex items-center justify-between text-xs">
-            <span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 font-bold border border-emerald-200">4주차 · 인터랙션</span>
+            <span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 font-bold border border-emerald-200">4주차 · 인터랙션 결합 (Interactive Calculator)</span>
             <span class="text-slate-400 text-xs">총 실습 시간: 약 30분</span>
           </div>
           <h1 class="text-xl sm:text-2xl font-extrabold text-slate-900 leading-snug">
-            새로고침 없이 1초 만에 척척 계산되는 실시간 계산기 장착
+            새로고침 없이 1초 만에 척척 계산되는 실시간 견적기 장착
           </h1>
           <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            단순 글자 읽기를 넘어, 버튼을 누르면 실시간으로 합계와 할인 금액이 계산되는 인터랙티브 웹 도구로 격상시킵니다.
+            단순 글자 읽기를 넘어, 버튼을 누르면 실시간으로 수량과 합계 금액이 계산되는 '살아 숨 쉬는 실무 웹 도구'로 격상시킵니다.
           </p>
+        </div>
+
+        <!-- 실습 준비 도구 안내 -->
+        <div class="p-5 rounded-2xl bg-emerald-50/40 border border-emerald-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <span class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-lg shrink-0">🧮</span>
+            <div class="flex flex-col">
+              <strong class="text-slate-900 text-sm font-bold">4주차 목표: 수량 증감 버튼 (+ / -) & 실시간 합산 결합</strong>
+              <p class="text-slate-600 text-xs">자바스크립트 문법 암기 없이, 3대 프리셋을 눌러 내 업무용 견적기를 1초 만에 조립해보세요.</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 text-xs">
+            <span class="px-3 py-1 rounded-full bg-white text-emerald-800 font-bold border border-emerald-300 shadow-2xs">
+              실시간 상태 연산
+            </span>
+          </div>
         </div>
 
         <!-- 1단계: 목표 (3분) -->
@@ -923,10 +1109,10 @@
           </div>
           <div class="text-xs sm:text-sm text-slate-600 space-y-1.5 leading-relaxed">
             <p>
-              읽기만 하는 웹페이지는 잊혀집니다. 내가 직접 숫자를 조작하고 결과를 확인하는 순간 '진짜 도구'가 됩니다.
+              읽기만 하는 정적 웹페이지는 금방 잊혀집니다. 고객이 직접 수량을 조작하고 금액을 확인하는 순간 <strong>'진짜 업무용 도구'</strong>가 됩니다.
             </p>
             <p>
-              자바스크립트 문법을 외울 필요 없이, AI에게 명확한 입출력 규칙만 제시하면 됩니다.
+              어려운 프로그래밍 기호는 몰라도 됩니다. "항목 단가와 수량을 곱해서 콤마와 함께 합산해 줘"라는 규칙만 건네면 AI가 완벽한 자바스크립트를 완성합니다.
             </p>
           </div>
         </section>
@@ -936,51 +1122,121 @@
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
               <span class="w-5 h-5 rounded bg-emerald-600 text-white font-bold text-xs flex items-center justify-center">2</span>
-              <h3 class="font-bold text-sm sm:text-base text-slate-900">2단계 [3~8분] 첫 성공: 실시간 계산기 프롬프트</h3>
+              <h3 class="font-bold text-sm sm:text-base text-slate-900">2단계 [3~8분] 첫 성공: 실시간 계산기 기본 프롬프트</h3>
             </div>
             <button onclick="copyPrompt('prompt-4')" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all shadow-xs flex items-center gap-1 cursor-pointer">
-              프롬프트 복사
+              기본 프롬프트 복사
             </button>
           </div>
           
           <div id="prompt-4" class="p-4 rounded-xl bg-slate-50 text-slate-800 font-mono text-xs leading-relaxed overflow-x-auto border border-slate-200">
 너는 인터랙티브 프론트엔드 엔지니어다.
-내 기존 웹페이지의 1~3주차 헤더, 프로필, 3단 요약 카드는 절대 삭제하거나 위치를 바꾸지 말고, `WEEK 04 SLOT` 자리에 [실시간 비용/견적 계산기] 섹션을 추가해 줘.
+내 기존 웹페이지의 1~3주차 헤더, 프로필, 3단 요약 카드는 절대 삭제하거나 위치를 바꾸지 말고, 하단에 [실시간 비용/견적 계산기] 섹션을 추가해 줘.
 
 [계산기 요구사항]
 1. 입력 항목:
-   - 기본 옵션 선택 (라디오 버튼 또는 클릭 카드 형태)
-   - 수량 증가/감소 (+, - 버튼)
-   - 추가 할인 체크박스
-2. 동작 원칙:
-   - 버튼을 누를 때마다 브라우저 새로고침 없이 즉각 하단 [예상 합계 금액] 숫자가 콤마(,)와 함께 재계산되어야 한다.
-   - 0 이하의 음수 입력은 방어해야 한다.
-3. 코드는 생략 없이 완성형 전체 HTML로 출력해 줘.
+   - 2개 이상의 서비스/상품 항목 (수량 +, - 증감 버튼 포함)
+   - 수량 변경 시 브라우저 새로고침 없이 즉시 하단 [합계 금액] 숫자가 세 자리 콤마(,)와 함께 재계산된다.
+2. 버그 방어:
+   - 수량이 0 이하로 내려가지 않도록 Math.max(0, count) 최소값 방어 코드를 적용한다.
+3. 디자인:
+   - Slate/White 베이스 + Emerald 포인트 컬러 2색 규칙을 철저히 준수한다.
           </div>
         </section>
 
-        <!-- 3단계: 내 선택으로 수정 (9분) -->
-        <section class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col gap-3">
+        <!-- 3단계: 내 선택으로 수정 (인터랙티브 동적 계산기 조립기) (9분) -->
+        <section class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col gap-4">
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
               <span class="w-5 h-5 rounded bg-emerald-600 text-white font-bold text-xs flex items-center justify-center">3</span>
-              <h3 class="font-bold text-sm sm:text-base text-slate-900">3단계 [8~17분] 나만의 결정: 계산 공식 선택</h3>
+              <h3 class="font-bold text-sm sm:text-base text-slate-900">3단계 [8~17분] 나만의 결정: 실시간 견적 계산기 조립기</h3>
             </div>
             <span class="text-xs text-slate-500 font-medium">9분 집중</span>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
-            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-1">
-              <strong class="text-slate-900">옵션 A. 매장 주문 계산기</strong>
-              <p class="text-slate-600 text-[11px]">단품 메뉴 가격 + 수량 + 포장 할인</p>
+          <!-- 추천 프리셋 3종 -->
+          <div class="flex flex-col gap-2">
+            <span class="text-xs font-bold text-slate-700">추천 계산기 프리셋 (1초 만에 불러오기):</span>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+              <button onclick="applyW4Preset('consult')" class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-emerald-50 hover:border-emerald-300 text-left transition-all cursor-pointer">
+                <strong class="text-slate-900 block font-bold">💼 1:1 맞춤 상담 견적기</strong>
+                <span class="text-slate-500 text-[11px]">상담 (15만원) + 양식제작 (8만원)</span>
+              </button>
+              <button onclick="applyW4Preset('bakery')" class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-emerald-50 hover:border-emerald-300 text-left transition-all cursor-pointer">
+                <strong class="text-slate-900 block font-bold">🥐 베이커리 선물세트 주문기</strong>
+                <span class="text-slate-500 text-[11px]">소금빵박스 (1.8만원) + 콜드브루 (8천원)</span>
+              </button>
+              <button onclick="applyW4Preset('course')" class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-emerald-50 hover:border-emerald-300 text-left transition-all cursor-pointer">
+                <strong class="text-slate-900 block font-bold">📚 교육 코스 패키지 계산기</strong>
+                <span class="text-slate-500 text-[11px]">교안소장 (5만원) + 코칭권 (7만원)</span>
+              </button>
             </div>
-            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-1">
-              <strong class="text-slate-900">옵션 B. 프리랜서 외주 견적기</strong>
-              <p class="text-slate-600 text-[11px]">기본 작업비 + 페이지 수 + 긴급 납기 옵션</p>
+          </div>
+
+          <!-- 인터랙티브 미니 계산기 라이브 체험 박스 -->
+          <div class="p-5 rounded-2xl bg-slate-900 text-white flex flex-col gap-4 shadow-md">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+                <strong id="w4-calc-title" class="text-sm font-bold text-white">1:1 맞춤 상담 간편 견적기</strong>
+              </div>
+              <span class="text-[11px] text-emerald-400 font-bold">실시간 작동 테스트</span>
             </div>
-            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-1">
-              <strong class="text-slate-900">옵션 C. 모임 더치페이 계산기</strong>
-              <p class="text-slate-600 text-[11px]">총 회식비 / 참석 인원수 1인당 금액 계산</p>
+
+            <div class="flex flex-col gap-3 text-xs">
+              <!-- Item 1 -->
+              <div class="flex items-center justify-between p-3 rounded-xl bg-slate-800/80 border border-slate-700">
+                <div class="flex flex-col">
+                  <span id="w4-item1-name" class="font-bold text-white">1:1 맞춤 상담 (1회)</span>
+                  <span id="w4-item1-price-label" class="text-slate-400 text-[11px]">150,000원</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <button onclick="changeW4Qty('item1', -1)" class="w-7 h-7 rounded-lg bg-slate-700 hover:bg-slate-600 text-white font-bold flex items-center justify-center cursor-pointer">-</button>
+                  <span id="w4-item1-qty" class="w-6 text-center font-bold text-white">1</span>
+                  <button onclick="changeW4Qty('item1', 1)" class="w-7 h-7 rounded-lg bg-slate-700 hover:bg-slate-600 text-white font-bold flex items-center justify-center cursor-pointer">+</button>
+                </div>
+              </div>
+
+              <!-- Item 2 -->
+              <div class="flex items-center justify-between p-3 rounded-xl bg-slate-800/80 border border-slate-700">
+                <div class="flex flex-col">
+                  <span id="w4-item2-name" class="font-bold text-white">업무 양식 제작 (1건)</span>
+                  <span id="w4-item2-price-label" class="text-slate-400 text-[11px]">80,000원</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <button onclick="changeW4Qty('item2', -1)" class="w-7 h-7 rounded-lg bg-slate-700 hover:bg-slate-600 text-white font-bold flex items-center justify-center cursor-pointer">-</button>
+                  <span id="w4-item2-qty" class="w-6 text-center font-bold text-white">1</span>
+                  <button onclick="changeW4Qty('item2', 1)" class="w-7 h-7 rounded-lg bg-slate-700 hover:bg-slate-600 text-white font-bold flex items-center justify-center cursor-pointer">+</button>
+                </div>
+              </div>
+
+              <!-- Total -->
+              <div class="flex items-center justify-between pt-2 border-t border-slate-800 px-1">
+                <span class="text-slate-300 font-bold">예상 합계 금액:</span>
+                <span id="w4-calc-total" class="text-xl font-black text-emerald-400">230,000원</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 조립된 실시간 프롬프트 프리뷰 & 복사 -->
+          <div class="flex flex-col gap-1.5 pt-1">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-emerald-700">✨ 내 견적 항목으로 실시간 조합된 AI 전송 프롬프트:</span>
+              <button onclick="copyPrompt('custom-prompt-4')" class="px-3 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all shadow-2xs cursor-pointer flex items-center gap-1">
+                완성된 프롬프트 복사
+              </button>
+            </div>
+            <div id="custom-prompt-4" class="p-4 rounded-xl bg-slate-900 text-emerald-300 font-mono text-xs leading-relaxed overflow-x-auto whitespace-pre-wrap max-h-48 border border-slate-800"></div>
+          </div>
+
+          <!-- 4단계 액션 루프 안내 -->
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-2">
+            <strong class="text-slate-900 text-xs font-bold">💡 프롬프트 복사 후 실행 순서 (4단계 초고속 액션 루프):</strong>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+              <div class="p-2 rounded-lg bg-white border border-slate-200 text-center"><span class="font-bold text-emerald-600">1. 복사</span><p class="text-[11px] text-slate-500">위 프롬프트 클릭</p></div>
+              <div class="p-2 rounded-lg bg-white border border-slate-200 text-center"><span class="font-bold text-emerald-600">2. AI 전송</span><p class="text-[11px] text-slate-500">대화창에 붙여넣기</p></div>
+              <div class="p-2 rounded-lg bg-white border border-slate-200 text-center"><span class="font-bold text-emerald-600">3. 코드 저장</span><p class="text-[11px] text-slate-500">메모장에 덮어쓰기</p></div>
+              <div class="p-2 rounded-lg bg-white border border-slate-200 text-center"><span class="font-bold text-emerald-600">4. 확인(F5)</span><p class="text-[11px] text-slate-500">+, - 버튼 눌러보기</p></div>
             </div>
           </div>
         </section>
@@ -990,64 +1246,83 @@
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
               <span class="w-5 h-5 rounded bg-emerald-600 text-white font-bold text-xs flex items-center justify-center">4</span>
-              <h3 class="font-bold text-sm sm:text-base text-slate-900">4단계 [17~24분] 음수 버그 실험 & 복구</h3>
+              <h3 class="font-bold text-sm sm:text-base text-slate-900">4단계 [17~24분] 음수 버그 시험 & 안전 복구</h3>
             </div>
             <span class="text-xs text-slate-500 font-medium">7분 실험</span>
           </div>
 
-          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-2 text-xs text-slate-700">
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-3 text-xs text-slate-700">
             <div class="flex items-start gap-2">
-              <span class="px-2 py-0.5 rounded bg-slate-200 text-slate-800 font-bold shrink-0">실험 1</span>
-              <span><strong>마이너스 연타 시험:</strong> 수량 0인 상태에서 마이너스(-) 버튼을 여러 번 눌렀을 때, 금액이 -10,000원처럼 음수로 내려가지 않고 0원에서 방어되는지 확인합니다.</span>
+              <span class="px-2 py-0.5 rounded bg-rose-100 text-rose-800 font-bold shrink-0">버그 시험 1</span>
+              <span><strong>마이너스 연타 시험:</strong> 수량이 0인 상태에서 마이너스(-) 버튼을 여러 번 눌렀을 때, 금액이 -10,000원처럼 음수로 내려가지 않고 0원에서 철저히 방어되는지 확인합니다.</span>
             </div>
             <div class="flex items-start gap-2">
-              <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold shrink-0">복구 2</span>
-              <span><strong>Math.max 방어:</strong> 음수가 나오면 AI에게 "수량이 0 이하로 내려가지 못하도록 Math.max(0, qty) 방어 코드를 넣어줘"라고 지시합니다.</span>
+              <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold shrink-0">안전 방어 2</span>
+              <span><strong>Math.max 방어:</strong> 음수가 나오면 AI에게 <em>"수량이 0 이하로 내려가지 못하도록 Math.max(0, count - 1) 방어 코드를 넣어줘"</em>라고 지시합니다.</span>
             </div>
           </div>
         </section>
 
-        <!-- 5단계: 성취 증명 (3분) -->
-        <section class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col gap-3">
+        <!-- 5단계: 정량 성취 검증 & 과제 인증 (3분) -->
+        <section class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col gap-4">
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
               <span class="w-5 h-5 rounded bg-emerald-600 text-white font-bold text-xs flex items-center justify-center">5</span>
-              <h2 class="text-sm sm:text-base font-bold text-slate-900">5단계 [24~30분] 성취 증명: 셀프 체크</h2>
+              <h2 class="text-sm sm:text-base font-bold text-slate-900">5단계 [24~30분] 정량적 성취 검증 & 과제 인증</h2>
             </div>
-            <span class="text-xs text-emerald-700 font-bold">완료 확인</span>
+            <span id="w4-status-badge" class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-slate-600 border border-slate-200">진행 중 (0/3)</span>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-700">
-            <label class="flex items-center gap-2 p-3 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer">
-              <input type="checkbox" class="w-4 h-4 accent-emerald-600 rounded">
-              <span>새로고침 없이 버튼 클릭 즉시 숫자가 바뀐다</span>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs text-slate-700">
+            <label class="flex items-start gap-2.5 p-3.5 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer hover:bg-slate-100 transition-colors">
+              <input type="checkbox" id="w4-chk-1" onchange="checkW4Tasks()" class="w-4 h-4 mt-0.5 accent-emerald-600 rounded">
+              <div class="flex flex-col">
+                <strong class="font-bold text-slate-900">새로고침 없는 실시간 계산</strong>
+                <span class="text-slate-500 text-[11px]">+, - 버튼 클릭 시 즉시 합계 금액 반영 확인</span>
+              </div>
             </label>
-            <label class="flex items-center gap-2 p-3 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer">
-              <input type="checkbox" class="w-4 h-4 accent-emerald-600 rounded">
-              <span>금액 표시에 콤마(예: 15,000원)가 정상 작동한다</span>
+            <label class="flex items-start gap-2.5 p-3.5 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer hover:bg-slate-100 transition-colors">
+              <input type="checkbox" id="w4-chk-2" onchange="checkW4Tasks()" class="w-4 h-4 mt-0.5 accent-emerald-600 rounded">
+              <div class="flex flex-col">
+                <strong class="font-bold text-slate-900">음수 버그 0원 방어</strong>
+                <span class="text-slate-500 text-[11px]">마이너스 연타 시 0원 이하로 떨어지지 않음</span>
+              </div>
             </label>
-            <label class="flex items-center gap-2 p-3 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer">
-              <input type="checkbox" class="w-4 h-4 accent-emerald-600 rounded">
-              <span>0원 이하 음수 입력이 방어된다</span>
+            <label class="flex items-start gap-2.5 p-3.5 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer hover:bg-slate-100 transition-colors">
+              <input type="checkbox" id="w4-chk-3" onchange="checkW4Tasks()" class="w-4 h-4 mt-0.5 accent-emerald-600 rounded">
+              <div class="flex flex-col">
+                <strong class="font-bold text-slate-900">세 자리 콤마 표기</strong>
+                <span class="text-slate-500 text-[11px]">230000원 대신 230,000원으로 정상 표기</span>
+              </div>
             </label>
-            <label class="flex items-center gap-2 p-3 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer">
-              <input type="checkbox" class="w-4 h-4 accent-emerald-600 rounded">
-              <span>기존 1~3주차 카드들이 깨지지 않고 유지된다</span>
-            </label>
+          </div>
+
+          <!-- 과제 인증 영역 -->
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3 pt-3">
+            <div class="flex flex-col gap-0.5 w-full sm:w-auto">
+              <strong class="text-xs font-bold text-slate-900">4주차 과제 인증: 실시간 계산기 웹페이지 확인</strong>
+              <span class="text-[11px] text-slate-500">배포된 링크 또는 오늘 실습 완료 소감을 한 줄 남겨주세요.</span>
+            </div>
+            <div class="flex items-center gap-2 w-full sm:w-auto">
+              <input type="text" id="w4-hw-url" placeholder="https://내웹주소.netlify.app 또는 완료 메모" class="p-2 rounded-lg border border-slate-300 text-xs w-full sm:w-64 focus:outline-none focus:border-emerald-600 bg-white">
+              <button onclick="submitWeek4Assignment()" class="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs whitespace-nowrap shadow-xs cursor-pointer">
+                과제 인증
+              </button>
+            </div>
           </div>
         </section>
 
       </article>
 
-      <!-- ========================================================
-           WEEK 05 LESSON
+            <!-- ========================================================
+           WEEK 05 LESSON (Gold Standard Interactive Loop)
            ======================================================== -->
       <article id="lesson-w5" class="lesson-content flex-col gap-6">
         
         <!-- Header -->
         <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col gap-2">
           <div class="flex items-center justify-between text-xs">
-            <span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 font-bold border border-emerald-200">5주차 · 에러 복구</span>
+            <span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 font-bold border border-emerald-200">5주차 · 오류 격리 & 3초 롤백 (Debugging)</span>
             <span class="text-slate-400 text-xs">총 실습 시간: 약 30분</span>
           </div>
           <h1 class="text-xl sm:text-2xl font-extrabold text-slate-900 leading-snug">
@@ -1056,6 +1331,22 @@
           <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
             화면이 하얗게 멈추거나 버튼이 먹통이 되어도 당황하지 않습니다. F12 콘솔 에러 로그를 읽고 AI에게 격리 수정을 지시하는 평생 자립 습관을 마스터합니다.
           </p>
+        </div>
+
+        <!-- 실습 준비 도구 안내 -->
+        <div class="p-5 rounded-2xl bg-emerald-50/40 border border-emerald-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <span class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-lg shrink-0">🛡️</span>
+            <div class="flex flex-col">
+              <strong class="text-slate-900 text-sm font-bold">5주차 무기: 브라우저 F12 키 & index_backup.html</strong>
+              <p class="text-slate-600 text-xs">AI에게 무작정 "고쳐줘" 하지 않고, 에러 로그와 환부만 건네 3초 만에 복구하는 법을 배웁니다.</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 text-xs">
+            <span class="px-3 py-1 rounded-full bg-white text-emerald-800 font-bold border border-emerald-300 shadow-2xs">
+              격리 디버깅
+            </span>
+          </div>
         </div>
 
         <!-- 1단계: 목표 (3분) -->
@@ -1069,10 +1360,10 @@
           </div>
           <div class="text-xs sm:text-sm text-slate-600 space-y-1.5 leading-relaxed">
             <p>
-              "갑자기 안 돼요 고쳐줘"라고 울부짖으면 AI는 멀쩡한 코드까지 뒤엎어 더 망가뜨립니다.
+              "갑자기 안 돼요 고쳐줘"라고 모호하게 말하면 AI는 멀쩡한 코드까지 뒤엎어 더 심하게 망가뜨립니다.
             </p>
             <p>
-              [현재 증상]과 [원래 기대 동작], [F12 빨간 글씨] 3가지만 건네주면 3초 만에 정확히 환부만 도려내어 복구합니다.
+              [현재 증상]과 [원래 기대 동작], [F12 빨간 글씨] 3가지만 정확히 건네주면 3초 만에 정확히 환부만 도려내어 완치합니다.
             </p>
           </div>
         </section>
@@ -1085,7 +1376,7 @@
               <h3 class="font-bold text-sm sm:text-base text-slate-900">2단계 [3~8분] 첫 성공: 디버깅 격리 프롬프트</h3>
             </div>
             <button onclick="copyPrompt('prompt-5')" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all shadow-xs flex items-center gap-1 cursor-pointer">
-              프롬프트 복사
+              기본 프롬프트 복사
             </button>
           </div>
           
@@ -1103,32 +1394,75 @@
 
 4. [수정 원칙]:
    - 다른 정상 작동 영역(헤더, 요약 카드 등)은 절대 건드리지 마.
-   - 문제 원인이 무엇이었는지 12살도 이해할 수 있게 2줄로 설명하고, 수정된 전체 코드를 출력해 줘.
+   - 문제 원인이 무엇이었는지 초보자도 이해할 수 있게 2줄로 설명하고, 수정된 전체 코드를 출력해 줘.
           </div>
         </section>
 
-        <!-- 3단계: 내 선택으로 수정 (9분) -->
-        <section class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col gap-3">
+        <!-- 3단계: 내 선택으로 수정 (인터랙티브 동적 디버깅 조립기) (9분) -->
+        <section class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col gap-4">
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
               <span class="w-5 h-5 rounded bg-emerald-600 text-white font-bold text-xs flex items-center justify-center">3</span>
-              <h3 class="font-bold text-sm sm:text-base text-slate-900">3단계 [8~17분] 나만의 결정: 고의 에러 발생시키기</h3>
+              <h3 class="font-bold text-sm sm:text-base text-slate-900">3단계 [8~17분] 나만의 결정: 실시간 에러 디버깅 조립기</h3>
             </div>
             <span class="text-xs text-slate-500 font-medium">9분 집중</span>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
-            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-1">
-              <strong class="text-slate-900">상황 A. ID 오타 에러</strong>
-              <p class="text-slate-600 text-[11px]">버튼 ID 이름 하나를 고의로 바꿔 클릭 먹통 만들기</p>
+          <!-- 추천 프리셋 3종 -->
+          <div class="flex flex-col gap-2">
+            <span class="text-xs font-bold text-slate-700">대표적인 3대 에러 시나리오 (1초 만에 불러오기):</span>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+              <button onclick="applyW5Preset('typo')" class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-emerald-50 hover:border-emerald-300 text-left transition-all cursor-pointer">
+                <strong class="text-slate-900 block font-bold">⚠️ ID 오타 / 참조 실패</strong>
+                <span class="text-slate-500 text-[11px]">TypeError: Cannot read properties of null</span>
+              </button>
+              <button onclick="applyW5Preset('tag')" class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-emerald-50 hover:border-emerald-300 text-left transition-all cursor-pointer">
+                <strong class="text-slate-900 block font-bold">📐 태그 누락 / 레이아웃 붕괴</strong>
+                <span class="text-slate-500 text-[11px]">&lt;/div&gt; 미닫힘으로 전체 틀 찌그러짐</span>
+              </button>
+              <button onclick="applyW5Preset('syntax')" class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-emerald-50 hover:border-emerald-300 text-left transition-all cursor-pointer">
+                <strong class="text-slate-900 block font-bold">🛑 따옴표 누락 / 구문 오류</strong>
+                <span class="text-slate-500 text-[11px]">SyntaxError: Unexpected identifier</span>
+              </button>
             </div>
-            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-1">
-              <strong class="text-slate-900">상황 B. 태그 누락 에러</strong>
-              <p class="text-slate-600 text-[11px]">닫는 태그(&lt;/div&gt;) 하나를 지워 화면 찌그러뜨리기</p>
+          </div>
+
+          <!-- 입력 폼 -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs pt-1">
+            <div class="flex flex-col gap-1">
+              <label class="font-bold text-slate-700">1. 현재 눈에 보이는 고장 증상:</label>
+              <input type="text" id="w5-input-symptom" oninput="updateW5CustomPrompt()" value="버튼을 눌러도 숫자가 올라가지 않고 아무 반응이 없음" class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-emerald-500 focus:outline-none">
             </div>
-            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-1">
-              <strong class="text-slate-900">상황 C. 스크립트 오타 에러</strong>
-              <p class="text-slate-600 text-[11px]">함수 철자를 일부러 틀리게 적어 F12 에러 띄우기</p>
+            <div class="flex flex-col gap-1">
+              <label class="font-bold text-slate-700">2. 원래 기대했던 정상 동작:</label>
+              <input type="text" id="w5-input-expected" oninput="updateW5CustomPrompt()" value="버튼을 누를 때마다 수량이 1씩 오르고 합계 금액이 실시간 재계산됨" class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-emerald-500 focus:outline-none">
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-1 text-xs">
+            <label class="font-bold text-slate-700">3. 브라우저 F12 콘솔에 찍힌 빨간 에러 메시지 (복사/붙여넣기):</label>
+            <textarea id="w5-input-error" rows="2" oninput="updateW5CustomPrompt()" class="p-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-emerald-500 focus:outline-none font-mono text-xs resize-none">Uncaught TypeError: Cannot read properties of null (reading 'innerText') at HTMLButtonElement.onclick</textarea>
+          </div>
+
+          <!-- 조립된 실시간 프롬프트 프리뷰 & 복사 -->
+          <div class="flex flex-col gap-1.5 pt-1">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-emerald-700">✨ 에러 상황으로 실시간 조합된 AI 격리 디버깅 프롬프트:</span>
+              <button onclick="copyPrompt('custom-prompt-5')" class="px-3 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all shadow-2xs cursor-pointer flex items-center gap-1">
+                완성된 프롬프트 복사
+              </button>
+            </div>
+            <div id="custom-prompt-5" class="p-4 rounded-xl bg-slate-900 text-emerald-300 font-mono text-xs leading-relaxed overflow-x-auto whitespace-pre-wrap max-h-48 border border-slate-800"></div>
+          </div>
+
+          <!-- 4단계 액션 루프 안내 -->
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-2">
+            <strong class="text-slate-900 text-xs font-bold">💡 프롬프트 복사 후 실행 순서 (4단계 초고속 액션 루프):</strong>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+              <div class="p-2 rounded-lg bg-white border border-slate-200 text-center"><span class="font-bold text-emerald-600">1. 복사</span><p class="text-[11px] text-slate-500">위 프롬프트 클릭</p></div>
+              <div class="p-2 rounded-lg bg-white border border-slate-200 text-center"><span class="font-bold text-emerald-600">2. AI 전송</span><p class="text-[11px] text-slate-500">대화창에 붙여넣기</p></div>
+              <div class="p-2 rounded-lg bg-white border border-slate-200 text-center"><span class="font-bold text-emerald-600">3. 코드 교체</span><p class="text-[11px] text-slate-500">메모장에 덮어쓰기</p></div>
+              <div class="p-2 rounded-lg bg-white border border-slate-200 text-center"><span class="font-bold text-emerald-600">4. 확인(F5)</span><p class="text-[11px] text-slate-500">정상 작동 확인</p></div>
             </div>
           </div>
         </section>
@@ -1138,72 +1472,107 @@
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
               <span class="w-5 h-5 rounded bg-emerald-600 text-white font-bold text-xs flex items-center justify-center">4</span>
-              <h3 class="font-bold text-sm sm:text-base text-slate-900">4단계 [17~24분] 3초 롤백 복구 훈련</h3>
+              <h3 class="font-bold text-sm sm:text-base text-slate-900">4단계 [17~24분] 3초 타임머신 롤백 복구 훈련</h3>
             </div>
             <span class="text-xs text-slate-500 font-medium">7분 실험</span>
           </div>
 
-          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-2 text-xs text-slate-700">
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-3 text-xs text-slate-700">
             <div class="flex items-start gap-2">
               <span class="px-2 py-0.5 rounded bg-slate-200 text-slate-800 font-bold shrink-0">훈련 1</span>
-              <span><strong>F12 콘솔 확인:</strong> 브라우저에서 F12를 누르고 빨간색 에러 메시지를 마우스로 긁어 복사합니다.</span>
+              <span><strong>F12 콘솔 확인:</strong> 크롬에서 F12 키를 누르고 [Console] 탭을 클릭하여 빨간색 에러 메시지를 마우스로 긁어 복사합니다.</span>
             </div>
             <div class="flex items-start gap-2">
               <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold shrink-0">복구 2</span>
-              <span><strong>3초 스냅샷 롤백:</strong> 직전 커밋이나 백업 파일로 3초 만에 덮어써 복구한 뒤, 에러 로그를 프롬프트에 넣어 안전하게 해결합니다.</span>
+              <span><strong>3초 스냅샷 롤백:</strong> 직전 정상 동작하던 <code>index_backup.html</code> 파일을 열어 <code>Ctrl+A</code> &rarr; <code>Ctrl+C</code> 후 <code>index.html</code>에 덮어쓰면 3초 만에 무결점 원상복구됩니다.</span>
             </div>
           </div>
         </section>
 
-        <!-- 5단계: 성취 증명 (3분) -->
-        <section class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col gap-3">
+        <!-- 5단계: 정량 성취 검증 & 과제 인증 (3분) -->
+        <section class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col gap-4">
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
               <span class="w-5 h-5 rounded bg-emerald-600 text-white font-bold text-xs flex items-center justify-center">5</span>
-              <h2 class="text-sm sm:text-base font-bold text-slate-900">5단계 [24~30분] 성취 증명: 셀프 체크</h2>
+              <h2 class="text-sm sm:text-base font-bold text-slate-900">5단계 [24~30분] 정량적 성취 검증 & 과제 인증</h2>
             </div>
-            <span class="text-xs text-emerald-700 font-bold">완료 확인</span>
+            <span id="w5-status-badge" class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-slate-600 border border-slate-200">진행 중 (0/3)</span>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-700">
-            <label class="flex items-center gap-2 p-3 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer">
-              <input type="checkbox" class="w-4 h-4 accent-emerald-600 rounded">
-              <span>브라우저 F12 개발자도구 콘솔 탭을 열어보았다</span>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs text-slate-700">
+            <label class="flex items-start gap-2.5 p-3.5 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer hover:bg-slate-100 transition-colors">
+              <input type="checkbox" id="w5-chk-1" onchange="checkW5Tasks()" class="w-4 h-4 mt-0.5 accent-emerald-600 rounded">
+              <div class="flex flex-col">
+                <strong class="font-bold text-slate-900">F12 콘솔 열기</strong>
+                <span class="text-slate-500 text-[11px]">개발자도구 콘솔 탭에서 빨간 에러 확인</span>
+              </div>
             </label>
-            <label class="flex items-center gap-2 p-3 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer">
-              <input type="checkbox" class="w-4 h-4 accent-emerald-600 rounded">
-              <span>빨간색 에러 메시지를 복사해 격리 지시를 내렸다</span>
+            <label class="flex items-start gap-2.5 p-3.5 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer hover:bg-slate-100 transition-colors">
+              <input type="checkbox" id="w5-chk-2" onchange="checkW5Tasks()" class="w-4 h-4 mt-0.5 accent-emerald-600 rounded">
+              <div class="flex flex-col">
+                <strong class="font-bold text-slate-900">4단계 격리 디버깅</strong>
+                <span class="text-slate-500 text-[11px]">증상+기대+로그+원칙 템플릿으로 해결</span>
+              </div>
             </label>
-            <label class="flex items-center gap-2 p-3 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer">
-              <input type="checkbox" class="w-4 h-4 accent-emerald-600 rounded">
-              <span>백업 파일로 3초 만에 화면을 원복해 보았다</span>
+            <label class="flex items-start gap-2.5 p-3.5 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer hover:bg-slate-100 transition-colors">
+              <input type="checkbox" id="w5-chk-3" onchange="checkW5Tasks()" class="w-4 h-4 mt-0.5 accent-emerald-600 rounded">
+              <div class="flex flex-col">
+                <strong class="font-bold text-slate-900">3초 타임머신 원복</strong>
+                <span class="text-slate-500 text-[11px]">백업 파일로 3초 만에 정상 화면 되돌리기</span>
+              </div>
             </label>
-            <label class="flex items-center gap-2 p-3 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer">
-              <input type="checkbox" class="w-4 h-4 accent-emerald-600 rounded">
-              <span>에러 발생 시 당황하지 않고 원인을 설명할 수 있다</span>
-            </label>
+          </div>
+
+          <!-- 과제 인증 영역 -->
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3 pt-3">
+            <div class="flex flex-col gap-0.5 w-full sm:w-auto">
+              <strong class="text-xs font-bold text-slate-900">5주차 과제 인증: 디버깅 완수한 웹페이지 확인</strong>
+              <span class="text-[11px] text-slate-500">배포된 링크 또는 오늘 실습 완료 소감을 한 줄 남겨주세요.</span>
+            </div>
+            <div class="flex items-center gap-2 w-full sm:w-auto">
+              <input type="text" id="w5-hw-url" placeholder="https://내웹주소.netlify.app 또는 완료 메모" class="p-2 rounded-lg border border-slate-300 text-xs w-full sm:w-64 focus:outline-none focus:border-emerald-600 bg-white">
+              <button onclick="submitWeek5Assignment()" class="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs whitespace-nowrap shadow-xs cursor-pointer">
+                과제 인증
+              </button>
+            </div>
           </div>
         </section>
 
       </article>
 
-      <!-- ========================================================
-           WEEK 06 LESSON
+            <!-- ========================================================
+           WEEK 06 LESSON (Gold Standard Interactive Loop)
            ======================================================== -->
       <article id="lesson-w6" class="lesson-content flex-col gap-6">
         
         <!-- Header -->
         <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col gap-2">
           <div class="flex items-center justify-between text-xs">
-            <span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 font-bold border border-emerald-200">6주차 · 최종 검증</span>
+            <span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 font-bold border border-emerald-200">6주차 · 정식 출시 & 수료 (Launch & Mastery)</span>
             <span class="text-slate-400 text-xs">총 실습 시간: 약 30분</span>
           </div>
           <h1 class="text-xl sm:text-2xl font-extrabold text-slate-900 leading-snug">
-            4대 핵심 역량 Eval 통과 & 내 실전 프로덕트 공식 런칭
+            내 웹사이트 정식 출시 & 스마트폰 홈 화면(PWA) 설치 완료
           </h1>
           <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            내가 만든 웹 도구가 스마트폰에서 링크 하나로 완벽히 작동하는지 4가지 잣대로 검증하고, 수료 인증서를 발급받습니다.
+            내가 만든 웹 도구가 스마트폰에서 링크 하나로 완벽히 작동하는지 4가지 잣대로 검증하고, 모바일 홈 화면에 앱처럼 띄운 뒤 수료 인증서를 발급받습니다.
           </p>
+        </div>
+
+        <!-- 실습 준비 도구 안내 -->
+        <div class="p-5 rounded-2xl bg-emerald-50/40 border border-emerald-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <span class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-lg shrink-0">🚀</span>
+            <div class="flex flex-col">
+              <strong class="text-slate-900 text-sm font-bold">6주차 목표: 카카오톡 공유 미리보기(OG) & 홈 화면 바로가기</strong>
+              <p class="text-slate-600 text-xs">스마트폰 첫 화면에 내 아이콘을 띄우고, 지인과 고객에게 당당히 링크를 공유할 준비를 끝냅니다.</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 text-xs">
+            <span class="px-3 py-1 rounded-full bg-white text-emerald-800 font-bold border border-emerald-300 shadow-2xs">
+              공식 런칭 완료
+            </span>
+          </div>
         </div>
 
         <!-- 1단계: 목표 (3분) -->
@@ -1217,10 +1586,10 @@
           </div>
           <div class="text-xs sm:text-sm text-slate-600 space-y-1.5 leading-relaxed">
             <p>
-              단순히 강의를 끝까지 들은 것이 중요한 것이 아닙니다.
+              단순히 강의 영상을 끝까지 시청한 것은 아무것도 남지 않습니다.
             </p>
             <p>
-              내 스마트폰 홈 화면에 설치되어 가족과 고객이 매일 실사용하는 살아있는 도구를 손에 쥐는 것이 진짜 수료입니다.
+              내 스마트폰 첫 화면에 설치되어 가족과 고객이 매일 실사용하는 <strong>'살아있는 웹 도구'</strong>를 손에 쥐는 것이 진짜 자립이자 수료입니다.
             </p>
           </div>
         </section>
@@ -1230,45 +1599,112 @@
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
               <span class="w-5 h-5 rounded bg-emerald-600 text-white font-bold text-xs flex items-center justify-center">2</span>
-              <h3 class="font-bold text-sm sm:text-base text-slate-900">2단계 [3~8분] 4대 Eval 검증 기준</h3>
+              <h3 class="font-bold text-sm sm:text-base text-slate-900">2단계 [3~8분] 첫 성공: 카카오톡 공유 태그 & PWA 프롬프트</h3>
             </div>
-            <a href="/diagnostic.html" target="_blank" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all shadow-xs flex items-center gap-1">
-              12문항 정밀 진단 &rarr;
-            </a>
+            <button onclick="copyPrompt('prompt-6')" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all shadow-xs flex items-center gap-1 cursor-pointer">
+              기본 프롬프트 복사
+            </button>
           </div>
+          
+          <div id="prompt-6" class="p-4 rounded-xl bg-slate-50 text-slate-800 font-mono text-xs leading-relaxed overflow-x-auto border border-slate-200">
+너는 웹 배포 및 검색/공유 최적화(SEO/PWA) 엔지니어다.
+내 기존 웹페이지의 1~5주차 기능(헤더, 프로필, 3단 요약 카드, 계산기)은 절대 훼손하지 말고, `&lt;head&gt;` 태그 안에 아래 메타 정보를 추가해 줘.
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-1">
-              <strong class="text-slate-900">EVAL 1. 컨텍스트 제어력</strong>
-              <p class="text-slate-600 text-[11px]">문서 범위를 지정해 AI 거짓말(환각)을 100% 방어하는가?</p>
-            </div>
-            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-1">
-              <strong class="text-slate-900">EVAL 2. 안티슬롭 2색 준수</strong>
-              <p class="text-slate-600 text-[11px]">보라색 네온 없이 단 2가지 색과 Wanted Sans 가독성을 갖췄는가?</p>
-            </div>
-            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-1">
-              <strong class="text-slate-900">EVAL 3. 3초 롤백 복구력</strong>
-              <p class="text-slate-600 text-[11px]">화면 먹통 시 당황하지 않고 3초 만에 원복할 수 있는가?</p>
-            </div>
-            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-1">
-              <strong class="text-slate-900">EVAL 4. 영구 0원 경제성</strong>
-              <p class="text-slate-600 text-[11px]">월 고정비 지출 없이 무료 정적 호스팅으로 영구 배포되었는가?</p>
-            </div>
+[공유 및 모바일 홈 화면 요구사항]
+1. Open Graph (카카오톡/문자 링크 공유 시 미리보기):
+   - og:title: "내 사이트 공식 이름"
+   - og:description: "한눈에 들어오는 1줄 핵심 서비스 설명"
+   - og:type: "website"
+2. 모바일 홈 화면 바로가기 (PWA):
+   - apple-mobile-web-app-capable: yes
+   - apple-mobile-web-app-status-bar-style: default
+   - theme-color: "#ffffff"
+3. 코드는 생략 없이 완성된 전체 index.html로 출력해 줘.
           </div>
         </section>
 
-        <!-- 3단계: 내 선택으로 수정 (9분) -->
-        <section class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col gap-3">
+        <!-- 3단계: 내 선택으로 수정 (인터랙티브 동적 출시 조립기) (9분) -->
+        <section class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col gap-4">
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
               <span class="w-5 h-5 rounded bg-emerald-600 text-white font-bold text-xs flex items-center justify-center">3</span>
-              <h3 class="font-bold text-sm sm:text-base text-slate-900">3단계 [8~17분] 모바일 홈 화면 설치 (PWA 바로가기)</h3>
+              <h3 class="font-bold text-sm sm:text-base text-slate-900">3단계 [8~17분] 나만의 결정: 실시간 공유 카드 & PWA 조립기</h3>
             </div>
             <span class="text-xs text-slate-500 font-medium">9분 집중</span>
           </div>
-          <p class="text-xs text-slate-600 leading-relaxed">
-            사파리(Safari)나 크롬(Chrome)에서 [홈 화면에 추가]를 눌러 앱스토어 앱처럼 스마트폰 첫 화면에 설치해 보세요.
-          </p>
+
+          <!-- 추천 프리셋 3종 -->
+          <div class="flex flex-col gap-2">
+            <span class="text-xs font-bold text-slate-700">추천 출시 프리셋 (1초 만에 불러오기):</span>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+              <button onclick="applyW6Preset('biz')" class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-emerald-50 hover:border-emerald-300 text-left transition-all cursor-pointer">
+                <strong class="text-slate-900 block font-bold">💼 비즈니스 · 1인기업</strong>
+                <span class="text-slate-500 text-[11px]">전문가 프로필, 포트폴리오, 견적 신청</span>
+              </button>
+              <button onclick="applyW6Preset('store')" class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-emerald-50 hover:border-emerald-300 text-left transition-all cursor-pointer">
+                <strong class="text-slate-900 block font-bold">🥐 매장 · 베이커리 · 카페</strong>
+                <span class="text-slate-500 text-[11px]">매장 소개, 메뉴판, 사전 예약 주문</span>
+              </button>
+              <button onclick="applyW6Preset('community')" class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-emerald-50 hover:border-emerald-300 text-left transition-all cursor-pointer">
+                <strong class="text-slate-900 block font-bold">👥 소모임 · 동호회 · 학원</strong>
+                <span class="text-slate-500 text-[11px]">모임 규칙, 일정 안내, 참여 신청</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 입력 폼 -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs pt-1">
+            <div class="flex flex-col gap-1">
+              <label class="font-bold text-slate-700">내 사이트 정식 이름 (og:title):</label>
+              <input type="text" id="w6-input-title" oninput="updateW6CustomPrompt()" value="김대표의 원스톱 실무 견적서" class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-emerald-500 focus:outline-none">
+            </div>
+            <div class="flex flex-col gap-1">
+              <label class="font-bold text-slate-700">홈 화면 앱 아이콘 이모지/심볼:</label>
+              <input type="text" id="w6-input-icon" oninput="updateW6CustomPrompt()" value="⚡" class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-emerald-500 focus:outline-none text-center">
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-1 text-xs">
+            <label class="font-bold text-slate-700">카카오톡 공유 시 뜰 한 줄 소개 (og:description):</label>
+            <input type="text" id="w6-input-desc" oninput="updateW6CustomPrompt()" value="복잡한 상담 없이 10초 만에 예상 비용을 실시간 계산하고 바로 신청하세요." class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-emerald-500 focus:outline-none">
+          </div>
+
+          <!-- 실시간 카카오톡 공유 미리보기 카드 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50 flex flex-col gap-2">
+            <span class="text-xs font-bold text-slate-700">카카오톡 공유 미리보기 (Live Preview):</span>
+            <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-2xs flex flex-col gap-2 max-w-sm">
+              <div class="h-28 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-3xl">
+                <span id="w6-preview-icon">⚡</span>
+              </div>
+              <div class="flex flex-col gap-0.5">
+                <strong id="w6-preview-title" class="text-xs font-bold text-slate-900">김대표의 원스톱 실무 견적서</strong>
+                <p id="w6-preview-desc" class="text-[11px] text-slate-500 line-clamp-2">복잡한 상담 없이 10초 만에 예상 비용을 실시간 계산하고 바로 신청하세요.</p>
+                <span class="text-[10px] text-slate-400 mt-1">내이름.netlify.app</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 조립된 실시간 프롬프트 프리뷰 & 복사 -->
+          <div class="flex flex-col gap-1.5 pt-1">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-emerald-700">✨ 메타태그 & PWA 조립 프롬프트:</span>
+              <button onclick="copyPrompt('custom-prompt-6')" class="px-3 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all shadow-2xs cursor-pointer flex items-center gap-1">
+                완성된 프롬프트 복사
+              </button>
+            </div>
+            <div id="custom-prompt-6" class="p-4 rounded-xl bg-slate-900 text-emerald-300 font-mono text-xs leading-relaxed overflow-x-auto whitespace-pre-wrap max-h-48 border border-slate-800"></div>
+          </div>
+
+          <!-- 4단계 액션 루프 안내 -->
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-2">
+            <strong class="text-slate-900 text-xs font-bold">💡 프롬프트 복사 후 실행 순서 (4단계 초고속 액션 루프):</strong>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+              <div class="p-2 rounded-lg bg-white border border-slate-200 text-center"><span class="font-bold text-emerald-600">1. 복사</span><p class="text-[11px] text-slate-500">위 프롬프트 클릭</p></div>
+              <div class="p-2 rounded-lg bg-white border border-slate-200 text-center"><span class="font-bold text-emerald-600">2. AI 전송</span><p class="text-[11px] text-slate-500">대화창에 붙여넣기</p></div>
+              <div class="p-2 rounded-lg bg-white border border-slate-200 text-center"><span class="font-bold text-emerald-600">3. 코드 저장</span><p class="text-[11px] text-slate-500">메모장에 덮어쓰기</p></div>
+              <div class="p-2 rounded-lg bg-white border border-slate-200 text-center"><span class="font-bold text-emerald-600">4. 최종 배포</span><p class="text-[11px] text-slate-500">Netlify 드롭</p></div>
+            </div>
+          </div>
         </section>
 
         <!-- 4단계: 한계 실험 & 복구 (7분) -->
@@ -1276,45 +1712,90 @@
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
               <span class="w-5 h-5 rounded bg-emerald-600 text-white font-bold text-xs flex items-center justify-center">4</span>
-              <h3 class="font-bold text-sm sm:text-base text-slate-900">4단계 [17~24분] 타 기기 접속 호환성 테스트</h3>
+              <h3 class="font-bold text-sm sm:text-base text-slate-900">4단계 [17~24분] 실전 접속 & 모바일 홈 화면 설치</h3>
             </div>
-            <span class="text-xs text-slate-500 font-medium">7분 실험</span>
+            <span class="text-xs text-slate-500 font-medium">7분 점검</span>
           </div>
 
-          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-2 text-xs text-slate-700">
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-3 text-xs text-slate-700">
             <div class="flex items-start gap-2">
               <span class="px-2 py-0.5 rounded bg-slate-200 text-slate-800 font-bold shrink-0">점검 1</span>
-              <span><strong>가족 단톡방 링크 공유:</strong> 가족이나 동료에게 라이브 웹 링크를 전송하여 스마트폰에서 바로 열리는지 확인합니다.</span>
+              <span><strong>스마트폰 사파리/크롬 접속:</strong> Netlify 배포 링크를 스마트폰으로 열고 [홈 화면에 추가] 버튼을 눌러 첫 화면에 진짜 앱 아이콘이 생성되는지 확인합니다.</span>
             </div>
             <div class="flex items-start gap-2">
               <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold shrink-0">점검 2</span>
-              <span><strong>QR 코드 스캔 접속:</strong> 웹 링크를 무료 QR 코드로 변환해 카메라로 찍어 즉시 열리는지 시험합니다.</span>
+              <span><strong>가족 단톡방 링크 전송:</strong> 카카오톡에 내 링크를 보냈을 때 방금 설정한 제목과 설명이 카드 형태로 예쁘게 뜨는지 확인합니다.</span>
             </div>
           </div>
         </section>
 
-        <!-- 5단계: 성취 증명 (3분) -->
-        <section class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col gap-3">
+        <!-- 5단계: 정량 성취 검증 & 최종 수료 인증서 발급 (3분) -->
+        <section class="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs flex flex-col gap-4">
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
               <span class="w-5 h-5 rounded bg-emerald-600 text-white font-bold text-xs flex items-center justify-center">5</span>
-              <h2 class="text-sm sm:text-base font-bold text-slate-900">5단계 [24~30분] 수료 완료 & 디렉터 선언</h2>
+              <h2 class="text-sm sm:text-base font-bold text-slate-900">5단계 [24~30분] 4대 핵심 역량 검증 & 최종 수료</h2>
             </div>
-            <span class="text-xs text-emerald-700 font-bold">수료 인증</span>
+            <span id="w6-status-badge" class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-slate-600 border border-slate-200">진행 중 (0/4)</span>
           </div>
 
-          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col gap-2 text-xs text-slate-700">
-            <p class="font-bold text-slate-900">수료 축하합니다!</p>
-            <p class="leading-relaxed">
-              6주 동안 코딩 문법 암기 없이, 오직 명확한 디렉팅과 3초 복구 습관만으로 실제 작동하는 웹 프로덕트를 완성했습니다. 앞으로 마주칠 모든 AI 도구 앞에서도 당당히 나만의 결과물을 만들어낼 수 있습니다.
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs text-slate-700">
+            <label class="flex items-start gap-2.5 p-3.5 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer hover:bg-slate-100 transition-colors">
+              <input type="checkbox" id="w6-chk-1" onchange="checkW6Tasks()" class="w-4 h-4 mt-0.5 accent-emerald-600 rounded">
+              <div class="flex flex-col">
+                <strong class="font-bold text-slate-900">EVAL 1. 컨텍스트 제어력</strong>
+                <span class="text-slate-500 text-[11px]">내 문서 3단 카드 결합 및 AI 거짓말 방어 완료</span>
+              </div>
+            </label>
+            <label class="flex items-start gap-2.5 p-3.5 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer hover:bg-slate-100 transition-colors">
+              <input type="checkbox" id="w6-chk-2" onchange="checkW6Tasks()" class="w-4 h-4 mt-0.5 accent-emerald-600 rounded">
+              <div class="flex flex-col">
+                <strong class="font-bold text-slate-900">EVAL 2. 안티슬롭 2색 준수</strong>
+                <span class="text-slate-500 text-[11px]">보라색 네온 퇴치 & 단 2색 정돈 완료</span>
+              </div>
+            </label>
+            <label class="flex items-start gap-2.5 p-3.5 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer hover:bg-slate-100 transition-colors">
+              <input type="checkbox" id="w6-chk-3" onchange="checkW6Tasks()" class="w-4 h-4 mt-0.5 accent-emerald-600 rounded">
+              <div class="flex flex-col">
+                <strong class="font-bold text-slate-900">EVAL 3. 실시간 계산 인터랙션</strong>
+                <span class="text-slate-500 text-[11px]">수량 증감 및 합계 자동 연산 완료</span>
+              </div>
+            </label>
+            <label class="flex items-start gap-2.5 p-3.5 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer hover:bg-slate-100 transition-colors">
+              <input type="checkbox" id="w6-chk-4" onchange="checkW6Tasks()" class="w-4 h-4 mt-0.5 accent-emerald-600 rounded">
+              <div class="flex flex-col">
+                <strong class="font-bold text-slate-900">EVAL 4. 영구 0원 배포 & PWA</strong>
+                <span class="text-slate-500 text-[11px]">추가 서버비 0원으로 스마트폰 홈 화면 설치 완료</span>
+              </div>
+            </label>
+          </div>
+
+          <!-- 최종 수료증 발급 카드 -->
+          <div id="w6-cert-box" class="p-6 rounded-2xl bg-emerald-50/50 border-2 border-emerald-500 text-slate-900 flex flex-col gap-4 shadow-sm">
+            <div class="flex items-center justify-between border-b border-emerald-200 pb-3">
+              <div class="flex items-center gap-2">
+                <span class="text-2xl">🎓</span>
+                <strong class="text-base font-extrabold text-emerald-950">송도 국제 AI 아카데미 6주 실전자립 수료증</strong>
+              </div>
+              <span id="w6-cert-date" class="text-xs font-bold text-emerald-700">2026. 10. 28</span>
+            </div>
+            
+            <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+              위 사람은 복잡한 코딩 문법 암기 없이, 오직 명확한 디렉팅과 3초 복구 습관만으로 실제 작동하는 웹 프로덕트를 완성하고 공식 배포하였음을 인증합니다.
             </p>
-            <span class="font-signature text-2xl text-emerald-700 font-bold self-end mt-1">ohahbuji</span>
-          </div>
 
-          <div class="pt-2 flex items-center justify-end">
-            <a href="/diagnostic.html" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition-all shadow-xs flex items-center gap-1.5">
-              <span>내 AI 자립 공식 인증서 발급받기 &rarr;</span>
-            </a>
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2">
+              <div class="flex items-center gap-2 w-full sm:w-auto">
+                <input type="text" id="w6-hw-url" placeholder="https://내최종웹주소.netlify.app" class="p-2.5 rounded-xl border border-emerald-300 text-xs w-full sm:w-72 focus:outline-none focus:border-emerald-600 bg-white">
+                <button onclick="submitWeek6Assignment()" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs whitespace-nowrap shadow-xs cursor-pointer">
+                  최종 수료 인증
+                </button>
+              </div>
+              <div class="flex items-center gap-2 self-end sm:self-auto">
+                <span class="text-xs text-slate-500">Verified by</span>
+                <span class="font-signature text-3xl text-emerald-700 font-bold select-none">ohahbuji</span>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -1567,6 +2048,673 @@ ${itemsFormatted}
       showToast("1주차 과제 인증이 완료되었습니다!");
     }
 
+
+    // ==========================================
+    // Week 2 Interactive Toolkit & Grounding Customizer
+    // ==========================================
+    const w2Presets = {
+      store: {
+        title: "송도 베이커리 매장 이용 수칙",
+        doc: "1. [보관 안내] 방부제가 들어있지 않아 당일 섭취를 권장하며, 남은 빵은 밀봉 후 냉동 보관(최대 14일)하세요.\n2. [주차 안내] 건물 지하 1~2층 주차장을 2시간 무료 이용하실 수 있으며 카운터에서 차량 등록이 필요합니다.\n3. [교환/환불] 개봉 후 단순 변심에 의한 환불은 불가하며, 제품 이상 시 구매 당일 영수증 지참 시 100% 교환해 드립니다."
+      },
+      service: {
+        title: "전문가 1:1 컨설팅 진행 규정",
+        doc: "1. [진행 방식] 상담은 사전 예약제로 운영되며 1회 60분간 온라인 줌(Zoom) 또는 대면으로 진행됩니다.\n2. [사전 질문서] 원활한 상담을 위해 최소 24시간 전까지 비즈니스 현황 질문지를 제출해 주셔야 합니다.\n3. [일정 변경/취소] 상담 시작 24시간 전까지 1회 무료 변경 가능하며, 당일 불참 시 상담권이 자동 소진됩니다."
+      },
+      community: {
+        title: "송도 러닝 크루 정기 운영 회칙",
+        doc: "1. [정기 모임] 매주 토요일 오전 7시 센트럴파크 잔디광장 시계탑 앞에서 모여 50분간 달립니다.\n2. [회비 관리] 월 회비는 1인당 1만원이며 전액 생수 구매, 부상 대비 구급약품 구매, 반기별 결산에 공개 사용됩니다.\n3. [안전 수칙] 안전을 위해 이어폰 한쪽 착용을 권장하며, 리더의 수신호와 페이스 조절 가이드를 반드시 준수합니다."
+      }
+    };
+
+    function applyW2Preset(type) {
+      const p = w2Presets[type];
+      if (!p) return;
+      const titleEl = document.getElementById('w2-input-title');
+      const docEl = document.getElementById('w2-input-doc');
+      if (titleEl) titleEl.value = p.title;
+      if (docEl) docEl.value = p.doc;
+      updateW2CustomPrompt();
+      showToast(`${p.title} 프리셋이 적용되었습니다.`);
+    }
+
+    function updateW2CustomPrompt() {
+      const title = document.getElementById('w2-input-title')?.value.trim() || '내 규정 문서';
+      const strictMode = document.getElementById('w2-input-strict')?.value || 'strict';
+      const doc = document.getElementById('w2-input-doc')?.value.trim() || '내 실제 안내문 내용';
+
+      const promptBox = document.getElementById('custom-prompt-2');
+      if (!promptBox) return;
+
+      const rule1 = strictMode === 'strict' 
+        ? "1. [절대 원칙] 아래 제공된 [참고 원문 문서]에 명시되지 않은 사실은 절대로 추측하거나 상상해서 지어내지 마라.\n2. 문서에서 찾을 수 없는 질문이나 내용은 '제공된 규정 문서에 해당 내용이 명시되어 있지 않습니다'라고 단호하게 답변해."
+        : "1. [신뢰성 원칙] 아래 제공된 [참고 원문 문서]의 사실에만 입각하여 정직하게 요약해.\n2. 불확실한 내용은 추측하지 말고 원문에 있는 내용만 사실대로 전달해.";
+
+      const promptText = `너는 팩트 기반 정보 검증 전문 에디터이자 웹 UI 디자이너야.
+내가 아래 제공하는 [${title}] 원문만을 근거로 삼아, 방문자가 한눈에 읽을 수 있는 [3단 카드 컴포넌트] HTML 코드를 만들어 줘.
+
+[엄격한 신뢰성 규칙]
+${rule1}
+3. 모든 요약 문장 끝에는 반드시 원문의 출처(단락 제목이나 조항)를 [출처: ...] 형태로 명기해.
+
+[디자인 규격]
+- Slate/White 베이스 + Emerald 포인트 컬러 2색 규칙 준수
+- 각 카드는 둥근 모서리(rounded-2xl), 부드러운 테두리(border border-slate-200), 흰색 배경
+- 3개 카드가 가로로 나란히 배치되는 그리드 (grid grid-cols-1 md:grid-cols-3 gap-4)
+
+[참고 원문 문서]
+${doc}
+
+위 문서를 기반으로 실제 index.html 에 바로 붙여넣을 수 있는 정돈된 3단 카드 HTML 코드를 완성해 줘.`;
+
+      promptBox.innerText = promptText;
+    }
+
+    function checkW2Tasks() {
+      const c1 = document.getElementById('w2-chk-1')?.checked;
+      const c2 = document.getElementById('w2-chk-2')?.checked;
+      const c3 = document.getElementById('w2-chk-3')?.checked;
+      const badge = document.getElementById('w2-status-badge');
+      if (!badge) return;
+
+      const checkedCount = [c1, c2, c3].filter(Boolean).length;
+      if (checkedCount === 3) {
+        badge.className = "px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300";
+        badge.innerText = "검증 완료 (과제 제출 가능)";
+      } else {
+        badge.className = "px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-slate-600 border border-slate-200";
+        badge.innerText = `진행 중 (${checkedCount}/3)`;
+      }
+    }
+
+    function submitWeek2Assignment() {
+      const input = document.getElementById('w2-hw-url');
+      if (!input) return;
+      const url = input.value.trim();
+      if (!url) {
+        alert('과제 결과물 URL 또는 완료 메모를 입력해 주세요.');
+        input.focus();
+        return;
+      }
+      localStorage.setItem('songdo_w2_submission', url);
+      const badge = document.getElementById('w2-status-badge');
+      if (badge) {
+        badge.className = "px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-600 text-white shadow-xs";
+        badge.innerText = "✅ 2주차 통과 완료";
+      }
+      showToast("2주차 과제 인증이 완료되었습니다!");
+    }
+
+
+    // ==========================================
+    // Week 3 Interactive Toolkit & 2-Color Customizer
+    // ==========================================
+    const w3Presets = {
+      emerald: {
+        name: "에메랄드 그린",
+        accentHex: "#059669",
+        accentClass: "emerald",
+        btnBg: "bg-emerald-600",
+        badgeBg: "bg-emerald-50 text-emerald-800 border-emerald-200"
+      },
+      indigo: {
+        name: "딥 인디고",
+        accentHex: "#4f46e5",
+        accentClass: "indigo",
+        btnBg: "bg-indigo-600",
+        badgeBg: "bg-indigo-50 text-indigo-800 border-indigo-200"
+      },
+      terracotta: {
+        name: "웜 테라코타",
+        accentHex: "#ea580c",
+        accentClass: "orange",
+        btnBg: "bg-orange-600",
+        badgeBg: "bg-orange-50 text-orange-800 border-orange-200"
+      }
+    };
+
+    let currentW3Color = 'emerald';
+
+    function applyW3Preset(type) {
+      const p = w3Presets[type];
+      if (!p) return;
+      currentW3Color = type;
+
+      const badge = document.getElementById('w3-preview-badge');
+      const btn = document.getElementById('w3-preview-btn');
+      if (badge && btn) {
+        badge.className = `px-2.5 py-0.5 rounded-full text-xs font-bold ${p.badgeBg} border w-fit`;
+        btn.className = `px-4 py-2 rounded-xl ${p.btnBg} text-white font-bold text-xs shadow-xs transition-colors shrink-0`;
+      }
+      updateW3CustomPrompt();
+      showToast(`${p.name} 2색 팔레트가 적용되었습니다.`);
+    }
+
+    function updateW3CustomPrompt() {
+      const p = w3Presets[currentW3Color] || w3Presets.emerald;
+      const promptBox = document.getElementById('custom-prompt-3');
+      if (!promptBox) return;
+
+      const promptText = `너는 불필요한 장식을 배제하고 절제미를 추구하는 최고 수준의 디지털 프로덕트 디자이너야.
+내가 아래 제공하는 [현재 HTML 원본 코드]를 다음 [엄격한 2-Color Rule]에 맞춰 정갈하게 리팩토링해 줘.
+
+[엄격한 2-Color 디자인 원칙]
+1. 포인트 컬러: ${p.name} (${p.accentHex} / Tailwind: ${p.accentClass}-600)
+   - 버튼, 활성 탭 뱃지, 핵심 강조 링크 1개에만 오직 이 색을 사용한다.
+2. 베이스 컬러: Slate 먹색 계열
+   - 텍스트 본문은 text-slate-800 / text-slate-900, 부연 설명은 text-slate-500
+   - 배경은 오프화이트(bg-slate-50 / bg-white) 카드만 사용한다.
+3. 배제 규칙:
+   - 보라색/핑크 네온 그라데이션 및 문장마다 붙은 이모지 스팸을 완전히 삭제한다.
+   - 모든 텍스트 컨테이너에 word-break: keep-all; 및 text-wrap: balance; 를 적용해 한글 줄바꿈을 안정화한다.
+
+[현재 내 HTML 원본 코드]
+(메모장에 있는 내 index.html 전체 코드를 여기에 붙여넣기)`;
+
+      promptBox.innerText = promptText;
+    }
+
+    function checkW3Tasks() {
+      const c1 = document.getElementById('w3-chk-1')?.checked;
+      const c2 = document.getElementById('w3-chk-2')?.checked;
+      const c3 = document.getElementById('w3-chk-3')?.checked;
+      const badge = document.getElementById('w3-status-badge');
+      if (!badge) return;
+
+      const checkedCount = [c1, c2, c3].filter(Boolean).length;
+      if (checkedCount === 3) {
+        badge.className = "px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300";
+        badge.innerText = "검증 완료 (과제 제출 가능)";
+      } else {
+        badge.className = "px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-slate-600 border border-slate-200";
+        badge.innerText = `진행 중 (${checkedCount}/3)`;
+      }
+    }
+
+    function submitWeek3Assignment() {
+      const input = document.getElementById('w3-hw-url');
+      if (!input) return;
+      const url = input.value.trim();
+      if (!url) {
+        alert('과제 결과물 URL 또는 완료 메모를 입력해 주세요.');
+        input.focus();
+        return;
+      }
+      localStorage.setItem('songdo_w3_submission', url);
+      const badge = document.getElementById('w3-status-badge');
+      if (badge) {
+        badge.className = "px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-600 text-white shadow-xs";
+        badge.innerText = "✅ 3주차 통과 완료";
+      }
+      showToast("3주차 과제 인증이 완료되었습니다!");
+    }
+
+
+    // ==========================================
+    // Week 4 Interactive Toolkit & Calculator Customizer
+    // ==========================================
+    const w4Presets = {
+      consult: {
+        title: "1:1 맞춤 상담 간편 견적기",
+        item1: { name: "1:1 맞춤 상담 (1회)", price: 150000 },
+        item2: { name: "업무 양식 제작 (1건)", price: 80000 }
+      },
+      bakery: {
+        title: "베이커리 선물세트 주문기",
+        item1: { name: "시그니처 소금빵 박스 (6개입)", price: 18000 },
+        item2: { name: "콜드브루 원액 보틀 (500ml)", price: 8000 }
+      },
+      course: {
+        title: "실무 코스 패키지 계산기",
+        item1: { name: "실전 6주 웹 교안 영구 소장권", price: 50000 },
+        item2: { name: "1:1 온라인 디버깅 코칭권 (1회)", price: 70000 }
+      }
+    };
+
+    let w4Current = {
+      preset: 'consult',
+      qty1: 1,
+      qty2: 1
+    };
+
+    function applyW4Preset(type) {
+      const p = w4Presets[type];
+      if (!p) return;
+      w4Current.preset = type;
+      w4Current.qty1 = 1;
+      w4Current.qty2 = 1;
+
+      const titleEl = document.getElementById('w4-calc-title');
+      const item1Name = document.getElementById('w4-item1-name');
+      const item1Price = document.getElementById('w4-item1-price-label');
+      const item2Name = document.getElementById('w4-item2-name');
+      const item2Price = document.getElementById('w4-item2-price-label');
+
+      if (titleEl) titleEl.innerText = p.title;
+      if (item1Name) item1Name.innerText = p.item1.name;
+      if (item1Price) item1Price.innerText = p.item1.price.toLocaleString() + '원';
+      if (item2Name) item2Name.innerText = p.item2.name;
+      if (item2Price) item2Price.innerText = p.item2.price.toLocaleString() + '원';
+
+      renderW4Calc();
+      updateW4CustomPrompt();
+      showToast(`${p.title} 프리셋이 적용되었습니다.`);
+    }
+
+    function changeW4Qty(item, delta) {
+      if (item === 'item1') {
+        w4Current.qty1 = Math.max(0, w4Current.qty1 + delta);
+      } else {
+        w4Current.qty2 = Math.max(0, w4Current.qty2 + delta);
+      }
+      renderW4Calc();
+    }
+
+    function renderW4Calc() {
+      const p = w4Presets[w4Current.preset] || w4Presets.consult;
+      const q1El = document.getElementById('w4-item1-qty');
+      const q2El = document.getElementById('w4-item2-qty');
+      const totalEl = document.getElementById('w4-calc-total');
+
+      if (q1El) q1El.innerText = w4Current.qty1;
+      if (q2El) q2El.innerText = w4Current.qty2;
+
+      const total = (w4Current.qty1 * p.item1.price) + (w4Current.qty2 * p.item2.price);
+      if (totalEl) totalEl.innerText = total.toLocaleString() + '원';
+    }
+
+    function updateW4CustomPrompt() {
+      const p = w4Presets[w4Current.preset] || w4Presets.consult;
+      const promptBox = document.getElementById('custom-prompt-4');
+      if (!promptBox) return;
+
+      const promptText = `너는 실무 인터랙티브 프론트엔드 개발자야.
+내 기존 웹페이지의 1~3주차 헤더, 프로필, 3단 요약 카드는 절대 삭제하거나 위치를 바꾸지 말고, 하단에 [${p.title}] 섹션을 추가해 줘.
+
+[계산기 기능 요구사항]
+1. 항목 구성:
+   - 항목 1: ${p.item1.name} (단가: ${p.item1.price.toLocaleString()}원)
+   - 항목 2: ${p.item2.name} (단가: ${p.item2.price.toLocaleString()}원)
+2. 인터랙션 동작:
+   - 각 항목마다 [-], [+] 버튼과 실시간 수량 숫자가 있다.
+   - 버튼을 누를 때마다 브라우저 새로고침 없이 즉시 하단 [합계 금액]이 recalculate 된다.
+   - 수량은 0개 이하로 내려가지 않도록 Math.max(0, count) 최소값 방어 코드를 적용한다.
+   - 금액 표시는 세 자리마다 콤마를 찍어 'xxx,xxx원' 형태로 출력한다.
+3. 디자인:
+   - Slate/White 베이스 + Emerald 포인트 컬러를 적용해 스마트폰에서도 버튼이 큼직하고 누르기 쉽게 만든다.
+
+위 요구사항을 충족하는 완전한 HTML 및 자바스크립트 코드를 작성해 줘.`;
+
+      promptBox.innerText = promptText;
+    }
+
+    function checkW4Tasks() {
+      const c1 = document.getElementById('w4-chk-1')?.checked;
+      const c2 = document.getElementById('w4-chk-2')?.checked;
+      const c3 = document.getElementById('w4-chk-3')?.checked;
+      const badge = document.getElementById('w4-status-badge');
+      if (!badge) return;
+
+      const checkedCount = [c1, c2, c3].filter(Boolean).length;
+      if (checkedCount === 3) {
+        badge.className = "px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300";
+        badge.innerText = "검증 완료 (과제 제출 가능)";
+      } else {
+        badge.className = "px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-slate-600 border border-slate-200";
+        badge.innerText = `진행 중 (${checkedCount}/3)`;
+      }
+    }
+
+    function submitWeek4Assignment() {
+      const input = document.getElementById('w4-hw-url');
+      if (!input) return;
+      const url = input.value.trim();
+      if (!url) {
+        alert('과제 결과물 URL 또는 완료 메모를 입력해 주세요.');
+        input.focus();
+        return;
+      }
+      localStorage.setItem('songdo_w4_submission', url);
+      const badge = document.getElementById('w4-status-badge');
+      if (badge) {
+        badge.className = "px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-600 text-white shadow-xs";
+        badge.innerText = "✅ 4주차 통과 완료";
+      }
+      showToast("4주차 과제 인증이 완료되었습니다!");
+    }
+
+
+    // ==========================================
+    // Week 5 Interactive Toolkit & Debugging Customizer
+    // ==========================================
+    const w5Presets = {
+      typo: {
+        symptom: "버튼을 눌러도 숫자가 올라가지 않고 아무 반응이 없음",
+        expected: "버튼을 누를 때마다 수량이 1씩 오르고 합계 금액이 실시간 재계산됨",
+        error: "Uncaught TypeError: Cannot read properties of null (reading 'innerText') at HTMLButtonElement.onclick"
+      },
+      tag: {
+        symptom: "하단 푸터와 카드가 위로 밀려 올라오고 배경 박스가 찌그러져 깨짐",
+        expected: "3단 카드 아래에 계산기 박스가 반듯하게 격자 형태로 정돈되어야 함",
+        error: "HTML 구조 에러: 닫는 태그 </div> 누락으로 인한 부모 컨테이너 오버플로우"
+      },
+      syntax: {
+        symptom: "페이지가 로딩되자마자 콘솔에 빨간 불이 들어오고 모든 클릭 스크립트 정지",
+        expected: "에러 없이 모든 버튼과 스크립트가 정상 대기 상태로 유지됨",
+        error: "Uncaught SyntaxError: Unexpected identifier 'won' (at index.html:142:35)"
+      }
+    };
+
+    function applyW5Preset(type) {
+      const p = w5Presets[type];
+      if (!p) return;
+
+      const symEl = document.getElementById('w5-input-symptom');
+      const expEl = document.getElementById('w5-input-expected');
+      const errEl = document.getElementById('w5-input-error');
+
+      if (symEl) symEl.value = p.symptom;
+      if (expEl) expEl.value = p.expected;
+      if (errEl) errEl.value = p.error;
+
+      updateW5CustomPrompt();
+      showToast("에러 시나리오 프리셋이 적용되었습니다.");
+    }
+
+    function updateW5CustomPrompt() {
+      const symptom = document.getElementById('w5-input-symptom')?.value.trim() || '버튼 클릭 무반응';
+      const expected = document.getElementById('w5-input-expected')?.value.trim() || '정상 작동';
+      const error = document.getElementById('w5-input-error')?.value.trim() || '콘솔 에러 없음';
+
+      const promptBox = document.getElementById('custom-prompt-5');
+      if (!promptBox) return;
+
+      const promptText = `너는 웹 디버깅 및 트러블슈팅 최고 전문가야.
+내 웹페이지에서 에러가 발생했어. 아래 4가지 상황 보고서를 바탕으로 원인을 정확히 찾아 안전하게 해결해 줘.
+
+[1. 현재 겪고 있는 고장 증상]
+${symptom}
+
+[2. 원래 기대했던 정상 동작]
+${expected}
+
+[3. 브라우저 F12 개발자도구 콘솔 에러 메시지]
+${error}
+
+[4. 엄격한 수정 원칙]
+- 문제가 발생하지 않은 다른 영역(헤더, 프로필, 3단 요약 카드 등)의 멀쩡한 코드는 절대 건드리지 마라.
+- 에러 원인이 무엇이었는지 초보자도 10초 만에 이해할 수 있게 2줄로 쉽게 설명해 줘.
+- 수정된 완전한 index.html 전체 코드를 생략 없이 출력해 줘.`;
+
+      promptBox.innerText = promptText;
+    }
+
+    function checkW5Tasks() {
+      const c1 = document.getElementById('w5-chk-1')?.checked;
+      const c2 = document.getElementById('w5-chk-2')?.checked;
+      const c3 = document.getElementById('w5-chk-3')?.checked;
+      const badge = document.getElementById('w5-status-badge');
+      if (!badge) return;
+
+      const checkedCount = [c1, c2, c3].filter(Boolean).length;
+      if (checkedCount === 3) {
+        badge.className = "px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300";
+        badge.innerText = "검증 완료 (과제 제출 가능)";
+      } else {
+        badge.className = "px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-slate-600 border border-slate-200";
+        badge.innerText = `진행 중 (${checkedCount}/3)`;
+      }
+    }
+
+    function submitWeek5Assignment() {
+      const input = document.getElementById('w5-hw-url');
+      if (!input) return;
+      const url = input.value.trim();
+      if (!url) {
+        alert('과제 결과물 URL 또는 완료 메모를 입력해 주세요.');
+        input.focus();
+        return;
+      }
+      localStorage.setItem('songdo_w5_submission', url);
+      const badge = document.getElementById('w5-status-badge');
+      if (badge) {
+        badge.className = "px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-600 text-white shadow-xs";
+        badge.innerText = "✅ 5주차 통과 완료";
+      }
+      showToast("5주차 과제 인증이 완료되었습니다!");
+    }
+
+
+    // ==========================================
+    // Week 6 Interactive Toolkit & Launch / Certificate Customizer
+    // ==========================================
+    const w6Presets = {
+      biz: {
+        title: "김대표의 원스톱 실무 견적서",
+        desc: "복잡한 상담 없이 10초 만에 예상 비용을 실시간 계산하고 바로 신청하세요.",
+        icon: "⚡"
+      },
+      store: {
+        title: "송도 소금빵 연구소 — 온라인 예약",
+        desc: "매일 아침 갓 구운 천연 발효종 소금빵 선물세트를 실시간 예약 주문하세요.",
+        icon: "🥐"
+      },
+      community: {
+        title: "송도 센트럴파크 러닝 크루 — 참여 안내",
+        desc: "토요일 아침 센트럴파크를 함께 달리는 건강한 러닝 루틴에 지금 참여하세요.",
+        icon: "🏃"
+      }
+    };
+
+    function applyW6Preset(type) {
+      const p = w6Presets[type];
+      if (!p) return;
+
+      const titleEl = document.getElementById('w6-input-title');
+      const descEl = document.getElementById('w6-input-desc');
+      const iconEl = document.getElementById('w6-input-icon');
+
+      if (titleEl) titleEl.value = p.title;
+      if (descEl) descEl.value = p.desc;
+      if (iconEl) iconEl.value = p.icon;
+
+      updateW6CustomPrompt();
+      showToast(`${p.title} 출시 프리셋이 적용되었습니다.`);
+    }
+
+    function updateW6CustomPrompt() {
+      const title = document.getElementById('w6-input-title')?.value.trim() || '내 사이트 이름';
+      const desc = document.getElementById('w6-input-desc')?.value.trim() || '내 사이트 설명';
+      const icon = document.getElementById('w6-input-icon')?.value.trim() || '⚡';
+
+      const prevTitle = document.getElementById('w6-preview-title');
+      const prevDesc = document.getElementById('w6-preview-desc');
+      const prevIcon = document.getElementById('w6-preview-icon');
+
+      if (prevTitle) prevTitle.innerText = title;
+      if (prevDesc) prevDesc.innerText = desc;
+      if (prevIcon) prevIcon.innerText = icon;
+
+      const promptBox = document.getElementById('custom-prompt-6');
+      if (!promptBox) return;
+
+      const promptText = `너는 검색 엔진 최적화(SEO) 및 모바일 PWA 배포 전문 엔지니어다.
+내 기존 웹페이지의 1~5주차 기능(헤더, 프로필, 3단 요약 카드, 계산기)은 절대 손대지 말고, 카카오톡 공유 시 예쁜 카드와 스마트폰 홈 화면 바로가기가 가능하도록 <head> 태그 안에 아래 메타태그들을 추가해 줘.
+
+[공유 및 모바일 홈 화면 메타태그 규격]
+1. Open Graph 메타태그 (카카오톡, 페이스북, 슬랙 링크 공유 카드):
+   <meta property="og:title" content="${title}">
+   <meta property="og:description" content="${desc}">
+   <meta property="og:type" content="website">
+
+2. 스마트폰 홈 화면 바로가기 (PWA & 모바일 최적화):
+   <meta name="apple-mobile-web-app-capable" content="yes">
+   <meta name="apple-mobile-web-app-status-bar-style" content="default">
+   <meta name="theme-color" content="#ffffff">
+   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>${icon}</text></svg>">
+
+위 코드가 반영된 최종 완성본 index.html 전체 코드를 생략 없이 출력해 줘.`;
+
+      promptBox.innerText = promptText;
+    }
+
+    function checkW6Tasks() {
+      const c1 = document.getElementById('w6-chk-1')?.checked;
+      const c2 = document.getElementById('w6-chk-2')?.checked;
+      const c3 = document.getElementById('w6-chk-3')?.checked;
+      const c4 = document.getElementById('w6-chk-4')?.checked;
+      const badge = document.getElementById('w6-status-badge');
+      if (!badge) return;
+
+      const checkedCount = [c1, c2, c3, c4].filter(Boolean).length;
+      if (checkedCount === 4) {
+        badge.className = "px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300";
+        badge.innerText = "전 과정 통과 완료 (수료 가능)";
+      } else {
+        badge.className = "px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-slate-600 border border-slate-200";
+        badge.innerText = `진행 중 (${checkedCount}/4)`;
+      }
+    }
+
+    function submitWeek6Assignment() {
+      const input = document.getElementById('w6-hw-url');
+      if (!input) return;
+      const url = input.value.trim();
+      if (!url) {
+        alert('최종 배포된 웹사이트 주소(Netlify URL)를 입력해 주세요.');
+        input.focus();
+        return;
+      }
+      localStorage.setItem('songdo_w6_submission', url);
+      localStorage.setItem('songdo_master_graduated', 'true');
+
+      const badge = document.getElementById('w6-status-badge');
+      if (badge) {
+        badge.className = "px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-600 text-white shadow-xs";
+        badge.innerText = "🎓 6주 마스터 수료 완료";
+      }
+
+      const certBox = document.getElementById('w6-cert-box');
+      if (certBox) {
+        certBox.className = "p-6 rounded-2xl bg-emerald-100/70 border-2 border-emerald-600 text-slate-900 flex flex-col gap-4 shadow-md ring-4 ring-emerald-500/20";
+      }
+
+      showToast("🎉 축하합니다! 송도 6주 실전자립 마스터 수료가 공식 인증되었습니다!");
+    }
+
+    function initWeek6State() {
+      updateW6CustomPrompt();
+      const certDateEl = document.getElementById('w6-cert-date');
+      if (certDateEl) {
+        const now = new Date();
+        certDateEl.innerText = `${now.getFullYear()}. ${now.getMonth() + 1}. ${now.getDate()}`;
+      }
+
+      const savedUrl = localStorage.getItem('songdo_w6_submission');
+      if (savedUrl) {
+        const input = document.getElementById('w6-hw-url');
+        if (input) input.value = savedUrl;
+        const badge = document.getElementById('w6-status-badge');
+        if (badge) {
+          badge.className = "px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-600 text-white shadow-xs";
+          badge.innerText = "🎓 6주 마스터 수료 완료";
+        }
+        const certBox = document.getElementById('w6-cert-box');
+        if (certBox) {
+          certBox.className = "p-6 rounded-2xl bg-emerald-100/70 border-2 border-emerald-600 text-slate-900 flex flex-col gap-4 shadow-md ring-4 ring-emerald-500/20";
+        }
+        const c1 = document.getElementById('w6-chk-1');
+        const c2 = document.getElementById('w6-chk-2');
+        const c3 = document.getElementById('w6-chk-3');
+        const c4 = document.getElementById('w6-chk-4');
+        if (c1) c1.checked = true;
+        if (c2) c2.checked = true;
+        if (c3) c3.checked = true;
+        if (c4) c4.checked = true;
+      }
+    }
+
+    function initWeek5State() {
+      updateW5CustomPrompt();
+      const savedUrl = localStorage.getItem('songdo_w5_submission');
+      if (savedUrl) {
+        const input = document.getElementById('w5-hw-url');
+        if (input) input.value = savedUrl;
+        const badge = document.getElementById('w5-status-badge');
+        if (badge) {
+          badge.className = "px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-600 text-white shadow-xs";
+          badge.innerText = "✅ 5주차 통과 완료";
+        }
+        const c1 = document.getElementById('w5-chk-1');
+        const c2 = document.getElementById('w5-chk-2');
+        const c3 = document.getElementById('w5-chk-3');
+        if (c1) c1.checked = true;
+        if (c2) c2.checked = true;
+        if (c3) c3.checked = true;
+      }
+    }
+
+    function initWeek4State() {
+      renderW4Calc();
+      updateW4CustomPrompt();
+      const savedUrl = localStorage.getItem('songdo_w4_submission');
+      if (savedUrl) {
+        const input = document.getElementById('w4-hw-url');
+        if (input) input.value = savedUrl;
+        const badge = document.getElementById('w4-status-badge');
+        if (badge) {
+          badge.className = "px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-600 text-white shadow-xs";
+          badge.innerText = "✅ 4주차 통과 완료";
+        }
+        const c1 = document.getElementById('w4-chk-1');
+        const c2 = document.getElementById('w4-chk-2');
+        const c3 = document.getElementById('w4-chk-3');
+        if (c1) c1.checked = true;
+        if (c2) c2.checked = true;
+        if (c3) c3.checked = true;
+      }
+    }
+
+    function initWeek3State() {
+      updateW3CustomPrompt();
+      const savedUrl = localStorage.getItem('songdo_w3_submission');
+      if (savedUrl) {
+        const input = document.getElementById('w3-hw-url');
+        if (input) input.value = savedUrl;
+        const badge = document.getElementById('w3-status-badge');
+        if (badge) {
+          badge.className = "px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-600 text-white shadow-xs";
+          badge.innerText = "✅ 3주차 통과 완료";
+        }
+        const c1 = document.getElementById('w3-chk-1');
+        const c2 = document.getElementById('w3-chk-2');
+        const c3 = document.getElementById('w3-chk-3');
+        if (c1) c1.checked = true;
+        if (c2) c2.checked = true;
+        if (c3) c3.checked = true;
+      }
+    }
+
+    function initWeek2State() {
+      updateW2CustomPrompt();
+      const savedUrl = localStorage.getItem('songdo_w2_submission');
+      if (savedUrl) {
+        const input = document.getElementById('w2-hw-url');
+        if (input) input.value = savedUrl;
+        const badge = document.getElementById('w2-status-badge');
+        if (badge) {
+          badge.className = "px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-600 text-white shadow-xs";
+          badge.innerText = "✅ 2주차 통과 완료";
+        }
+        const c1 = document.getElementById('w2-chk-1');
+        const c2 = document.getElementById('w2-chk-2');
+        const c3 = document.getElementById('w2-chk-3');
+        if (c1) c1.checked = true;
+        if (c2) c2.checked = true;
+        if (c3) c3.checked = true;
+      }
+    }
+
     function initWeek1State() {
       updateW1CustomPrompt();
       const savedUrl = localStorage.getItem('songdo_w1_submission');
@@ -1591,7 +2739,7 @@ ${itemsFormatted}
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', initWeek1State);
     } else {
-      initWeek1State();
+      initWeek1State(); initWeek2State(); initWeek3State(); initWeek4State(); initWeek5State(); initWeek6State();
     }
 
     // Keyboard Listeners (P0 Collision-Safe)
