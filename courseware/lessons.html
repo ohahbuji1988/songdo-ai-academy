@@ -48,6 +48,51 @@
       font-family: 'Caveat', cursive !important;
     }
     
+    
+    /* Realistic Red Stamp Impact Action Scene */
+    @keyframes stampSlamDown {
+      0% {
+        opacity: 0;
+        transform: scale(3.5) rotate(-38deg) translateY(-80px);
+        filter: blur(6px);
+      }
+      50% {
+        opacity: 0.95;
+        transform: scale(0.92) rotate(-14deg) translateY(0);
+        filter: blur(0px);
+      }
+      70% {
+        transform: scale(1.08) rotate(-11deg);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1.0) rotate(-13deg);
+        filter: blur(0px);
+      }
+    }
+
+    @keyframes cardShockwave {
+      0% { transform: translateY(0); }
+      30% { transform: translateY(4px) scale(0.995); }
+      60% { transform: translateY(-2px) scale(1.002); }
+      100% { transform: translateY(0); }
+    }
+
+    .animate-stamp-impact {
+      animation: stampSlamDown 440ms cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
+    }
+
+    .animate-card-shock {
+      animation: cardShockwave 400ms ease-out forwards;
+    }
+
+    .stamp-already-stamped {
+      opacity: 1 !important;
+      transform: scale(1.0) rotate(-13deg) !important;
+      filter: none !important;
+      display: flex !important;
+    }
+
     /* PPT Slide Animation */
     .slide-panel {
       display: none;
@@ -554,9 +599,70 @@
             </label>
           </div>
 
-          <!-- Stamp Box -->
-          <div id="w1-stamp-box" class="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-center flex items-center justify-center gap-3">
-            <span id="w1-stamp-text" class="text-xs font-bold text-slate-500">위 3가지 항목을 모두 체크하면 1주차 완료 도장이 찍힙니다.</span>
+          <!-- Certificate & Real Stamp Card Area -->
+          <div id="w1-stamp-card" class="relative overflow-hidden rounded-2xl bg-gradient-to-b from-white to-slate-50 border-2 border-slate-200 p-6 flex flex-col sm:flex-row items-center justify-between gap-6 transition-all shadow-xs">
+            
+            <!-- Left Info -->
+            <div class="flex flex-col gap-1.5 text-center sm:text-left flex-1">
+              <span class="text-[11px] font-bold text-slate-400 tracking-wider uppercase">Songdo AI Academy · Week 1 Verification</span>
+              <h3 class="text-base sm:text-lg font-extrabold text-slate-900 tracking-tight">1주차 30분 웹 배포 & 바이브 코딩 루프 수료</h3>
+              <p id="w1-cert-status-desc" class="text-xs text-slate-500 leading-relaxed">
+                위 3가지 체크리스트를 모두 완료하면 ohahbuji의 <strong class="text-red-700 font-bold">'참 잘했어요'</strong> 공식 도장이 실물 액션으로 날인됩니다.
+              </p>
+              
+              <div id="w1-stamped-meta" class="hidden items-center gap-2 text-xs text-slate-700 mt-2">
+                <span class="px-2.5 py-1 rounded-md bg-emerald-100 text-emerald-800 font-bold text-[11px]">도장 날인 완료 (영구 보관)</span>
+                <span id="w1-stamped-date-text" class="text-slate-500 font-mono text-[11px]"></span>
+              </div>
+            </div>
+
+            <!-- Right: The Stamp Canvas -->
+            <div class="relative w-36 h-36 flex items-center justify-center shrink-0">
+              <!-- Placeholder circle when not stamped -->
+              <div id="w1-stamp-placeholder" class="w-28 h-28 rounded-full border-2 border-dashed border-slate-300 flex flex-col items-center justify-center text-slate-400 text-xs text-center p-2">
+                <span class="font-bold text-[11px] text-slate-500">도장 날인처</span>
+                <span class="text-[10px] text-slate-400 mt-0.5">3개 체크 시 날인</span>
+              </div>
+
+              <!-- Physical Stamp Impression ("참 잘했어요" Red Seal) -->
+              <div id="w1-real-stamp" class="hidden absolute select-none pointer-events-none">
+                <svg class="w-32 h-32 drop-shadow-sm" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Outer Double Concentric Stamp Ring -->
+                  <circle cx="80" cy="80" r="74" stroke="#dc2626" stroke-width="3" stroke-dasharray="6 3" opacity="0.92"/>
+                  <circle cx="80" cy="80" r="67" stroke="#dc2626" stroke-width="1.8" opacity="0.85"/>
+                  <circle cx="80" cy="80" r="62" stroke="#dc2626" stroke-width="0.8" opacity="0.6"/>
+
+                  <!-- Top Arc Text: SONGDO AI ACADEMY -->
+                  <path id="w1-arc-top" d="M 28 80 A 52 52 0 0 1 132 80" fill="none" />
+                  <text font-size="8.5" font-weight="bold" fill="#dc2626" letter-spacing="1">
+                    <textPath href="#w1-arc-top" startOffset="50%" text-anchor="middle">
+                      SONGDO AI ACADEMY
+                    </textPath>
+                  </text>
+
+                  <!-- Center "참 잘했어요" Banner Frame -->
+                  <rect x="22" y="60" width="116" height="38" rx="5" fill="#fef2f2" stroke="#dc2626" stroke-width="1.8" opacity="0.96"/>
+                  <text x="80" y="86" text-anchor="middle" font-family="'Wanted Sans Variable', 'Wanted Sans', sans-serif" font-size="21" font-weight="900" fill="#dc2626" letter-spacing="-0.03em">
+                    참 잘했어요
+                  </text>
+
+                  <!-- Bottom Arc Text: 1주차 완주 마스터 -->
+                  <path id="w1-arc-bottom" d="M 132 84 A 52 52 0 0 1 28 84" fill="none" />
+                  <text font-size="8" font-weight="bold" fill="#dc2626" letter-spacing="0.8">
+                    <textPath href="#w1-arc-bottom" startOffset="50%" text-anchor="middle">
+                      WEEK 01 · 30MIN MASTER
+                    </textPath>
+                  </text>
+
+                  <!-- Signature ohahbuji -->
+                  <text x="80" y="123" text-anchor="middle" font-family="'Caveat', cursive" font-size="20" font-weight="bold" fill="#dc2626" opacity="0.95">
+                    ohahbuji
+                  </text>
+                </svg>
+              </div>
+
+            </div>
+
           </div>
         </div>
 
@@ -1622,21 +1728,83 @@
       copyStarterCode();
     }
 
-    function checkW1Completion() {
-      const c1 = document.getElementById('w1-chk-1').checked;
-      const c2 = document.getElementById('w1-chk-2').checked;
-      const c3 = document.getElementById('w1-chk-3').checked;
-      const stampBox = document.getElementById('w1-stamp-box');
-      const stampText = document.getElementById('w1-stamp-text');
+        // Synthesized Web Audio Stamp Thump Sound
+    function playStampSound() {
+      try {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(160, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(35, audioCtx.currentTime + 0.14);
+        gain.gain.setValueAtTime(0.6, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.14);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.14);
+      } catch (e) {
+        // AudioContext disabled or blocked, ignore
+      }
+    }
 
-      if (c1 && c2 && c3) {
-        stampBox.className = 'p-4 rounded-2xl bg-emerald-100/80 border-2 border-emerald-600 text-center flex items-center justify-center gap-2';
-        stampText.innerHTML = '<strong class="text-emerald-900 text-sm">[완주 확인] 1주차 완성</strong> (30분 첫 배포 마스터)';
+    function checkW1Completion(isInitial = false) {
+      const c1 = document.getElementById('w1-chk-1');
+      const c2 = document.getElementById('w1-chk-2');
+      const c3 = document.getElementById('w1-chk-3');
+      const card = document.getElementById('w1-stamp-card');
+      const placeholder = document.getElementById('w1-stamp-placeholder');
+      const realStamp = document.getElementById('w1-real-stamp');
+      const desc = document.getElementById('w1-cert-status-desc');
+      const meta = document.getElementById('w1-stamped-meta');
+      const dateText = document.getElementById('w1-stamped-date-text');
+
+      if (!c1 || !c2 || !c3) return;
+
+      const isAllChecked = c1.checked && c2.checked && c3.checked;
+      const isAlreadyCompleted = localStorage.getItem('songdo_ai_w1_completed') === 'true';
+
+      if (isAllChecked || isAlreadyCompleted) {
+        c1.checked = true;
+        c2.checked = true;
+        c3.checked = true;
+
+        // Stamp date calculation
+        let stampDate = localStorage.getItem('songdo_ai_w1_stamped_date');
+        if (!stampDate) {
+          const now = new Date();
+          stampDate = `${now.getFullYear()}. ${now.getMonth() + 1}. ${now.getDate()}`;
+          localStorage.setItem('songdo_ai_w1_stamped_date', stampDate);
+        }
+
         localStorage.setItem('songdo_ai_w1_completed', 'true');
-        showToast('축하합니다! 1주차 완주 도장이 찍혔습니다.');
-      } else {
-        stampBox.className = 'p-4 rounded-2xl bg-slate-50 border border-slate-200 text-center flex items-center justify-center';
-        stampText.innerText = '위 3가지 항목을 모두 체크하면 1주차 완료 도장이 찍힙니다.';
+
+        if (placeholder) placeholder.classList.add('hidden');
+        if (desc) desc.innerHTML = '<strong class="text-emerald-700 font-bold">1주차 모든 교육 목표를 완벽하게 달성하셨습니다.</strong> 브라우저를 새로고침해도 도장은 영구 보존됩니다.';
+        if (meta) {
+          meta.classList.remove('hidden');
+          meta.classList.add('flex');
+        }
+        if (dateText) dateText.innerText = `${stampDate} 날인`;
+
+        if (card) {
+          card.classList.remove('border-slate-200');
+          card.classList.add('border-emerald-500/60', 'bg-emerald-50/20');
+        }
+
+        if (realStamp) {
+          realStamp.classList.remove('hidden');
+          if (isInitial || (isAlreadyCompleted && !realStamp.classList.contains('animate-stamp-impact'))) {
+            // Already stamped permanently, no re-animation needed
+            realStamp.className = 'absolute select-none pointer-events-none stamp-already-stamped';
+          } else {
+            // Live Action Stamping Scene!
+            realStamp.className = 'absolute select-none pointer-events-none animate-stamp-impact';
+            if (card) card.classList.add('animate-card-shock');
+            playStampSound();
+            showToast('ohahbuji의 [참 잘했어요] 공식 도장이 날인되었습니다.');
+          }
+        }
       }
     }
 
@@ -1823,7 +1991,7 @@
         const c3 = document.getElementById('w1-chk-3');
         if (c1 && c2 && c3) {
           c1.checked = true; c2.checked = true; c3.checked = true;
-          checkW1Completion();
+          checkW1Completion(true);
         }
       }
       const savedName = localStorage.getItem('songdo_ai_cert_name');
