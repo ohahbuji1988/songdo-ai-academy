@@ -348,6 +348,12 @@
     window.addEventListener('message', (e) => {
       if (e.data && e.data.type === 'SWITCH_TAB' && e.data.tab) {
         switchTab(e.data.tab);
+        if (e.data.tab === 'courseware' && e.data.week) {
+          const cwFrame = document.getElementById('iframe-courseware');
+          if (cwFrame && cwFrame.contentWindow) {
+            cwFrame.contentWindow.postMessage({ type: 'SELECT_WEEK', week: e.data.week }, '*');
+          }
+        }
       }
     });
   </script>

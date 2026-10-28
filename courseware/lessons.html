@@ -2900,6 +2900,18 @@ Uncaught TypeError: Cannot read properties of null (reading 'value')
       if (w6ta) w6ta.value = w6PromptText;
 
       selectWeek(1);
+      const urlWeek = parseInt(new URLSearchParams(window.location.search).get('week'), 10);
+      if (urlWeek >= 1 && urlWeek <= 6) {
+        selectWeek(urlWeek);
+      }
+
+      // Listen for parent iframe week switch messages
+      window.addEventListener('message', (e) => {
+        if (e.data && e.data.type === 'SELECT_WEEK' && e.data.week) {
+          const w = parseInt(e.data.week, 10);
+          if (w >= 1 && w <= 6) selectWeek(w);
+        }
+      });
 
       // Restore saved stamps for weeks 1 through 5
       for (let w = 1; w <= 5; w++) {

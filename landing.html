@@ -121,7 +121,11 @@
  </nav>
 
  <div class="flex items-center gap-2">
- <a href="/curriculum.html" target="_blank" class="hidden sm:inline-flex px-3 py-1.5 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-bold transition-all">
+ <a href="/courseware/lessons.html" onclick="return enterClassroom(event, 1)" class="px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-all shadow-xs flex items-center gap-1.5">
+ <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+ <span>실전 강의실 입장</span>
+ </a>
+ <a href="/curriculum.html" target="_blank" class="hidden md:inline-flex px-3 py-2 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-bold transition-all">
  강의계획서
  </a>
  <button onclick="openApplyModal()" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-600Dark text-white text-xs font-bold transition-all shadow-sm cursor-pointer">
@@ -153,6 +157,11 @@
 
  <!-- CTAs -->
  <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
+ <a href="/courseware/lessons.html" onclick="return enterClassroom(event, 1)" class="px-7 py-3.5 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm shadow-md hover:shadow-lg transition-all cursor-pointer flex items-center gap-2">
+ <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+ <span>6주 실전 강의실 바로 입장</span>
+ <span>&rarr;</span>
+ </a>
  <button onclick="openApplyModal()" class="px-7 py-3.5 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md hover:shadow-lg transition-all cursor-pointer flex items-center gap-1.5">
  <span>무료 수강 신청은</span>
  <span class="font-signature text-xl text-emerald-200">ohahbuji</span>
@@ -425,16 +434,21 @@
  <div class="flex flex-col gap-1.5">
  <div class="flex items-center justify-between">
  <span class="px-2 py-0.5 rounded bg-slate-900 text-white font-mono text-[11px] font-bold">1주차</span>
- <span class="text-xs font-bold text-emerald-700">첫날 30분 완성</span>
+ <span class="text-xs font-bold text-emerald-700">첫 간판 &amp; 전화</span>
  </div>
- <strong class="text-base text-slate-900 font-bold">첫날 30분 만에 내 웹페이지 띄우기</strong>
+ <strong class="text-base text-slate-900 font-bold">첫날 30분 만에 내 웹 간판 &amp; 전화 연결</strong>
  <p class="text-slate-500 text-xs leading-relaxed">
- AI에게 한국어로 말하듯 시켜서 첫날 30분 만에 인터넷 주소를 획득합니다.
+ AI에게 한국어로 시켜서 내 상호명 간판을 띄우고 스마트폰 원클릭 전화 걸기(<code class="font-mono text-slate-700">tel:</code>)를 장착합니다.
  </p>
  </div>
- <a href="/courseware/starter-kit/index.html" target="_blank" class="text-xs font-bold text-emerald-600">
- 1주차 예제 열어보기 &rarr;
+ <div class="flex items-center justify-between pt-2 border-t border-slate-100">
+ <a href="/courseware/lessons.html?week=1" onclick="return enterClassroom(event, 1)" class="text-xs font-extrabold text-emerald-600 hover:text-emerald-700">
+ 1주차 강의실 바로 입장 &rarr;
  </a>
+ <a href="/courseware/starter-kit/index.html" target="_blank" class="text-[11px] font-semibold text-slate-400 hover:text-slate-600">
+ 완성 예제 보기
+ </a>
+ </div>
  </div>
 
  <!-- Week 2 -->
@@ -442,16 +456,21 @@
  <div class="flex flex-col gap-1.5">
  <div class="flex items-center justify-between">
  <span class="px-2 py-0.5 rounded bg-slate-900 text-white font-mono text-[11px] font-bold">2주차</span>
- <span class="text-xs font-bold text-emerald-700">자료 정리</span>
+ <span class="text-xs font-bold text-emerald-700">메뉴판 &amp; FAQ</span>
  </div>
- <strong class="text-base text-slate-900 font-bold">내 문서 넣고 엉뚱한 답변 막기</strong>
+ <strong class="text-base text-slate-900 font-bold">내 실제 메뉴판·가격표와 팩트 기반 FAQ</strong>
  <p class="text-slate-500 text-xs leading-relaxed">
- 내 회사나 가게 자료를 넣어 정확한 내용만 깔끔하게 보여주는 법을 배웁니다.
+ AI가 없는 가격을 지어내지 못하도록 실제 메뉴판 카드와 터치형 아코디언 FAQ를 심습니다.
  </p>
  </div>
- <a href="/courseware/weekly-kits/week02-context-cards/index.html" target="_blank" class="text-xs font-bold text-emerald-600">
- 2주차 예제 열어보기 &rarr;
+ <div class="flex items-center justify-between pt-2 border-t border-slate-100">
+ <a href="/courseware/lessons.html?week=2" onclick="return enterClassroom(event, 2)" class="text-xs font-extrabold text-emerald-600 hover:text-emerald-700">
+ 2주차 강의실 바로 입장 &rarr;
  </a>
+ <a href="/courseware/weekly-kits/week02-context-cards/index.html" target="_blank" class="text-[11px] font-semibold text-slate-400 hover:text-slate-600">
+ 완성 예제 보기
+ </a>
+ </div>
  </div>
 
  <!-- Week 3 -->
@@ -459,16 +478,21 @@
  <div class="flex flex-col gap-1.5">
  <div class="flex items-center justify-between">
  <span class="px-2 py-0.5 rounded bg-slate-900 text-white font-mono text-[11px] font-bold">3주차</span>
- <span class="text-xs font-bold text-emerald-700">디자인 다듬기</span>
+ <span class="text-xs font-bold text-emerald-700">지도 &amp; 카톡 채널</span>
  </div>
- <strong class="text-base text-slate-900 font-bold">보기 편한 2색 화면 디자인</strong>
+ <strong class="text-base text-slate-900 font-bold">네이버·카카오 지도 길찾기 &amp; 카톡 상담 연결</strong>
  <p class="text-slate-500 text-xs leading-relaxed">
- 촌스러운 색상을 버리고, 스마트폰에서도 깔끔하고 읽기 편하게 정돈합니다.
+ 고객이 헤매지 않고 찾아오도록 원클릭 지도 길찾기와 카카오톡 1:1 상담 동선을 연결합니다.
  </p>
  </div>
- <a href="/courseware/weekly-kits/week03-antislop-design/index.html" target="_blank" class="text-xs font-bold text-emerald-600">
- 3주차 예제 열어보기 &rarr;
+ <div class="flex items-center justify-between pt-2 border-t border-slate-100">
+ <a href="/courseware/lessons.html?week=3" onclick="return enterClassroom(event, 3)" class="text-xs font-extrabold text-emerald-600 hover:text-emerald-700">
+ 3주차 강의실 바로 입장 &rarr;
  </a>
+ <a href="/courseware/weekly-kits/week03-antislop-design/index.html" target="_blank" class="text-[11px] font-semibold text-slate-400 hover:text-slate-600">
+ 완성 예제 보기
+ </a>
+ </div>
  </div>
 
  <!-- Week 4 -->
@@ -476,16 +500,21 @@
  <div class="flex flex-col gap-1.5">
  <div class="flex items-center justify-between">
  <span class="px-2 py-0.5 rounded bg-slate-900 text-white font-mono text-[11px] font-bold">4주차</span>
- <span class="text-xs font-bold text-emerald-700">계산기 결합</span>
+ <span class="text-xs font-bold text-emerald-700">맞춤 계산기</span>
  </div>
- <strong class="text-base text-slate-900 font-bold">누르면 바로 계산되는 실시간 견적기</strong>
+ <strong class="text-base text-slate-900 font-bold">누르면 바로 계산되는 실시간 견적·주문 계산기</strong>
  <p class="text-slate-500 text-xs leading-relaxed">
- 수량을 누르면 금액이 자동으로 계산되는 실무 계산기를 화면에 붙입니다.
+ 내 단가표에 맞춰 수량 증감·음수 방어·조건부 할인이 자동 계산되는 견적기를 장착합니다.
  </p>
  </div>
- <a href="/courseware/weekly-kits/week04-interactive-calc/index.html" target="_blank" class="text-xs font-bold text-emerald-600">
- 4주차 예제 열어보기 &rarr;
+ <div class="flex items-center justify-between pt-2 border-t border-slate-100">
+ <a href="/courseware/lessons.html?week=4" onclick="return enterClassroom(event, 4)" class="text-xs font-extrabold text-emerald-600 hover:text-emerald-700">
+ 4주차 강의실 바로 입장 &rarr;
  </a>
+ <a href="/courseware/weekly-kits/week04-interactive-calc/index.html" target="_blank" class="text-[11px] font-semibold text-slate-400 hover:text-slate-600">
+ 완성 예제 보기
+ </a>
+ </div>
  </div>
 
  <!-- Week 5 -->
@@ -493,16 +522,21 @@
  <div class="flex flex-col gap-1.5">
  <div class="flex items-center justify-between">
  <span class="px-2 py-0.5 rounded bg-rose-600 text-white font-mono text-[11px] font-bold">5주차</span>
- <span class="text-xs font-bold text-rose-600">오류 해결</span>
+ <span class="text-xs font-bold text-rose-600">디버깅 실험실</span>
  </div>
- <strong class="text-base text-slate-900 font-bold">에러 나도 3초 만에 되돌리기</strong>
+ <strong class="text-base text-slate-900 font-bold">실전 고장 수리 &amp; 3초 롤백 디버깅 실험실</strong>
  <p class="text-slate-500 text-xs leading-relaxed">
- 고장 날 걱정 없이 마음껏 실험하고, 실수해도 3초 만에 원상복구합니다.
+ 화면이 깨지거나 계산이 틀려도 3문장 에러 보고법으로 고치고 3초 만에 안전 복구합니다.
  </p>
  </div>
- <a href="/courseware/weekly-kits/week05-debug-lab/index.html" target="_blank" class="text-xs font-bold text-rose-600">
- 5주차 예제 열어보기 &rarr;
+ <div class="flex items-center justify-between pt-2 border-t border-slate-100">
+ <a href="/courseware/lessons.html?week=5" onclick="return enterClassroom(event, 5)" class="text-xs font-extrabold text-rose-600 hover:text-rose-700">
+ 5주차 강의실 바로 입장 &rarr;
  </a>
+ <a href="/courseware/weekly-kits/week05-debug-lab/index.html" target="_blank" class="text-[11px] font-semibold text-slate-400 hover:text-slate-600">
+ 완성 예제 보기
+ </a>
+ </div>
  </div>
 
  <!-- Week 6 -->
@@ -510,18 +544,34 @@
  <div class="flex flex-col gap-1.5">
  <div class="flex items-center justify-between">
  <span class="px-2 py-0.5 rounded bg-emerald-700 text-white font-mono text-[11px] font-bold">6주차</span>
- <span class="text-xs font-bold text-emerald-800">정식 오픈</span>
+ <span class="text-xs font-bold text-emerald-800">출시 &amp; 졸업 과제</span>
  </div>
- <strong class="text-base text-slate-900 font-bold">내 웹사이트 정식 출시하기</strong>
+ <strong class="text-base text-slate-900 font-bold">전 세계 무료 배포 &amp; 자립형 졸업 프로젝트</strong>
  <p class="text-slate-600 text-xs leading-relaxed">
- 강사 도움 없이 스스로 내용을 바꾸고 지인과 고객에게 당당히 공유합니다.
+ 평생 0원 인터넷 주소를 개통하고, 강사 없이 나만의 웹 도구를 완성해 대마스터 수료증을 받습니다.
  </p>
  </div>
- <a href="/courseware/weekly-kits/week06-final-launch/index.html" target="_blank" class="text-xs font-bold text-emerald-800">
- 6주차 예제 열어보기 &rarr;
+ <div class="flex items-center justify-between pt-2 border-t border-emerald-200/60">
+ <a href="/courseware/lessons.html?week=6" onclick="return enterClassroom(event, 6)" class="text-xs font-extrabold text-emerald-800 hover:text-emerald-900">
+ 6주차 강의실 바로 입장 &rarr;
+ </a>
+ <a href="/courseware/weekly-kits/week06-final-launch/index.html" target="_blank" class="text-[11px] font-semibold text-slate-500 hover:text-slate-700">
+ 완성 예제 보기
  </a>
  </div>
+ </div>
 
+ </div>
+
+ <!-- Direct Classroom Full Banner CTA -->
+ <div class="p-6 rounded-3xl bg-slate-900 text-white flex flex-col sm:flex-row items-center justify-between gap-4 shadow-md">
+ <div class="flex flex-col gap-1 text-center sm:text-left">
+ <span class="text-xs font-bold text-emerald-400">1주차~6주차 인터랙티브 슬라이드 완비</span>
+ <strong class="text-base sm:text-lg font-extrabold">지금 바로 실전 강의실에서 1주차부터 직접 실습해 보세요</strong>
+ </div>
+ <a href="/courseware/lessons.html" onclick="return enterClassroom(event, 1)" class="px-6 py-3.5 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs sm:text-sm transition-all whitespace-nowrap shadow-sm">
+ 6주 실전 강의실 열기 &rarr;
+ </a>
  </div>
  </section>
 
@@ -867,6 +917,17 @@
       updateActiveNav();
       setTimeout(updateActiveNav, 300);
     });
+  // Classroom Entry Bridge (Supports both embedded index.html and standalone landing.html)
+  function enterClassroom(e, weekNum) {
+    const w = weekNum || 1;
+    if (window.self !== window.top && window.parent) {
+      if (e) e.preventDefault();
+      window.parent.postMessage({ type: 'SWITCH_TAB', tab: 'courseware', week: w }, '*');
+      return false;
+    }
+    return true;
+  }
+
   // Apply Modal Controls
   function openApplyModal() {
     const m = document.getElementById('apply-modal');
