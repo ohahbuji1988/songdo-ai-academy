@@ -362,7 +362,18 @@
               </button>
             </div>
             
-            <textarea id="w1-prompt-textarea" readonly rows="5" class="w-full p-3 rounded-xl bg-white border border-slate-200 text-xs font-mono text-slate-700 leading-relaxed outline-none focus:ring-1 focus:ring-emerald-500"></textarea>
+            <textarea id="w1-prompt-textarea" readonly rows="6" class="w-full p-3 rounded-xl bg-white border border-slate-200 text-xs font-mono text-slate-700 leading-relaxed outline-none focus:ring-1 focus:ring-emerald-500"></textarea>
+          </div>
+
+          <!-- AI File Context Tip Box -->
+          <div class="p-3.5 rounded-xl bg-emerald-50/70 border border-emerald-200 text-xs text-emerald-950 flex items-start gap-2.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-600 mt-1 shrink-0"></span>
+            <div class="flex flex-col gap-0.5">
+              <strong class="text-emerald-900">💡 왜 프롬프트에 기존 코드가 통째로 들어있나요?</strong>
+              <span class="text-slate-600 leading-relaxed">
+                웹 AI(ChatGPT, Claude)는 내 컴퓨터 메모장 속 로컬 파일을 직접 볼 수 없습니다. 그래서 [프롬프트 복사]를 누르면 <strong>[기존 스타터 코드 + 내 테마 수정 명령]</strong>이 한 묶음으로 복사됩니다. AI에 그대로 붙여넣기만 하면 디자인을 유지한 채 완벽하게 바꿔줍니다.
+              </span>
+            </div>
           </div>
 
           <!-- 3-Second Apply Rule -->
@@ -862,10 +873,26 @@
                 프롬프트 복사
               </button>
             </div>
-            <textarea id="w4-prompt-textarea" readonly rows="5" class="w-full p-3 rounded-xl bg-white border border-slate-200 text-xs font-mono text-slate-700">다음 규칙으로 실시간 견적 계산기를 index.html에 추가해 줘:
+            <textarea id="w4-prompt-textarea" readonly rows="7" class="w-full p-3 rounded-xl bg-white border border-slate-200 text-xs font-mono text-slate-700 leading-relaxed">아래 내 기존 index.html 코드에 실시간 견적 계산기를 추가해 줘:
+
+[내 기존 index.html 코드]
+(메모장의 코드를 전체 선택 Ctrl+A -> Ctrl+C 하여 여기에 붙여넣으세요)
+
+[계산기 요구 규칙]
 1. 옵션 선택과 수량(+/-) 변경 시 즉시 합계 금액이 실시간으로 갱신될 것.
 2. 수량은 절대 0 미만으로 내려가지 않도록 Math.max(0, quantity) 방어 처리를 넣을 것.
 3. [절대 원칙] 코드 중간 생략 없이 <!DOCTYPE html>부터 </html>까지 완전한 전체 코드로 출력할 것.</textarea>
+          </div>
+
+          <!-- Tip Box -->
+          <div class="p-3.5 rounded-xl bg-emerald-50/70 border border-emerald-200 text-xs text-emerald-950 flex items-start gap-2.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-600 mt-1 shrink-0"></span>
+            <div class="flex flex-col gap-0.5">
+              <strong class="text-emerald-900">💡 팁: AI에게 기존 코드를 함께 줘야 정확히 결합됩니다</strong>
+              <span class="text-slate-600">
+                메모장에서 내 코드를 <strong>전체 선택(Ctrl+A) & 복사(Ctrl+C)</strong>한 뒤, 이 프롬프트와 함께 AI에 보내면 내 기존 화면 레이아웃 속에 계산기가 자연스럽게 결합됩니다.
+              </span>
+            </div>
           </div>
         </div>
 
@@ -975,8 +1002,13 @@
                 프롬프트 복사
               </button>
             </div>
-            <textarea id="w5-prompt-textarea" readonly rows="4" class="w-full p-3 rounded-xl bg-white border border-slate-200 text-xs font-mono text-slate-700">현재 index.html을 실행했을 때 콘솔창에 다음 에러가 발생했어:
-[여기에 F12 콘솔창의 빨간 에러 메시지를 붙여넣으세요]
+            <textarea id="w5-prompt-textarea" readonly rows="7" class="w-full p-3 rounded-xl bg-white border border-slate-200 text-xs font-mono text-slate-700 leading-relaxed">현재 내 웹사이트를 실행했을 때 다음 오류가 발생했어:
+
+[1. 발생한 오류 메시지 (F12 콘솔의 빨간 글씨)]
+(여기에 에러 메시지를 붙여넣으세요)
+
+[2. 현재 내 index.html 전체 코드]
+(메모장의 코드를 전체 선택 Ctrl+A -> Ctrl+C 하여 여기에 붙여넣으세요)
 
 원인을 한 줄로 설명하고, 수정된 전체 index.html 코드를 <!DOCTYPE html>부터 </html>까지 한 번에 출력해 줘.</textarea>
           </div>
@@ -1396,19 +1428,23 @@
       copyToClipboard(starterCodeStr, '✅ 순정 스타터 코드가 복사되었습니다! 메모장에 붙여넣으세요.');
     }
 
+    function makePromptWithCode(topicTitle, specs) {
+      return `아래의 [기존 HTML 코드]를 바탕으로 '${topicTitle}' 웹사이트로 내용을 수정해 줘.
+
+[기존 HTML 코드]
+${starterCodeStr}
+
+[수정 요청 사항]
+${specs}
+
+[절대 원칙]
+코드 일부만 생략해서 주지 말고, <!DOCTYPE html>부터 </html>까지 완전한 전체 코드를 한 번에 출력해 줘.`;
+    }
+
     const w1Prompts = {
-      bakery: `현재 index.html 코드를 바탕으로 '송도 달콤 베이커리' 웹사이트로 수정해 줘.
-- 메뉴: 소금빵(3,500원), 바질 토마토 치아바타(4,800원), 유기농 식빵(5,500원)
-- 매장 위치: 송도 센트럴파크역 2번 출구
-- [절대 원칙] 코드 중간 생략 없이 <!DOCTYPE html>부터 </html>까지 완전한 전체 index.html 코드를 한 번에 출력해 줘.`,
-      expert: `현재 index.html 코드를 바탕으로 '김민우 공인노무사 1인 전문가' 포트폴리오로 수정해 줘.
-- 전문 분야: 직장 내 괴롭힘, 임금체불, 스타트업 노무 자문
-- 연락처: 010-1234-5678 / 카카오톡 상담 버튼
-- [절대 원칙] 코드 중간 생략 없이 <!DOCTYPE html>부터 </html>까지 완전한 전체 index.html 코드를 한 번에 출력해 줘.`,
-      club: `현재 index.html 코드를 바탕으로 '송도 선셋 러닝 크루' 모임 소개 페이지로 수정해 줘.
-- 정기 런: 매주 수/토 저녁 7시 센트럴파크 5km 펀런
-- 준비물: 편한 러닝화와 열정
-- [절대 원칙] 코드 중간 생략 없이 <!DOCTYPE html>부터 </html>까지 완전한 전체 index.html 코드를 한 번에 출력해 줘.`
+      bakery: makePromptWithCode('송도 달콤 베이커리', `- 상호명: 송도 달콤 베이커리\n- 대표 메뉴 3가지: 소금빵(3,500원), 바질 토마토 치아바타(4,800원), 유기농 식빵(5,500원)\n- 위치 안내: 인천 연수구 송도 센트럴파크역 2번 출구`),
+      expert: makePromptWithCode('김민우 공인노무사 1인 전문가', `- 전문가명: 김민우 공인노무사\n- 전문 분야 3가지: 직장 내 괴롭힘, 임금체불 대응, 스타트업 노무 자문\n- 상담 연락처: 010-1234-5678 및 1:1 상담 예약 버튼`),
+      club: makePromptWithCode('송도 선셋 러닝 크루', `- 모임명: 송도 선셋 러닝 크루\n- 정기 일정: 매주 수/토 저녁 7시 센트럴파크 5km 펀런\n- 준비물 및 참가비: 편한 러닝화와 열정 (참가비 0원)`)
     };
 
     function setW1Preset(key) {
