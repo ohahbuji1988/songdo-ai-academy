@@ -202,5 +202,5 @@
 ---
 
 ## 🎯 다음 진행 작업 (Next Steps)
-- [ ] **최종 배포 반영 및 라이브 웹(`songdo-ai.pages.dev`) 동기화 확인**
+- [x] **최종 배포 반영 및 라이브 웹(`songdo-ai.pages.dev`) 동기화 완료 (Wrangler Direct Upload 완료)**
 - [ ] **사용자 추가 피드백 수렴 및 커스텀 요청 반영**
