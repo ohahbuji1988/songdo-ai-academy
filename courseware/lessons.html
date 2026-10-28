@@ -437,72 +437,77 @@
         </div>
       </section>
 
-      <!-- W1 Slide 4: 피드백 루프 & 바이브 코딩 실전 업그레이드 -->
+      <!-- W1 Slide 4: 3차 피드백 연속 실행 (바이브 코딩 3단 진화 훈련) -->
       <section class="slide-panel flex-col justify-between bg-white border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-sm min-h-[520px]">
         <div class="flex flex-col gap-4">
           <div class="flex items-center justify-between">
             <span class="px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-bold border border-emerald-200">
               1주차 · 4단계 (7분)
             </span>
-            <span class="text-xs text-slate-400 font-mono">Step 04: Vibe Coding Loop</span>
+            <span class="text-xs text-slate-400 font-mono">Step 04: 3-Stage Vibe Loop</span>
           </div>
 
           <div>
             <h2 class="text-2xl font-extrabold text-slate-900 leading-snug">
-              바이브 코딩의 진짜 정수: "피드백 한마디로 사이트 업그레이드하기"
+              바이브 코딩 3단 진화: 1번부터 3번까지 차례대로 실행해 보세요
             </h2>
             <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
-              코딩 문법을 단 한 줄도 직접 뜯어고칠 필요가 없습니다. 내 사이트를 보고 "이 부분 고쳐줘"라고 AI에게 핑퐁 대화(피드백)를 던져 사이트를 즉시 진화시키는 실전 경험입니다.
+              AI에게 한 번에 모든 것을 시키는 것보다, <strong>하나씩 피드백을 주고받으며 사이트를 점점 완성해 나가는 것</strong>이 진짜 바이브 코딩입니다. 아래 1번부터 3번까지 순서대로 모두 실행해 보세요.
             </p>
           </div>
 
-          <!-- Feedback Options Selector -->
+          <!-- 3 Sequential Feedback Step Buttons -->
           <div class="flex items-center gap-2 flex-wrap text-xs pt-1">
-            <span class="text-slate-500 font-medium">추가하고 싶은 기능 선택:</span>
-            <button onclick="setW1FeedbackPreset('call')" id="feedback-btn-call" class="w1-feedback-btn px-3 py-1.5 rounded-lg bg-emerald-50 text-emerald-800 font-bold border border-emerald-300 transition-all">
-              버튼 누르면 전화 걸기
+            <span class="text-slate-500 font-medium">순서대로 3번 다 해보기:</span>
+            <button onclick="setW1FeedbackPreset('call')" id="feedback-btn-call" class="w1-feedback-btn px-3 py-1.5 rounded-lg bg-emerald-50 text-emerald-800 font-bold border border-emerald-300 transition-all flex items-center gap-1.5">
+              <span class="w-4 h-4 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[10px] font-bold">1</span>
+              <span>1. 버튼 전화 연결</span>
             </button>
-            <button onclick="setW1FeedbackPreset('mobile')" id="feedback-btn-mobile" class="w1-feedback-btn px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 font-medium border border-transparent hover:bg-slate-200 transition-all">
-              스마트폰 모바일 화면 최적화
+            <button onclick="setW1FeedbackPreset('mobile')" id="feedback-btn-mobile" class="w1-feedback-btn px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 font-medium border border-transparent hover:bg-slate-200 transition-all flex items-center gap-1.5">
+              <span class="w-4 h-4 rounded-full bg-slate-400 text-white flex items-center justify-center text-[10px] font-bold">2</span>
+              <span>2. 스마트폰 최적화</span>
             </button>
-            <button onclick="setW1FeedbackPreset('kakao')" id="feedback-btn-kakao" class="w1-feedback-btn px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 font-medium border border-transparent hover:bg-slate-200 transition-all">
-              카카오톡 상담 버튼 추가
+            <button onclick="setW1FeedbackPreset('kakao')" id="feedback-btn-kakao" class="w1-feedback-btn px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 font-medium border border-transparent hover:bg-slate-200 transition-all flex items-center gap-1.5">
+              <span class="w-4 h-4 rounded-full bg-slate-400 text-white flex items-center justify-center text-[10px] font-bold">3</span>
+              <span>3. 카카오톡 상담 버튼 추가</span>
             </button>
           </div>
 
           <!-- Dynamic Feedback Prompt Box -->
           <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col gap-2">
             <div class="flex items-center justify-between text-xs">
-              <span class="font-bold text-slate-700">AI 대화창에 던질 피드백 프롬프트:</span>
-              <button onclick="copyW1FeedbackPrompt()" class="px-3 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs cursor-pointer transition-all">
-                피드백 복사
+              <span id="w1-feedback-step-title" class="font-bold text-slate-800">
+                1차 피드백 프롬프트 (버튼 전화 연결):
+              </span>
+              <button onclick="copyW1FeedbackPrompt()" class="px-3 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs cursor-pointer transition-all flex items-center gap-1">
+                <span id="w1-feedback-btn-label">1번 피드백 복사</span>
               </button>
             </div>
             <textarea id="w1-feedback-textarea" readonly rows="3" class="w-full p-2.5 rounded-xl bg-white border border-slate-200 text-xs font-mono text-slate-700 leading-relaxed outline-none"></textarea>
-            <p class="text-[11px] text-slate-500">
-              [적용 순서] AI 대화창에 이 프롬프트를 전송하고 &rarr; 새로 받은 코드를 메모장에 전체 덮어쓰기(Ctrl+A &rarr; Ctrl+V &rarr; Ctrl+S) &rarr; 브라우저 새로고침(F5)!
+            <p id="w1-feedback-guide-text" class="text-[11px] text-slate-500">
+              [1번 실행 방법] 복사해서 AI 대화창에 붙여넣기 &rarr; 나온 새 코드를 메모장에 전체 덮어쓰기(Ctrl+A &rarr; Ctrl+V &rarr; Ctrl+S) &rarr; 브라우저 새로고침(F5) 후 버튼을 눌러보세요!
             </p>
           </div>
 
-          <!-- 3-Step Vibe Golden Loop Card -->
+          <!-- 3-Step Vibe Progression Flow Card -->
           <div class="p-4 rounded-2xl bg-emerald-50/70 border border-emerald-300 flex flex-col gap-2 text-xs">
-            <span class="font-bold text-emerald-950">바이브 코딩의 3단계 황금 루프 (The Vibe Loop)</span>
+            <span class="font-bold text-emerald-950">3단계 누적 진화 흐름 (3가지 모두 완료 목표)</span>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
-              <div class="p-2.5 rounded-xl bg-white border border-emerald-200 flex flex-col gap-1">
-                <span class="font-bold text-slate-800">1. 화면 관찰하기</span>
-                <span class="text-[11px] text-slate-600">내 브라우저를 보고 아쉬운 점이나 필요한 기능을 포착합니다.</span>
+              <div class="p-2.5 rounded-xl bg-white border border-emerald-200 flex flex-col gap-0.5">
+                <span class="font-bold text-slate-900">[1차] 전화 걸기 연결</span>
+                <span class="text-[11px] text-slate-600">메인 버튼 누르면 바로 전화(tel:) 앱이 뜨도록 연결</span>
               </div>
-              <div class="p-2.5 rounded-xl bg-white border border-emerald-200 flex flex-col gap-1">
-                <span class="font-bold text-slate-800">2. 말로 지시하기</span>
-                <span class="text-[11px] text-slate-600">AI에게 일상어로 "OOO 기능 추가해서 전체 코드로 줘"라고 말합니다.</span>
+              <div class="p-2.5 rounded-xl bg-white border border-emerald-200 flex flex-col gap-0.5">
+                <span class="font-bold text-slate-900">[2차] 모바일 여백 튜닝</span>
+                <span class="text-[11px] text-slate-600">스마트폰(375px) 화면에서 글자가 시원하게 읽히도록 정리</span>
               </div>
-              <div class="p-2.5 rounded-xl bg-white border border-emerald-200 flex flex-col gap-1">
-                <span class="font-bold text-slate-800">3. 전체 덮어쓰기</span>
-                <span class="text-[11px] text-slate-600">메모장에 전체 덮어쓰고 F5를 누르면 즉시 화면이 진화합니다.</span>
+              <div class="p-2.5 rounded-xl bg-white border border-emerald-200 flex flex-col gap-0.5">
+                <span class="font-bold text-slate-900">[3차] 카카오톡 버튼 부착</span>
+                <span class="text-[11px] text-slate-600">메인 버튼 밑에 1:1 상담용 카톡 보조 버튼 신설</span>
               </div>
             </div>
-            <span class="text-[11px] text-emerald-900 mt-1">
-              <strong>핵심 가치:</strong> 코드를 직접 짤 줄 몰라도, 이 '피드백 루프' 하나만 돌릴 줄 알면 세상의 어떤 웹 기능도 내 손으로 완성할 수 있습니다.
+            <span class="text-[11px] text-emerald-900 mt-0.5">
+              <strong>핵심 습관:</strong> 1번 &rarr; 2번 &rarr; 3번 순서대로 같은 AI 대화창에 이어가면, 코드가 망가지지 않고 차곡차곡 진화합니다.
             </span>
           </div>
 
@@ -513,7 +518,7 @@
             &larr; 이전
           </button>
           <button onclick="nextSlide()" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center gap-2 shadow-xs transition-all">
-            <span>사이트가 진화했다면 마지막 성취 인증으로</span>
+            <span>3가지를 모두 해봤다면 성취 인증으로</span>
             <span>&rarr;</span>
           </button>
         </div>
@@ -545,7 +550,7 @@
             </label>
             <label class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center gap-3 cursor-pointer hover:bg-slate-100/60 transition-all">
               <input type="checkbox" id="w1-chk-3" onchange="checkW1Completion()" class="w-4 h-4 rounded text-emerald-600 accent-emerald-600">
-              <span class="text-xs text-slate-800 font-medium">3. AI에게 피드백을 전달해 기능이나 디자인을 업그레이드하는 바이브 코딩 루프를 완수했다.</span>
+              <span class="text-xs text-slate-800 font-medium">3. AI에게 1번(전화), 2번(모바일), 3번(카톡) 피드백 3단계를 모두 실행해 사이트를 완성했다.</span>
             </label>
           </div>
 
@@ -1537,30 +1542,65 @@
     }
 
     
-    // Week 1 Feedback Presets (Vibe Coding Loop)
-    const w1FeedbackPrompts = {
-      call: `현재 만든 웹사이트에서 메인 버튼을 클릭했을 때 'tel:010-1234-5678'로 바로 전화가 걸리도록 링크를 걸어줘. 코드 일부만 생략하지 말고 <!DOCTYPE html>부터 </html>까지 완전한 전체 코드를 한 번에 출력해 줘.`,
-      mobile: `현재 웹사이트를 스마트폰 화면(375px 모바일)에서 볼 때 글자가 시원하게 읽히고, 버튼이 가로 너비에 맞춰 큼직하게 꽉 차도록 여백과 글자 크기를 다듬어줘. 전체 코드로 출력해 줘.`,
-      kakao: `현재 웹사이트의 메인 버튼 바로 아래에 '카카오톡 1:1 실시간 문의' 보조 버튼을 하나 더 추가해 줘. 디자인은 에메랄드 테두리 스타일로 깔끔하게 맞추고, 전체 코드로 출력해 줘.`
+        // Week 1 Feedback Presets (Vibe Coding 3-Step Iteration)
+    const w1FeedbackData = {
+      call: {
+        title: '1차 피드백: 버튼 전화 연결 (기능 연결 경험)',
+        btnLabel: '1번 피드백 복사',
+        guide: '[1번 실행 방법] 복사해서 AI 대화창에 붙여넣기 -> 나온 새 코드를 메모장에 전체 덮어쓰기(Ctrl+A -> Ctrl+V -> Ctrl+S) -> 브라우저 새로고침(F5) 후 버튼을 눌러보세요! 확인했다면 위 2번 버튼을 클릭하세요.',
+        prompt: `방금 만든 웹사이트에서 메인 버튼을 클릭했을 때 'tel:010-1234-5678'로 바로 전화가 걸리도록 링크를 걸어줘. 코드 일부만 생략하지 말고 <!DOCTYPE html>부터 </html>까지 완전한 전체 코드를 한 번에 출력해 줘.`
+      },
+      mobile: {
+        title: '2차 피드백: 스마트폰 화면 최적화 (모바일 튜닝 경험)',
+        btnLabel: '2번 피드백 복사',
+        guide: '[2번 실행 방법] 1번 대화창에 그대로 이어서 전송 -> 나온 코드를 메모장에 덮어쓰기 -> 브라우저 새로고침(F5)으로 큼직해진 모바일 레이아웃 확인! 확인했다면 위 3번 버튼을 클릭하세요.',
+        prompt: `방금 코드에서 스마트폰 화면(375px 모바일)으로 볼 때 글자가 시원하게 읽히고, 버튼이 가로 너비에 맞춰 큼직하게 꽉 차도록 여백과 글자 크기를 다듬어줘. 전체 코드로 출력해 줘.`
+      },
+      kakao: {
+        title: '3차 피드백: 카카오톡 상담 버튼 추가 (컴포넌트 확장 경험)',
+        btnLabel: '3번 피드백 복사',
+        guide: '[3번 실행 방법] 2번 대화창에 이어서 전송 -> 나온 코드를 메모장에 덮어쓰기 -> 브라우저 새로고침(F5)으로 카카오톡 상담 버튼까지 추가되었는지 최종 확인!',
+        prompt: `방금 코드의 메인 버튼 바로 아래에 '카카오톡 1:1 실시간 문의' 보조 버튼을 하나 더 추가해 줘. 디자인은 에메랄드 테두리 스타일로 깔끔하게 맞추고, 전체 코드로 출력해 줘.`
+      }
     };
 
+    let currentW1FeedbackKey = 'call';
+
     function setW1FeedbackPreset(key) {
+      currentW1FeedbackKey = key;
       document.querySelectorAll('.w1-feedback-btn').forEach(b => {
-        b.className = 'w1-feedback-btn px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 font-medium border border-transparent hover:bg-slate-200 transition-all';
+        b.className = 'w1-feedback-btn px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 font-medium border border-transparent hover:bg-slate-200 transition-all flex items-center gap-1.5';
+        const circle = b.querySelector('span:first-child');
+        if (circle) circle.className = 'w-4 h-4 rounded-full bg-slate-400 text-white flex items-center justify-center text-[10px] font-bold';
       });
+
       const targetBtn = document.getElementById(`feedback-btn-${key}`);
       if (targetBtn) {
-        targetBtn.className = 'w1-feedback-btn px-3 py-1.5 rounded-lg bg-emerald-50 text-emerald-800 font-bold border border-emerald-300 transition-all';
+        targetBtn.className = 'w1-feedback-btn px-3 py-1.5 rounded-lg bg-emerald-50 text-emerald-800 font-bold border border-emerald-300 transition-all flex items-center gap-1.5';
+        const circle = targetBtn.querySelector('span:first-child');
+        if (circle) circle.className = 'w-4 h-4 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[10px] font-bold';
       }
-      const ta = document.getElementById('w1-feedback-textarea');
-      if (ta) ta.value = w1FeedbackPrompts[key];
+
+      const data = w1FeedbackData[key];
+      if (data) {
+        const titleEl = document.getElementById('w1-feedback-step-title');
+        const btnLabelEl = document.getElementById('w1-feedback-btn-label');
+        const guideEl = document.getElementById('w1-feedback-guide-text');
+        const ta = document.getElementById('w1-feedback-textarea');
+
+        if (titleEl) titleEl.innerText = data.title;
+        if (btnLabelEl) btnLabelEl.innerText = data.btnLabel;
+        if (guideEl) guideEl.innerText = data.guide;
+        if (ta) ta.value = data.prompt;
+      }
     }
 
     function copyW1FeedbackPrompt() {
-      const ta = document.getElementById('w1-feedback-textarea');
-      if (ta) copyToClipboard(ta.value, '피드백 프롬프트가 복사되었습니다. AI 대화창에 그대로 붙여넣으세요.');
+      const data = w1FeedbackData[currentW1FeedbackKey];
+      if (data) {
+        copyToClipboard(data.prompt, `${data.btnLabel}가 복사되었습니다. AI 대화창에 그대로 붙여넣으세요.`);
+      }
     }
-
     function copyW1Prompt() {
       const text = document.getElementById('w1-prompt-textarea').value;
       copyToClipboard(text, 'AI 프롬프트가 복사되었습니다. ChatGPT나 Claude에 붙여넣으세요.');
