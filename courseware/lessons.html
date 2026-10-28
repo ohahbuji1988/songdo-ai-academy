@@ -42,6 +42,7 @@
       font-size: 15px;
       line-height: 1.6;
       letter-spacing: -0.015em;
+      zoom: 1.1;
     }
     .font-signature {
       font-family: 'Caveat', cursive !important;
@@ -436,75 +437,79 @@
         </div>
       </section>
 
-      <!-- W1 Slide 4: 실패 공포 제거 & 3초 복구 타임머신 -->
+      <!-- W1 Slide 4: 7분 실전 복구 훈련 (실패 공포 박멸) -->
       <section class="slide-panel flex-col justify-between bg-white border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-sm min-h-[520px]">
         <div class="flex flex-col gap-4">
           <div class="flex items-center justify-between">
             <span class="px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-bold border border-emerald-200">
               1주차 · 4단계 (7분)
             </span>
-            <span class="text-xs text-slate-400 font-mono">Step 04: Safety Net</span>
+            <span class="text-xs text-slate-400 font-mono">Step 04: Real Recovery Drill</span>
           </div>
 
           <div>
             <h2 class="text-2xl font-extrabold text-slate-900 leading-snug">
-              3초 복구는 무엇을 의미하나요? "실패해도 언제든 원상 복구되는 안전그물"
+              4단계에서 뭘 배우나요? "직접 메모장에서 코드를 지워보고 되살리는 7분 실전 훈련"
             </h2>
             <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
-              초보자가 코딩을 포기하는 1등 이유는 "화면이 하얗게 깨졌을 때 오는 패닉"입니다. 코드가 아무리 망가져도 <strong>3초 만에 원상태로 되돌리는 2대 안전그물</strong>을 장착합니다.
+              화면의 버튼을 구경하는 게 아닙니다. 내 컴퓨터 메모장에서 직접 코드를 지워 화면을 깨뜨려보고, 1초 만에 원상태로 되돌리는 <strong>2대 실전 복구 기술</strong>을 손가락에 새깁니다.
             </p>
           </div>
 
-          <!-- 2 Recovery Habits Grid -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col gap-1.5">
-              <span class="text-xs font-bold text-slate-900 flex items-center gap-1.5">
-                <span class="w-5 h-5 rounded-md bg-slate-800 text-white flex items-center justify-center text-[10px]">1</span>
-                방금 실수했을 때: Ctrl + Z
+          <!-- 3-Part Hands-On Drill Cards -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+            
+            <!-- Drill 1: Break -->
+            <div class="p-4 rounded-2xl bg-red-50/50 border border-red-200 flex flex-col gap-2">
+              <span class="text-xs font-bold text-red-800 flex items-center gap-1.5">
+                <span class="w-5 h-5 rounded-md bg-red-600 text-white flex items-center justify-center text-[10px] font-bold">1</span>
+                직접 에러 내보기 (2분)
               </span>
-              <p class="text-xs text-slate-600 leading-relaxed">
-                메모장에서 실수로 글자나 태그를 지웠다면, 당황하지 말고 <strong>Ctrl + Z 키를 3번</strong> 누르면 방금 전 멀쩡했던 상태로 즉시 돌아갑니다.
+              <p class="text-[11px] text-slate-600 leading-relaxed">
+                메모장에서 코드 중간의 <code>&lt;/div&gt;</code> 나 아무 영문 1줄을 마우스로 긁어 <strong>과감하게 지우세요</strong>.
               </p>
+              <div class="p-2 rounded-lg bg-white border border-red-100 text-[11px] text-red-700 font-mono">
+                저장(Ctrl+S) &rarr; 브라우저 새로고침(F5) &rarr; 화면 깨짐 확인!
+              </div>
             </div>
 
-            <div class="p-4 rounded-2xl bg-emerald-50/60 border border-emerald-300 flex flex-col gap-1.5">
+            <!-- Drill 2: Ctrl+Z -->
+            <div class="p-4 rounded-2xl bg-emerald-50/60 border border-emerald-300 flex flex-col gap-2">
               <span class="text-xs font-bold text-emerald-950 flex items-center gap-1.5">
-                <span class="w-5 h-5 rounded-md bg-emerald-600 text-white flex items-center justify-center text-[10px]">2</span>
-                완전히 꼬였을 때: 순정 코드 덮어쓰기
+                <span class="w-5 h-5 rounded-md bg-emerald-600 text-white flex items-center justify-center text-[10px] font-bold">2</span>
+                1초 되돌리기: Ctrl+Z (2분)
               </span>
-              <p class="text-xs text-slate-600 leading-relaxed">
-                도저히 어디서 깨졌는지 모를 땐, 준비된 <strong>순정 스타터 코드를 다시 메모장에 전체 덮어쓰기(Ctrl+A &rarr; Ctrl+V)</strong>하면 3초 만에 완전 초기화 복구됩니다.
+              <p class="text-[11px] text-slate-600 leading-relaxed">
+                당황하지 말고, 메모장을 클릭한 뒤 키보드 <strong>Ctrl + Z 키를 3번</strong> 연타하세요. 방금 지운 코드가 살아납니다.
               </p>
+              <div class="p-2 rounded-lg bg-white border border-emerald-200 text-[11px] text-emerald-800 font-mono">
+                다시 저장(Ctrl+S) &rarr; 새로고침(F5) &rarr; 1초 만에 정상 복구!
+              </div>
             </div>
+
+            <!-- Drill 3: Backup Safety -->
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col gap-2">
+              <span class="text-xs font-bold text-slate-900 flex items-center gap-1.5">
+                <span class="w-5 h-5 rounded-md bg-slate-800 text-white flex items-center justify-center text-[10px] font-bold">3</span>
+                영구 구명조끼 백업 (3분)
+              </span>
+              <p class="text-[11px] text-slate-600 leading-relaxed">
+                어디가 깨졌는지 모를 땐, 수정 전 만들어둔 <strong>index_backup.html</strong> 파일 코드를 메모장에 덮어쓰면 초기화됩니다.
+              </p>
+              <div class="p-2 rounded-lg bg-white border border-slate-200 text-[11px] text-slate-700 font-mono">
+                수정 전 파일 복사본 1개 보관 = 3초 타임머신
+              </div>
+            </div>
+
           </div>
 
-          <!-- Interactive Break & Restore Sandbox -->
-          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col gap-3">
-            <span class="text-xs font-bold text-slate-800">
-              직접 깨뜨려보고 되돌려보세요 (마음껏 망가뜨려도 됩니다):
+          <!-- Why this matters -->
+          <div class="p-3.5 rounded-2xl bg-slate-100 border border-slate-200 flex flex-col gap-1 text-xs text-slate-700">
+            <span class="font-bold text-slate-900">이 7분 훈련을 마친 뒤의 변화:</span>
+            <span class="text-slate-600 leading-relaxed">
+              - 이전: "코드 잘못 건드렸다가 다 날아갈까 봐 두려움" (코딩 포기 원인 1위)<br>
+              - 이후: "코드는 막 만져도 언제든 Ctrl+Z와 백업으로 3초 만에 되살릴 수 있다는 확신 장착"
             </span>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <button onclick="simulateCrash()" class="py-2.5 px-3 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs transition-all cursor-pointer flex items-center justify-center gap-1.5">
-                <span>일부러 화면 깨뜨려보기 (태그 파괴)</span>
-              </button>
-
-              <button onclick="restoreCleanState()" class="py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition-all cursor-pointer flex items-center justify-center gap-1.5">
-                <span>3초 만에 순정 상태로 원상 복구</span>
-              </button>
-            </div>
-
-            <!-- Simulated Screen State -->
-            <div id="simulated-browser-box" class="p-3 rounded-xl bg-white border border-slate-200 text-center text-xs text-slate-600 flex items-center justify-center gap-2">
-              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
-              <span id="simulated-status-text">현재 브라우저 상태: 정상 작동 중</span>
-            </div>
-          </div>
-
-          <!-- Takeaway -->
-          <div class="p-3 rounded-xl bg-slate-100 text-xs text-slate-700 flex items-center gap-2">
-            <span class="font-bold text-emerald-700">이 단계의 목적:</span>
-            <span>"복구하는 법을 아는 사람은 실수를 두려워하지 않고, 과감하게 무엇이든 만들어볼 수 있습니다."</span>
           </div>
 
         </div>
