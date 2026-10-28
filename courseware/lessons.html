@@ -437,78 +437,72 @@
         </div>
       </section>
 
-      <!-- W1 Slide 4: 7분 실전 복구 훈련 (실패 공포 박멸) -->
+      <!-- W1 Slide 4: 피드백 루프 & 바이브 코딩 실전 업그레이드 -->
       <section class="slide-panel flex-col justify-between bg-white border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-sm min-h-[520px]">
         <div class="flex flex-col gap-4">
           <div class="flex items-center justify-between">
             <span class="px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-bold border border-emerald-200">
               1주차 · 4단계 (7분)
             </span>
-            <span class="text-xs text-slate-400 font-mono">Step 04: Real Recovery Drill</span>
+            <span class="text-xs text-slate-400 font-mono">Step 04: Vibe Coding Loop</span>
           </div>
 
           <div>
             <h2 class="text-2xl font-extrabold text-slate-900 leading-snug">
-              4단계에서 뭘 배우나요? "직접 메모장에서 코드를 지워보고 되살리는 7분 실전 훈련"
+              바이브 코딩의 진짜 정수: "피드백 한마디로 사이트 업그레이드하기"
             </h2>
             <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
-              화면의 버튼을 구경하는 게 아닙니다. 내 컴퓨터 메모장에서 직접 코드를 지워 화면을 깨뜨려보고, 1초 만에 원상태로 되돌리는 <strong>2대 실전 복구 기술</strong>을 손가락에 새깁니다.
+              코딩 문법을 단 한 줄도 직접 뜯어고칠 필요가 없습니다. 내 사이트를 보고 "이 부분 고쳐줘"라고 AI에게 핑퐁 대화(피드백)를 던져 사이트를 즉시 진화시키는 실전 경험입니다.
             </p>
           </div>
 
-          <!-- 3-Part Hands-On Drill Cards -->
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
-            
-            <!-- Drill 1: Break -->
-            <div class="p-4 rounded-2xl bg-red-50/50 border border-red-200 flex flex-col gap-2">
-              <span class="text-xs font-bold text-red-800 flex items-center gap-1.5">
-                <span class="w-5 h-5 rounded-md bg-red-600 text-white flex items-center justify-center text-[10px] font-bold">1</span>
-                직접 에러 내보기 (2분)
-              </span>
-              <p class="text-[11px] text-slate-600 leading-relaxed">
-                메모장에서 코드 중간의 <code>&lt;/div&gt;</code> 나 아무 영문 1줄을 마우스로 긁어 <strong>과감하게 지우세요</strong>.
-              </p>
-              <div class="p-2 rounded-lg bg-white border border-red-100 text-[11px] text-red-700 font-mono">
-                저장(Ctrl+S) &rarr; 브라우저 새로고침(F5) &rarr; 화면 깨짐 확인!
-              </div>
-            </div>
-
-            <!-- Drill 2: Ctrl+Z -->
-            <div class="p-4 rounded-2xl bg-emerald-50/60 border border-emerald-300 flex flex-col gap-2">
-              <span class="text-xs font-bold text-emerald-950 flex items-center gap-1.5">
-                <span class="w-5 h-5 rounded-md bg-emerald-600 text-white flex items-center justify-center text-[10px] font-bold">2</span>
-                1초 되돌리기: Ctrl+Z (2분)
-              </span>
-              <p class="text-[11px] text-slate-600 leading-relaxed">
-                당황하지 말고, 메모장을 클릭한 뒤 키보드 <strong>Ctrl + Z 키를 3번</strong> 연타하세요. 방금 지운 코드가 살아납니다.
-              </p>
-              <div class="p-2 rounded-lg bg-white border border-emerald-200 text-[11px] text-emerald-800 font-mono">
-                다시 저장(Ctrl+S) &rarr; 새로고침(F5) &rarr; 1초 만에 정상 복구!
-              </div>
-            </div>
-
-            <!-- Drill 3: Backup Safety -->
-            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col gap-2">
-              <span class="text-xs font-bold text-slate-900 flex items-center gap-1.5">
-                <span class="w-5 h-5 rounded-md bg-slate-800 text-white flex items-center justify-center text-[10px] font-bold">3</span>
-                영구 구명조끼 백업 (3분)
-              </span>
-              <p class="text-[11px] text-slate-600 leading-relaxed">
-                어디가 깨졌는지 모를 땐, 수정 전 만들어둔 <strong>index_backup.html</strong> 파일 코드를 메모장에 덮어쓰면 초기화됩니다.
-              </p>
-              <div class="p-2 rounded-lg bg-white border border-slate-200 text-[11px] text-slate-700 font-mono">
-                수정 전 파일 복사본 1개 보관 = 3초 타임머신
-              </div>
-            </div>
-
+          <!-- Feedback Options Selector -->
+          <div class="flex items-center gap-2 flex-wrap text-xs pt-1">
+            <span class="text-slate-500 font-medium">추가하고 싶은 기능 선택:</span>
+            <button onclick="setW1FeedbackPreset('call')" id="feedback-btn-call" class="w1-feedback-btn px-3 py-1.5 rounded-lg bg-emerald-50 text-emerald-800 font-bold border border-emerald-300 transition-all">
+              버튼 누르면 전화 걸기
+            </button>
+            <button onclick="setW1FeedbackPreset('mobile')" id="feedback-btn-mobile" class="w1-feedback-btn px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 font-medium border border-transparent hover:bg-slate-200 transition-all">
+              스마트폰 모바일 화면 최적화
+            </button>
+            <button onclick="setW1FeedbackPreset('kakao')" id="feedback-btn-kakao" class="w1-feedback-btn px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 font-medium border border-transparent hover:bg-slate-200 transition-all">
+              카카오톡 상담 버튼 추가
+            </button>
           </div>
 
-          <!-- Why this matters -->
-          <div class="p-3.5 rounded-2xl bg-slate-100 border border-slate-200 flex flex-col gap-1 text-xs text-slate-700">
-            <span class="font-bold text-slate-900">이 7분 훈련을 마친 뒤의 변화:</span>
-            <span class="text-slate-600 leading-relaxed">
-              - 이전: "코드 잘못 건드렸다가 다 날아갈까 봐 두려움" (코딩 포기 원인 1위)<br>
-              - 이후: "코드는 막 만져도 언제든 Ctrl+Z와 백업으로 3초 만에 되살릴 수 있다는 확신 장착"
+          <!-- Dynamic Feedback Prompt Box -->
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col gap-2">
+            <div class="flex items-center justify-between text-xs">
+              <span class="font-bold text-slate-700">AI 대화창에 던질 피드백 프롬프트:</span>
+              <button onclick="copyW1FeedbackPrompt()" class="px-3 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs cursor-pointer transition-all">
+                피드백 복사
+              </button>
+            </div>
+            <textarea id="w1-feedback-textarea" readonly rows="3" class="w-full p-2.5 rounded-xl bg-white border border-slate-200 text-xs font-mono text-slate-700 leading-relaxed outline-none"></textarea>
+            <p class="text-[11px] text-slate-500">
+              [적용 순서] AI 대화창에 이 프롬프트를 전송하고 &rarr; 새로 받은 코드를 메모장에 전체 덮어쓰기(Ctrl+A &rarr; Ctrl+V &rarr; Ctrl+S) &rarr; 브라우저 새로고침(F5)!
+            </p>
+          </div>
+
+          <!-- 3-Step Vibe Golden Loop Card -->
+          <div class="p-4 rounded-2xl bg-emerald-50/70 border border-emerald-300 flex flex-col gap-2 text-xs">
+            <span class="font-bold text-emerald-950">바이브 코딩의 3단계 황금 루프 (The Vibe Loop)</span>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+              <div class="p-2.5 rounded-xl bg-white border border-emerald-200 flex flex-col gap-1">
+                <span class="font-bold text-slate-800">1. 화면 관찰하기</span>
+                <span class="text-[11px] text-slate-600">내 브라우저를 보고 아쉬운 점이나 필요한 기능을 포착합니다.</span>
+              </div>
+              <div class="p-2.5 rounded-xl bg-white border border-emerald-200 flex flex-col gap-1">
+                <span class="font-bold text-slate-800">2. 말로 지시하기</span>
+                <span class="text-[11px] text-slate-600">AI에게 일상어로 "OOO 기능 추가해서 전체 코드로 줘"라고 말합니다.</span>
+              </div>
+              <div class="p-2.5 rounded-xl bg-white border border-emerald-200 flex flex-col gap-1">
+                <span class="font-bold text-slate-800">3. 전체 덮어쓰기</span>
+                <span class="text-[11px] text-slate-600">메모장에 전체 덮어쓰고 F5를 누르면 즉시 화면이 진화합니다.</span>
+              </div>
+            </div>
+            <span class="text-[11px] text-emerald-900 mt-1">
+              <strong>핵심 가치:</strong> 코드를 직접 짤 줄 몰라도, 이 '피드백 루프' 하나만 돌릴 줄 알면 세상의 어떤 웹 기능도 내 손으로 완성할 수 있습니다.
             </span>
           </div>
 
@@ -519,7 +513,7 @@
             &larr; 이전
           </button>
           <button onclick="nextSlide()" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center gap-2 shadow-xs transition-all">
-            <span>두려움이 사라졌다면 마지막 성취 인증으로</span>
+            <span>사이트가 진화했다면 마지막 성취 인증으로</span>
             <span>&rarr;</span>
           </button>
         </div>
@@ -551,7 +545,7 @@
             </label>
             <label class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center gap-3 cursor-pointer hover:bg-slate-100/60 transition-all">
               <input type="checkbox" id="w1-chk-3" onchange="checkW1Completion()" class="w-4 h-4 rounded text-emerald-600 accent-emerald-600">
-              <span class="text-xs text-slate-800 font-medium">3. 코드가 깨졌을 때 순정 코드로 3초 만에 복구하는 법을 익혔다.</span>
+              <span class="text-xs text-slate-800 font-medium">3. AI에게 피드백을 전달해 기능이나 디자인을 업그레이드하는 바이브 코딩 루프를 완수했다.</span>
             </label>
           </div>
 
@@ -1305,7 +1299,7 @@
     };
 
     const stepTitles = {
-      1: ['1. 도구 준비', '2. 첫 화면 & 1글자 수정', '3. AI 사이트 완성', '4. 안전그물 3초 복구', '5. 1주차 성취 인증'],
+      1: ['1. 도구 준비', '2. 첫 화면 띄우기', '3. AI 사이트 첫 생성', '4. 말로 사이트 업그레이드', '5. 1주차 성취 인증'],
       2: ['1. 환각 차단 원칙', '2. 가두기 프롬프트', '3. 출처 표기 강제', '4. 성취 인증'],
       3: ['1. 2색 디자인 원칙', '2. 추천 팔레트 선택', '3. 성취 인증'],
       4: ['1. 계산기의 힘', '2. 계산기 프롬프트', '3. 성취 인증'],
@@ -1542,6 +1536,31 @@
       document.getElementById('w1-prompt-textarea').value = w1Prompts[key];
     }
 
+    
+    // Week 1 Feedback Presets (Vibe Coding Loop)
+    const w1FeedbackPrompts = {
+      call: `현재 만든 웹사이트에서 메인 버튼을 클릭했을 때 'tel:010-1234-5678'로 바로 전화가 걸리도록 링크를 걸어줘. 코드 일부만 생략하지 말고 <!DOCTYPE html>부터 </html>까지 완전한 전체 코드를 한 번에 출력해 줘.`,
+      mobile: `현재 웹사이트를 스마트폰 화면(375px 모바일)에서 볼 때 글자가 시원하게 읽히고, 버튼이 가로 너비에 맞춰 큼직하게 꽉 차도록 여백과 글자 크기를 다듬어줘. 전체 코드로 출력해 줘.`,
+      kakao: `현재 웹사이트의 메인 버튼 바로 아래에 '카카오톡 1:1 실시간 문의' 보조 버튼을 하나 더 추가해 줘. 디자인은 에메랄드 테두리 스타일로 깔끔하게 맞추고, 전체 코드로 출력해 줘.`
+    };
+
+    function setW1FeedbackPreset(key) {
+      document.querySelectorAll('.w1-feedback-btn').forEach(b => {
+        b.className = 'w1-feedback-btn px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 font-medium border border-transparent hover:bg-slate-200 transition-all';
+      });
+      const targetBtn = document.getElementById(`feedback-btn-${key}`);
+      if (targetBtn) {
+        targetBtn.className = 'w1-feedback-btn px-3 py-1.5 rounded-lg bg-emerald-50 text-emerald-800 font-bold border border-emerald-300 transition-all';
+      }
+      const ta = document.getElementById('w1-feedback-textarea');
+      if (ta) ta.value = w1FeedbackPrompts[key];
+    }
+
+    function copyW1FeedbackPrompt() {
+      const ta = document.getElementById('w1-feedback-textarea');
+      if (ta) copyToClipboard(ta.value, '피드백 프롬프트가 복사되었습니다. AI 대화창에 그대로 붙여넣으세요.');
+    }
+
     function copyW1Prompt() {
       const text = document.getElementById('w1-prompt-textarea').value;
       copyToClipboard(text, 'AI 프롬프트가 복사되었습니다. ChatGPT나 Claude에 붙여넣으세요.');
@@ -1752,6 +1771,7 @@
     // Initialize Default Values on Load
     document.addEventListener('DOMContentLoaded', () => {
       setW1Preset('bakery');
+      setW1FeedbackPreset('call');
       setW2Preset('store');
       setW3Palette('emerald');
       selectWeek(1);
