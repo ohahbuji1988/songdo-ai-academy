@@ -2,6 +2,7 @@
 
 > **최종 갱신일시**: 2026-10-27 (새벽)
 > **공식 라이브 웹 주소**: [https://songdo-ai.pages.dev](https://songdo-ai.pages.dev)
+> **공식 GitHub 원격 저장소**: [https://github.com/ohahbuji1988/songdo-ai-academy](https://github.com/ohahbuji1988/songdo-ai-academy)
 > **로컬 개발 서버**: `http://127.0.0.1:3000` (실행: `시작하기.bat`)
 
 ---
