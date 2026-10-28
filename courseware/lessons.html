@@ -610,9 +610,15 @@
                 위 3가지 체크리스트를 모두 완료하면 ohahbuji의 <strong class="text-red-700 font-bold">'참 잘했어요'</strong> 공식 도장이 실물 액션으로 날인됩니다.
               </p>
               
-              <div id="w1-stamped-meta" class="hidden items-center gap-2 text-xs text-slate-700 mt-2">
+              <div id="w1-stamped-meta" class="hidden items-center gap-2 text-xs text-slate-700 mt-2 flex-wrap">
                 <span class="px-2.5 py-1 rounded-md bg-emerald-100 text-emerald-800 font-bold text-[11px]">도장 날인 완료 (영구 보관)</span>
                 <span id="w1-stamped-date-text" class="text-slate-500 font-mono text-[11px]"></span>
+                <button type="button" onclick="replayW1StampAction()" class="px-2.5 py-1 rounded-md bg-red-50 hover:bg-red-100 text-red-700 border border-red-200 font-bold text-[11px] transition-all cursor-pointer">
+                  [도장 다시 찍기]
+                </button>
+                <button type="button" onclick="resetW1Stamp()" class="text-[11px] text-slate-400 hover:text-red-600 underline ml-1 cursor-pointer">
+                  초기화
+                </button>
               </div>
             </div>
 
@@ -625,7 +631,7 @@
               </div>
 
               <!-- Physical Stamp Impression ("참 잘했어요" Red Seal) -->
-              <div id="w1-real-stamp" class="hidden absolute select-none pointer-events-none">
+              <div id="w1-real-stamp" onclick="replayW1StampAction()" title="클릭하면 도장 액션과 타격음을 다시 볼 수 있습니다" class="hidden absolute select-none cursor-pointer group">
                 <svg class="w-32 h-32 drop-shadow-sm" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <!-- Outer Double Concentric Stamp Ring -->
                   <circle cx="80" cy="80" r="74" stroke="#dc2626" stroke-width="3" stroke-dasharray="6 3" opacity="0.92"/>
@@ -1748,6 +1754,58 @@
       }
     }
 
+    function replayW1StampAction() {
+      const card = document.getElementById('w1-stamp-card');
+      const realStamp = document.getElementById('w1-real-stamp');
+      if (!realStamp) return;
+
+      realStamp.classList.remove('hidden', 'animate-stamp-impact', 'stamp-already-stamped');
+      if (card) card.classList.remove('animate-card-shock');
+      
+      void realStamp.offsetWidth;
+      if (card) void card.offsetWidth;
+
+      realStamp.classList.add('animate-stamp-impact');
+      if (card) card.classList.add('animate-card-shock');
+      playStampSound();
+      showToast('ohahbuji의 [참 잘했어요] 공식 도장이 날인되었습니다.');
+    }
+
+    function resetW1Stamp() {
+      localStorage.removeItem('songdo_ai_w1_completed');
+      localStorage.removeItem('songdo_ai_w1_stamped_date');
+      const c1 = document.getElementById('w1-chk-1');
+      const c2 = document.getElementById('w1-chk-2');
+      const c3 = document.getElementById('w1-chk-3');
+      if (c1) c1.checked = false;
+      if (c2) c2.checked = false;
+      if (c3) c3.checked = false;
+
+      const card = document.getElementById('w1-stamp-card');
+      const placeholder = document.getElementById('w1-stamp-placeholder');
+      const realStamp = document.getElementById('w1-real-stamp');
+      const desc = document.getElementById('w1-cert-status-desc');
+      const meta = document.getElementById('w1-stamped-meta');
+
+      if (placeholder) placeholder.classList.remove('hidden');
+      if (realStamp) {
+        realStamp.classList.add('hidden');
+        realStamp.className = 'hidden absolute select-none cursor-pointer group';
+      }
+      if (meta) {
+        meta.classList.add('hidden');
+        meta.classList.remove('flex');
+      }
+      if (card) {
+        card.classList.remove('border-emerald-500/60', 'bg-emerald-50/20');
+        card.classList.add('border-slate-200');
+      }
+      if (desc) {
+        desc.innerHTML = `위 3가지 체크리스트를 모두 완료하면 ohahbuji의 <strong class="text-red-700 font-bold">'참 잘했어요'</strong> 공식 도장이 실물 액션으로 날인됩니다.`;
+      }
+      showToast('1주차 도장이 초기화되었습니다. 체크 항목을 다시 눌러보세요.');
+    }
+
     function checkW1Completion(isInitial = false) {
       const c1 = document.getElementById('w1-chk-1');
       const c2 = document.getElementById('w1-chk-2');
@@ -1761,22 +1819,43 @@
 
       if (!c1 || !c2 || !c3) return;
 
+      if (isInitial) {
+        const isAlreadyCompleted = localStorage.getItem('songdo_ai_w1_completed') === 'true';
+        if (isAlreadyCompleted) {
+          c1.checked = true;
+          c2.checked = true;
+          c3.checked = true;
+
+          let stampDate = localStorage.getItem('songdo_ai_w1_stamped_date') || '2026. 10. 28';
+          if (placeholder) placeholder.classList.add('hidden');
+          if (desc) desc.innerHTML = '<strong class="text-emerald-700 font-bold">1주차 모든 교육 목표를 완벽하게 달성하셨습니다.</strong> 브라우저를 새로고침해도 도장은 영구 보존됩니다.';
+          if (meta) {
+            meta.classList.remove('hidden');
+            meta.classList.add('flex');
+          }
+          if (dateText) dateText.innerText = `${stampDate} 날인`;
+          if (card) {
+            card.classList.remove('border-slate-200');
+            card.classList.add('border-emerald-500/60', 'bg-emerald-50/20');
+          }
+          if (realStamp) {
+            realStamp.classList.remove('hidden');
+            realStamp.className = 'absolute select-none cursor-pointer group stamp-already-stamped';
+          }
+        }
+        return;
+      }
+
+      // Live user toggle
       const isAllChecked = c1.checked && c2.checked && c3.checked;
-      const isAlreadyCompleted = localStorage.getItem('songdo_ai_w1_completed') === 'true';
 
-      if (isAllChecked || isAlreadyCompleted) {
-        c1.checked = true;
-        c2.checked = true;
-        c3.checked = true;
-
-        // Stamp date calculation
+      if (isAllChecked) {
         let stampDate = localStorage.getItem('songdo_ai_w1_stamped_date');
         if (!stampDate) {
           const now = new Date();
           stampDate = `${now.getFullYear()}. ${now.getMonth() + 1}. ${now.getDate()}`;
           localStorage.setItem('songdo_ai_w1_stamped_date', stampDate);
         }
-
         localStorage.setItem('songdo_ai_w1_completed', 'true');
 
         if (placeholder) placeholder.classList.add('hidden');
@@ -1786,24 +1865,30 @@
           meta.classList.add('flex');
         }
         if (dateText) dateText.innerText = `${stampDate} 날인`;
-
         if (card) {
           card.classList.remove('border-slate-200');
           card.classList.add('border-emerald-500/60', 'bg-emerald-50/20');
         }
 
+        replayW1StampAction();
+      } else {
+        // User unchecked an item -> remove completed status so they can re-trigger when checking again
+        localStorage.removeItem('songdo_ai_w1_completed');
+        if (placeholder) placeholder.classList.remove('hidden');
         if (realStamp) {
-          realStamp.classList.remove('hidden');
-          if (isInitial || (isAlreadyCompleted && !realStamp.classList.contains('animate-stamp-impact'))) {
-            // Already stamped permanently, no re-animation needed
-            realStamp.className = 'absolute select-none pointer-events-none stamp-already-stamped';
-          } else {
-            // Live Action Stamping Scene!
-            realStamp.className = 'absolute select-none pointer-events-none animate-stamp-impact';
-            if (card) card.classList.add('animate-card-shock');
-            playStampSound();
-            showToast('ohahbuji의 [참 잘했어요] 공식 도장이 날인되었습니다.');
-          }
+          realStamp.classList.add('hidden');
+          realStamp.className = 'hidden absolute select-none cursor-pointer group';
+        }
+        if (meta) {
+          meta.classList.add('hidden');
+          meta.classList.remove('flex');
+        }
+        if (card) {
+          card.classList.remove('border-emerald-500/60', 'bg-emerald-50/20');
+          card.classList.add('border-slate-200');
+        }
+        if (desc) {
+          desc.innerHTML = `위 3가지 체크리스트를 모두 완료하면 ohahbuji의 <strong class="text-red-700 font-bold">'참 잘했어요'</strong> 공식 도장이 실물 액션으로 날인됩니다.`;
         }
       }
     }
