@@ -501,6 +501,12 @@
             </p>
           </div>
 
+          <!-- Vibe Coding Rule Notice: Continuing Chat vs Pasting Existing Code -->
+          <div class="p-3.5 rounded-xl bg-emerald-50/70 border border-emerald-200 text-xs text-emerald-900 flex items-center gap-2">
+            <span class="font-bold shrink-0">[바이브 코딩 핵심] 대화 이어가기:</span>
+            <span>방금 사용한 AI 대화창에서 바로 '1번 전화 버튼 넣어줘'라고 말하면 이전 코드를 알아서 기억합니다! 새 대화창이라면 내 index.html 코드를 프롬프트 아래에 함께 붙여넣어 주세요.</span>
+          </div>
+
           <!-- 3 Sequential Feedback Step Buttons -->
           <div class="flex items-center gap-2 flex-wrap text-xs pt-1">
             <span class="text-slate-500 font-medium">순서대로 3번 다 해보기:</span>
@@ -724,7 +730,7 @@
         </div>
 
         <div class="pt-6 border-t border-slate-100 flex items-center justify-between">
-          <button onclick="selectWeek(1)" class="px-4 py-2 rounded-xl border border-slate-200 text-xs text-slate-600 hover:bg-slate-50">&larr; 1주차</button>
+          <button onclick="prevSlide()" class="px-4 py-2 rounded-xl border border-slate-200 text-xs text-slate-600 hover:bg-slate-50">&larr; 1주차 (마지막 단계)</button>
           <button onclick="nextSlide()" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center gap-2">
             <span>2단계: 가두기 프롬프트 조립 &rarr;</span>
           </button>
@@ -961,7 +967,7 @@
         </div>
 
         <div class="pt-6 border-t border-slate-100 flex items-center justify-between">
-          <button onclick="selectWeek(2)" class="px-4 py-2 rounded-xl border border-slate-200 text-xs text-slate-600">&larr; 2주차</button>
+          <button onclick="prevSlide()" class="px-4 py-2 rounded-xl border border-slate-200 text-xs text-slate-600 hover:bg-slate-50">&larr; 2주차 (마지막 단계)</button>
           <button onclick="nextSlide()" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold">
             <span>2단계: 추천 2색 팔레트 적용 &rarr;</span>
           </button>
@@ -1175,7 +1181,7 @@
         </div>
 
         <div class="pt-6 border-t border-slate-100 flex items-center justify-between">
-          <button onclick="selectWeek(3)" class="px-4 py-2 rounded-xl border border-slate-200 text-xs text-slate-600">&larr; 3주차</button>
+          <button onclick="prevSlide()" class="px-4 py-2 rounded-xl border border-slate-200 text-xs text-slate-600 hover:bg-slate-50">&larr; 3주차 (마지막 단계)</button>
           <button onclick="nextSlide()" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold">
             <span>2단계: 계산기 프롬프트 조립 &rarr;</span>
           </button>
@@ -1359,17 +1365,19 @@
           </p>
 
           <!-- F12 Console Simulator Card -->
-          <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 text-slate-200 flex flex-col gap-2 font-mono text-xs shadow-inner">
-            <div class="flex items-center justify-between pb-2 border-b border-slate-800 text-[11px] text-slate-400">
+          <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 text-slate-200 flex flex-col gap-2 font-mono text-xs shadow-inner select-text cursor-text">
+            <div class="flex items-center justify-between pb-2 border-b border-slate-800 text-[11px] text-slate-400 select-none">
               <span class="flex items-center gap-1.5">
                 <span class="w-2.5 h-2.5 rounded-full bg-red-500"></span>
                 <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
                 <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
                 <span class="ml-2 text-slate-400">Chrome DevTools · Console (F12)</span>
               </span>
-              <span class="text-red-400 font-bold">1 Error</span>
+              <button type="button" onclick="copyW5ErrorSnippet()" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 text-[11px] border border-slate-700 transition-all cursor-pointer">
+                에러 메시지 복사
+              </button>
             </div>
-            <div class="text-red-400 leading-relaxed pt-1">
+            <div id="w5-console-error-text" class="text-red-400 leading-relaxed pt-1 select-text">
               Uncaught TypeError: Cannot read properties of null (reading 'value')<br>
               &nbsp;&nbsp;at calculateTotal (index.html:42:18)<br>
               &nbsp;&nbsp;at HTMLButtonElement.onclick (index.html:88:5)
@@ -1383,7 +1391,7 @@
         </div>
 
         <div class="pt-6 border-t border-slate-100 flex items-center justify-between">
-          <button onclick="selectWeek(4)" class="px-4 py-2 rounded-xl border border-slate-200 text-xs text-slate-600">&larr; 4주차</button>
+          <button onclick="prevSlide()" class="px-4 py-2 rounded-xl border border-slate-200 text-xs text-slate-600 hover:bg-slate-50">&larr; 4주차 (마지막 단계)</button>
           <button onclick="nextSlide()" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold">
             <span>2단계: 에러 수리 전용 프롬프트 &rarr;</span>
           </button>
@@ -1401,9 +1409,30 @@
             1초 백업 파일과 에러 수리 전용 템플릿
           </h2>
 
-          <div class="p-3.5 rounded-xl bg-emerald-50/70 border border-emerald-200 text-xs text-emerald-900 flex items-center gap-2">
-            <span class="font-bold">[절대 안도감] 1초 백업 습관:</span>
-            <span>중요한 수정 전에는 항상 index.html을 복사해서 index_backup.html로 복사해 두면 언제든 3초 만에 원상복구됩니다.</span>
+          <!-- 3-Second Physical Rollback & Starter Recovery Action Card -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- Left: 3-Second Physical Rollback -->
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col gap-2">
+              <span class="text-xs font-bold text-slate-800">[실전 1-2-3] 3초 만에 원상복구하는 법</span>
+              <div class="space-y-1 text-[11px] text-slate-600 leading-relaxed">
+                <p>1. <strong>수정 전 1초 복사</strong>: 폴더에서 <code class="font-bold text-slate-800">index.html</code>을 복사해 <code class="font-bold text-slate-800">index_backup.html</code>로 만듭니다.</p>
+                <p>2. <strong>화면 깨졌을 때</strong>: 망가진 파일을 지우고 백업 이름을 다시 <code class="font-bold text-emerald-700">index.html</code>로 바꿉니다.</p>
+                <p>3. <strong>새로고침(F5)</strong>: 브라우저를 새로고침하면 3초 만에 직전 정상 상태로 완벽 부활합니다!</p>
+              </div>
+            </div>
+
+            <!-- Right: Emergency Clean Starter Recovery -->
+            <div class="p-4 rounded-2xl bg-emerald-50/60 border border-emerald-200 flex flex-col justify-between gap-2">
+              <div class="flex flex-col gap-1">
+                <span class="text-xs font-bold text-emerald-900">[비상 탈출구] 백업을 깜빡했다면?</span>
+                <p class="text-[11px] text-slate-600 leading-relaxed">
+                  백업 파일이 없어도 걱정 없습니다. 1주차 공식 순정 스타터 코드를 즉시 복사해 메모장에 덮어쓰면 언제든 깨끗한 기본 상태로 돌아갈 수 있습니다.
+                </p>
+              </div>
+              <button type="button" onclick="copyCleanStarterCode()" class="w-full py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-xs transition-all flex items-center justify-center gap-1.5 cursor-pointer">
+                <span>순정 스타터 전체 코드 복사 (원클릭)</span>
+              </button>
+            </div>
           </div>
 
           <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col gap-2">
@@ -1417,7 +1446,10 @@
 [콘솔 에러 메시지 붙여넣기]
 
 1. 이 에러가 왜 발생했는지 한 줄로 원인을 설명해 줘.
-2. 해결된 <!DOCTYPE html>부터 </html>까지 완전한 전체 index.html 코드를 다시 출력해 줘.</textarea>
+2. 기존 사이트의 모든 기능(전화, 카톡, 계산기)을 100% 온전히 보존하면서 버그를 해결해 줘.
+3. [내 현재 index.html 코드를 아래에 첨부합니다]
+[현재 index.html 전체 코드 붙여넣기]
+4. <!DOCTYPE html>부터 </html>까지 완전한 전체 index.html 코드로 다시 출력해 줘.</textarea>
           </div>
         </div>
 
@@ -1557,25 +1589,33 @@
             복잡한 서버 설정이나 비용 없이, 마우스 드래그 한 번으로 평생 무료 웹 주소를 발급받고 고객에게 링크를 전달합니다.
           </p>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-3">
             <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col gap-2">
-              <span class="text-xs font-bold text-slate-800">1. 마우스로 끌어다 놓기 (1초 배포)</span>
+              <span class="text-xs font-bold text-slate-800">1. 내 실습 폴더를 마우스로 Drop</span>
               <p class="text-xs text-slate-600 leading-relaxed">
-                Netlify Drop 사이트에 완성된 <code class="font-bold text-emerald-700">index.html</code> 파일을 마우스로 끌어다 놓으면 즉시 평생 무료 https 링크가 생성됩니다.
+                <code class="font-bold text-emerald-700">index.html</code>이 들어있는 내 실습 폴더를 Netlify Drop 페이지의 점선 상자 안으로 마우스 드래그 앤 드롭합니다.
               </p>
+              <div class="p-2.5 rounded-xl bg-white border border-slate-200 text-[11px] text-slate-500 font-mono">
+                [내 실습 폴더] &rarr; Netlify Drop 점선 박스에 끌어놓기
+              </div>
             </div>
 
-            <div class="p-4 rounded-2xl bg-emerald-50/60 border border-emerald-200 flex flex-col gap-2">
-              <span class="text-xs font-bold text-emerald-800">2. 카카오톡 공유 카드 (OG 태그)</span>
-              <p class="text-xs text-slate-600 leading-relaxed">
-                고객에게 카카오톡으로 주소를 보냈을 때 대표 사진과 상호명이 깔끔한 카드 형태로 표출되어 신뢰를 줍니다.
-              </p>
+            <div class="p-4 rounded-2xl bg-emerald-50/60 border border-emerald-200 flex flex-col justify-between gap-2">
+              <div class="flex flex-col gap-1">
+                <span class="text-xs font-bold text-emerald-800">2. 전 세계 접속 HTTPS 무료 주소 발급</span>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  단 몇 초 만에 보안 인증서(HTTPS)가 적용된 공식 링크가 발급됩니다. 수정할 때도 새 파일이 든 폴더를 다시 끌어다 놓으면 1초 만에 갱신됩니다.
+                </p>
+              </div>
+              <a href="https://app.netlify.com/drop" target="_blank" class="w-fit px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-xs transition-all flex items-center gap-1.5">
+                <span>Netlify Drop 공식 배포 열기 &rarr;</span>
+              </a>
             </div>
           </div>
         </div>
 
         <div class="pt-6 border-t border-slate-100 flex items-center justify-between">
-          <button onclick="selectWeek(5)" class="px-4 py-2 rounded-xl border border-slate-200 text-xs text-slate-600">&larr; 5주차</button>
+          <button onclick="prevSlide()" class="px-4 py-2 rounded-xl border border-slate-200 text-xs text-slate-600 hover:bg-slate-50">&larr; 5주차 (마지막 단계)</button>
           <button onclick="nextSlide()" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold">
             <span>2단계: 카카오톡 공유 카드 설정 &rarr;</span>
           </button>
@@ -1605,15 +1645,22 @@
             </div>
           </div>
 
-          <div class="flex items-center justify-between text-xs pt-2">
-            <span class="text-slate-600 font-medium">&lt;head&gt; 안에 넣을 공유 태그:</span>
-            <button onclick="copyW6Prompt()" class="px-3 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-xs">
-              태그 복사
-            </button>
+          <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col gap-2">
+            <div class="flex items-center justify-between text-xs">
+              <span class="font-bold text-slate-800">AI에게 줄 카카오톡 공유 카드 장착 프롬프트:</span>
+              <button type="button" onclick="copyW6Prompt()" class="px-3 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-xs transition-all cursor-pointer">
+                프롬프트 복사
+              </button>
+            </div>
+            <textarea id="w6-prompt-textarea" readonly rows="6" class="w-full p-2.5 rounded-xl bg-white border border-slate-200 text-xs font-mono text-slate-800 outline-none leading-relaxed">내 웹사이트에 카카오톡 공유용 OpenGraph(OG) 메타 태그를 완벽하게 장착해 줘:
+1. 제목(og:title): 내 상호명 및 서비스명
+2. 설명(og:description): 한 줄 소개 및 매장 안내 문구
+3. 대표 썸네일(og:image): 대표 이미지 URL (https://picsum.photos/1200/630)
+4. [기존 기능 보존] 기존의 모든 스타일, 전화 바로걸기, 계산기, 카톡 상담 버튼을 100% 그대로 유지해라.
+5. [내 현재 index.html 코드를 아래에 첨부합니다]
+[현재 index.html 전체 코드 붙여넣기]
+6. <!DOCTYPE html>부터 </html>까지 완전한 전체 index.html 코드로 출력해 줘.</textarea>
           </div>
-          <textarea id="w6-prompt-textarea" readonly rows="3" class="w-full p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-mono text-slate-700 outline-none leading-relaxed">&lt;meta property="og:title" content="내 사이트 상호명"&gt;
-&lt;meta property="og:description" content="한 줄 소개 문구를 적어주세요."&gt;
-&lt;meta property="og:image" content="https://picsum.photos/1200/630"&gt;</textarea>
         </div>
 
         <div class="pt-6 border-t border-slate-100 flex items-center justify-between">
@@ -1776,9 +1823,9 @@
       6: ['1. 정식 출시 준비', '2. 카톡 공유 태그', '3. 마스터 수료증']
     };
 
-    function selectWeek(weekNum) {
+    function selectWeek(weekNum, targetSlide = 1) {
       currentWeek = weekNum;
-      currentSlide = 1;
+      currentSlide = targetSlide;
 
       // Update Top Nav Week Buttons
       for (let w = 1; w <= 6; w++) {
@@ -1875,9 +1922,8 @@
         currentSlide--;
         updateSlideDisplay();
       } else if (currentWeek > 1) {
-        currentWeek--;
-        currentSlide = totalSlidesPerWeek[currentWeek];
-        selectWeek(currentWeek);
+        const prevW = currentWeek - 1;
+        selectWeek(prevW, totalSlidesPerWeek[prevW]);
       }
     }
 
@@ -1886,10 +1932,18 @@
       updateSlideDisplay();
     }
 
-    // Keyboard navigation
+    // Keyboard navigation (with strict IME, button, and form protection)
     window.addEventListener('keydown', (e) => {
-      // Don't intercept when typing in inputs/textareas
-      if (['INPUT', 'TEXTAREA'].includes(e.target.tagName)) return;
+      // Don't intercept when typing in inputs/textareas/selects/contenteditable or IME composing
+      if (['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName)) return;
+      if (e.target.isContentEditable) return;
+      if (e.isComposing) return;
+      if (e.ctrlKey || e.altKey || e.metaKey) return;
+
+      // If focus is on a button or link, let Space / Enter activate the button natively!
+      if (['BUTTON', 'A'].includes(e.target.tagName)) {
+        if (e.key === ' ' || e.key === 'Enter') return;
+      }
 
       if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
         e.preventDefault();
@@ -1922,18 +1976,37 @@
     }
 
     function copyToClipboard(text, successMsg = '클립보드에 복사되었습니다!') {
-      navigator.clipboard.writeText(text).then(() => {
-        showToast(successMsg);
-      }).catch(() => {
-        // Fallback
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(() => {
+          showToast(successMsg);
+        }).catch(() => {
+          fallbackCopyText(text, successMsg);
+        });
+      } else {
+        fallbackCopyText(text, successMsg);
+      }
+    }
+
+    function fallbackCopyText(text, successMsg) {
+      try {
         const ta = document.createElement('textarea');
         ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.left = '-999999px';
+        ta.style.top = '-999999px';
         document.body.appendChild(ta);
+        ta.focus();
         ta.select();
-        document.execCommand('copy');
+        const ok = document.execCommand('copy');
         document.body.removeChild(ta);
-        showToast(successMsg);
-      });
+        if (ok) {
+          showToast(successMsg);
+        } else {
+          showToast('텍스트 영역을 직접 복사해 주세요.');
+        }
+      } catch (err) {
+        showToast('텍스트 영역을 직접 복사해 주세요.');
+      }
     }
 
     // --- Week 1 Scripts ---
@@ -2070,20 +2143,35 @@
       copyToClipboard(text, 'AI 프롬프트가 복사되었습니다. ChatGPT나 Claude에 붙여넣으세요.');
     }
 
-    function simulateCrash() {
-      const box = document.getElementById('simulated-browser-box');
-      const text = document.getElementById('simulated-status-text');
-      box.className = 'p-4 rounded-xl bg-red-50 border border-red-300 text-center text-xs text-red-700 flex items-center justify-center gap-2';
-      text.innerHTML = '<strong>오류 발생 (화면 깨짐)</strong>: 닫는 태그 &lt;/div&gt; 누락으로 레이아웃이 무너졌습니다.';
-      showToast('화면 깨짐이 재현되었습니다! 오른쪽 복구 버튼을 눌러보세요.');
-    }
-
-    function restoreCleanState() {
-      const box = document.getElementById('simulated-browser-box');
-      const text = document.getElementById('simulated-status-text');
-      box.className = 'p-4 rounded-xl bg-emerald-50 border border-emerald-300 text-center text-xs text-emerald-800 flex items-center justify-center gap-2';
-      text.innerHTML = '<strong>3초 복구 완료</strong>: 순정 코드로 즉시 복원되었습니다!';
-      copyStarterCode();
+    function copyCleanStarterCode() {
+      const starter = `<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>송도 웰빙 베이커리</title>
+  <script src="https://cdn.tailwindcss.com"><\/script>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex items-center justify-center p-4">
+  <div class="max-w-md w-full bg-white rounded-2xl shadow-sm border border-slate-200 p-6 text-center">
+    <span class="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold border border-emerald-200">
+      당일 생산 · 건강한 빵
+    </span>
+    <h1 class="text-2xl font-bold mt-4 text-slate-900">송도 웰빙 베이커리</h1>
+    <p class="text-slate-500 text-xs mt-2 leading-relaxed">
+      유기농 밀가루와 천연 발효종으로 매일 아침 구워내는 신선한 빵을 만나보세요.
+    </p>
+    <div class="mt-6 p-4 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-between text-xs">
+      <span class="font-medium text-slate-700">시그니처 깜파뉴</span>
+      <span class="font-bold text-emerald-700">6,500원</span>
+    </div>
+    <a href="tel:032-123-4567" class="mt-4 block w-full py-2.5 rounded-xl bg-emerald-600 text-white font-bold text-xs hover:bg-emerald-700 transition-all">
+      전화 주문하기 (032-123-4567)
+    </a>
+  </div>
+</body>
+</html>`;
+      copyToClipboard(starter, '비상용 순정 스타터 코드가 복사되었습니다! 메모장에 붙여넣고 저장하세요.');
     }
 
         // Synthesized Web Audio Stamp Thump Sound
@@ -2389,7 +2477,7 @@
 
     // --- Week 2 Scripts ---
     const w2Prompts = {
-      store: `다음 [매장 안내문]의 사실만을 엄격하게 준수해서 FAQ 답변을 생성해 줘.
+      store: `다음 [매장 안내문]의 사실만을 엄격하게 준수해서 내 사이트에 FAQ 안내 섹션을 추가해 줘.
 [매장 안내문]
 - 영업시간: 10:00 ~ 21:00 (매주 월요일 휴무)
 - 주차: 건물 지하 1시간 무료 지원 (이후 10분당 500원)
@@ -2397,22 +2485,33 @@
 [엄격 규칙]
 1. 안내문에 없는 내용은 절대로 지어내지 말고 "안내문에 없는 내용입니다"라고만 답해라.
 2. 모든 답변 끝에는 반드시 [출처: 매장 안내문]을 표기해라.
-3. <!DOCTYPE html>부터 </html>까지 전체 코드로 출력해 줘.`,
-      faq: `다음 [수강 안내문]의 사실만 준수해서 질문에 답하는 웹 코드를 짜줘.
+3. 기존 사이트의 전화 연결 버튼 등 기존 기능을 100% 온전히 유지해라.
+4. [내 현재 index.html 코드를 아래에 첨부합니다]
+[현재 index.html 전체 코드 붙여넣기]
+5. <!DOCTYPE html>부터 </html>까지 완전한 전체 코드로 출력해 줘.`,
+      faq: `다음 [수강 안내문]의 사실만 준수해서 내 사이트에 수강 상담 FAQ 섹션을 추가해 줘.
 [수강 안내문]
 - 수강료: 0원 전액 무료
 - 참여 방식: 100% 온라인 자습형 클래스
 
 [엄격 규칙]
-1. 안내문 밖의 내용은 추측하지 마라.
-2. 답변 끝에 [출처: 수강 안내문 Q2]를 붙여라.
-3. <!DOCTYPE html>부터 </html>까지 전체 코드로 출력해 줘.`,
-      rule: `다음 [회칙 문서]에 기록된 사실만 답변해 줘.
+1. 안내문 밖의 내용은 절대로 추측하지 마라.
+2. 답변 끝에 [출처: 수강 안내문 Q2]를 표기해라.
+3. 기존 사이트의 모든 요소를 온전히 유지해라.
+4. [내 현재 index.html 코드를 아래에 첨부합니다]
+[현재 index.html 전체 코드 붙여넣기]
+5. <!DOCTYPE html>부터 </html>까지 완전한 전체 코드로 출력해 줘.`,
+      rule: `다음 [회칙 문서]에 기록된 사실만 답변하는 모임 회칙 안내 섹션을 추가해 줘.
 [회칙 문서]
 - 정기 회비: 월 10,000원 (매월 5일 납부)
 - 탈퇴 시 회비 환불 불가
 
-[엄격 규칙] 없는 회칙은 모른다고 답하고, 출처를 달아 <!DOCTYPE html>부터 </html>까지 전체 코드로 출력해 줘.`
+[엄격 규칙]
+1. 없는 회칙은 모른다고 답하고 [출처: 동호회 회칙]을 달아라.
+2. 기존 사이트의 모든 디자인과 기능을 유지해라.
+3. [내 현재 index.html 코드를 아래에 첨부합니다]
+[현재 index.html 전체 코드 붙여넣기]
+4. <!DOCTYPE html>부터 </html>까지 완전한 전체 코드로 출력해 줘.`
     };
 
     function setW2Preset(key) {
@@ -2435,17 +2534,26 @@
 1. 기본 바탕과 텍스트는 Slate 단색(#0f172a / #f8fafc)을 유지해라.
 2. 메인 버튼과 강조 배지에만 신뢰의 에메랄드 그린(#059669 / #10b981) 단 1개 포인트 컬러만 사용해라.
 3. 보라색 네온이나 무지개 그라데이션, 장식용 이모지는 전면 삭제해라.
-4. <!DOCTYPE html>부터 </html>까지 완전한 전체 코드로 출력해 줘.`,
+4. 기존 전화 버튼, 카카오톡 버튼 등 모든 기존 기능은 100% 그대로 유지해라.
+5. [내 현재 index.html 코드를 아래에 첨부합니다]
+[현재 index.html 전체 코드 붙여넣기]
+6. <!DOCTYPE html>부터 </html>까지 완전한 전체 코드로 출력해 줘.`,
       indigo: `내 웹사이트의 전체 디자인을 다음 원칙으로 2색 정리해 줘:
 1. 기본 바탕과 텍스트는 Slate 단색(#0f172a / #f8fafc)을 유지해라.
 2. 메인 버튼과 강조 배지에만 전문적인 인디고 블루(#4f46e5 / #6366f1) 단 1개 포인트 컬러만 사용해라.
 3. 보라색 네온이나 무지개 그라데이션, 장식용 이모지는 전면 삭제해라.
-4. <!DOCTYPE html>부터 </html>까지 완전한 전체 코드로 출력해 줘.`,
+4. 기존 전화 버튼, 카카오톡 버튼 등 모든 기존 기능은 100% 그대로 유지해라.
+5. [내 현재 index.html 코드를 아래에 첨부합니다]
+[현재 index.html 전체 코드 붙여넣기]
+6. <!DOCTYPE html>부터 </html>까지 완전한 전체 코드로 출력해 줘.`,
       terracotta: `내 웹사이트의 전체 디자인을 다음 원칙으로 2색 정리해 줘:
 1. 기본 바탕과 텍스트는 Slate 단색(#0f172a / #f8fafc)을 유지해라.
 2. 메인 버튼과 강조 배지에만 따뜻한 테라코타 오렌지(#d97706 / #f59e0b) 단 1개 포인트 컬러만 사용해라.
 3. 보라색 네온이나 무지개 그라데이션, 장식용 이모지는 전면 삭제해라.
-4. <!DOCTYPE html>부터 </html>까지 완전한 전체 코드로 출력해 줘.`
+4. 기존 전화 버튼, 카카오톡 버튼 등 모든 기존 기능은 100% 그대로 유지해라.
+5. [내 현재 index.html 코드를 아래에 첨부합니다]
+[현재 index.html 전체 코드 붙여넣기]
+6. <!DOCTYPE html>부터 </html>까지 완전한 전체 코드로 출력해 줘.`
     };
 
     function setW3Palette(theme) {
@@ -2500,19 +2608,28 @@
 2. '+'와 '-' 버튼으로 수량을 조절하면 총액이 실시간으로 갱신되게 해라.
 3. [엄격 버그 방어] 수량이 0 이하로 내려가지 않도록 Math.max(0, qty)를 적용해 음수(-15,000원) 버그를 원천 차단해라.
 4. 금액은 한국 원화 포맷(toLocaleString)으로 3자리마다 쉼표(예: 30,000원)를 표기해라.
-5. <!DOCTYPE html>부터 </html>까지 완전한 전체 코드로 출력해 줘.`,
+5. 기존 전화 버튼, 카카오톡 상담 버튼 등 기존 사이트의 모든 기능을 100% 온전히 유지해라.
+6. [내 현재 index.html 코드를 아래에 첨부합니다]
+[현재 index.html 전체 코드 붙여넣기]
+7. <!DOCTYPE html>부터 </html>까지 완전한 전체 코드로 출력해 줘.`,
       consult: `현재 내 index.html에 실시간 견적 상담 계산기를 추가해 줘:
 1. 서비스명: '1:1 전문가 맞춤 상담' (시간당 단가 50,000원)
 2. '+'와 '-' 버튼으로 상담 시간을 조절하면 총 견적이 실시간으로 갱신되게 해라.
 3. [엄격 버그 방어] 시간이 0 이하로 내려가지 않도록 Math.max(0, hours)를 적용해라.
 4. 견적 금액은 toLocaleString()으로 쉼표(예: 100,000원)를 표기해라.
-5. <!DOCTYPE html>부터 </html>까지 완전한 전체 코드로 출력해 줘.`,
+5. 기존 전화 버튼, 카카오톡 상담 버튼 등 기존 사이트의 모든 기능을 100% 온전히 유지해라.
+6. [내 현재 index.html 코드를 아래에 첨부합니다]
+[현재 index.html 전체 코드 붙여넣기]
+7. <!DOCTYPE html>부터 </html>까지 완전한 전체 코드로 출력해 줘.`,
       seminar: `현재 내 index.html에 세미나 티켓 예약 계산기를 추가해 줘:
 1. 티켓명: 'AI 실무 세미나 참가 티켓' (인당 단가 30,000원)
 2. '+'와 '-' 버튼으로 예약 인원수를 조절하면 총액이 실시간으로 갱신되게 해라.
 3. [엄격 버그 방어] 인원수가 0 이하로 내려가지 않도록 Math.max(0, tickets)를 적용해라.
 4. 총 결제 금액은 toLocaleString()으로 쉼표(예: 60,000원)를 표기해라.
-5. <!DOCTYPE html>부터 </html>까지 완전한 전체 코드로 출력해 줘.`
+5. 기존 전화 버튼, 카카오톡 상담 버튼 등 기존 사이트의 모든 기능을 100% 온전히 유지해라.
+6. [내 현재 index.html 코드를 아래에 첨부합니다]
+[현재 index.html 전체 코드 붙여넣기]
+7. <!DOCTYPE html>부터 </html>까지 완전한 전체 코드로 출력해 줘.`
     };
 
     function setW4Preset(key) {
@@ -2553,13 +2670,18 @@
     }
 
     // --- Week 5 Scripts ---
+    function copyW5ErrorSnippet() {
+      const errText = "Uncaught TypeError: Cannot read properties of null (reading 'value')\n  at calculateTotal (index.html:42:18)\n  at HTMLButtonElement.onclick (index.html:88:5)";
+      copyToClipboard(errText, 'F12 콘솔 에러 메시지가 복사되었습니다!');
+    }
+
     function copyW5Prompt() {
       copyToClipboard(document.getElementById('w5-prompt-textarea').value, '에러 수리 전용 프롬프트가 복사되었습니다.');
     }
 
     // --- Week 6 Scripts & Grand Finale Certificate ---
     function copyW6Prompt() {
-      copyToClipboard(document.getElementById('w6-prompt-textarea').value, '카카오톡 공유 태그가 복사되었습니다.');
+      copyToClipboard(document.getElementById('w6-prompt-textarea').value, '카카오톡 공유 카드 장착 프롬프트가 복사되었습니다.');
     }
 
     function generateCertificate() {
