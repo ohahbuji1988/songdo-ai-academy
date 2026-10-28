@@ -6,7 +6,7 @@ from datetime import datetime
 import urllib.request
 import urllib.error
 import webbrowser
-from http.server import SimpleHTTPRequestHandler, HTTPServer
+from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 
 PORT = 3000
 DIRECTORY = os.path.dirname(os.path.abspath(__file__))
@@ -388,7 +388,7 @@ class DevilServerHandler(SimpleHTTPRequestHandler):
 if __name__ == '__main__':
     load_env()
     print(f"[Songdo AI Suite Server] running at http://127.0.0.1:{PORT}")
-    server = HTTPServer(('127.0.0.1', PORT), DevilServerHandler)
+    server = ThreadingHTTPServer(('127.0.0.1', PORT), DevilServerHandler)
     try:
         server.serve_forever()
     except KeyboardInterrupt:
