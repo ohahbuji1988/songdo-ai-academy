@@ -309,7 +309,7 @@
           <!-- Code Box with One-Click Copy -->
           <div class="relative rounded-2xl bg-slate-900 text-slate-200 p-4 font-mono text-xs overflow-hidden border border-slate-800">
             <div class="flex items-center justify-between pb-2 mb-2 border-b border-slate-800 text-[11px] text-slate-400">
-              <span>📄 index.html (공식 순정 스타터)</span>
+              <span>index.html (공식 순정 스타터)</span>
               <button onclick="copyStarterCode()" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 transition-all cursor-pointer">
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
                 <span>순정 코드 1클릭 복사</span>
@@ -375,13 +375,13 @@
           <div class="flex items-center gap-2 flex-wrap text-xs">
             <span class="text-slate-500 font-medium">내가 만들 업종 선택:</span>
             <button onclick="setW1Preset('bakery')" id="preset-btn-bakery" class="w1-preset-btn px-3 py-1.5 rounded-lg bg-emerald-50 text-emerald-800 font-bold border border-emerald-300 transition-all">
-              🥖 동네 빵집 / 카페
+              동네 빵집 · 카페
             </button>
             <button onclick="setW1Preset('expert')" id="preset-btn-expert" class="w1-preset-btn px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 font-medium border border-transparent hover:bg-slate-200 transition-all">
-              💼 전문가 1인 포트폴리오
+              전문가 1인 포트폴리오
             </button>
             <button onclick="setW1Preset('club')" id="preset-btn-club" class="w1-preset-btn px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 font-medium border border-transparent hover:bg-slate-200 transition-all">
-              🏃 주말 러닝 / 소모임
+              주말 러닝 · 소모임
             </button>
           </div>
 
@@ -400,14 +400,14 @@
             <textarea id="w1-prompt-textarea" readonly rows="4" class="w-full p-2.5 rounded-xl bg-white border border-slate-200 text-xs font-mono text-slate-700 leading-relaxed outline-none focus:ring-1 focus:ring-emerald-500"></textarea>
             
             <p class="text-[11px] text-slate-500">
-              💡 <strong>적용 방법:</strong> AI가 답변으로 준 새 코드를 메모장에 <strong>전체 덮어쓰기(Ctrl+A &rarr; Ctrl+V &rarr; Ctrl+S)</strong> 후 브라우저 새로고침(F5)!
+              <strong>적용 방법:</strong> AI가 답변으로 준 새 코드를 메모장에 <strong>전체 덮어쓰기(Ctrl+A &rarr; Ctrl+V &rarr; Ctrl+S)</strong> 후 브라우저 새로고침(F5)!
             </p>
           </div>
 
           <!-- 그래서 우리는 무엇을 한 것인가? (Achievement / Takeaway Card) -->
           <div class="p-4 rounded-2xl bg-emerald-50/70 border border-emerald-300 flex flex-col gap-2">
             <div class="flex items-center gap-1.5 text-xs font-bold text-emerald-900">
-              <span>🎯 그래서 우리는 방금 무엇을 한 것인가요? (성취 결과)</span>
+              <span>실행 결과 및 핵심 변화</span>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
               <div class="p-2.5 rounded-xl bg-white border border-emerald-200">
@@ -420,7 +420,7 @@
               </div>
             </div>
             <span class="text-[11px] text-emerald-950">
-              👉 <strong>핵심 공식:</strong> 코딩 문법을 공부할 필요 없이 <strong>[기존 코드 + 원하는 내용 + 전체 출력 원칙]</strong> 3가지만 AI에게 주면, 10초 만에 새 사이트가 탄생합니다.
+              <strong>핵심 공식: [1. 원하는 내용] + [2. 전체 출력 원칙]</strong><br><span class="text-slate-600 font-normal">코딩 문법을 배울 필요 없이, 내가 원하는 기획과 '전체 코드로 출력하라'는 원칙 단 2가지만 명시하면 AI가 10초 만에 완전한 사이트를 완성합니다.</span>
             </span>
           </div>
         </div>
@@ -481,16 +481,16 @@
           <!-- Interactive Break & Restore Sandbox -->
           <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col gap-3">
             <span class="text-xs font-bold text-slate-800">
-              🧪 직접 깨뜨려보고 되돌려보세요 (마음껏 망가뜨려도 됩니다):
+              직접 깨뜨려보고 되돌려보세요 (마음껏 망가뜨려도 됩니다):
             </span>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <button onclick="simulateCrash()" class="py-2.5 px-3 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs transition-all cursor-pointer flex items-center justify-center gap-1.5">
-                <span>⚠️ 일부러 화면 깨뜨려보기 (태그 파괴)</span>
+                <span>일부러 화면 깨뜨려보기 (태그 파괴)</span>
               </button>
 
               <button onclick="restoreCleanState()" class="py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition-all cursor-pointer flex items-center justify-center gap-1.5">
-                <span>✅ 3초 만에 순정 상태로 원상 복구</span>
+                <span>3초 만에 순정 상태로 원상 복구</span>
               </button>
             </div>
 
@@ -590,7 +590,7 @@
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
             <div class="p-4 rounded-2xl bg-red-50/50 border border-red-200 flex flex-col gap-2">
-              <span class="text-xs font-bold text-red-700">❌ 가두지 않은 위험한 질문</span>
+              <span class="text-xs font-bold text-red-700">[주의] 가두지 않은 위험한 질문</span>
               <p class="text-xs text-slate-700">"송도 아카데미 수강료 얼마야?"</p>
               <div class="p-2.5 rounded-lg bg-white border border-red-100 text-xs text-red-600">
                 AI: "월 30만원이며 환불은 7일 이내 가능합니다." &rarr; <strong>거짓말 발생!</strong>
@@ -598,7 +598,7 @@
             </div>
 
             <div class="p-4 rounded-2xl bg-emerald-50/50 border border-emerald-200 flex flex-col gap-2">
-              <span class="text-xs font-bold text-emerald-800">✅ 엄격하게 가둔 질문</span>
+              <span class="text-xs font-bold text-emerald-800">엄격하게 가둔 질문</span>
               <p class="text-xs text-slate-700">"오직 [첨부문서] 안의 사실만 근거로 답해라."</p>
               <div class="p-2.5 rounded-lg bg-white border border-emerald-100 text-xs text-emerald-700">
                 AI: "수강료는 0원 전액 무료입니다. (출처: 모집요강 Q2)" &rarr; <strong>100% 신뢰성!</strong>
@@ -629,13 +629,13 @@
           <div class="flex items-center gap-2 flex-wrap text-xs">
             <span class="text-slate-500 font-medium">유형 선택:</span>
             <button onclick="setW2Preset('store')" id="w2-preset-store" class="w2-preset-btn px-3 py-1.5 rounded-lg bg-emerald-50 text-emerald-800 font-bold border border-emerald-300">
-              🏪 매장 영업/주차 안내
+              매장 영업 · 주차 안내
             </button>
             <button onclick="setW2Preset('faq')" id="w2-preset-faq" class="w2-preset-btn px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200">
-              ❓ 고객 상담 FAQ
+              고객 상담 FAQ
             </button>
             <button onclick="setW2Preset('rule')" id="w2-preset-rule" class="w2-preset-btn px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200">
-              📋 동호회/모임 회칙
+              동호회 회칙 안내
             </button>
           </div>
 
@@ -755,11 +755,11 @@
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
             <div class="p-4 rounded-2xl bg-purple-50/60 border border-purple-200 flex flex-col gap-2">
-              <span class="text-xs font-bold text-purple-800">❌ AI 슬롭(Slop) 디자인</span>
+              <span class="text-xs font-bold text-purple-800">[주의] AI 슬롭(Slop) 디자인</span>
               <p class="text-xs text-slate-600">보라색 형광색, 무지개 테두리, 이모지 10개 나열 (가독성 파괴, 비전문적)</p>
             </div>
             <div class="p-4 rounded-2xl bg-emerald-50/60 border border-emerald-200 flex flex-col gap-2">
-              <span class="text-xs font-bold text-emerald-800">✅ 송도 안티슬롭 표준</span>
+              <span class="text-xs font-bold text-emerald-800">송도 안티슬롭 표준</span>
               <p class="text-xs text-slate-600">단정한 흰색/회색(Slate) 바탕 + 신뢰의 Emerald 단 1개 포인트 (선명한 가독성)</p>
             </div>
           </div>
@@ -786,13 +786,13 @@
 
           <div class="flex items-center gap-2 flex-wrap text-xs">
             <button onclick="setW3Palette('emerald')" id="w3-pal-emerald" class="w3-pal-btn px-3 py-1.5 rounded-lg bg-emerald-600 text-white font-bold shadow-xs">
-              🌿 에메랄드 그린 (신뢰/성장/웰빙)
+              에메랄드 그린 (Emerald)
             </button>
             <button onclick="setW3Palette('indigo')" id="w3-pal-indigo" class="w3-pal-btn px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200">
-              🔷 인디고 블루 (전문성/IT/금융)
+              인디고 블루 (Indigo)
             </button>
             <button onclick="setW3Palette('terracotta')" id="w3-pal-terracotta" class="w3-pal-btn px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200">
-              🧱 테라코타 오렌지 (공방/친근/따뜻함)
+              테라코타 오렌지 (Amber)
             </button>
           </div>
 
@@ -951,7 +951,7 @@
           <div class="p-3.5 rounded-xl bg-emerald-50/70 border border-emerald-200 text-xs text-emerald-950 flex items-start gap-2.5">
             <span class="w-2.5 h-2.5 rounded-full bg-emerald-600 mt-1 shrink-0"></span>
             <div class="flex flex-col gap-0.5">
-              <strong class="text-emerald-900">💡 팁: AI에게 기존 코드를 함께 줘야 정확히 결합됩니다</strong>
+              <strong class="text-emerald-900">팁: AI에게 기존 코드를 함께 줘야 정확히 결합됩니다</strong>
               <span class="text-slate-600">
                 메모장에서 내 코드를 <strong>전체 선택(Ctrl+A) & 복사(Ctrl+C)</strong>한 뒤, 이 프롬프트와 함께 AI에 보내면 내 기존 화면 레이아웃 속에 계산기가 자연스럽게 결합됩니다.
               </span>
@@ -1213,7 +1213,7 @@
         </div>
       </section>
 
-      <!-- W6 Slide 3: 🎓 6주 완주 마스터 수료증 -->
+      <!-- W6 Slide 3: 6주 완주 마스터 수료증 -->
       <section class="slide-panel flex-col justify-between bg-white border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-sm min-h-[500px]">
         <div class="flex flex-col gap-4">
           <div class="flex items-center justify-between">
@@ -1221,7 +1221,7 @@
             <span class="text-xs text-slate-400 font-mono">Master Certificate</span>
           </div>
           <h2 class="text-2xl font-extrabold text-slate-900 leading-snug">
-            축하합니다! 6주 전 과정을 완주하셨습니다 🎓
+            축하합니다. 6주 전 과정을 완주하셨습니다 
           </h2>
 
           <!-- Certificate Generator Input -->
@@ -1305,7 +1305,7 @@
       3: ['1. 2색 디자인 원칙', '2. 추천 팔레트 선택', '3. 성취 인증'],
       4: ['1. 계산기의 힘', '2. 계산기 프롬프트', '3. 성취 인증'],
       5: ['1. 에러 해결 원리', '2. 3초 백업 습관', '3. 성취 인증'],
-      6: ['1. 정식 출시 준비', '2. 카톡 공유 태그', '3. 🎓 마스터 수료증']
+      6: ['1. 정식 출시 준비', '2. 카톡 공유 태그', '3. 마스터 수료증']
     };
 
     function selectWeek(weekNum) {
@@ -1398,7 +1398,7 @@
       } else if (currentWeek < 6) {
         selectWeek(currentWeek + 1);
       } else {
-        showToast('🎓 축하합니다! 모든 6주차 슬라이드를 완주하셨습니다!');
+        showToast('모든 6주차 슬라이드를 완주하셨습니다.');
       }
     }
 
@@ -1488,26 +1488,45 @@
 </html>`;
 
     function copyStarterCode() {
-      copyToClipboard(starterCodeStr, '✅ 순정 스타터 코드가 복사되었습니다! 메모장에 붙여넣으세요.');
+      copyToClipboard(starterCodeStr, '순정 스타터 코드가 복사되었습니다. 메모장에 붙여넣으세요.');
     }
 
-    function makePromptWithCode(topicTitle, specs) {
-      return `아래의 [기존 HTML 코드]를 바탕으로 '${topicTitle}' 웹사이트로 내용을 수정해 줘.
+        const w1Prompts = {
+      bakery: `다음 조건으로 '송도 달콤 베이커리' 1페이지 웹사이트 HTML 코드를 작성해 줘.
 
-[기존 HTML 코드]
-${starterCodeStr}
+[1. 원하는 내용]
+- 목적: 매일 아침 유기농 빵을 굽는 베이커리 매장 소개 페이지
+- 디자인: Tailwind CSS CDN 포함, 단정한 Slate 배경에 에메랄드(#059669) 포인트 컬러
+- 상호명: 송도 달콤 베이커리 (인천 연수구 센트럴파크역 2번 출구)
+- 대표 메뉴 3가지: 소금빵 (3,500원), 바질 토마토 치아바타 (4,800원), 유기농 식빵 (5,500원)
+- 메인 버튼: '오늘의 빵 예약하기' 버튼
 
-[수정 요청 사항]
-${specs}
+[2. 전체 출력 원칙]
+코드 중간을 생략하거나 부분 조각만 주지 말고, <!DOCTYPE html>부터 </html>까지 완전한 전체 코드를 한 번에 출력해 줘.`,
 
-[절대 원칙]
-코드 일부만 생략해서 주지 말고, <!DOCTYPE html>부터 </html>까지 완전한 전체 코드를 한 번에 출력해 줘.`;
-    }
+      expert: `다음 조건으로 '김민우 공인노무사' 1인 전문가 포트폴리오 웹사이트 HTML 코드를 작성해 줘.
 
-    const w1Prompts = {
-      bakery: makePromptWithCode('송도 달콤 베이커리', `- 상호명: 송도 달콤 베이커리\n- 대표 메뉴 3가지: 소금빵(3,500원), 바질 토마토 치아바타(4,800원), 유기농 식빵(5,500원)\n- 위치 안내: 인천 연수구 송도 센트럴파크역 2번 출구`),
-      expert: makePromptWithCode('김민우 공인노무사 1인 전문가', `- 전문가명: 김민우 공인노무사\n- 전문 분야 3가지: 직장 내 괴롭힘, 임금체불 대응, 스타트업 노무 자문\n- 상담 연락처: 010-1234-5678 및 1:1 상담 예약 버튼`),
-      club: makePromptWithCode('송도 선셋 러닝 크루', `- 모임명: 송도 선셋 러닝 크루\n- 정기 일정: 매주 수/토 저녁 7시 센트럴파크 5km 펀런\n- 준비물 및 참가비: 편한 러닝화와 열정 (참가비 0원)`)
+[1. 원하는 내용]
+- 목적: 직장인 및 스타트업 대상 신뢰도 높은 1인 전문가 소개 페이지
+- 디자인: Tailwind CSS CDN 포함, 단정한 Slate 배경에 에메랄드(#059669) 포인트 컬러
+- 전문가명: 김민우 공인노무사 (연락처: 010-1234-5678)
+- 전문 분야 3가지: 직장 내 괴롭힘 대응, 임금체불 권리 구제, 스타트업 노무 자문
+- 메인 버튼: '1:1 카카오톡 상담 예약' 버튼
+
+[2. 전체 출력 원칙]
+코드 중간을 생략하거나 부분 조각만 주지 말고, <!DOCTYPE html>부터 </html>까지 완전한 전체 코드를 한 번에 출력해 줘.`,
+
+      club: `다음 조건으로 '송도 선셋 러닝 크루' 모임 소개 웹사이트 HTML 코드를 작성해 줘.
+
+[1. 원하는 내용]
+- 목적: 주말 센트럴파크 펀런 신규 회원 모집 페이지
+- 디자인: Tailwind CSS CDN 포함, 단정한 Slate 배경에 에메랄드(#059669) 포인트 컬러
+- 모임명: 송도 선셋 러닝 크루 (참가비: 0원 전액 무료)
+- 정기 일정: 매주 수/토 저녁 7시 센트럴파크 5km 펀런
+- 메인 버튼: '이번 주 러닝 참여 신청' 버튼
+
+[2. 전체 출력 원칙]
+코드 중간을 생략하거나 부분 조각만 주지 말고, <!DOCTYPE html>부터 </html>까지 완전한 전체 코드를 한 번에 출력해 줘.`
     };
 
     function setW1Preset(key) {
@@ -1520,22 +1539,22 @@ ${specs}
 
     function copyW1Prompt() {
       const text = document.getElementById('w1-prompt-textarea').value;
-      copyToClipboard(text, '✅ AI 프롬프트가 복사되었습니다! ChatGPT나 Claude에 붙여넣으세요.');
+      copyToClipboard(text, 'AI 프롬프트가 복사되었습니다. ChatGPT나 Claude에 붙여넣으세요.');
     }
 
     function simulateCrash() {
       const box = document.getElementById('simulated-browser-box');
       const text = document.getElementById('simulated-status-text');
       box.className = 'p-4 rounded-xl bg-red-50 border border-red-300 text-center text-xs text-red-700 flex items-center justify-center gap-2';
-      text.innerHTML = '⚠️ <strong>오류 발생 (화면 깨짐)</strong>: 닫는 태그 &lt;/div&gt; 누락으로 레이아웃이 무너졌습니다.';
-      showToast('⚠️ 화면 깨짐이 재현되었습니다! 오른쪽 복구 버튼을 눌러보세요.');
+      text.innerHTML = '<strong>오류 발생 (화면 깨짐)</strong>: 닫는 태그 &lt;/div&gt; 누락으로 레이아웃이 무너졌습니다.';
+      showToast('화면 깨짐이 재현되었습니다! 오른쪽 복구 버튼을 눌러보세요.');
     }
 
     function restoreCleanState() {
       const box = document.getElementById('simulated-browser-box');
       const text = document.getElementById('simulated-status-text');
       box.className = 'p-4 rounded-xl bg-emerald-50 border border-emerald-300 text-center text-xs text-emerald-800 flex items-center justify-center gap-2';
-      text.innerHTML = '✅ <strong>3초 복구 완료</strong>: 순정 코드로 즉시 복원되었습니다!';
+      text.innerHTML = '<strong>3초 복구 완료</strong>: 순정 코드로 즉시 복원되었습니다!';
       copyStarterCode();
     }
 
@@ -1548,9 +1567,9 @@ ${specs}
 
       if (c1 && c2 && c3) {
         stampBox.className = 'p-4 rounded-2xl bg-emerald-100/80 border-2 border-emerald-600 text-center flex items-center justify-center gap-2';
-        stampText.innerHTML = '🎉 <strong class="text-emerald-900 text-sm">1주차 완주 도장 획득!</strong> (30분 첫 배포 마스터)';
+        stampText.innerHTML = '<strong class="text-emerald-900 text-sm">[완주 확인] 1주차 완성</strong> (30분 첫 배포 마스터)';
         localStorage.setItem('songdo_ai_w1_completed', 'true');
-        showToast('🎉 축하합니다! 1주차 완주 도장이 찍혔습니다.');
+        showToast('축하합니다! 1주차 완주 도장이 찍혔습니다.');
       } else {
         stampBox.className = 'p-4 rounded-2xl bg-slate-50 border border-slate-200 text-center flex items-center justify-center';
         stampText.innerText = '위 3가지 항목을 모두 체크하면 1주차 완료 도장이 찍힙니다.';
@@ -1594,7 +1613,7 @@ ${specs}
     }
 
     function copyW2Prompt() {
-      copyToClipboard(document.getElementById('w2-prompt-textarea').value, '✅ 가두기 프롬프트가 복사되었습니다!');
+      copyToClipboard(document.getElementById('w2-prompt-textarea').value, '가두기 프롬프트가 복사되었습니다.');
     }
 
     function checkW2Completion() {
@@ -1606,9 +1625,9 @@ ${specs}
 
       if (c1 && c2 && c3) {
         stampBox.className = 'p-4 rounded-2xl bg-emerald-100/80 border-2 border-emerald-600 text-center flex items-center justify-center';
-        stampText.innerHTML = '🎉 <strong class="text-emerald-900 text-sm">2주차 완주 도장 획득!</strong> (환각 차단 마스터)';
+        stampText.innerHTML = '<strong class="text-emerald-900 text-sm">[완주 확인] 2주차 완성</strong> (환각 차단 마스터)';
         localStorage.setItem('songdo_ai_w2_completed', 'true');
-        showToast('🎉 2주차 완주 도장을 받으셨습니다!');
+        showToast('2주차 완주가 확인되었습니다.');
       }
     }
 
@@ -1643,7 +1662,7 @@ ${specs}
     }
 
     function copyW3Prompt() {
-      copyToClipboard(document.getElementById('w3-prompt-textarea').value, '✅ 2색 팔레트 프롬프트가 복사되었습니다!');
+      copyToClipboard(document.getElementById('w3-prompt-textarea').value, '2색 팔레트 프롬프트가 복사되었습니다.');
     }
 
     function checkW3Completion() {
@@ -1655,9 +1674,9 @@ ${specs}
 
       if (c1 && c2 && c3) {
         stampBox.className = 'p-4 rounded-2xl bg-emerald-100/80 border-2 border-emerald-600 text-center flex items-center justify-center';
-        stampText.innerHTML = '🎉 <strong class="text-emerald-900 text-sm">3주차 완주 도장 획득!</strong> (2색 디자인 마스터)';
+        stampText.innerHTML = '<strong class="text-emerald-900 text-sm">[완주 확인] 3주차 완성</strong> (2색 디자인 마스터)';
         localStorage.setItem('songdo_ai_w3_completed', 'true');
-        showToast('🎉 3주차 완주 도장을 받으셨습니다!');
+        showToast('3주차 완주가 확인되었습니다.');
       }
     }
 
@@ -1671,7 +1690,7 @@ ${specs}
     }
 
     function copyW4Prompt() {
-      copyToClipboard(document.getElementById('w4-prompt-textarea').value, '✅ 계산기 프롬프트가 복사되었습니다!');
+      copyToClipboard(document.getElementById('w4-prompt-textarea').value, '계산기 프롬프트가 복사되었습니다.');
     }
 
     function checkW4Completion() {
@@ -1683,15 +1702,15 @@ ${specs}
 
       if (c1 && c2 && c3) {
         stampBox.className = 'p-4 rounded-2xl bg-emerald-100/80 border-2 border-emerald-600 text-center flex items-center justify-center';
-        stampText.innerHTML = '🎉 <strong class="text-emerald-900 text-sm">4주차 완주 도장 획득!</strong> (실시간 계산기 마스터)';
+        stampText.innerHTML = '<strong class="text-emerald-900 text-sm">[완주 확인] 4주차 완성</strong> (실시간 계산기 마스터)';
         localStorage.setItem('songdo_ai_w4_completed', 'true');
-        showToast('🎉 4주차 완주 도장을 받으셨습니다!');
+        showToast('4주차 완주가 확인되었습니다.');
       }
     }
 
     // --- Week 5 Scripts ---
     function copyW5Prompt() {
-      copyToClipboard(document.getElementById('w5-prompt-textarea').value, '✅ 에러 수리 프롬프트가 복사되었습니다!');
+      copyToClipboard(document.getElementById('w5-prompt-textarea').value, '에러 수리 프롬프트가 복사되었습니다.');
     }
 
     function checkW5Completion() {
@@ -1703,15 +1722,15 @@ ${specs}
 
       if (c1 && c2 && c3) {
         stampBox.className = 'p-4 rounded-2xl bg-emerald-100/80 border-2 border-emerald-600 text-center flex items-center justify-center';
-        stampText.innerHTML = '🎉 <strong class="text-emerald-900 text-sm">5주차 완주 도장 획득!</strong> (에러 복구 마스터)';
+        stampText.innerHTML = '<strong class="text-emerald-900 text-sm">[완주 확인] 5주차 완성</strong> (에러 복구 마스터)';
         localStorage.setItem('songdo_ai_w5_completed', 'true');
-        showToast('🎉 5주차 완주 도장을 받으셨습니다!');
+        showToast('5주차 완주가 확인되었습니다.');
       }
     }
 
     // --- Week 6 Scripts ---
     function copyW6Prompt() {
-      copyToClipboard(document.getElementById('w6-prompt-textarea').value, '✅ 카톡 공유 태그가 복사되었습니다!');
+      copyToClipboard(document.getElementById('w6-prompt-textarea').value, '카톡 공유 태그가 복사되었습니다.');
     }
 
     function generateCertificate() {
@@ -1722,7 +1741,7 @@ ${specs}
       }
       document.getElementById('cert-display-name').innerText = nameInput;
       localStorage.setItem('songdo_ai_cert_name', nameInput);
-      showToast(`🎓 ${nameInput}님의 정식 마스터 수료증이 발급되었습니다!`);
+      showToast(`${nameInput}님의 정식 마스터 수료증이 발급되었습니다.`);
     }
 
     // Initialize Default Values on Load
