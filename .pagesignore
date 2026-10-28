@@ -1,0 +1,12 @@
+.env
+.env*
+applications.json
+server.py
+start.bat
+__pycache__/
+*.pyc
+*.log
+scratch/
+_legacy_archive/
+*.md
+*.bak*
