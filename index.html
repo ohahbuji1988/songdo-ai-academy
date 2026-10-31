@@ -104,6 +104,11 @@
         <span>12문항 AI 진단</span>
         <span class="text-[10px] text-slate-500 font-mono hidden md:inline">5</span>
       </button>
+
+      <button data-tab="report" onclick="switchTab('report')" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all text-slate-400 hover:text-slate-200">
+        <span>🧭 종합 보고서</span>
+        <span class="text-[10px] text-slate-500 font-mono hidden md:inline">6</span>
+      </button>
     </nav>
 
     <!-- Right: Viewport Controls -->
@@ -156,6 +161,9 @@
 
       <!-- Tab 5: 12문항 정밀 진단 (diagnostic.html) -->
       <iframe id="iframe-diagnostic" src="diagnostic.html" class="tab-iframe w-full h-full border-0 absolute inset-0 bg-space-950 hidden"></iframe>
+
+      <!-- Tab 6: 종합 나침반 & 현황 보고서 (report.html) -->
+      <iframe id="iframe-report" src="report.html" class="tab-iframe w-full h-full border-0 absolute inset-0 bg-white hidden"></iframe>
 
     </div>
 
@@ -217,7 +225,8 @@
       presentation: { id: 'iframe-presentation', url: 'presentation.html', title: '송도 AI 아카데미 | 발표 슬라이드' },
       courseware: { id: 'iframe-courseware', url: 'courseware/lessons.html', title: '송도 AI 아카데미 | 27분 실전 강의실' },
       process: { id: 'iframe-process', url: 'process.html', title: '송도 AI 아카데미 | 공정 로드맵' },
-      diagnostic: { id: 'iframe-diagnostic', url: 'diagnostic.html', title: '송도 AI 아카데미 | 12문항 AI 진단' }
+      diagnostic: { id: 'iframe-diagnostic', url: 'diagnostic.html', title: '송도 AI 아카데미 | 12문항 AI 진단' },
+      report: { id: 'iframe-report', url: 'report.html', title: '송도 AI 아카데미 | 종합 나침반 & 현황 보고서' }
     };
 
     let currentTab = 'landing';
