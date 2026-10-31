@@ -142,7 +142,7 @@
         <div class="p-3.5 rounded-2xl glass-card flex flex-col gap-1 border-t-2 border-t-teal-400">
           <span class="text-emerald-700 font-mono font-bold text-[10px]">DIMENSION 2</span>
           <strong class="text-slate-900 font-bold text-xs">에러 면역 & 복구력</strong>
-          <span class="text-slate-500 text-[11px]">3초 타임머신 롤백 & 디버깅</span>
+          <span class="text-slate-500 text-[11px]">3초 비상 복구 & 에러 해결</span>
         </div>
         <div class="p-3.5 rounded-2xl glass-card flex flex-col gap-1 border-t-2 border-t-cyan-400">
           <span class="text-emerald-700 font-mono font-bold text-[10px]">DIMENSION 3</span>
@@ -280,13 +280,13 @@
 
             <div class="p-4 rounded-xl glass-card flex flex-col gap-2">
               <div class="flex justify-between font-bold">
-                <span class="text-slate-700">2. 에러 면역 & 3초 롤백 복구력</span>
+                <span class="text-slate-700">2. 에러 공포 극복 & 3초 비상 복구력</span>
                 <span id="dimScore2" class="text-emerald-700 font-mono font-bold">85%</span>
               </div>
               <div class="w-full h-2 bg-slate-200 rounded-full overflow-hidden p-0.5">
                 <div id="dimFill2" class="h-full bg-teal-400 rounded-full w-[85%] transition-all duration-500"></div>
               </div>
-              <span id="dimNote2" class="text-[11px] text-slate-400">에러 공포 극복, 스냅샷 롤백 복원력</span>
+              <span id="dimNote2" class="text-[11px] text-slate-400">에러 공포 극복, 3초 비상 복원력</span>
             </div>
 
             <div class="p-4 rounded-xl glass-card flex flex-col gap-2">
@@ -443,7 +443,7 @@
         ]
       },
 
-      // Dimension 2: 에러 면역 & 3초 롤백 복구력 (Q4-Q6)
+      // Dimension 2: 에러 공포 극복 & 3초 비상 복구력 (Q4-Q6)
       {
         dimIdx: 1,
         dimensionName: "DIMENSION 02 / 04 · 에러 면역 & 복구력",
@@ -453,7 +453,7 @@
           { score: 10, label: "컴퓨터가 고장 난 것 같아 공포심이 들고, 즉시 창을 닫고 프로그램을 중단한다." },
           { score: 20, label: "에러 메시지를 통째로 복사해서 인터넷 검색창이나 커뮤니티를 뒤지다가 피로해진다." },
           { score: 30, label: "AI에게 에러 메시지를 던져주지만, AI가 코드를 더 꼬이게 만들어 결국 처음부터 다시 시작한다." },
-          { score: 40, label: "당황하지 않고 3초 만에 직전 정상 백업본으로 롤백한 뒤, 에러 구간만 최소 단위로 AI에게 격리 디버깅을 지시한다." }
+          { score: 40, label: "당황하지 않고 3초 만에 직전 정상 백업본으로 되돌린 뒤, 고장 난 부분만 AI에게 정확히 고쳐달라고 지시한다." }
         ]
       },
       {
@@ -709,11 +709,11 @@
       if (lv === 4) {
         titleEl.innerText = "LEVEL 4 · 실전 디렉터 (Autonomous Builder)";
         subEl.innerText = "상위 3% 자립 역량 · 기획부터 배포까지 스스로 완결하는 AI 지휘관";
-        presEl.innerText = "축하합니다! 프롬프트 지시와 에러 롤백, 웹 배포에 대한 이해도가 최상위 수준입니다. 단순 튜토리얼을 따라하는 단계를 완전히 넘어섰으므로, 첫날 30분 만에 내 업무에 바로 쓰는 실시간 견적기 같은 실전 프로덕트를 단독 완성하고 지인과 고객에게 당당히 공유하는 6주 100% 무료 실전 과정이 최고의 도약대가 될 것입니다.";
+        presEl.innerText = "축하합니다! 프롬프트 지시와 에러 복구, 웹 배포에 대한 이해도가 최상위 수준입니다. 단순 튜토리얼을 따라하는 단계를 완전히 넘어섰으므로, 첫날 30분 만에 내 업무에 바로 쓰는 실시간 견적기 같은 실전 프로덕트를 단독 완성하고 지인과 고객에게 당당히 공유하는 6주 100% 무료 실전 과정이 최고의 도약대가 될 것입니다.";
       } else if (lv === 3) {
         titleEl.innerText = "LEVEL 3 · 블록 조립자 (Toy Assembler)";
         subEl.innerText = "코딩 시도 경험 보유 · 에러 공포와 장난감 수준의 한계 돌파 직전";
-        presEl.innerText = "스스로 무언가를 만들어보려는 도전 정신이 훌륭하지만, 글자 하나 바꿨을 때 화면이 멈추는 에러 공포와 파편화된 문법 공부로 인해 피로감이 누적되어 있습니다. '3초 타임머신 롤백 습관'과 '격리 디버깅' 2가지만 장착하면 두려움 제로의 상태에서 당일 배포를 달성하실 수 있습니다.";
+        presEl.innerText = "스스로 무언가를 만들어보려는 도전 정신이 훌륭하지만, 글자 하나 바꿨을 때 화면이 멈추는 에러 공포와 파편화된 문법 공부로 인해 피로감이 누적되어 있습니다. '3초 비상 복구 습관'과 'AI 에러 수리법' 2가지만 장착하면 두려움 제로의 상태에서 당일 배포를 달성하실 수 있습니다.";
       } else if (lv === 2) {
         titleEl.innerText = "LEVEL 2 · 단순 대화자 (Prompt Chatter)";
         subEl.innerText = "AI 텍스트 활용 능숙 · 대화창 밖으로 나만의 웹 링크를 만들 최적의 시기";

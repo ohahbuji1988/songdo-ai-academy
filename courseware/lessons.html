@@ -1435,7 +1435,7 @@
         <div class="pt-6 border-t border-slate-100 flex items-center justify-between">
           <button onclick="prevSlide()" class="px-4 py-2 rounded-xl border border-slate-200 text-xs text-slate-600">&larr; 이전</button>
           <button onclick="selectWeek(5)" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold">
-            <span>5주차: 디버깅 실험실로 &rarr;</span>
+            <span>5주차: 3초 비상 복구로 &rarr;</span>
           </button>
         </div>
       </section>
@@ -1443,7 +1443,7 @@
     </div>
 
     <!-- ========================================================
-         WEEK 5 SLIDES (실전 고장 재현 & 3초 롤백 디버깅 실험실)
+         WEEK 5 SLIDES (실전 고장 재현 & 3초 비상 복구 실험실)
          ======================================================== -->
     <div id="week-5-deck" class="week-deck hidden flex-col">
       
@@ -1455,7 +1455,7 @@
             <span class="text-xs text-slate-400 font-mono">Step 01: Breakage & Console Drill</span>
           </div>
           <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-snug tracking-tight">
-            일부러 고장내보고 원인을 찾는 'F12 콘솔 디버깅 실험'
+            일부러 고장내보고 원인을 찾는 'F12 에러 확인 실험'
           </h2>
           <p class="text-slate-600 text-sm leading-relaxed">
             코딩을 하다 화면이 하얗게 멈추거나 버튼이 작동하지 않아도 당황할 필요가 전혀 없습니다. 브라우저의 F12 콘솔 창에 빨간 글씨로 정확한 원인이 적혀 있습니다.
@@ -1545,12 +1545,12 @@
         <div class="pt-6 border-t border-slate-100 flex items-center justify-between">
           <button onclick="prevSlide()" class="px-4 py-2 rounded-xl border border-slate-200 text-xs text-slate-600">&larr; 이전</button>
           <button onclick="nextSlide()" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold">
-            <span>3단계: 3초 롤백 & 비상 복구 실습 &rarr;</span>
+            <span>3단계: 3초 비상 복구 실습 &rarr;</span>
           </button>
         </div>
       </section>
 
-      <!-- W5 Slide 3: 3초 롤백 타임머신 & 비상 스타터 실습 -->
+      <!-- W5 Slide 3: 3초 비상 복구 & 비상 스타터 실습 -->
       <section class="slide-panel flex-col justify-between bg-white border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-sm min-h-[500px]">
         <div class="flex flex-col gap-4">
           <div class="flex items-center justify-between">
@@ -1558,10 +1558,10 @@
             <span class="text-xs text-slate-400 font-mono">Step 03: 3-Second Rollback Lab</span>
           </div>
           <h2 class="text-2xl font-extrabold text-slate-900 leading-snug">
-            수정 전 1초 백업과 3초 롤백 타임머신을 실습하세요
+            수정 전 1초 백업과 3초 비상 복구법을 실습하세요
           </h2>
           <p class="text-slate-600 text-sm leading-relaxed">
-            전문 개발자들도 항상 백업을 먼저 만듭니다. 아무리 코드가 꼬여도 3초 만에 방금 전 정상 상태로 되돌리는 1-2-3 롤백을 체감합니다.
+            전문 개발자들도 항상 백업을 먼저 만듭니다. 아무리 코드가 꼬여도 3초 만에 방금 전 멀쩡했던 상태로 되돌리는 비상 복구법을 체감합니다.
           </p>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -1611,7 +1611,7 @@
             <span class="text-xs text-slate-400 font-mono">Step 04: Certification</span>
           </div>
           <h2 class="text-2xl font-extrabold text-slate-900 leading-snug">
-            5주차 완료! 에러 복구와 3초 롤백을 마스터하셨습니다
+            5주차 완료! AI 혼내기와 3초 비상 복구를 마스터하셨습니다
           </h2>
 
           <div class="flex flex-col gap-2.5 pt-2">
@@ -1625,7 +1625,7 @@
             </label>
             <label class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center gap-3 cursor-pointer hover:bg-slate-100/60 transition-all">
               <input type="checkbox" id="w5-chk-3" onchange="checkWeekCompletion(5)" class="w-4 h-4 rounded text-emerald-600 accent-emerald-600">
-              <span class="text-xs text-slate-800 font-medium">3. index_backup.html 백업 파일로 3초 만에 이전 정상 상태로 되돌리는 롤백을 실습했다.</span>
+              <span class="text-xs text-slate-800 font-medium">3. index_backup.html 백업 파일로 3초 만에 이전 멀쩡했던 상태로 살려내는 비상 복구를 실습했다.</span>
             </label>
           </div>
 
@@ -1635,9 +1635,9 @@
             <!-- Left Info -->
             <div class="flex flex-col gap-1.5 text-center sm:text-left flex-1">
               <span class="text-[11px] font-bold text-slate-400 tracking-wider uppercase">Songdo AI Academy · Week 5 Verification</span>
-              <h3 class="text-base sm:text-lg font-extrabold text-slate-900 tracking-tight">5주차 오류 격리 & 3초 롤백 수료</h3>
+              <h3 class="text-base sm:text-lg font-extrabold text-slate-900 tracking-tight">5주차 AI 혼내기 & 3초 비상 복구 수료</h3>
               <p id="w5-cert-status-desc" class="text-xs text-slate-500 leading-relaxed">
-                위 3가지 체크리스트를 모두 완료하면 ohahbuji의 <strong class="text-red-700 font-bold">'디버깅'</strong> 공식 도장이 실물 액션으로 날인됩니다.
+                위 3가지 체크리스트를 모두 완료하면 ohahbuji의 <strong class="text-red-700 font-bold">'수리완료'</strong> 공식 도장이 실물 액션으로 날인됩니다.
               </p>
               
               <div id="w5-stamped-meta" class="hidden items-center gap-2 text-xs text-slate-700 mt-2 flex-wrap">
@@ -1674,14 +1674,14 @@
                   </text>
 
                   <rect x="22" y="60" width="116" height="38" rx="5" fill="#fef2f2" stroke="#dc2626" stroke-width="1.8" opacity="0.96"/>
-                  <text x="80" y="86" text-anchor="middle" font-family="'Wanted Sans Variable', 'Wanted Sans', sans-serif" font-size="20" font-weight="900" fill="#dc2626" letter-spacing="-0.03em">
-                    디버깅
+                  <text x="80" y="86" text-anchor="middle" font-family="'Wanted Sans Variable', 'Wanted Sans', sans-serif" font-size="19" font-weight="900" fill="#dc2626" letter-spacing="-0.03em">
+                    수리완료
                   </text>
 
                   <path id="w5-arc-bottom" d="M 132 84 A 52 52 0 0 1 28 84" fill="none" />
                   <text font-size="7.5" font-weight="bold" fill="#dc2626" letter-spacing="0.5">
                     <textPath href="#w5-arc-bottom" startOffset="50%" text-anchor="middle">
-                      WEEK 05 · DEBUG & ROLLBACK
+                      WEEK 05 · FIX & RECOVERY
                     </textPath>
                   </text>
 
@@ -1807,7 +1807,7 @@
             <span class="text-xs text-slate-400 font-mono">Step 03: Self-Directed Capstone</span>
           </div>
           <h2 class="text-2xl font-extrabold text-slate-900 leading-snug">
-            진짜 자립: 교안 복붙 없이 내 힘으로 '새 컴포넌트 1개' 추가하기
+            진짜 자립: 교안 복붙 없이 내 힘으로 '새 기능 1개' 추가하기
           </h2>
           <p class="text-slate-600 text-sm leading-relaxed">
             이제 남이 짜준 프롬프트를 복사하는 수강생이 아닙니다. 내 비즈니스에 필요한 새 기능 1가지를 스스로 정의하고, AI에게 지시해 완성한 뒤 공개 배포까지 해냅니다.
@@ -2248,7 +2248,7 @@
         <button onclick="selectGoldenTab(2)" id="golden-tab-2" class="golden-tab-btn px-3 py-1.5 rounded-xl font-medium text-slate-600 hover:bg-slate-100 shrink-0">2주차: 메뉴판&FAQ</button>
         <button onclick="selectGoldenTab(3)" id="golden-tab-3" class="golden-tab-btn px-3 py-1.5 rounded-xl font-medium text-slate-600 hover:bg-slate-100 shrink-0">3주차: 지도&카톡</button>
         <button onclick="selectGoldenTab(4)" id="golden-tab-4" class="golden-tab-btn px-3 py-1.5 rounded-xl font-medium text-slate-600 hover:bg-slate-100 shrink-0">4주차: 견적계산기</button>
-        <button onclick="selectGoldenTab(5)" id="golden-tab-5" class="golden-tab-btn px-3 py-1.5 rounded-xl font-medium text-slate-600 hover:bg-slate-100 shrink-0">5주차: 디버깅방어</button>
+        <button onclick="selectGoldenTab(5)" id="golden-tab-5" class="golden-tab-btn px-3 py-1.5 rounded-xl font-medium text-slate-600 hover:bg-slate-100 shrink-0">5주차: 비상복구방어</button>
         <button onclick="selectGoldenTab(6)" id="golden-tab-6" class="golden-tab-btn px-3 py-1.5 rounded-xl font-medium text-slate-600 hover:bg-slate-100 shrink-0">6주차: 출시완전체</button>
       </div>
 
@@ -2346,7 +2346,7 @@
         prompt: `방금 코드에서 스마트폰 화면(375px 모바일)으로 볼 때 글자가 시원하게 읽히고, 버튼이 가로 너비에 맞춰 큼직하게 꽉 차도록 여백과 글자 크기를 다듬어줘. 전체 코드로 출력해 줘.`
       },
       kakao: {
-        title: '3차 피드백: 카카오톡 상담 버튼 추가 (컴포넌트 확장 경험)',
+        title: '3차 피드백: 카카오톡 상담 버튼 추가 (새 기능 늘리기 경험)',
         btnLabel: '3번 피드백 복사',
         guide: '[3번 실행 방법] 2번 대화창에 이어서 전송 -> 나온 코드를 메모장에 덮어쓰기 -> 브라우저 새로고침(F5)으로 카카오톡 상담 버튼까지 추가되었는지 최종 확인!',
         prompt: `방금 코드의 메인 버튼 바로 아래에 '카카오톡 1:1 실시간 문의' 보조 버튼을 하나 더 추가해 줘. 디자인은 에메랄드 테두리 스타일로 깔끔하게 맞추고, 전체 코드로 출력해 줘.`
@@ -2740,7 +2740,7 @@
     let w4QtyVal = 2;
 
     const w4CalculatorPrompts = {
-      bakery: `현재 내 index.html에 [실시간 예상 금액 계산기] 컴포넌트를 추가해 줘:
+      bakery: `현재 내 index.html에 [실시간 예상 금액 계산기] 기능을 내 화면에 추가해 줘:
 
 [1. 계산기 항목 및 규칙]
 - 상품명: '웰빙 베이커리 3종 세트' (단가 15,000원)
@@ -2755,7 +2755,7 @@
 [현재 index.html 전체 코드 붙여넣기]
 - <!DOCTYPE html>부터 </html>까지 완전한 전체 index.html 코드로 출력해 줘.`,
 
-      consult: `현재 내 index.html에 [실시간 상담 견적 계산기] 컴포넌트를 추가해 줘:
+      consult: `현재 내 index.html에 [실시간 상담 견적 계산기] 기능을 내 화면에 추가해 줘:
 
 [1. 계산기 항목 및 규칙]
 - 서비스명: '1:1 전문가 맞춤 상담' (시간당 단가 50,000원)
@@ -2770,7 +2770,7 @@
 [현재 index.html 전체 코드 붙여넣기]
 - <!DOCTYPE html>부터 </html>까지 완전한 전체 index.html 코드로 출력해 줘.`,
 
-      seminar: `현재 내 index.html에 [세미나 티켓 예약 계산기] 컴포넌트를 추가해 줘:
+      seminar: `현재 내 index.html에 [세미나 티켓 예약 계산기] 기능을 내 화면에 추가해 줘:
 
 [1. 계산기 항목 및 규칙]
 - 티켓명: 'AI 실무 세미나 참가 티켓' (인당 단가 30,000원)
@@ -2823,7 +2823,7 @@
       copyToClipboard(document.getElementById('w4-prompt-textarea').value, '계산기 연동 프롬프트가 복사되었습니다.');
     }
 
-    // --- Week 5 Scripts (디버깅 실험실 & 3초 롤백) ---
+    // --- Week 5 Scripts (AI 에러 수리 & 3초 비상 복구) ---
     const w5PromptText = `현재 내 웹사이트를 테스트하던 중 다음 오류가 발생했어:
 
 [1. 고장 재현 3문장 보고]
@@ -2854,7 +2854,7 @@ Uncaught TypeError: Cannot read properties of null (reading 'value')
     // --- Week 6 Scripts & Grand Finale Certificate ---
     const w6PromptText = `내 웹사이트에 카카오톡 공유용 OpenGraph(OG) 메타 태그를 완벽하게 장착해 줘:
 
-[1. 오픈그래프 메타 정보]
+[1. 카카오톡 미리보기 카드 정보]
 - 상호명(og:title): 송도 달콤 베이커리 | 공식 웹사이트
 - 매장 소개(og:description): 당일 생산 유기농 빵 라인업 확인 및 실시간 예약 안내
 - 대표 이미지(og:image): 대표 사진 URL (https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1200&h=630&fit=crop)
@@ -3227,7 +3227,7 @@ Uncaught TypeError: Cannot read properties of null (reading 'value')
 </html>`
       },
       5: {
-        title: "5주차: 에러 안전망 & 3초 롤백 방어 완성본",
+        title: "5주차: 에러 안전망 & 3초 비상 복구 완성본",
         desc: "실수로 깨지기 쉬운 예외 상황(0개 주문, 오작동)을 원천 차단하는 견고한 5주차 방어 코드",
         code: `<!DOCTYPE html>
 <html lang="ko">
