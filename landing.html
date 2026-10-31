@@ -1021,5 +1021,38 @@
     }
   }
 
+
+  function formatPhoneNumber(el) {
+    let val = el.value.replace(/[^0-9]/g, '');
+    if (val.length <= 3) {
+      el.value = val;
+    } else if (val.length <= 7) {
+      el.value = val.slice(0, 3) + '-' + val.slice(3);
+    } else {
+      el.value = val.slice(0, 3) + '-' + val.slice(3, 7) + '-' + val.slice(7, 11);
+    }
+  }
+
+  // Mobile Sticky CTA Scroll Listener
+  window.addEventListener('scroll', () => {
+    const stickyCta = document.getElementById('mobile-sticky-cta');
+    if (stickyCta) {
+      if (window.scrollY > 350) {
+        stickyCta.classList.remove('translate-y-full');
+      } else {
+        stickyCta.classList.add('translate-y-full');
+      }
+    }
+  }, { passive: true });
 </script>
+<!-- Mobile Sticky Floating CTA Bar -->
+<div id="mobile-sticky-cta" class="sm:hidden fixed bottom-0 left-0 right-0 p-3 bg-white/95 backdrop-blur-md border-t border-slate-200 shadow-lg z-40 transition-transform duration-300 translate-y-full flex items-center justify-between gap-3">
+  <div class="flex flex-col">
+    <span class="text-[10px] font-bold text-emerald-700">6주 전액 무료 과정</span>
+    <span class="text-xs font-black text-slate-900">수강료 0원 전액 지원</span>
+  </div>
+  <button onclick="openApplyModal()" class="px-5 py-2.5 rounded-xl bg-emerald-600 active:bg-emerald-700 text-white text-xs font-bold shadow-md cursor-pointer whitespace-nowrap">
+    무료 신청하기 &rarr;
+  </button>
+</div>
 </body></html>

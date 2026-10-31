@@ -338,14 +338,57 @@
             </button>
           </div>
 
-          <a href="/landing.html#section-tuition" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm text-center shadow-lg transition-all active:scale-[0.98]">
-            <span>무료 수강 신청하기 (ohahbuji) &rarr;</span>
-          </a>
+          <button onclick="openDiagApplyModal()" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm text-center shadow-lg transition-all active:scale-[0.98] cursor-pointer">
+            <span>이 진단 결과로 무료 수강 신청하기 (ohahbuji) &rarr;</span>
+          </button>
         </div>
 
       </div>
     </div>
 
+    <!-- DIAGNOSTIC APPLICATION MODAL -->
+    <div id="diag-apply-modal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+      <div class="w-full max-w-lg bg-white rounded-3xl p-7 shadow-2xl border border-slate-200 flex flex-col gap-5 animate-in fade-in zoom-in-95">
+        
+        <div class="flex items-start justify-between border-b border-slate-100 pb-4">
+          <div>
+            <span class="text-[10px] font-bold tracking-wider uppercase text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
+              정밀 진단 연계 1:1 무료 수강 신청
+            </span>
+            <h3 class="text-lg font-black text-slate-900 mt-2">ohahbuji에게 무료 수강 신청하기</h3>
+            <p class="text-xs text-slate-500 mt-1">
+              방금 완료하신 진단 결과(<span id="diag-modal-summary" class="font-bold text-emerald-700"></span>)가 함께 전달되어 맞춤 피드백을 드립니다.
+            </p>
+          </div>
+          <button onclick="closeDiagApplyModal()" class="text-slate-400 hover:text-slate-700 text-xs font-bold cursor-pointer">
+            ✕ 닫기
+          </button>
+        </div>
+
+        <form onsubmit="handleDiagApplySubmit(event)" class="flex flex-col gap-4 text-xs">
+          <div class="flex flex-col gap-1.5">
+            <label class="font-bold text-slate-700">신청자 성함 <span class="text-red-500">*</span></label>
+            <input type="text" id="diag-app-name" required placeholder="예: 홍길동" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-emerald-500 bg-slate-50/50 text-slate-800 text-xs">
+          </div>
+
+          <div class="flex flex-col gap-1.5">
+            <label class="font-bold text-slate-700">휴대폰 번호 <span class="text-red-500">*</span></label>
+            <input type="tel" id="diag-app-phone" required oninput="formatPhoneNumber(this)" placeholder="예: 010-1234-5678" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-emerald-500 bg-slate-50/50 text-slate-800 text-xs">
+            <span class="text-[10px] text-slate-400">수강 확정 및 안내 문자를 보내드립니다. (추가 과금 0원)</span>
+          </div>
+
+          <div class="flex flex-col gap-1.5">
+            <label class="font-bold text-slate-700">희망 질문 또는 전하고 싶은 말씀 (선택)</label>
+            <textarea id="diag-app-note" rows="2" placeholder="예: 매장 계산기 웹을 만들어보고 싶습니다." class="w-full px-3.5 py-2 rounded-xl border border-slate-200 focus:outline-none focus:border-emerald-500 bg-slate-50/50 text-slate-800 text-xs resize-none"></textarea>
+          </div>
+
+          <button type="submit" class="w-full py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm shadow-md transition-all cursor-pointer mt-2">
+            진단 결과 포함 무료 신청 완료하기 &rarr;
+          </button>
+        </form>
+
+      </div>
+    </div>
   </main>
 
   <!-- FOOTER -->
@@ -678,12 +721,13 @@
       } else {
         titleEl.innerText = "LEVEL 1 · AI 관망자 (Curious Spectator)";
         subEl.innerText = "새로운 가능성 탐색 단계 · 첫날 30분 성공 경험이 가장 강력한 터닝포인트";
-        presEl.innerText = "어려운 컴퓨터 공학이나 코딩 문법은 1초도 몰라도 전혀 상관없습니다! AI는 손발이 없는 천재 신입 인턴일 뿐입니다. Day-1 30분 만에 내 일에 바로 쓰는 진짜 웹 계산기를 스마트폰 링크로 바로 띄우는 순간, AI에 대한 시각과 디지털 자립심이 180도 달라집니다.";
+        presEl.innerText = "어려운 컴퓨터 공학이나 코딩 문법은 1초도 몰라도 전혀 상관없습니다! AI는 지시하는 대로 실행하는 도구일 뿐입니다. Day-1 30분 만에 내 일에 바로 쓰는 진짜 웹 계산기를 스마트폰 링크로 바로 띄우는 순간, AI에 대한 시각과 디지털 자립심이 180도 달라집니다.";
       }
 
       // Update Cert ID with random hash
       const randomHex = Math.random().toString(16).substring(2, 6).toUpperCase();
       document.getElementById('certMeta').innerText = `ISSUED: ${new Date().toISOString().slice(0,10)} · CERT-ID: SA-2026-${randomHex}`;
+      lastDiagResult = { score, levelTitle: titleEl.innerText, levelSub: subEl.innerText };
       
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }

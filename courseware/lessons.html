@@ -123,7 +123,7 @@
     }
   </style>
 
-  <script>
+  <` + `script>
     // If embedded in index.html, hide duplicate header
     if (window.self !== window.top) {
       document.addEventListener('DOMContentLoaded', () => {
@@ -131,7 +131,7 @@
         if (h) h.style.display = 'none';
       });
     }
-  </script>
+  <` + `/script>
 </head>
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between select-none">
 
@@ -207,6 +207,12 @@
 
       <!-- Slide Counter & Nav Buttons -->
       <div class="flex items-center gap-2 shrink-0">
+        <!-- Golden Code Modal Trigger -->
+        <button onclick="openGoldenCodeModal()" class="px-3 py-1.5 rounded-xl border border-emerald-600/30 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-xs font-bold transition-all flex items-center gap-1.5 shadow-xs shrink-0 cursor-pointer" title="각 주차별 완성본 index.html 모범 코드 확인">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+          <span class="hidden sm:inline">모범 완성본 코드</span>
+          <span class="sm:hidden">모범 코드</span>
+        </button>
         <button onclick="prevSlide()" class="p-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 transition-all active:scale-95" title="이전 단계 (←)">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
         </button>
@@ -2205,7 +2211,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>송도 웰빙 베이커리</title>
-  <script src="https://cdn.tailwindcss.com"><\/script>
+  <` + `script src="https://cdn.tailwindcss.com"><` + `/script>
 </head>
 <body class="bg-slate-50 text-slate-800 min-h-screen flex items-center justify-center p-6">
   <div class="max-w-md w-full bg-white rounded-2xl p-8 border border-slate-200 shadow-sm text-center flex flex-col gap-4">
@@ -2213,6 +2219,62 @@
     <h1 class="text-2xl font-bold text-slate-900">매일 아침 굽는 유기농 천연발효 빵</h1>
     <p class="text-sm text-slate-600">인공 첨가물 없이 정성으로 완성하는 건강한 테이블</p>
     <button class="w-full py-3 rounded-xl bg-emerald-600 text-white font-bold text-sm shadow-xs">오늘의 빵 라인업 보기</button>
+  </div>
+  <!-- GOLDEN CODE MODAL (주차별 완성본 모범 코드 뷰어) -->
+  <div id="golden-code-modal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6">
+    <div class="w-full max-w-3xl bg-white rounded-3xl p-5 sm:p-7 shadow-2xl border border-slate-200 flex flex-col gap-4 max-h-[92vh] overflow-hidden animate-in fade-in zoom-in-95">
+      
+      <!-- Modal Header -->
+      <div class="flex items-start justify-between border-b border-slate-100 pb-3">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-[10px] font-bold tracking-wider uppercase text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
+              Gold Standard Template
+            </span>
+            <span class="text-xs font-mono text-slate-400">index.html 순정 모범 코드</span>
+          </div>
+          <h3 class="text-base sm:text-lg font-black text-slate-900 mt-1.5 flex items-center gap-2">
+            <span>주차별 완성본 모범 코드 뷰어</span>
+          </h3>
+        </div>
+        <button onclick="closeGoldenCodeModal()" class="text-slate-400 hover:text-slate-700 text-xs font-bold p-1 cursor-pointer">
+          ✕ 닫기
+        </button>
+      </div>
+
+      <!-- Week Selector Tabs -->
+      <div class="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs">
+        <button onclick="selectGoldenTab(1)" id="golden-tab-1" class="golden-tab-btn px-3 py-1.5 rounded-xl font-bold transition-all bg-emerald-600 text-white shrink-0">1주차: 간판&전화</button>
+        <button onclick="selectGoldenTab(2)" id="golden-tab-2" class="golden-tab-btn px-3 py-1.5 rounded-xl font-medium text-slate-600 hover:bg-slate-100 shrink-0">2주차: 메뉴판&FAQ</button>
+        <button onclick="selectGoldenTab(3)" id="golden-tab-3" class="golden-tab-btn px-3 py-1.5 rounded-xl font-medium text-slate-600 hover:bg-slate-100 shrink-0">3주차: 지도&카톡</button>
+        <button onclick="selectGoldenTab(4)" id="golden-tab-4" class="golden-tab-btn px-3 py-1.5 rounded-xl font-medium text-slate-600 hover:bg-slate-100 shrink-0">4주차: 견적계산기</button>
+        <button onclick="selectGoldenTab(5)" id="golden-tab-5" class="golden-tab-btn px-3 py-1.5 rounded-xl font-medium text-slate-600 hover:bg-slate-100 shrink-0">5주차: 디버깅방어</button>
+        <button onclick="selectGoldenTab(6)" id="golden-tab-6" class="golden-tab-btn px-3 py-1.5 rounded-xl font-medium text-slate-600 hover:bg-slate-100 shrink-0">6주차: 출시완전체</button>
+      </div>
+
+      <!-- Description Banner -->
+      <div id="golden-desc-banner" class="px-3.5 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600 flex items-center justify-between">
+        <span id="golden-desc-text">1주차: 상호, 1줄 소개, 전화 바로걸기 버튼이 완성된 단일 HTML</span>
+        <button onclick="copyCurrentGoldenCode()" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center gap-1.5 shadow-xs transition-all cursor-pointer shrink-0">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+          <span>이 코드 전체 복사</span>
+        </button>
+      </div>
+
+      <!-- Code Box Area -->
+      <div class="relative flex-1 min-h-0 bg-slate-900 rounded-2xl border border-slate-800 p-4 overflow-auto text-xs font-mono text-slate-200">
+        <pre><code id="golden-code-pre" class="leading-relaxed"></code></pre>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="flex items-center justify-between pt-2 border-t border-slate-100 text-xs text-slate-400">
+        <span>* 코드가 꼬였을 때 이 코드를 전체 복사하여 메모장 index.html에 그대로 덮어쓰기 하시면 즉시 복구됩니다.</span>
+        <button onclick="closeGoldenCodeModal()" class="px-4 py-2 rounded-xl border border-slate-200 hover:bg-slate-100 text-slate-700 font-bold transition-all cursor-pointer">
+          닫기
+        </button>
+      </div>
+
+    </div>
   </div>
 </body>
 </html>`;
@@ -2341,7 +2403,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>송도 웰빙 베이커리</title>
-  <script src="https://cdn.tailwindcss.com"><\/script>
+  <` + `script src="https://cdn.tailwindcss.com"><` + `/script>
 </head>
 <body class="bg-slate-50 text-slate-800 min-h-screen flex items-center justify-center p-4">
   <div class="max-w-md w-full bg-white rounded-2xl shadow-sm border border-slate-200 p-6 text-center">
@@ -2487,6 +2549,7 @@
           localStorage.setItem(`songdo_ai_w${weekNum}_stamped_date`, stampDate);
         }
         localStorage.setItem(`songdo_ai_w${weekNum}_completed`, 'true');
+        updateNavCompletionBadges();
 
         if (placeholder) placeholder.classList.add('hidden');
         if (desc) desc.innerHTML = `<strong class="text-emerald-700 font-bold">${weekNum}주차 모든 교육 목표를 완벽하게 달성하셨습니다.</strong> 브라우저를 새로고침해도 영구 보존됩니다.`;
@@ -2826,6 +2889,7 @@ Uncaught TypeError: Cannot read properties of null (reading 'value')
 
       localStorage.setItem('songdo_ai_cert_name', studentName);
       localStorage.setItem('songdo_ai_w6_completed', 'true');
+      updateNavCompletionBadges();
       localStorage.setItem('songdo_ai_w6_stamped_date', stampDate);
 
       // Trigger Grand Master Stamp Action Scene
@@ -2945,7 +3009,420 @@ Uncaught TypeError: Cannot read properties of null (reading 'value')
         }
       }
     });
-  </script>
+  
+    // ========================================================
+    // GOLDEN STANDARD CODE TEMPLATES (W1 ~ W6)
+    // ========================================================
+    let currentGoldenTab = 1;
+
+    const GOLDEN_CODES = {
+      1: {
+        title: "1주차: 첫 간판 & 전화 바로걸기 완성본 (모바일 375px 최적화)",
+        desc: "상호, 1줄 소개문, 전화 바로 주문하기 버튼이 포함된 1주차 완성 index.html 순정 코드",
+        code: `<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>송도 소금빵 베이커리</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #fafaf9; color: #1c1917; line-height: 1.6; }
+    .container { max-width: 480px; margin: 0 auto; padding: 24px 20px; min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between; }
+    header { text-align: center; margin-top: 40px; }
+    .badge { display: inline-block; padding: 4px 12px; background: #e7e5e4; border-radius: 9999px; font-size: 13px; font-weight: 600; color: #57534e; margin-bottom: 12px; }
+    h1 { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 12px; color: #0c0a09; }
+    p.intro { font-size: 16px; color: #78716c; margin-bottom: 32px; word-break: keep-all; }
+    .cta-box { display: flex; flex-direction: column; gap: 12px; margin-bottom: 40px; }
+    .btn-call { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; height: 56px; background: #059669; color: #fff; text-decoration: none; border-radius: 16px; font-size: 18px; font-weight: 700; box-shadow: 0 4px 12px rgba(5, 150, 105, 0.25); transition: transform 0.1s ease; }
+    .btn-call:active { transform: scale(0.98); }
+    footer { text-align: center; font-size: 13px; color: #a8a29e; padding-bottom: 24px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <span class="badge">송도 1공구 수제 베이커리</span>
+      <h1>송도 소금빵 베이커리</h1>
+      <p class="intro">매일 아침 8시, 갓 구운 고소한 버터 풍미의 프리미엄 소금빵을 준비합니다.</p>
+      <div class="cta-box">
+        <a href="tel:032-123-4567" class="btn-call">전화 바로 주문하기</a>
+      </div>
+    </header>
+    <footer>
+      <p>인천광역시 연수구 송도동 123-4 &bull; 주차 가능</p>
+    </footer>
+  </div>
+</body>
+</html>`
+      },
+      2: {
+        title: "2주차: 메뉴판 3종 & 팩트 기반 FAQ 완성본",
+        desc: "실제 대표 메뉴 3종 가격표와 엄격 사실 기반 3문항 FAQ 아코디언이 결합된 2주차 코드",
+        code: `<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>송도 소금빵 베이커리 — 메뉴 및 안내</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #fafaf9; color: #1c1917; line-height: 1.6; }
+    .container { max-width: 480px; margin: 0 auto; padding: 24px 20px; }
+    header { text-align: center; margin-top: 24px; margin-bottom: 28px; }
+    h1 { font-size: 26px; font-weight: 800; color: #0c0a09; }
+    p.intro { font-size: 15px; color: #78716c; margin-top: 6px; }
+    .btn-call { display: flex; align-items: center; justify-content: center; width: 100%; height: 52px; background: #059669; color: #fff; text-decoration: none; border-radius: 14px; font-size: 16px; font-weight: 700; margin-bottom: 32px; box-shadow: 0 4px 10px rgba(5,150,105,0.2); }
+    section { margin-bottom: 32px; }
+    h2 { font-size: 18px; font-weight: 700; margin-bottom: 14px; color: #292524; }
+    .menu-card { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; background: #fff; border: 1px solid #e7e5e4; border-radius: 14px; margin-bottom: 10px; }
+    .menu-name { font-weight: 600; font-size: 15px; }
+    .menu-price { font-weight: 700; color: #059669; font-size: 15px; }
+    details { background: #fff; border: 1px solid #e7e5e4; border-radius: 12px; margin-bottom: 8px; padding: 12px 16px; font-size: 14px; }
+    summary { font-weight: 600; cursor: pointer; color: #1c1917; list-style: none; }
+    summary::-webkit-details-marker { display: none; }
+    details[open] summary { margin-bottom: 8px; color: #059669; }
+    details p { color: #57534e; font-size: 13px; line-height: 1.5; }
+    footer { text-align: center; font-size: 12px; color: #a8a29e; padding: 24px 0; border-top: 1px solid #e7e5e4; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>송도 소금빵 베이커리</h1>
+      <p class="intro">매일 아침 구워내는 고소한 버터 풍미 소금빵</p>
+    </header>
+    <a href="tel:032-123-4567" class="btn-call">전화 주문 및 예약하기</a>
+    <section>
+      <h2>대표 메뉴 & 가격표</h2>
+      <div class="menu-card"><div><div class="menu-name">시그니처 플레인 소금빵</div><small style="color:#78716c;">프랑스 이즈니 버터 사용</small></div><div class="menu-price">3,500원</div></div>
+      <div class="menu-card"><div><div class="menu-name">생바질 크림 소금빵</div><small style="color:#78716c;">수제 바질 페스토 크림치즈</small></div><div class="menu-price">4,200원</div></div>
+      <div class="menu-card"><div><div class="menu-name">콜드브루 아메리카노</div><small style="color:#78716c;">스페셜티 블렌드 원두</small></div><div class="menu-price">4,500원</div></div>
+    </section>
+    <section>
+      <h2>자주 묻는 질문 (FAQ)</h2>
+      <details open><summary>Q. 빵 나오는 시간은 언제인가요?</summary><p>매일 오전 8시 30분, 오후 1시 30분 총 2회 따뜻한 빵이 나옵니다.</p></details>
+      <details><summary>Q. 단체 주문이나 예약이 가능한가요?</summary><p>최소 1일 전 전화(032-123-4567)로 예약해 주시면 수량에 맞춰 준비해 드립니다.</p></details>
+      <details><summary>Q. 주차는 지원되나요?</summary><p>건물 지하 1, 2층 주차장을 2시간 무료로 이용하실 수 있습니다.</p></details>
+    </section>
+    <footer>인천 연수구 송도동 123-4 &bull; 문의: 032-123-4567</footer>
+  </div>
+</body>
+</html>`
+      },
+      3: {
+        title: "3주차: 네이버 지도 길찾기 & 카톡 상담 채널 완성본",
+        desc: "고객 방문과 상담 이탈을 막는 네이버 지도 연동 및 카카오톡 1:1 상담 채널 버튼 완성 코드",
+        code: `<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>송도 소금빵 베이커리 — 오시는 길 & 상담</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #fafaf9; color: #1c1917; line-height: 1.6; }
+    .container { max-width: 480px; margin: 0 auto; padding: 24px 20px; }
+    header { text-align: center; margin-bottom: 24px; }
+    h1 { font-size: 26px; font-weight: 800; }
+    .grid-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 28px; }
+    .btn-action { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 14px 10px; border-radius: 14px; text-decoration: none; font-weight: 700; font-size: 14px; text-align: center; }
+    .btn-kakao { background: #fee500; color: #191919; }
+    .btn-map { background: #03c75a; color: #fff; }
+    .btn-call { display: flex; align-items: center; justify-content: center; width: 100%; height: 50px; background: #059669; color: #fff; text-decoration: none; border-radius: 14px; font-weight: 700; margin-bottom: 12px; }
+    .card { background: #fff; border: 1px solid #e7e5e4; border-radius: 14px; padding: 16px; margin-bottom: 16px; }
+    .card h3 { font-size: 15px; margin-bottom: 8px; color: #059669; }
+    .card p { font-size: 13px; color: #57534e; }
+    footer { text-align: center; font-size: 12px; color: #a8a29e; padding: 20px 0; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>송도 소금빵 베이커리</h1>
+      <p style="color:#78716c; font-size:14px; margin-top:4px;">소금빵 포장 예약 및 1:1 빠른 문의</p>
+    </header>
+    <a href="tel:032-123-4567" class="btn-call">전화 주문 바로걸기</a>
+    <div class="grid-actions">
+      <a href="http://pf.kakao.com/" target="_blank" class="btn-action btn-kakao">카카오톡 1:1 문의</a>
+      <a href="https://map.naver.com/" target="_blank" class="btn-action btn-map">네이버 지도 길찾기</a>
+    </div>
+    <div class="card">
+      <h3>매장 위치 안내</h3>
+      <p>인천 연수구 송도동 123-4 송도센트럴파크역 2번 출구 도보 5분</p>
+      <p style="margin-top:6px; font-size:12px; color:#78716c;">* 지하 주차장 2시간 무료 지원</p>
+    </div>
+    <footer>인천 송도국제도시 &bull; 송도 소금빵 베이커리</footer>
+  </div>
+</body>
+</html>`
+      },
+      4: {
+        title: "4주차: 실시간 맞춤 견적 계산기 완성본 (Math.max 음수 버그 방어)",
+        desc: "수량 증감(+/-)과 단가 계산, 그리고 음수 방어 안전 연산이 완비된 4주차 코드",
+        code: `<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>송도 소금빵 — 실시간 주문 견적기</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #fafaf9; color: #1c1917; }
+    .container { max-width: 480px; margin: 0 auto; padding: 24px 20px; }
+    header { text-align: center; margin-bottom: 24px; }
+    h1 { font-size: 24px; font-weight: 800; }
+    .calc-box { background: #fff; border: 2px solid #059669; border-radius: 20px; padding: 20px; margin-bottom: 24px; box-shadow: 0 4px 16px rgba(5,150,105,0.1); }
+    .calc-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .qty-controls { display: flex; align-items: center; gap: 8px; }
+    .btn-qty { width: 36px; height: 36px; border-radius: 10px; border: 1px solid #d6d3d1; background: #f5f5f4; font-size: 18px; font-weight: bold; cursor: pointer; }
+    .qty-display { font-size: 16px; font-weight: 700; width: 32px; text-align: center; }
+    .total-box { margin-top: 16px; padding-top: 16px; border-top: 1px dashed #e7e5e4; display: flex; justify-content: space-between; align-items: baseline; }
+    .total-price { font-size: 26px; font-weight: 900; color: #059669; }
+    .btn-order { display: block; width: 100%; height: 52px; background: #059669; color: #fff; border: none; border-radius: 14px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 16px; }
+    footer { text-align: center; font-size: 12px; color: #a8a29e; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>송도 소금빵 실시간 견적</h1>
+      <p style="font-size:14px; color:#78716c; margin-top:4px;">포장 수량을 선택하면 즉시 예상 금액을 계산합니다.</p>
+    </header>
+    <div class="calc-box">
+      <div class="calc-row">
+        <div><strong>플레인 소금빵</strong><br><small style="color:#78716c;">개당 3,500원</small></div>
+        <div class="qty-controls">
+          <button class="btn-qty" onclick="changeQty(-1)">&minus;</button>
+          <span id="qty-text" class="qty-display">1</span>
+          <button class="btn-qty" onclick="changeQty(1)">&plus;</button>
+        </div>
+      </div>
+      <div class="total-box">
+        <span style="font-size:14px; font-weight:600; color:#57534e;">예상 주문 합계:</span>
+        <span id="total-text" class="total-price">3,500원</span>
+      </div>
+      <button class="btn-order" onclick="submitOrder()">이 금액으로 전화 주문하기</button>
+    </div>
+    <footer>문의: 032-123-4567 &bull; 인천 연수구 송도동</footer>
+  </div>
+  <` + `script>
+    let qty = 1;
+    const UNIT_PRICE = 3500;
+    function changeQty(diff) {
+      qty = Math.max(0, qty + diff);
+      document.getElementById('qty-text').innerText = qty;
+      const total = qty * UNIT_PRICE;
+      document.getElementById('total-text').innerText = total.toLocaleString() + '원';
+    }
+    function submitOrder() {
+      if (qty === 0) { alert('수량을 1개 이상 선택해 주세요.'); return; }
+      const total = (qty * UNIT_PRICE).toLocaleString();
+      if (confirm('소금빵 ' + qty + '개 (총 ' + total + '원) 주문 전화를 연결하시겠습니까?')) {
+        window.location.href = 'tel:032-123-4567';
+      }
+    }
+  <` + `/script>
+</body>
+</html>`
+      },
+      5: {
+        title: "5주차: 에러 안전망 & 3초 롤백 방어 완성본",
+        desc: "실수로 깨지기 쉬운 예외 상황(0개 주문, 오작동)을 원천 차단하는 견고한 5주차 방어 코드",
+        code: `<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>송도 소금빵 — 안전 견적 시스템</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #fafaf9; color: #1c1917; }
+    .container { max-width: 480px; margin: 0 auto; padding: 24px 20px; }
+    .panel { background: #fff; border: 1px solid #e7e5e4; border-radius: 16px; padding: 20px; margin-bottom: 20px; }
+    .price-lg { font-size: 28px; font-weight: 900; color: #059669; }
+    button { cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 style="font-size:22px; margin-bottom:16px;">송도 소금빵 견적 방어 시스템</h1>
+    <div class="panel">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <span>소금빵 (3,500원)</span>
+        <div>
+          <button onclick="safeChange(-1)" style="padding:6px 12px; font-weight:bold;">-</button>
+          <span id="safe-qty" style="margin:0 8px; font-weight:bold;">1</span>
+          <button onclick="safeChange(1)" style="padding:6px 12px; font-weight:bold;">+</button>
+        </div>
+      </div>
+      <div style="margin-top:16px; border-top:1px solid #f5f5f4; padding-top:12px; display:flex; justify-content:space-between; align-items:center;">
+        <span>총 결제금액</span>
+        <span id="safe-total" class="price-lg">3,500원</span>
+      </div>
+    </div>
+  </div>
+  <` + `script>
+    let safeQty = 1;
+    function safeChange(delta) {
+      try {
+        safeQty = Math.max(0, safeQty + delta);
+        const elQty = document.getElementById('safe-qty');
+        const elTotal = document.getElementById('safe-total');
+        if (elQty) elQty.innerText = safeQty;
+        if (elTotal) elTotal.innerText = (safeQty * 3500).toLocaleString() + '원';
+      } catch (err) {
+        console.error('계산기 처리 중 오류 방어:', err);
+      }
+    }
+  <` + `/script>
+</body>
+</html>`
+      },
+      6: {
+        title: "6주차: 카카오톡 OG 공유 메타태그 & 졸업 최종 완성본 (Netlify Drop 배포 규격)",
+        desc: "카카오톡/문자 공유 시 예쁜 썸네일과 미리보기 카드가 뜨는 Open Graph 메타태그가 결합된 완전체 index.html",
+        code: `<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- KAKAO / SNS OPEN GRAPH TAGS (6주차 공식 규격) -->
+  <title>송도 소금빵 베이커리 — 당일 갓 구운 프리미엄 소금빵</title>
+  <meta name="description" content="인천 송도 1공구 매일 아침 8시 갓 구워내는 프랑스산 버터 소금빵 실시간 전화 주문">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="송도 소금빵 베이커리">
+  <meta property="og:description" content="매일 아침 갓 구운 프리미엄 소금빵 3,500원 &bull; 실시간 전화 주문 바로가기">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=800&q=80">
+  <meta property="og:url" content="https://songdo-bakery.netlify.app">
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #fafaf9; color: #1c1917; line-height: 1.6; }
+    .container { max-width: 480px; margin: 0 auto; padding: 24px 20px; }
+    header { text-align: center; margin-top: 20px; margin-bottom: 24px; }
+    .badge { display: inline-block; padding: 4px 12px; background: #dcfce7; border-radius: 9999px; font-size: 13px; font-weight: 700; color: #166534; margin-bottom: 12px; }
+    h1 { font-size: 26px; font-weight: 800; color: #0c0a09; }
+    p.intro { font-size: 15px; color: #78716c; margin-top: 6px; }
+    .btn-call { display: flex; align-items: center; justify-content: center; width: 100%; height: 54px; background: #059669; color: #fff; text-decoration: none; border-radius: 16px; font-size: 17px; font-weight: 700; margin-bottom: 12px; box-shadow: 0 4px 12px rgba(5,150,105,0.25); }
+    .grid-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 28px; }
+    .btn-action { display: flex; align-items: center; justify-content: center; padding: 14px 10px; border-radius: 14px; text-decoration: none; font-weight: 700; font-size: 14px; }
+    .btn-kakao { background: #fee500; color: #191919; }
+    .btn-map { background: #03c75a; color: #fff; }
+    .calc-card { background: #fff; border: 2px solid #059669; border-radius: 18px; padding: 18px; margin-bottom: 24px; }
+    .qty-btn { width: 34px; height: 34px; border-radius: 8px; border: 1px solid #d6d3d1; background: #f5f5f4; font-size: 16px; font-weight: bold; cursor: pointer; }
+    footer { text-align: center; font-size: 12px; color: #a8a29e; padding: 24px 0; border-top: 1px solid #e7e5e4; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <span class="badge">송도 국제 AI 아카데미 졸업 작품</span>
+      <h1>송도 소금빵 베이커리</h1>
+      <p class="intro">매일 아침 8시 프랑스산 버터로 구워내는 프리미엄 소금빵</p>
+    </header>
+    <a href="tel:032-123-4567" class="btn-call">전화 바로 주문하기</a>
+    <div class="grid-actions">
+      <a href="http://pf.kakao.com/" target="_blank" class="btn-action btn-kakao">카카오톡 1:1 상담</a>
+      <a href="https://map.naver.com/" target="_blank" class="btn-action btn-map">네이버 지도 길찾기</a>
+    </div>
+    <div class="calc-card">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <div><strong>시그니처 소금빵</strong><br><small style="color:#78716c;">개당 3,500원</small></div>
+        <div style="display:flex; align-items:center; gap:8px;">
+          <button class="qty-btn" onclick="updateFinalQty(-1)">&minus;</button>
+          <span id="f-qty" style="font-size:16px; font-weight:bold; width:28px; text-align:center;">1</span>
+          <button class="qty-btn" onclick="updateFinalQty(1)">&plus;</button>
+        </div>
+      </div>
+      <div style="margin-top:14px; padding-top:12px; border-top:1px dashed #e7e5e4; display:flex; justify-content:space-between; align-items:baseline;">
+        <span style="font-size:13px; color:#57534e;">주문 예상 금액</span>
+        <strong id="f-total" style="font-size:24px; color:#059669;">3,500원</strong>
+      </div>
+    </div>
+    <footer>
+      <p>인천 연수구 송도동 123-4 &bull; 주차 2시간 무료</p>
+    </footer>
+  </div>
+  <` + `script>
+    let fQty = 1;
+    function updateFinalQty(d) {
+      fQty = Math.max(0, fQty + d);
+      document.getElementById('f-qty').innerText = fQty;
+      document.getElementById('f-total').innerText = (fQty * 3500).toLocaleString() + '원';
+    }
+  <` + `/script>
+</body>
+</html>`
+      }
+    };
+
+    function openGoldenCodeModal(targetW) {
+      const w = targetW || currentWeek || 1;
+      selectGoldenTab(w);
+      const m = document.getElementById('golden-code-modal');
+      if (m) m.classList.remove('hidden');
+    }
+
+    function closeGoldenCodeModal() {
+      const m = document.getElementById('golden-code-modal');
+      if (m) m.classList.add('hidden');
+    }
+
+    function selectGoldenTab(w) {
+      currentGoldenTab = w;
+      for (let i = 1; i <= 6; i++) {
+        const btn = document.getElementById(`golden-tab-${i}`);
+        if (btn) {
+          if (i === w) {
+            btn.className = 'golden-tab-btn px-3 py-1.5 rounded-xl font-bold transition-all bg-emerald-600 text-white shrink-0';
+          } else {
+            btn.className = 'golden-tab-btn px-3 py-1.5 rounded-xl font-medium text-slate-600 hover:bg-slate-100 shrink-0';
+          }
+        }
+      }
+      const data = GOLDEN_CODES[w] || GOLDEN_CODES[1];
+      const descEl = document.getElementById('golden-desc-text');
+      const preEl = document.getElementById('golden-code-pre');
+      if (descEl) descEl.innerText = data.desc;
+      if (preEl) preEl.innerText = data.code;
+    }
+
+    function copyCurrentGoldenCode() {
+      const data = GOLDEN_CODES[currentGoldenTab] || GOLDEN_CODES[1];
+      navigator.clipboard.writeText(data.code).then(() => {
+        showToast(`${currentGoldenTab}주차 모범 완성본 코드가 복사되었습니다! 메모장에 붙여넣으세요.`);
+      }).catch(() => {
+        fallbackCopyText(data.code);
+        showToast(`${currentGoldenTab}주차 모범 완성본 코드가 복사되었습니다!`);
+      });
+    }
+
+    // ========================================================
+    // TOP NAV COMPLETION CHECKMARKS (✓)
+    // ========================================================
+    function updateNavCompletionBadges() {
+      const weekTitles = {
+        1: '1주차: 첫 간판 & 전화',
+        2: '2주차: 메뉴판 & FAQ',
+        3: '3주차: 지도 & 카톡 채널',
+        4: '4주차: 맞춤 계산기',
+        5: '5주차: 디버깅 실험실',
+        6: '6주차: 출시 & 졸업 과제'
+      };
+
+      for (let w = 1; w <= 6; w++) {
+        const btn = document.getElementById(`btn-w${w}`);
+        const isDone = localStorage.getItem(`songdo_ai_w${w}_completed`) === 'true';
+        if (btn) {
+          const title = weekTitles[w];
+          btn.innerHTML = isDone ? `<span class="text-emerald-300 font-black mr-1">✓</span>${title}` : title;
+        }
+      }
+    }
+
+</script>
 
 </body>
 </html>
