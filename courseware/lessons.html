@@ -169,22 +169,22 @@
       <div class="flex items-center gap-1.5 shrink-0">
         <span class="text-xs font-bold text-slate-400 mr-1 hidden sm:inline">주차 선택:</span>
         <button onclick="selectWeek(1)" id="btn-w1" class="week-nav-btn px-3 py-1.5 rounded-xl text-xs font-bold transition-all bg-emerald-600 text-white shadow-xs">
-          1주차: 첫 간판 & 전화
+          1주차: 조작 면허 & 첫 배포
         </button>
         <button onclick="selectWeek(2)" id="btn-w2" class="week-nav-btn px-3 py-1.5 rounded-xl text-xs font-medium text-slate-600 hover:bg-slate-100 transition-all">
-          2주차: 메뉴판 & FAQ
+          2주차: 내 문제 명세서 (BYOD)
         </button>
         <button onclick="selectWeek(3)" id="btn-w3" class="week-nav-btn px-3 py-1.5 rounded-xl text-xs font-medium text-slate-600 hover:bg-slate-100 transition-all">
-          3주차: 지도 & 카톡 채널
+          3주차: 부품 조립 & 플랫폼 연동
         </button>
         <button onclick="selectWeek(4)" id="btn-w4" class="week-nav-btn px-3 py-1.5 rounded-xl text-xs font-medium text-slate-600 hover:bg-slate-100 transition-all">
-          4주차: 맞춤 계산기
+          4주차: AI 거짓말 적발 & 검증 게이트
         </button>
         <button onclick="selectWeek(5)" id="btn-w5" class="week-nav-btn px-3 py-1.5 rounded-xl text-xs font-medium text-slate-600 hover:bg-slate-100 transition-all">
-          5주차: 디버깅 실험실
+          5주차: 진흙탕 디버깅 & 퇴행 방지
         </button>
         <button onclick="selectWeek(6)" id="btn-w6" class="week-nav-btn px-3 py-1.5 rounded-xl text-xs font-medium text-slate-600 hover:bg-slate-100 transition-all">
-          6주차: 출시 & 졸업 과제
+          6주차: 실사용자 피드백 & 수료식
         </button>
       </div>
 
@@ -2008,12 +2008,12 @@
     };
 
     const stepTitles = {
-      1: ['1. 도구 준비', '2. 첫 화면 띄우기', '3. AI 사이트 생성', '4. 3단계 기능 확장', '5. 1주차 성취 인증'],
-      2: ['1. 메뉴 & 팩트 원칙', '2. 메뉴판·FAQ 조립', '3. 칼차단 실전 검증', '4. 2주차 성취 인증'],
-      3: ['1. 고객 동선 설계', '2. 지도 & 카톡 연동', '3. 375px 모바일 검사', '4. 3주차 성취 인증'],
-      4: ['1. 계산기 3요소 원칙', '2. 맞춤 계산기 조립', '3. 3대 정답 테스트', '4. 4주차 성취 인증'],
-      5: ['1. 에러 재현 실험', '2. 3문장 보고 조립', '3. 3초 롤백 실습', '4. 5주차 성취 인증'],
-      6: ['1. 전 세계 무료 배포', '2. 카톡 공유 카드', '3. 독립 응용 졸업과제', '4. 대마스터 수료증']
+      1: ['1. 도구 준비', '2. 첫 화면 띄우기', '3. 코드 생략 차단 룰', '4. 3단계 기능 확장', '5. 1주차 면허 인증'],
+      2: ['1. 1장 명세서 4요소', '2. 내 실제 데이터(BYOD)', '3. 기밀 마스킹 보안', '4. 2주차 기획 인증'],
+      3: ['1. 명세 기반 부품 조립', '2. 지도 & 카톡 연동', '3. 외부 라이브러리 차단', '4. 3주차 조립 인증'],
+      4: ['1. 침묵하는 에러 위험성', '2. 손계산 5건 대조 테스트', '3. 함정 에러 적발 훈련', '4. 4주차 품질 인증'],
+      5: ['1. 기존 기능 날림(퇴행) 방지', '2. F12 3문장 에러 보고', '3. 3초 롤백 타임머신', '4. 5주차 디버깅 인증'],
+      6: ['1. Netlify 전 세계 배포', '2. 카톡 OG 공유 썸네일', '3. 실사용자 피드백 폐루프', '4. 대마스터 수료증 날인']
     };
 
     function selectWeek(weekNum, targetSlide = 1) {
@@ -3404,12 +3404,12 @@ Uncaught TypeError: Cannot read properties of null (reading 'value')
     // ========================================================
     function updateNavCompletionBadges() {
       const weekTitles = {
-        1: '1주차: 첫 간판 & 전화',
-        2: '2주차: 메뉴판 & FAQ',
-        3: '3주차: 지도 & 카톡 채널',
-        4: '4주차: 맞춤 계산기',
-        5: '5주차: 디버깅 실험실',
-        6: '6주차: 출시 & 졸업 과제'
+        1: '1주차: 조작 면허 & 첫 배포',
+        2: '2주차: 내 문제 명세서 (BYOD)',
+        3: '3주차: 부품 조립 & 플랫폼 연동',
+        4: '4주차: AI 거짓말 적발 & 검증 게이트',
+        5: '5주차: 진흙탕 디버깅 & 퇴행 방지',
+        6: '6주차: 실사용자 피드백 & 수료식'
       };
 
       for (let w = 1; w <= 6; w++) {
