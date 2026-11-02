@@ -1,6 +1,6 @@
 # 🧭 송도 국제 AI 아카데미 (Songdo AI Academy) 프로젝트 상황판
 
-> **최종 갱신일시**: 2026-10-27 (새벽)
+> **최종 갱신일시**: 2026-11-02 (야간)
 > **공식 라이브 웹 주소**: [https://songdo-ai.pages.dev](https://songdo-ai.pages.dev)
 > **공식 GitHub 원격 저장소**: [https://github.com/ohahbuji1988/songdo-ai-academy](https://github.com/ohahbuji1988/songdo-ai-academy)
 > **로컬 개발 서버**: `http://127.0.0.1:3000` (실행: `시작하기.bat`)
@@ -255,4 +255,5 @@
 ## 🎯 다음 진행 작업 (Next Steps)
 - [x] **Claude 교차 검증 기반 6주 커리큘럼 대재정렬 및 전체 화면 동기화 완료**
 - [x] **커리큘럼 전면 쉬운 일상어 순화 완료 (landing, lessons, report 동기화)**
-- [ ] **수정된 완성본 GitHub 원격(`origin/master`) 푸시 및 Cloudflare Pages 라이브 동기화 배포**
+- [x] **수정된 완성본 GitHub 원격(`origin/master`) 푸시 및 Cloudflare Pages 라이브 동기화 배포**
+- [ ] **실제 수강생 유입 및 모바일/데스크톱 실사용 피드백 모니터링**
